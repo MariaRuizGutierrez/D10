@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.transaction.Transactional;
@@ -72,5 +73,9 @@ public class ChirpService {
 	}
 
 	// Other business methods -------------------------------------------------
-
+	public Collection<Chirp> getChirpsOfMyFollowers(final int userId) {
+		Collection<Chirp> result;
+		result = this.chirpRepository.getChirpsOfMyFollowers(userId);
+		return result;
+	}
 }
