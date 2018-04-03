@@ -29,7 +29,7 @@ public class Newspaper extends DomainEntity {
 	private Date	publicationDate;
 	private String	description;
 	private String	picture;
-	private boolean	open;
+	private boolean	open;				// Público
 
 
 	@NotBlank

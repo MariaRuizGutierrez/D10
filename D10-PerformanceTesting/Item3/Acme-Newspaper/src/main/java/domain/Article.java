@@ -75,9 +75,9 @@ public class Article extends DomainEntity {
 
 	// Relationships---------------------------------------------------------------
 
-	private User		writer;
-	private Newspaper	newspaper;
-	private FollowUp	followUps;
+	private User					writer;
+	private Newspaper				newspaper;
+	private Collection<FollowUp>	followUps;
 
 
 	@ManyToOne(optional = false)
@@ -104,11 +104,11 @@ public class Article extends DomainEntity {
 
 	@OneToMany
 	@Valid
-	public FollowUp getFollowUps() {
+	public Collection<FollowUp> getFollowUps() {
 		return this.followUps;
 	}
 
-	public void setFollowUps(final FollowUp followUps) {
+	public void setFollowUps(final Collection<FollowUp> followUps) {
 		this.followUps = followUps;
 	}
 
