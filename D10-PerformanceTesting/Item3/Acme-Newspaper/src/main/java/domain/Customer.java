@@ -18,7 +18,7 @@ public class Customer extends Actor {
 	private Collection<Subscription>	subcriptions;
 
 
-	@OneToMany
+	@OneToMany(mappedBy = "customer")
 	@Valid
 	public Collection<Subscription> getSubcriptions() {
 		return this.subcriptions;

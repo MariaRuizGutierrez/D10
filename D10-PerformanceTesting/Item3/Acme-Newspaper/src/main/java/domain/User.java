@@ -21,7 +21,7 @@ public class User extends Actor {
 	private Collection<User>	followed;	// Seguidos
 
 
-	@OneToMany
+	@OneToMany(mappedBy = "writer")
 	@Valid
 	public Collection<Article> getArticles() {
 		return this.articles;

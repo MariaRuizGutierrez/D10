@@ -28,7 +28,16 @@ public class Article extends DomainEntity {
 	private Date				publishedMoment;
 	private String				body;
 	private Collection<String>	pictures;
+	private boolean				draftMode;
 
+
+	public boolean isDraftMode() {
+		return this.draftMode;
+	}
+
+	public void setDraftMode(final boolean draftMode) {
+		this.draftMode = draftMode;
+	}
 
 	@NotBlank
 	public String getTitle() {
