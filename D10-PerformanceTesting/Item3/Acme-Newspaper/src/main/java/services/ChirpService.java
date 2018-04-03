@@ -54,6 +54,11 @@ public class ChirpService {
 	public Chirp save(final Chirp chirp) {
 		Chirp result;
 		Assert.notNull(chirp);
+		if (chirp.getId() == 0) {
+			Date postedMoment;
+			postedMoment = new Date(System.currentTimeMillis() - 1000);
+			chirp.setPostedMoment(postedMoment);
+		}
 
 		if (chirp.getId() != 0) {
 			final Date now = new Date();
@@ -77,5 +82,9 @@ public class ChirpService {
 		Collection<Chirp> result;
 		result = this.chirpRepository.getChirpsOfMyFollowers(userId);
 		return result;
+	}
+
+	public void flush() {
+		this.chirpRepository.flush();
 	}
 }
