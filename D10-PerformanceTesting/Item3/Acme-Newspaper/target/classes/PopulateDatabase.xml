@@ -291,7 +291,7 @@
 		
 	<bean id="newspaper1" class="domain.Newspaper">
 		<property name="title" value="title newspaper 1" />
-		<property name="publicationDate"><null /></property>
+		<property name="publicationDate" value="2017/09/21" />
 		<property name="description" value="description newspaper 1" />
 		<property name="picture" value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
 		<property name="open" value="false" />
