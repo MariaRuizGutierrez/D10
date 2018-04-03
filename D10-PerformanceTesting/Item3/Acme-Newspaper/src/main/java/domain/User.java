@@ -31,7 +31,7 @@ public class User extends Actor {
 		this.articles = articles;
 	}
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "followed")
 	@Valid
 	public Collection<User> getFollowers() {
 		return this.followers;

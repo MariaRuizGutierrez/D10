@@ -95,8 +95,7 @@ public class Article extends DomainEntity {
 		this.writer = writer;
 	}
 
-	@ManyToOne(optional = false)
-	@NotNull
+	@ManyToOne(optional = true)
 	@Valid
 	public Newspaper getNewspaper() {
 		return this.newspaper;

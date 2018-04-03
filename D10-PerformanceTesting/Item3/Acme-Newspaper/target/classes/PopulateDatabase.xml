@@ -54,9 +54,45 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccountCustomer3" class="security.UserAccount">
+		<property name="username" value="customer3" />
+		<property name="password" value="033f7f6121501ae98285ad77f216d5e7" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	<bean id="userAccountUser1" class="security.UserAccount">
 		<property name="username" value="user1" />
 		<property name="password" value="24c9e15e52afc47c225b757e7bee1f9d" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="USER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccountUser2" class="security.UserAccount">
+		<property name="username" value="user2" />
+		<property name="password" value="7e58d63b60197ceb55a1c487989a3720" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="USER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccountUser3" class="security.UserAccount">
+		<property name="username" value="user3" />
+		<property name="password" value="92877af70a45fd6a2ed7fe81e1236b78" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -93,10 +129,63 @@
 		</property>
 		<property name="followers">
 			<list>
+				<ref bean="user2"/>
 			</list>
 		</property>
 		<property name="followed">
 			<list>
+				<ref bean="user1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="user2" class="domain.User">
+		<property name="userAccount" ref="userAccountUser2" />
+		<property name="name" value="user 2" />
+		<property name="surname" value="surname user 2" />
+		<property name="postalAdress" value="postal Adress user 2" />
+		<property name="email" value="user2@acmenewspaper.com" />
+		<property name="phone" value="+34617557203" />
+		<property name="articles">
+			<list>
+				 <ref bean="article2"/> 
+			</list>
+		</property>
+		<property name="followers">
+			<list>
+				<ref bean="user1"/>
+			</list>
+		</property>
+		<property name="followed">
+			<list>
+				<ref bean="user1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="user3" class="domain.User">
+		<property name="userAccount" ref="userAccountUser3" />
+		<property name="name" value="user 3" />
+		<property name="surname" value="surname user 3" />
+		<property name="postalAdress" value="postal Adress user 3" />
+		<property name="email" value="user3@acmenewspaper.com" />
+		<property name="phone" value="+34648213455" />
+		<property name="articles">
+			<list>
+				 <ref bean="article3"/> 
+				 <ref bean="article4"/> 
+			</list>
+		</property>
+		<property name="followers">
+			<list>
+				<ref bean="user1"/>
+				<ref bean="user2"/>
+			</list>
+		</property>
+		<property name="followed">
+			<list>
+				<ref bean="user1"/>
+				<ref bean="user2"/>
 			</list>
 		</property>
 	</bean>
@@ -131,6 +220,20 @@
 		</property>
 	</bean>
 	
+	<bean id="customer3" class="domain.Customer">
+		<property name="userAccount" ref="userAccountCustomer3" />
+		<property name="name" value="customer 3" />
+		<property name="surname" value="surname customer 3" />
+		<property name="postalAdress" value="postal Adress customer 3" />
+		<property name="email" value="customer1@acmenewspaper.com" />
+		<property name="phone" value="+34667437865" />
+		<property name="subcriptions">
+			<list>
+				<ref bean="subcription3"/>
+			</list>
+		</property>
+	</bean>
+	
 		<!-- Credit Cards -->
 
 	 <bean id="creditCard1" class="domain.CreditCard">
@@ -150,6 +253,15 @@
 		<property name="expirationYear" value="21" />
 		<property name="cvv" value="123" />
 	</bean> 
+	
+	<bean id="creditCard3" class="domain.CreditCard">
+		<property name="holderName" value="holder name 3" />
+		<property name="brandName" value="Brand name 3" />
+		<property name="number" value="4388576018410707" />
+		<property name="expirationMonth" value="01" />
+		<property name="expirationYear" value="19" />
+		<property name="cvv" value="614" />
+	</bean> 
 
 		<!-- Subcriptions -->
 		
@@ -163,6 +275,12 @@
 	<bean id="subcription2" class="domain.Subscription">
 		<property name="creditCard" ref="creditCard2" />
 		<property name="customer" ref="customer2" />
+		<property name="newspaper" ref="newspaper1" />
+	</bean> 
+	
+	<bean id="subcription3" class="domain.Subscription">
+		<property name="creditCard" ref="creditCard3" />
+		<property name="customer" ref="customer3" />
 		<property name="newspaper" ref="newspaper1" />
 	</bean> 
 	
@@ -182,13 +300,41 @@
 		</property>
 	</bean>
 	
+	<bean id="newspaper2" class="domain.Newspaper">
+		<property name="title" value="title newspaper 2" />
+		<property name="publicationDate" value="2017/10/21" />
+		<property name="description" value="description newspaper 2" />
+		<property name="picture" value="https://supergracioso.com/wp-content/uploads/2015/05/Errores-en-peri%C3%B3dicos-%C2%A1INCRE%C3%8DBLES-Parte-I.jpg" />
+		<property name="open" value="true" />
+		<property name="publisher" ref="user1" />
+		<property name="articles">
+			<list>
+				<ref bean="article2"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="newspaper3" class="domain.Newspaper">
+		<property name="title" value="title newspaper 3" />
+		<property name="publicationDate"><null /></property>
+		<property name="description" value="description newspaper 3" />
+		<property name="picture" value="https://supergracioso.com/wp-content/uploads/2015/05/Errores-en-peri%C3%B3dicos-%C2%A1INCRE%C3%8DBLES-Parte-I.jpg" />
+		<property name="open" value="true" />
+		<property name="publisher" ref="user1" />
+		<property name="articles">
+			<list>
+				<ref bean="article4"/>
+			</list>
+		</property>
+	</bean>
+	
 		<!-- FollowUps -->
 		
 	<bean id="followUp1" class="domain.FollowUp">
 		<property name="title" value="title followUp 1" />
 		<property name="publicationMoment" value="2017/10/21" />
-		<property name="summary" value="summary newspaper 1" />
-		<property name="text" value="text newspaper 1" />
+		<property name="summary" value="summary 1" />
+		<property name="text" value="text 1" />
 		<property name="pictures">
 			<list>
 			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
@@ -198,6 +344,21 @@
 		</property>
 	</bean> 
 	
+	<bean id="followUp2" class="domain.FollowUp">
+		<property name="title" value="title followUp 2" />
+		<property name="publicationMoment" value="2017/10/21" />
+		<property name="summary" value="summary 2" />
+		<property name="text" value="text followUp2" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+	</bean> 
+	
+	
 		<!-- Chirps -->
 		
 	<bean id="chirp1" class="domain.Chirp">
@@ -205,6 +366,20 @@
 		<property name="title" value="title chirp 1" />
 		<property name="description" value="description chirp 1" />
 		<property name="user" ref="user1" />
+	</bean> 
+	
+	<bean id="chirp2" class="domain.Chirp">
+		<property name="postedMoment" value="2018/01/21" />
+		<property name="title" value="title chirp 2" />
+		<property name="description" value="description chirp 2" />
+		<property name="user" ref="user2" />
+	</bean> 
+	
+	<bean id="chirp3" class="domain.Chirp">
+		<property name="postedMoment" value="2018/01/21" />
+		<property name="title" value="title chirp 3" />
+		<property name="description" value="description chirp 3" />
+		<property name="user" ref="user3" />
 	</bean> 
 	
 		<!-- Articles -->
@@ -225,7 +400,68 @@
 		<property name="draftMode" value="false"/>
 		<property name="followUps">
 			<list>
+				<ref bean="followUp2"/>
+			</list>
+		</property>
+	</bean> 
+	
+	<bean id="article2" class="domain.Article">
+		<property name="publishedMoment" value="2017/10/21" />
+		<property name="title" value="title article 2" />
+		<property name="body" value="body chirp 2" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+		<property name="writer" ref="user2" />
+		<property name="newspaper" ref="newspaper2" />
+		<property name="draftMode" value="false"/>
+		<property name="followUps">
+			<list>
 				<ref bean="followUp1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="article3" class="domain.Article">
+		<property name="publishedMoment"><null /></property>
+		<property name="title" value="title article 3" />
+		<property name="body" value="body chirp 3" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+		<property name="writer" ref="user3" />
+		<property name="newspaper"><null /></property>
+		<property name="draftMode" value="true"/>
+		<property name="followUps">
+			<list>
+			</list>
+		</property>
+	</bean> 
+	
+	<bean id="article4" class="domain.Article">
+		<property name="publishedMoment"><null /></property>
+		<property name="title" value="title article 4" />
+		<property name="body" value="body chirp 4" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+		<property name="writer" ref="user3" />
+		<property name="newspaper" ref="newspaper3" />
+		<property name="draftMode" value="true"/>
+		<property name="followUps">
+			<list>
 			</list>
 		</property>
 	</bean> 
