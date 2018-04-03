@@ -134,7 +134,7 @@
 		</property>
 		<property name="followed">
 			<list>
-				<ref bean="user1"/>
+				<ref bean="user2"/>
 			</list>
 		</property>
 	</bean>
@@ -288,7 +288,7 @@
 		
 	<bean id="newspaper1" class="domain.Newspaper">
 		<property name="title" value="title newspaper 1" />
-		<property name="publicationDate" value="2017/10/21" />
+		<property name="publicationDate"><null /></property>
 		<property name="description" value="description newspaper 1" />
 		<property name="picture" value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
 		<property name="open" value="false" />
@@ -302,7 +302,7 @@
 	
 	<bean id="newspaper2" class="domain.Newspaper">
 		<property name="title" value="title newspaper 2" />
-		<property name="publicationDate" value="2017/10/21" />
+		<property name="publicationDate"><null /></property>
 		<property name="description" value="description newspaper 2" />
 		<property name="picture" value="https://supergracioso.com/wp-content/uploads/2015/05/Errores-en-peri%C3%B3dicos-%C2%A1INCRE%C3%8DBLES-Parte-I.jpg" />
 		<property name="open" value="true" />
