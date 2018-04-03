@@ -30,6 +30,7 @@ public class Subscription extends DomainEntity {
 	//Relationships------------------------------------------------------------------
 
 	private Newspaper	newspaper;
+	private Customer	customer;
 
 
 	@Valid
@@ -41,6 +42,17 @@ public class Subscription extends DomainEntity {
 
 	public void setNewspaper(final Newspaper newspaper) {
 		this.newspaper = newspaper;
+	}
+
+	@ManyToOne(optional = false)
+	@Valid
+	@NotNull
+	public Customer getCustomer() {
+		return this.customer;
+	}
+
+	public void setCustomer(final Customer customer) {
+		this.customer = customer;
 	}
 
 }
