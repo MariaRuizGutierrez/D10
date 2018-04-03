@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.SubscriptionRepository;
+import domain.Customer;
 import domain.Subscription;
 
 @Service
@@ -36,19 +37,30 @@ public class SubscriptionService {
 	//CREATE
 	public Subscription create() {
 		Subscription result;
+		Customer customerPrincipal;
 
+		customerPrincipal = this.customerService.findByPrincipal();
 		result = new Subscription();
+		result.setCustomer(customerPrincipal);
 
 		return result;
 	}
 
 	//SAVE
 	public Subscription save(final Subscription subscription) {
+		Customer customerPrincipal;
+		Subscription result;
+
 		Assert.notNull(subscription);
-		//Assert.isTrue(expression)
+		customerPrincipal = this.customerService.findByPrincipal();
+		Assert.isTrue(subscription.getCustomer().equals(customerPrincipal));
+		//Solo se pueden subscribir a las newspaper que son privadas
 		Assert.isTrue(!subscription.getNewspaper().isOpen());
-		return null;
+
+		result = this.subscriptionRepository.save(subscription);
+		return result;
 	}
+
 	// Other business methods -------------------------------------------------
 
 }
