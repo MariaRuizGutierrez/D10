@@ -8,8 +8,12 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
@@ -66,6 +70,46 @@ public class Article extends DomainEntity {
 
 	public void setPictures(final Collection<String> pictures) {
 		this.pictures = pictures;
+	}
+
+
+	// Relationships---------------------------------------------------------------
+
+	private User		writer;
+	private Newspaper	newspaper;
+	private FollowUp	followUps;
+
+
+	@ManyToOne(optional = false)
+	@NotNull
+	@Valid
+	public User getWriter() {
+		return this.writer;
+	}
+
+	public void setWriter(final User writer) {
+		this.writer = writer;
+	}
+
+	@ManyToOne(optional = false)
+	@NotNull
+	@Valid
+	public Newspaper getNewspaper() {
+		return this.newspaper;
+	}
+
+	public void setNewspaper(final Newspaper newspaper) {
+		this.newspaper = newspaper;
+	}
+
+	@OneToMany
+	@Valid
+	public FollowUp getFollowUps() {
+		return this.followUps;
+	}
+
+	public void setFollowUps(final FollowUp followUps) {
+		this.followUps = followUps;
 	}
 
 }
