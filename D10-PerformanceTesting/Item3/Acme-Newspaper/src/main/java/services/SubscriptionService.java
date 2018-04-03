@@ -47,6 +47,7 @@ public class SubscriptionService {
 		Assert.notNull(subscription);
 		//Assert.isTrue(expression)
 		Assert.isTrue(!subscription.getNewspaper().isOpen());
+		return null;
 	}
 	// Other business methods -------------------------------------------------
 
