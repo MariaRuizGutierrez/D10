@@ -130,11 +130,13 @@
 		<property name="followers">
 			<list>
 				<ref bean="user2"/>
+				<ref bean="user3"/>
 			</list>
 		</property>
 		<property name="followed">
 			<list>
 				<ref bean="user2"/>
+				<ref bean="user3"/>
 			</list>
 		</property>
 	</bean>
@@ -159,6 +161,7 @@
 		<property name="followed">
 			<list>
 				<ref bean="user1"/>
+				<ref bean="user3"/>
 			</list>
 		</property>
 	</bean>
