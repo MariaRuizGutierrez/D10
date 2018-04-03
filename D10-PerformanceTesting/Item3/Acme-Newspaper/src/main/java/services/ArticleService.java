@@ -74,7 +74,7 @@ public class ArticleService {
 		Assert.isTrue(article.getWriter().equals(this.userService.findByPrincipal()));
 		//Cuando no este en modo borrador tiene que tener asignado un periodico
 		if (!article.isDraftMode())
-			Assert.notNull(article.getNewspaper());
+			Assert.notNull(article.getNewspaper(), "tiene que asignarse un periodico para poder guardar en modo final");
 
 		result = this.articleRepository.save(article);
 
