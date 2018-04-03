@@ -114,6 +114,7 @@ public class NewspaperService {
 		Assert.isTrue(newspaper.getPublisher().equals(this.userService.findByPrincipal()));
 		Assert.isTrue(this.isAllFinalMode(newspaper.getId()), "todos sus articulos tienen que estar en modo final");
 		Assert.isTrue(newspaper.getArticles().size() != 0, "tiene que tener al menos un articulo para publicarse");
+		Assert.isNull(newspaper.getPublicationDate(), "la fecha de publicacion tiene que estar vacia");
 
 		newspaper.setPublicationDate(new Date(System.currentTimeMillis() - 1000));
 		newspaper = this.save(newspaper);

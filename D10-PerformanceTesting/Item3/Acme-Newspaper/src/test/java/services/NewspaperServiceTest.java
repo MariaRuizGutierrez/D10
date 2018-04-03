@@ -143,4 +143,51 @@ public class NewspaperServiceTest extends AbstractTest {
 		super.unauthenticate();
 	}
 
+	//Caso de uso 6.2: Publish a newspaper that he or she's created. Note that no newspaper can be published until each of the articles of which it is composed is saved in final mode.
+	@Test
+	public void driverPublish() {
+		final Object testingData[][] = {
+			{
+				//Se publica un newspaper correctamente ya que no tiene fecha de publicacion
+				"user1", "newspaper2", null
+			}, {
+				//Se publica un newspaper incorrectamente ya que tiene fecha de publicacion
+				"user1", "newspaper1", IllegalArgumentException.class
+			}, {
+				//Se publica un newspaper incorrectamente ya que no pertenece a ese usuario
+				"user2", "newspaper1", IllegalArgumentException.class
+			}, {
+				//Se publica un newspaper incorrectamente ya que el newspaper3 tiene el article4 que esta en modo borrador
+				"user1", "newspaper3", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templatePublish((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void templatePublish(final String username, final int newspaperId, final Class<?> expected) {
+		Newspaper newspaper;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			newspaper = this.newspaperService.findOne(newspaperId);
+			this.newspaperService.publish(newspaper);
+
+			this.newspaperService.flush();
+			//Se comprueba que se haya publicado correctamente
+			newspaper = this.newspaperService.findOne(newspaperId);
+			Assert.notNull(newspaper.getPublicationDate());
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+		super.unauthenticate();
+	}
+
 }
