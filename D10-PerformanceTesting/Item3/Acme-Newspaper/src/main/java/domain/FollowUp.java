@@ -13,8 +13,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.URL;
-import org.hibernate.validator.constraints.URL.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -68,9 +66,6 @@ public class FollowUp extends DomainEntity {
 		this.text = text;
 	}
 
-	@List(value = {
-		@URL
-	})
 	@ElementCollection
 	public Collection<String> getPictures() {
 		return this.pictures;

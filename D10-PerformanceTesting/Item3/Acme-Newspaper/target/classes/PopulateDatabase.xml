@@ -18,7 +18,7 @@
 	
 	<!-- User accounts -->
 
-	<bean id="userAccount1" class="security.UserAccount">
+	<!-- bean id="userAccountAdmin" class="security.UserAccount">
 		<property name="username" value="admin" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
 		<property name="authorities">
@@ -28,11 +28,11 @@
 				</bean>
 			</list>
 		</property>
-	</bean>
+	</bean> -->
 
-	<bean id="userAccount2" class="security.UserAccount">
-		<property name="username" value="customer" />
-		<property name="password" value="91ec1f9324753048c0096d036a694f86" />
+	<bean id="userAccountCustomer1" class="security.UserAccount">
+		<property name="username" value="customer1" />
+		<property name="password" value="ffbc4675f864e0e9aab8bdf7a0437010" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -41,22 +41,154 @@
 			</list>
 		</property>
 	</bean>
-
-	<bean id="userAccount3" class="security.UserAccount">
-		<property name="username" value="super" />
-		<property name="password" value="1b3231655cebb7a1f783eddf27d254ca" />
+	
+	<bean id="userAccountUser1" class="security.UserAccount">
+		<property name="username" value="user1" />
+		<property name="password" value="24c9e15e52afc47c225b757e7bee1f9d" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="ADMIN" />
-				</bean>
-				<bean class="security.Authority">
-					<property name="authority" value="CUSTOMER" />
+					<property name="authority" value="USER" />
 				</bean>
 			</list>
 		</property>
 	</bean>
 	
-	<!-- Other domain beans come here -->	
+		<!-- Users -->
+		
+		<bean id="user1" class="domain.User">
+		<property name="userAccount" ref="userAccountUser1" />
+		<property name="name" value="user 1" />
+		<property name="surname" value="surname user 1" />
+		<property name="postalAdress" value="postal Adress user 1" />
+		<property name="email" value="user1@acmenewspaper.com" />
+		<property name="phone" value="+34617557203" />
+		<property name="articles">
+			<list>
+				<!-- <ref bean="article1"/> -->
+			</list>
+		</property>
+		<property name="followers">
+			<list>
+			</list>
+		</property>
+		<property name="followed">
+			<list>
+			</list>
+		</property>
+	</bean>
 	
+		<!-- Customers -->
+		
+	 <bean id="customer1" class="domain.Customer">
+		<property name="userAccount" ref="userAccountCustomer1" />
+		<property name="name" value="customer 1" />
+		<property name="surname" value="surname customer 1" />
+		<property name="postalAdress" value="postal Adress customer 1" />
+		<property name="email" value="customer1@acmenewspaper.com" />
+		<property name="phone" value="+34617557203" />
+		<property name="subcriptions">
+			<list>
+				<ref bean="subcription1"/>
+			</list>
+		</property>
+	</bean>
+	
+		<!-- Credit Cards -->
+
+	 <bean id="creditCard1" class="domain.CreditCard">
+		<property name="holderName" value="holder name 1" />
+		<property name="brandName" value="Brand name 1" />
+		<property name="number" value="4388576018410707" />
+		<property name="expirationMonth" value="06" />
+		<property name="expirationYear" value="20" />
+		<property name="cvv" value="123" />
+	</bean> 
+
+		<!-- Subcriptions -->
+		
+		
+	 <bean id="subcription1" class="domain.Subscription">
+		<property name="creditCard" ref="creditCard1" />
+		<property name="customer" ref="customer1" />
+		<property name="newspaper" ref="newspaper1" />
+	</bean> 
+	
+	
+		
+	
+		<!-- Newspapers	 -->
+		
+	<bean id="newspaper1" class="domain.Newspaper">
+		<property name="title" value="title newspaper 1" />
+		<property name="publicationDate" value="2017/10/21" />
+		<property name="description" value="description newspaper 1" />
+		<property name="picture" value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
+		<property name="open" value="true" />
+		<property name="publisher" ref="user1" />
+		<property name="articles">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+		<!-- FollowUps -->
+		
+	<bean id="followUp1" class="domain.FollowUp">
+		<property name="title" value="title followUp 1" />
+		<property name="publicationMoment" value="2017/10/21" />
+		<property name="summary" value="summary newspaper 1" />
+		<property name="text" value="text newspaper 1" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+	</bean> 
+	
+		<!-- Chirps -->
+		
+	<bean id="chirp1" class="domain.Chirp">
+		<property name="postedMoment" value="2017/10/21" />
+		<property name="title" value="title chirp 1" />
+		<property name="description" value="description chirp 1" />
+		<property name="user" ref="user1" />
+	</bean> 
+	
+		<!-- Articles -->
+		
+	 <bean id="article1" class="domain.Article">
+		<property name="publishedMoment" value="2017/10/21" />
+		<property name="title" value="title article 1" />
+		<property name="body" value="body chirp 1" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+		<property name="writer" ref="user1" />
+		<property name="newspaper" ref="newspaper1" />
+		<property name="followUps">
+			<list>
+				<ref bean="followUp1"/>
+			</list>
+		</property>
+	</bean> 
+
+		<!-- Configuration System -->
+	
+		 <bean id="configurationSystem" class="domain.ConfigurationSystem">
+			<property name="tabooWords">
+				<list>
+					<value>sex</value>
+					<value>cialis</value>
+					<value>sexo</value>
+					<value>viagra</value>
+				</list>
+			</property>
+		</bean>   
 </beans>

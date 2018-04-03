@@ -16,8 +16,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.URL;
-import org.hibernate.validator.constraints.URL.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -60,9 +58,6 @@ public class Article extends DomainEntity {
 		this.body = body;
 	}
 
-	@List(value = {
-		@URL
-	})
 	@ElementCollection
 	public Collection<String> getPictures() {
 		return this.pictures;
