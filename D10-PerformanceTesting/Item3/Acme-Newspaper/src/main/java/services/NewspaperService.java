@@ -101,6 +101,10 @@ public class NewspaperService {
 
 	}
 
+	public void flush() {
+		this.newspaperRepository.flush();
+	}
+
 	// Other business methods -------------------------------------------------
 
 	//PUBLICAR
@@ -132,6 +136,15 @@ public class NewspaperService {
 
 		result = this.newspaperRepository.findByArticleId(articleId);
 
+		return result;
+	}
+
+	public Collection<Newspaper> findNewspapersCreatedByUser() {
+		Collection<Newspaper> result;
+		User userPrincipal;
+
+		userPrincipal = this.userService.findByPrincipal();
+		result = this.newspaperRepository.findNewspapersCreatedByUser(userPrincipal.getId());
 		return result;
 	}
 
