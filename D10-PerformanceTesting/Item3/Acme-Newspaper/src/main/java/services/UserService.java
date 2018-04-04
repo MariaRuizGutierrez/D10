@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.UserRepository;
 import security.Authority;
@@ -17,6 +19,7 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Article;
 import domain.User;
+import forms.UserForm;
 
 @Service
 @Transactional
@@ -38,7 +41,6 @@ public class UserService {
 
 	// Simple CRUD methods ----------------------------------------------------
 	public User create() {
-
 		User result;
 		UserAccount userAccount;
 		Authority authority;
@@ -63,6 +65,7 @@ public class UserService {
 
 	}
 
+	//Save	------------------------------------------------------------
 	public User save(final User user) {
 		Assert.notNull(user);
 		User result;
@@ -79,6 +82,7 @@ public class UserService {
 		return result;
 	}
 
+	//Delte	------------------------------------------------------------
 	public void delete(final User user) {
 		Assert.notNull(user);
 		Assert.isTrue(user.getId() != 0);
@@ -104,7 +108,6 @@ public class UserService {
 	// Other business methods -------------------------------------------------
 
 	public User findByPrincipal() {
-
 		User result;
 		UserAccount userAccount;
 
@@ -119,7 +122,6 @@ public class UserService {
 	public void checkPrincipal() {
 
 		final UserAccount userAccount = LoginService.getPrincipal();
-
 		Assert.notNull(userAccount);
 
 		final Collection<Authority> authorities = userAccount.getAuthorities();
@@ -129,5 +131,59 @@ public class UserService {
 		auth.setAuthority("RANGER");
 
 		Assert.isTrue(authorities.contains(auth));
+	}
+
+
+	// Reconstruct ----------------------------------------------------------------
+	@Autowired
+	private Validator	validator;
+
+
+	public UserForm reconstruct(final UserForm userForm, final BindingResult binding) {
+
+		UserForm result = null;
+		User user;
+		user = userForm.getUser();
+
+		if (user.getId() == 0) {
+			UserAccount userAccount;
+			Authority authority;
+			Collection<Article> articles;
+			Collection<User> followers;
+			Collection<User> followed;
+
+			userAccount = userForm.getUser().getUserAccount();
+			authority = new Authority();
+			authority.setAuthority(Authority.USER);
+			userAccount.addAuthority(authority);
+			userForm.getUser().setUserAccount(userAccount);
+			articles = new ArrayList<>();
+			followers = new ArrayList<>();
+			followed = new ArrayList<>();
+			userForm.getUser().setArticles(articles);
+			userForm.getUser().setFollowers(followers);
+			userForm.getUser().setFollowed(followed);
+			result = userForm;
+
+		} else {
+
+			user = this.userRepository.findOne(userForm.getUser().getId());
+			userForm.getUser().setId(user.getId());
+			userForm.getUser().setVersion(user.getVersion());
+			userForm.getUser().setUserAccount(user.getUserAccount());
+			userForm.getUser().setArticles(user.getArticles());
+			userForm.getUser().setFollowed(user.getFollowed());
+			userForm.getUser().setFollowers(user.getFollowers());
+			result = userForm;
+		}
+
+		this.validator.validate(result, binding);
+
+		return result;
+
+	}
+
+	public void flush() {
+		this.userRepository.flush();
 	}
 }
