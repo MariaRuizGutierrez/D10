@@ -114,6 +114,18 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccountUser4" class="security.UserAccount">
+		<property name="username" value="user4" />
+		<property name="password" value="3f02ebe3d7929b091e3d8ccfde2f3bc6" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="USER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 		<!-- Admin -->
 		
 		<bean id="admin" class="domain.Admin">
@@ -149,6 +161,7 @@
 			<list>
 				<ref bean="user2"/>
 				<ref bean="user3"/>
+				<ref bean="user4"/>
 			</list>
 		</property>
 		<property name="newspapers">
@@ -188,6 +201,7 @@
 			<list>
 				<ref bean="user1"/>
 				<ref bean="user3"/>
+				<ref bean="user4"/>
 			</list>
 		</property>
 		<property name="newspapers">
@@ -225,6 +239,7 @@
 			<list>
 				<ref bean="user1"/>
 				<ref bean="user2"/>
+				<ref bean="user4"/>
 			</list>
 		</property>
 		<property name="newspapers">
@@ -236,6 +251,40 @@
 			<list>
 				 <ref bean="chirp6"/> 
 				 <ref bean="chirp3"/>  
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="user4" class="domain.User">
+		<property name="userAccount" ref="userAccountUser4" />
+		<property name="name" value="user 4" />
+		<property name="surname" value="surname user 4" />
+		<property name="postalAdress" value="postal Adress user 4" />
+		<property name="email" value="user4@acmenewspaper.com" />
+		<property name="phone" value="+34648213455" />
+		<property name="articles">
+			<list>
+			</list>
+		</property>
+		<property name="followers">
+			<list>
+				<ref bean="user1"/>
+				<ref bean="user2"/>
+				<ref bean="user3"/>
+			</list>
+		</property>
+		<property name="followed">
+			<list>
+			</list>
+		</property>
+		<property name="newspapers">
+			<list>
+				 <ref bean="newspaper5"/> 
+			</list>
+		</property>
+		<property name="chirps">
+			<list> 
+				<ref bean="chirp7"/>
 			</list>
 		</property>
 	</bean>
@@ -420,6 +469,20 @@
 		</property>
 	</bean>
 	
+	<bean id="newspaper5" class="domain.Newspaper">
+		<property name="title" value="title newspaper 5" />
+		<property name="publicationDate" value="2017/09/21" />
+		<property name="description" value="description newspaper 5" />
+		<property name="picture" value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
+		<property name="open" value="true" />
+		<property name="publisher" ref="user4" />
+		<property name="articles">
+			<list>
+				<ref bean="article8"/>
+			</list>
+		</property>
+	</bean>
+	
 		<!-- FollowUps -->
 		
 	<bean id="followUp1" class="domain.FollowUp">
@@ -524,17 +587,24 @@
 	</bean>
 	
 	<bean id="chirp5" class="domain.Chirp">
-		<property name="postedMoment" value="2018/01/21" />
+		<property name="postedMoment" value="2016/01/21" />
 		<property name="title" value="title chirp 5" />
 		<property name="description" value="description chirp 5" />
 		<property name="user" ref="user2" />
 	</bean> 
 	
 	<bean id="chirp6" class="domain.Chirp">
-		<property name="postedMoment" value="2018/01/21" />
+		<property name="postedMoment" value="2018/02/21" />
 		<property name="title" value="title chirp 6" />
 		<property name="description" value="description chirp 6" />
 		<property name="user" ref="user3" />
+	</bean> 
+	
+	<bean id="chirp7" class="domain.Chirp">
+		<property name="postedMoment" value="2018/01/21" />
+		<property name="title" value="title chirp 7" />
+		<property name="description" value="description chirp 7" />
+		<property name="user" ref="user4" />
 	</bean> 
 	
 		<!-- Articles -->
@@ -680,6 +750,26 @@
 		<property name="followUps">
 			<list>
 				<ref bean="followUp5"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="article8" class="domain.Article">
+		<property name="publishedMoment" value="2017/10/21" />
+		<property name="title" value="title article 8" />
+		<property name="body" value="body chirp 8" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+		<property name="writer" ref="user3" />
+		<property name="newspaper" ref="newspaper5" />
+		<property name="draftMode" value="false"/>
+		<property name="followUps">
+			<list>
 			</list>
 		</property>
 	</bean> 
