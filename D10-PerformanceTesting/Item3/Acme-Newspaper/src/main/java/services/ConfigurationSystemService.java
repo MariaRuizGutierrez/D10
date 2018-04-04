@@ -21,6 +21,9 @@ public class ConfigurationSystemService {
 	private ConfigurationSystemRepository	configurationSystemRepository;
 
 	// Supporting services ----------------------------------------------------
+	
+	@Autowired
+	private AdminService	adminService;
 
 	// Constructors -----------------------------------------------------------
 	
@@ -53,11 +56,29 @@ public class ConfigurationSystemService {
 
 	}
 
-	public ConfigurationSystem save(final ConfigurationSystem configurationSystem) {
+	public ConfigurationSystem save(ConfigurationSystem configurationSystem) {
 		Assert.notNull(configurationSystem);
+		
+		this.adminService.checkPrincipal();
 
 		ConfigurationSystem result;
 
+		result = this.configurationSystemRepository.save(configurationSystem);
+
+		return result;
+	}
+	
+	public ConfigurationSystem addTabooWord(ConfigurationSystem configurationSystem, String tabooWord) {
+		Assert.notNull(configurationSystem);
+		Assert.notNull(tabooWord);
+		Assert.isTrue(!tabooWord.equals(""));
+		
+		this.adminService.checkPrincipal();
+
+		ConfigurationSystem result;
+		
+		configurationSystem.getTabooWords().add(tabooWord);
+		
 		result = this.configurationSystemRepository.save(configurationSystem);
 
 		return result;
