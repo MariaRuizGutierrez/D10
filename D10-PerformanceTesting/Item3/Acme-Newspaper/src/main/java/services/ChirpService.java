@@ -74,6 +74,26 @@ public class ChirpService {
 		Assert.isTrue(chirp.getId() != 0);
 
 		this.adminService.checkPrincipal();
+		this.chirpRepository.delete(chirp);
+	}
+
+	public Chirp findOne(final int chirpId) {
+
+		Assert.isTrue(chirpId != 0);
+		Chirp result;
+		result = this.chirpRepository.findOne(chirpId);
+
+		return result;
+
+	}
+
+	public Collection<Chirp> findAll() {
+
+		Collection<Chirp> result;
+
+		result = this.chirpRepository.findAll();
+
+		return result;
 
 	}
 

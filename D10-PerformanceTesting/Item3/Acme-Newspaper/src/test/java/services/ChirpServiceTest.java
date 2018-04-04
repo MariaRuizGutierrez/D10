@@ -82,4 +82,43 @@ public class ChirpServiceTest extends AbstractTest {
 
 	//Caso de uso 16.1:Chirps may not be changed or deleted once they are posted.
 	// Se listan las los chirps creados por el user logueado y de ellos se coge el pasado por parametro para cambiarles los valores
+
+	//17.5: Remove a chirp that he or she thinks is inappropriate.
+	@Test
+	public void driverDelete() {
+		final Object testingData[][] = {
+			{
+				//Se elimina el chirp1 correctamente estando logeado como admin
+				"admin", "chirp1", null
+			}, {
+				//Se elimina el chirp1 estando logeado como user1, por lo que no deberia dejar que se eliminase
+				"user1", "chirp1", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateDelete((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void templateDelete(final String username, final int chirpId, final Class<?> expected) {
+		Chirp chirp;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			chirp = this.chirpService.findOne(chirpId);
+			this.chirpService.delete(chirp);
+
+			this.chirpService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+		super.unauthenticate();
+	}
+
 }
