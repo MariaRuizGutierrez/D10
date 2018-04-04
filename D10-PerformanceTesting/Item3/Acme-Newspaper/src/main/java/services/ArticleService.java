@@ -70,12 +70,13 @@ public class ArticleService {
 	public Article save(final Article article) {
 		Article result;
 
-		Assert.notNull(article);
-		Assert.isTrue(article.getWriter().equals(this.userService.findByPrincipal()));
+		Assert.notNull(article, "El articulo a guardar no puede ser nulo");
+		Assert.isTrue(article.getWriter().equals(this.userService.findByPrincipal()), "el escritor del articulo debe ser el mismo que el usuario logueado");
 		//Cuando no este en modo borrador tiene que tener asignado un periodico
 		if (!article.isDraftMode())
 			Assert.notNull(article.getNewspaper(), "tiene que asignarse un periodico para poder guardar en modo final");
-
+		if (article.getNewspaper() != null)
+			Assert.isNull(article.getNewspaper().getPublicationDate(), "el periodico no puede estar publicado para introducir este articulo");
 		result = this.articleRepository.save(article);
 
 		return result;

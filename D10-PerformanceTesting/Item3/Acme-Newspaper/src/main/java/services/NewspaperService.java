@@ -149,4 +149,20 @@ public class NewspaperService {
 		return result;
 	}
 
+	public Collection<Newspaper> findNewspapersPublishedAndOpen() {
+		Collection<Newspaper> result;
+
+		result = this.newspaperRepository.findNewspapersPublishedAndOpen();
+
+		return result;
+	}
+
+	public Collection<Newspaper> findNewspaperNotPublished() {
+		Collection<Newspaper> result;
+
+		result = this.newspaperRepository.findNewspaperNotPublished();
+
+		return result;
+	}
+
 }

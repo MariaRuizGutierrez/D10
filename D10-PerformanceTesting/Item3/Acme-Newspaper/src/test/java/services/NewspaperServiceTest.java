@@ -83,6 +83,7 @@ public class NewspaperServiceTest extends AbstractTest {
 		caught = null;
 		try {
 			super.authenticate(username);
+			//newspapers = new ArrayList<Newspaper>(this.newspaperService.findNewspapersPublishedAndOpen());
 			newspapers = new ArrayList<Newspaper>(this.newspaperService.findNewspapersCreatedByUser());
 			newspaper = this.newspaperService.findOne(newspaperId);
 			Assert.isTrue(newspapers.contains(newspaper));
