@@ -44,7 +44,7 @@ public class ArticleServiceTest extends AbstractTest {
 	EntityManager		entityManager;
 
 
-	//Caso de uso 6.3: Write an article and attach it to any newspaper that has not been published, yet. Note that articles may be saved in draft mode, which allows to modify them later, or final model, which freezes them forever.
+	//Caso de uso 6.3: Write an article and attach it to any newspaper that has not been published, yet. Note that articles may be saved in draft mode, which allows to modify them later, or final model, which freezes them forever. (parte 1)
 	@SuppressWarnings("unchecked")
 	@Test
 	public void driverListAndEdit() {
@@ -183,6 +183,49 @@ public class ArticleServiceTest extends AbstractTest {
 			article = this.articleService.save(article);
 			this.articleService.flush();
 
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+		super.unauthenticate();
+	}
+
+	//Caso de uso 7.1: Remove an article that he or she thinks is inappropriate.
+	@Test
+	public void driverDelete() {
+		final Object testingData[][] = {
+			{
+				//Se elimina el article2 correctamente
+				"admin", "article2", null
+			}, {
+				//Se elimina el article3 correctamente
+				"admin", "article3", null
+			}, {
+				//Se elimina el article4 incorrectamente porque solo lo puede eliminar el admin
+				"user1", "article4", IllegalArgumentException.class
+			}, {
+				//Se elimina el article4 correctamente
+				"admin", "article4", null
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateDelete((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void templateDelete(final String username, final int articleId, final Class<?> expected) {
+		Article article;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			article = this.articleService.findOne(articleId);
+			this.articleService.delete(article);
+
+			this.articleService.flush();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
