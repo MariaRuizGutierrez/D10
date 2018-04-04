@@ -22,6 +22,45 @@
 			Add your own converters using entries of the following form: 
 			<bean class="converters.Class1ToClass2" /> 
 		-->
+		
+		<bean class="converters.AdminToStringConverter" /> 
+		<bean class="converters.StringToAdminConverter" /> 
+		
+		<bean class="converters.CustomerToStringConverter" /> 
+		<bean class="converters.StringToCustomerConverter" /> 
+		
+		<bean class="converters.UserToStringConverter" /> 
+		<bean class="converters.StringToUserConverter" /> 
+		
+		<bean class="converters.NewspaperToStringConverter" /> 
+		<bean class="converters.StringToNewspaperConverter" />
+		
+		<bean class="converters.ArticleToStringConverter" /> 
+		<bean class="converters.StringToArticleConverter" /> 
+		
+		<bean class="converters.SubscriptionToStringConverter" /> 
+		<bean class="converters.StringToSubscriptionConverter" />
+		
+		<bean class="converters.FollowUpToStringConverter" /> 
+		<bean class="converters.StringToFollowUpConverter" />
+		
+		<bean class="converters.ChirpToStringConverter" /> 
+		<bean class="converters.StringToChirpConverter" />
+		
+		<bean class="converters.StringToAuthorityConverter"/>
+		<bean class="converters.AuthorityToStringConverter"/>
+		
+		<bean class="converters.StringToActorConverter"/>
+		<bean class="converters.ActorToStringConverter"/>
+		
+		<bean class ="converters.UserAccountToStringConverter"/>
+		<bean class ="converters.StringToUserAccountConverter"/>
+		
+		<bean class ="converters.StringToCreditCardConverter"/>
+		<bean class="converters.CreditCardToStringConverter" />
+		
+		<bean class="converters.ConfigurationSystemToStringConverter" /> 
+		<bean class="converters.StringToConfigurationSystemConverter" /> 
 	</util:list>
 	
 </beans>
