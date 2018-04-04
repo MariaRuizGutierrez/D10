@@ -151,6 +151,13 @@
 				<ref bean="user3"/>
 			</list>
 		</property>
+		<property name="newspapers">
+			<list>
+				 <ref bean="newspaper1"/> 
+				 <ref bean="newspaper2"/> 
+				 <ref bean="newspaper3"/> 
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="user2" class="domain.User">
@@ -175,6 +182,10 @@
 			<list>
 				<ref bean="user1"/>
 				<ref bean="user3"/>
+			</list>
+		</property>
+		<property name="newspapers">
+			<list>
 			</list>
 		</property>
 	</bean>
@@ -202,6 +213,11 @@
 			<list>
 				<ref bean="user1"/>
 				<ref bean="user2"/>
+			</list>
+		</property>
+		<property name="newspapers">
+			<list>
+				 <ref bean="newspaper4"/> 
 			</list>
 		</property>
 	</bean>

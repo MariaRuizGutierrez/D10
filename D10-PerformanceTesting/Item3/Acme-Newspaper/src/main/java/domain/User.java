@@ -16,10 +16,21 @@ public class User extends Actor {
 
 	//Relationships-----------------------------------------------------------------
 
-	private Collection<Article>	articles;
-	private Collection<User>	followers;	// Seguidores
-	private Collection<User>	followed;	// Seguidos
+	private Collection<Article>		articles;
+	private Collection<Newspaper>	newspapers;
+	private Collection<User>		followers;	// Seguidores
+	private Collection<User>		followed;	// Seguidos
 
+
+	@OneToMany(mappedBy = "publisher")
+	@Valid
+	public Collection<Newspaper> getNewspapers() {
+		return this.newspapers;
+	}
+
+	public void setNewspapers(final Collection<Newspaper> newspapers) {
+		this.newspapers = newspapers;
+	}
 
 	@OneToMany(mappedBy = "writer")
 	@Valid
