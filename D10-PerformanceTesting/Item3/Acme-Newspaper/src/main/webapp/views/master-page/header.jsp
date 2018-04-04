@@ -40,6 +40,16 @@
 			</li>
 		</security:authorize>
 		
+		<security:authorize access="hasRole('USER')">
+			<li><a class="fNiv"><spring:message	code="master.page.chirp" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="chirp/user/list.do"><spring:message code="master.page.user.chirp.list" /></a></li>
+					
+				</ul>
+			</li>
+		</security:authorize>
+		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 		</security:authorize>
