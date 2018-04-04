@@ -18,6 +18,8 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import domain.Article;
+import domain.Chirp;
+import domain.Newspaper;
 import domain.User;
 import forms.UserForm;
 
@@ -47,6 +49,8 @@ public class UserService {
 		Collection<Article> articles;
 		Collection<User> followers;
 		Collection<User> followed;
+		Collection<Chirp> chirps;
+		Collection<Newspaper> newspapers;
 
 		result = new User();
 		userAccount = new UserAccount();
@@ -54,6 +58,8 @@ public class UserService {
 		articles = new ArrayList<>();
 		followers = new ArrayList<>();
 		followed = new ArrayList<>();
+		chirps = new ArrayList<>();
+		newspapers = new ArrayList<>();
 
 		authority.setAuthority(Authority.USER);
 		userAccount.addAuthority(authority);
@@ -61,6 +67,8 @@ public class UserService {
 		result.setArticles(articles);
 		result.setFollowers(followers);
 		result.setFollowed(followed);
+		result.setChirps(chirps);
+		result.setNewspapers(newspapers);
 		return result;
 
 	}
@@ -151,6 +159,8 @@ public class UserService {
 			Collection<Article> articles;
 			Collection<User> followers;
 			Collection<User> followed;
+			Collection<Chirp> chirps;
+			Collection<Newspaper> newspapers;
 
 			userAccount = userForm.getUser().getUserAccount();
 			authority = new Authority();
@@ -160,9 +170,13 @@ public class UserService {
 			articles = new ArrayList<>();
 			followers = new ArrayList<>();
 			followed = new ArrayList<>();
+			chirps = new ArrayList<>();
+			newspapers = new ArrayList<>();
 			userForm.getUser().setArticles(articles);
 			userForm.getUser().setFollowers(followers);
 			userForm.getUser().setFollowed(followed);
+			userForm.getUser().setChirps(chirps);
+			userForm.getUser().setNewspapers(newspapers);
 			result = userForm;
 
 		} else {
