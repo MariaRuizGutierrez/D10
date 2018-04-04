@@ -101,6 +101,12 @@ public class NewspaperService {
 
 	}
 
+	public Collection<Newspaper> findNewspapersByKeyword(final String keyWord) {
+		Collection<Newspaper> result;
+		result = this.newspaperRepository.findNewspapersByKeyword(keyWord);
+		return result;
+	}
+
 	public void flush() {
 		this.newspaperRepository.flush();
 	}

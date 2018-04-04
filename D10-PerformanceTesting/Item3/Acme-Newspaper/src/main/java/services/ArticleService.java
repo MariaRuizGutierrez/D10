@@ -92,7 +92,6 @@ public class ArticleService {
 	}
 
 	public Collection<Article> findAll() {
-
 		Collection<Article> result;
 
 		result = this.articleRepository.findAll();
@@ -102,13 +101,18 @@ public class ArticleService {
 	}
 
 	public Article findOne(final int articleId) {
-
 		Assert.isTrue(articleId != 0);
 		Article result;
 		result = this.articleRepository.findOne(articleId);
 
 		return result;
 
+	}
+
+	public Collection<Article> findArticleByKeyword(final String keyWord) {
+		Collection<Article> result;
+		result = this.articleRepository.findArticlesByKeyword(keyWord);
+		return result;
 	}
 
 	public void flush() {
