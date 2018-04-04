@@ -4,6 +4,7 @@ package domain;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
@@ -50,6 +51,8 @@ public class CreditCard {
 	public void setNumber(final String number) {
 		this.number = number;
 	}
+
+	@NotNull
 	@Pattern(regexp = "^[0]{1}\\d{1}|[1]{1}[0-2]{1}$")
 	public String getExpirationMonth() {
 		return this.expirationMonth;
@@ -59,6 +62,7 @@ public class CreditCard {
 		this.expirationMonth = expirationMonth;
 	}
 
+	@NotNull
 	@Pattern(regexp = "^\\d{2}$")
 	public String getExpirationYear() {
 		return this.expirationYear;
