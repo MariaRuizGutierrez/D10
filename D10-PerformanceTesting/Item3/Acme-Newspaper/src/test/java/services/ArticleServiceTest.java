@@ -32,12 +32,6 @@ public class ArticleServiceTest extends AbstractTest {
 	NewspaperService	newspaperService;
 
 	@Autowired
-	UserService			userService;
-
-	@Autowired
-	AdminService		adminService;
-
-	@Autowired
 	ArticleService		articleService;
 
 	@PersistenceContext

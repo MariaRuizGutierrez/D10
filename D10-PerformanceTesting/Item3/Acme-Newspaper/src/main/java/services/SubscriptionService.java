@@ -53,12 +53,16 @@ public class SubscriptionService {
 
 		Assert.notNull(subscription);
 		customerPrincipal = this.customerService.findByPrincipal();
-		Assert.isTrue(subscription.getCustomer().equals(customerPrincipal));
-		//Solo se pueden subscribir a las newspaper que son privadas
-		Assert.isTrue(!subscription.getNewspaper().isOpen());
+		Assert.isTrue(subscription.getCustomer().equals(customerPrincipal), "El cliente de la subscripcion debe ser el mismo que el logueado");
+		Assert.isTrue(!subscription.getNewspaper().isOpen(), "solo se pueden subscribir a los periodicos privados");
+		Assert.notNull(subscription.getNewspaper().getPublicationDate(), "solo se pueden subscribir a los periodicos publicados");
 
 		result = this.subscriptionRepository.save(subscription);
 		return result;
+	}
+
+	public void flush() {
+		this.subscriptionRepository.flush();
 	}
 
 	// Other business methods -------------------------------------------------
