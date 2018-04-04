@@ -90,6 +90,30 @@ public class ArticleService {
 		this.articleRepository.delete(article);
 	}
 
+	public Collection<Article> findAll() {
+
+		Collection<Article> result;
+
+		result = this.articleRepository.findAll();
+
+		return result;
+
+	}
+
+	public Article findOne(final int articleId) {
+
+		Assert.isTrue(articleId != 0);
+		Article result;
+		result = this.articleRepository.findOne(articleId);
+
+		return result;
+
+	}
+
+	public void flush() {
+		this.articleRepository.flush();
+	}
+
 	// Other business methods -------------------------------------------------
 
 	public Article reconstruct(final Article article, final BindingResult bindingResult) {

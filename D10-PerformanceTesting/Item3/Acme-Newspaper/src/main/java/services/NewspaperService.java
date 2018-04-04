@@ -76,7 +76,7 @@ public class NewspaperService {
 		Assert.notNull(newspaper);
 		Assert.notNull(this.adminService.findByPrincipal());
 		//Solo se pueden eliminar los newspaper publicos
-		Assert.isTrue(newspaper.isOpen());
+		Assert.isTrue(newspaper.isOpen(), "solo se pueden eliminar los periodicos publicos");
 
 		this.newspaperRepository.delete(newspaper);
 	}

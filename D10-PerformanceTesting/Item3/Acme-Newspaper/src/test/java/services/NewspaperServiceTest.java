@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
+import domain.Article;
 import domain.Newspaper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -35,6 +36,9 @@ public class NewspaperServiceTest extends AbstractTest {
 
 	@Autowired
 	AdminService		adminService;
+
+	@Autowired
+	ArticleService		articleService;
 
 	@PersistenceContext
 	EntityManager		entityManager;
@@ -178,6 +182,52 @@ public class NewspaperServiceTest extends AbstractTest {
 			//Se comprueba que se haya publicado correctamente
 			newspaper = this.newspaperService.findOne(newspaperId);
 			Assert.notNull(newspaper.getPublicationDate());
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+		super.unauthenticate();
+	}
+
+	//Caso de uso 7.2: Remove a newspaper that he or she thinks is inappropriate. Removing a newspape implies removing all of the articles of which it is composed.
+	@Test
+	public void driverDelete() {
+		final Object testingData[][] = {
+			{
+				//Se elimina el newspaper2 correctamente
+				"admin", "newspaper2", null
+			}, {
+				//Se elimina el newspaper1 incorrectamente porque es privado y solo se pueden eliminar los publicos
+				"admin", "newspaper1", IllegalArgumentException.class
+			}, {
+				//Se elimina el newspaper3 incorrectamente porque solo lo puede eliminar el admin
+				"user1", "newspaper3", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateDelete((String) testingData[i][0], super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+	private void templateDelete(final String username, final int newspaperId, final Class<?> expected) {
+		Newspaper newspaper;
+		final Collection<Article> articles;
+		Class<?> caught;
+
+		caught = null;
+		try {
+			super.authenticate(username);
+			newspaper = this.newspaperService.findOne(newspaperId);
+			this.newspaperService.delete(newspaper);
+
+			this.newspaperService.flush();
+			//Se comprueba que se haya eliminado del sistema todos los articulos de ese newspaper
+			articles = newspaper.getArticles();
+			for (final Article a : articles)
+				Assert.isNull(this.articleService.findOne(a.getId()));
 
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
