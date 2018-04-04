@@ -26,10 +26,20 @@ public class Article extends DomainEntity {
 
 	private String				title;
 	private Date				publishedMoment;
+	private String				summary;
 	private String				body;
 	private Collection<String>	pictures;
 	private boolean				draftMode;
 
+
+	@NotBlank
+	public String getSummary() {
+		return this.summary;
+	}
+
+	public void setSummary(final String summary) {
+		this.summary = summary;
+	}
 
 	public boolean isDraftMode() {
 		return this.draftMode;
