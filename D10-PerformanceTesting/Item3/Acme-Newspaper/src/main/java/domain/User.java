@@ -20,7 +20,18 @@ public class User extends Actor {
 	private Collection<Newspaper>	newspapers;
 	private Collection<User>		followers;	// Seguidores
 	private Collection<User>		followed;	// Seguidos
+	private Collection<Chirp>		chirps;
 
+
+	@OneToMany(mappedBy = "user")
+	@Valid
+	public Collection<Chirp> getChirps() {
+		return this.chirps;
+	}
+
+	public void setChirps(final Collection<Chirp> chirps) {
+		this.chirps = chirps;
+	}
 
 	@OneToMany(mappedBy = "publisher")
 	@Valid
