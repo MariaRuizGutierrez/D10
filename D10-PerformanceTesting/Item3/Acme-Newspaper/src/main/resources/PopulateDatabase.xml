@@ -66,6 +66,18 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccountCustomer4" class="security.UserAccount">
+		<property name="username" value="customer4" />
+		<property name="password" value="55feb130be438e686ad6a80d12dd8f44" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	<bean id="userAccountUser1" class="security.UserAccount">
 		<property name="username" value="user1" />
 		<property name="password" value="24c9e15e52afc47c225b757e7bee1f9d" />
@@ -156,6 +168,7 @@
 		<property name="followers">
 			<list>
 				<ref bean="user1"/>
+				<ref bean="user3"/>
 			</list>
 		</property>
 		<property name="followed">
@@ -228,11 +241,25 @@
 		<property name="name" value="customer 3" />
 		<property name="surname" value="surname customer 3" />
 		<property name="postalAdress" value="postal Adress customer 3" />
-		<property name="email" value="customer1@acmenewspaper.com" />
+		<property name="email" value="customer3@acmenewspaper.com" />
 		<property name="phone" value="+34667437865" />
 		<property name="subcriptions">
 			<list>
 				<ref bean="subcription3"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="customer4" class="domain.Customer">
+		<property name="userAccount" ref="userAccountCustomer4" />
+		<property name="name" value="customer 4" />
+		<property name="surname" value="surname customer 4" />
+		<property name="postalAdress" value="postal Adress customer 4" />
+		<property name="email" value="customer4@acmenewspaper.com" />
+		<property name="phone" value="+34667437865" />
+		<property name="subcriptions">
+			<list>
+				<ref bean="subcription4"/>
 			</list>
 		</property>
 	</bean>
@@ -265,6 +292,15 @@
 		<property name="expirationYear" value="19" />
 		<property name="cvv" value="614" />
 	</bean> 
+	
+	<bean id="creditCard4" class="domain.CreditCard">
+		<property name="holderName" value="holder name 4" />
+		<property name="brandName" value="Brand name 4" />
+		<property name="number" value="4388576018410707" />
+		<property name="expirationMonth" value="01" />
+		<property name="expirationYear" value="19" />
+		<property name="cvv" value="614" />
+	</bean> 
 
 		<!-- Subcriptions -->
 		
@@ -287,6 +323,11 @@
 		<property name="newspaper" ref="newspaper1" />
 	</bean> 
 	
+	<bean id="subcription4" class="domain.Subscription">
+		<property name="creditCard" ref="creditCard4" />
+		<property name="customer" ref="customer4" />
+		<property name="newspaper" ref="newspaper4" />
+	</bean>
 		<!-- Newspapers	 -->
 		
 	<bean id="newspaper1" class="domain.Newspaper">
@@ -331,6 +372,20 @@
 		</property>
 	</bean>
 	
+	<bean id="newspaper4" class="domain.Newspaper">
+		<property name="title" value="title newspaper 4" />
+		<property name="publicationDate" value="2017/09/21" />
+		<property name="description" value="description newspaper 4" />
+		<property name="picture" value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
+		<property name="open" value="false" />
+		<property name="publisher" ref="user3" />
+		<property name="articles">
+			<list>
+				<ref bean="article5"/>
+			</list>
+		</property>
+	</bean>
+	
 		<!-- FollowUps -->
 		
 	<bean id="followUp1" class="domain.FollowUp">
@@ -352,6 +407,20 @@
 		<property name="publicationMoment" value="2017/10/21" />
 		<property name="summary" value="summary 2" />
 		<property name="text" value="text followUp2" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="followUp3" class="domain.FollowUp">
+		<property name="title" value="title followUp 3" />
+		<property name="publicationMoment" value="2017/10/21" />
+		<property name="summary" value="summary 3" />
+		<property name="text" value="text followUp3" />
 		<property name="pictures">
 			<list>
 			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
@@ -382,6 +451,27 @@
 		<property name="postedMoment" value="2018/01/21" />
 		<property name="title" value="title chirp 3" />
 		<property name="description" value="description chirp 3" />
+		<property name="user" ref="user3" />
+	</bean> 
+	
+	<bean id="chirp4" class="domain.Chirp">
+		<property name="postedMoment" value="2017/10/21" />
+		<property name="title" value="title chirp 4" />
+		<property name="description" value="description chirp 4" />
+		<property name="user" ref="user1" />
+	</bean>
+	
+	<bean id="chirp5" class="domain.Chirp">
+		<property name="postedMoment" value="2018/01/21" />
+		<property name="title" value="title chirp 5" />
+		<property name="description" value="description chirp 5" />
+		<property name="user" ref="user2" />
+	</bean> 
+	
+	<bean id="chirp6" class="domain.Chirp">
+		<property name="postedMoment" value="2018/01/21" />
+		<property name="title" value="title chirp 6" />
+		<property name="description" value="description chirp 6" />
 		<property name="user" ref="user3" />
 	</bean> 
 	
@@ -465,6 +555,27 @@
 		<property name="draftMode" value="true"/>
 		<property name="followUps">
 			<list>
+			</list>
+		</property>
+	</bean> 
+	
+	<bean id="article5" class="domain.Article">
+		<property name="publishedMoment" value="2017/10/21" />
+		<property name="title" value="title article 5" />
+		<property name="body" value="body chirp 5" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+		<property name="writer" ref="user1" />
+		<property name="newspaper" ref="newspaper4" />
+		<property name="draftMode" value="false"/>
+		<property name="followUps">
+			<list>
+				<ref bean="followUp3"/>
 			</list>
 		</property>
 	</bean> 
