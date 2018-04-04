@@ -446,6 +446,34 @@
 		</property>
 	</bean> 
 	
+	<bean id="followUp4" class="domain.FollowUp">
+		<property name="title" value="title followUp 4" />
+		<property name="publicationMoment" value="2017/10/21" />
+		<property name="summary" value="summary 3" />
+		<property name="text" value="text followUp4" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="followUp5" class="domain.FollowUp">
+		<property name="title" value="title followUp 5" />
+		<property name="publicationMoment" value="2017/10/21" />
+		<property name="summary" value="summary 5" />
+		<property name="text" value="text followUp5" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+	</bean> 
+	
 	
 		<!-- Chirps -->
 		
@@ -592,6 +620,48 @@
 		<property name="followUps">
 			<list>
 				<ref bean="followUp3"/>
+			</list>
+		</property>
+	</bean> 
+	
+	<bean id="article6" class="domain.Article">
+		<property name="publishedMoment" value="2017/10/21" />
+		<property name="title" value="title article 6" />
+		<property name="body" value="body chirp 6" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+		<property name="writer" ref="user2" />
+		<property name="newspaper" ref="newspaper4" />
+		<property name="draftMode" value="false"/>
+		<property name="followUps">
+			<list>
+				<ref bean="followUp4"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="article7" class="domain.Article">
+		<property name="publishedMoment" value="2017/10/21" />
+		<property name="title" value="title article 7" />
+		<property name="body" value="body chirp 7" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+		<property name="writer" ref="user3" />
+		<property name="newspaper" ref="newspaper4" />
+		<property name="draftMode" value="false"/>
+		<property name="followUps">
+			<list>
+				<ref bean="followUp5"/>
 			</list>
 		</property>
 	</bean> 
