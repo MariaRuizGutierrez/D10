@@ -18,6 +18,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import cz.jirutka.validator.collection.constraints.EachURL;
+
 @Entity
 @Access(AccessType.PROPERTY)
 public class Article extends DomainEntity {
@@ -78,6 +80,7 @@ public class Article extends DomainEntity {
 	}
 
 	@ElementCollection
+	@EachURL
 	public Collection<String> getPictures() {
 		return this.pictures;
 	}
