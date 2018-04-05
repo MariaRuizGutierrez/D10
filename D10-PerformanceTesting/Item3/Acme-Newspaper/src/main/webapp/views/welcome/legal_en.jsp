@@ -22,7 +22,7 @@
 	We use our own and third-party cookies to improve our services and show you the language previously selected by you. If you go on surfing, we will consider you accepting its use.
 </p>
 
-<h1> <strong> GENERAL CONDITIONS OF USE OF THE ACME-RENDEZVOUS WEB SITE </strong> </h1>
+<h1> <strong> GENERAL CONDITIONS OF USE OF THE ACME-NEWSPAPER WEB SITE </strong> </h1>
 
 <span> <strong> www.acme.com </strong> </span>
 
@@ -30,7 +30,7 @@
 
 <p>
 
-ACME-RENDEZVOUS (IN ADVANCE THE OWNER) with address for the purposes of notifications in Seville with NIF BXXXXXXXX makes available on its website www.acme.com certain contents of an informative nature about its activities. These general conditions govern solely and exclusively the use Of the website of THE OWNER by the USERS who access it. These general conditions are exposed to the USER on the website www.acme.com in each and every one of the pages, to read, print, archive and accept through the internet and is fully informed.
+ACME-NEWSPAPER(IN ADVANCE THE OWNER) with address for the purposes of notifications in Seville with NIF BXXXXXXXX makes available on its website www.acme.com certain contents of an informative nature about its activities. These general conditions govern solely and exclusively the use Of the website of THE OWNER by the USERS who access it. These general conditions are exposed to the USER on the website www.acme.com in each and every one of the pages, to read, print, archive and accept through the internet and is fully informed.
 
 </p>
 
@@ -160,7 +160,13 @@ In addition, through the OWNER's website, free and paid services offered by thir
 
 <p>
 
-<strong> 3.1.3 .- </strong> Of the reliability and veracity of the information introduced by third parties on the website, either directly or through links or links. Likewise, ACME-RENDEZVOUS will collaborate and notify the competent authority of these incidents when it is aware that the damage caused constitutes any type of illegal activity.
+<strong> 3.1.3 .- </strong> Of the reliability and veracity of the information introduced by third parties on the website, either directly or through links or links. Likewise, ACME-NEWSPAPER will collaborate and notify the competent authority of these incidents when it is aware that the damage caused constitutes any type of illegal activity.
+
+</p>
+
+<p>
+
+<strong> 3.1.4 .- </strong>The Admin is responsible for deleting articles, newspapers, and chirps that she or he considers innapropiate. The reasons why the admin can delete a newspaper is because that contains inappropriate content in its title, description or image, however, the admins do not have the privileges to delete any newspaper if a  customer has already subscribe, under any circumstances. The reasons for deleting articles are: that it contains inappropriate content in its title, body, summary or image. Under no circumstances may the Admin delete articles from the newspapers that have been published. The reasons why to delete the chirps are: that it contains inappropriate content in its title or description. We consider that innapropiate context is: disturbing images or videos, the latest trends that contribute to negative values, health risks or bad habits, or the false or lacking information that circulates through the network.
 
 </p>
 

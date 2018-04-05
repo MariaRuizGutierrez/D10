@@ -22,7 +22,7 @@
 	Utilizamos cookies propias y de terceros para mejorar nuestros servicios y mostrarle el idioma seleccionado previamente por usted. Si continua navegando, consideramos que acepta su uso.
 </p>
 
-<h1><strong>CONDICIONES GENERALES DE USO DEL SITIO WEB DE ACME-RENDEZVOUS</strong></h1>
+<h1><strong>CONDICIONES GENERALES DE USO DEL SITIO WEB DE ACME-NEWSPAPER</strong></h1>
 
 <span><strong>www.acme.com</strong></span>
 
@@ -156,7 +156,13 @@ Además a través del sitio web del PROPIETARIO se ponen a disposición del usuario
 
 <p>
 
-<strong>3.1.3.-</strong> De la fiabilidad y veracidad de las informaciones introducidas por terceros en el sitio web, bien directamente, bien a través de enlaces o links. Asimismo, ACME-RENDEZVOUS colaborará y notificará a la autoridad competente estas incidencias en el momento en que tenga conocimiento fehaciente de que los daños ocasionados constituyan cualquier tipo de actividad ilícita.
+<strong>3.1.3.-</strong> De la fiabilidad y veracidad de las informaciones introducidas por terceros en el sitio web, bien directamente, bien a través de enlaces o links. Asimismo, ACME-NEWSPAPER colaborará y notificará a la autoridad competente estas incidencias en el momento en que tenga conocimiento fehaciente de que los daños ocasionados constituyan cualquier tipo de actividad ilícita.
+
+</p>
+
+<p>
+
+<strong>3.1.4.-</strong> El Admin será responsable de borrar artículos, periódicos, y chirridos que el o ella consideren inapropiados. Las razones por la que el Admin podrá borrar un periódico será que contiene contenido inapropiado o bien en su título o descripción o imagen, sin embargo los periodicos privados los cuales tienen subscriptores no deben ser eliminados por al Admin, bajo ninguna circunstancia. Las razones por las que podrá borrar artículos son: que contenga contenido inapropiado en su título, cuerpo, resumen o imagen. Bajo ninguna circunstancia el Admin podrá borrar artículos de periódicos los cuales han sido ya publicados. Las razones por las que podrá borrar chirridos son: que contenga contenido inapropiado en su título o descripción. Con contenido inapropiado nos referiamos a imágenes o videos perturbadores, las modas que promueven valores negativos, riesgos para la salud o malos hábitos, o las informaciones falsas o carentes de rigor que circulan por la red.
 
 </p>
 
