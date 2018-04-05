@@ -36,19 +36,19 @@ public class ChirpServiceTest extends AbstractTest {
 	EntityManager	entityManager;
 
 
-	//Caso de uso 16.1:Post a chirp.
+	//Caso de uso 16.1:Post a chirp. (Parte 1)
 	@Test
 	public void driverCreateAndSave() {
 		final Object testingData[][] = {
 			{
-				//Se crea un chirp estando logeado como user1
+				//Se crea un chirp correctamenre estando logeado como user1
 				"user1", "title chirp test", "desciption test", null
 
 			}, {
-				//Se crea un chirp logeado como admin
+				//Se crea un chirp incorrectamente ya que estamos logeados como admin
 				"admin", "title chirp test", "description test", IllegalArgumentException.class
 			}, {
-				//Se crea un chirp con el titulo vacio
+				//Se crea un chirp incorrectamente ya que metemos el titulo vacio
 				"user1", "", "description test", javax.validation.ConstraintViolationException.class
 			}
 		};
@@ -80,7 +80,7 @@ public class ChirpServiceTest extends AbstractTest {
 		super.unauthenticate();
 	}
 
-	//Caso de uso 16.1:Chirps may not be changed or deleted once they are posted.
+	//Caso de uso 16.1:Chirps may not be changed or deleted once they are posted.(Parte 2)
 	// Se listan las los chirps creados por el user logueado y de ellos se coge el pasado por parametro para cambiarles los valores
 
 	//17.5: Remove a chirp that he or she thinks is inappropriate.
@@ -91,7 +91,7 @@ public class ChirpServiceTest extends AbstractTest {
 				//Se elimina el chirp1 correctamente estando logeado como admin
 				"admin", "chirp1", null
 			}, {
-				//Se elimina el chirp1 estando logeado como user1, por lo que no deberia dejar que se eliminase
+				//Se elimina incorrectamenre el chirp1 estando logeado como user1, por lo que no deberia dejar que se eliminase
 				"user1", "chirp1", IllegalArgumentException.class
 			}
 		};
