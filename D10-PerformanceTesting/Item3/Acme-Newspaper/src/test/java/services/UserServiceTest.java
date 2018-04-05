@@ -378,4 +378,144 @@ public class UserServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 	}
 
+	//Use Case 16.2 Follow or unfollow another user.
+	//Follow
+	@Test
+	public void driverFollowUser() {
+		final Object testingData[][] = {
+			{
+				//El user 4 va a seguir al user 1 que aun no lo sige.
+				"user4", "user1", null
+			}, {
+				//El user 2 va a seguir al user 3 al cual sige ya y debe dar error
+				"user2", "user3", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateFollowUser(super.getEntityId((String) testingData[i][0]), super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+
+	private void templateFollowUser(final int usernameId, final int username1Id, final Class<?> expected) {
+		Class<?> caught;
+		User user;
+		User userToFollow;
+
+		user = this.userService.findOne(usernameId);
+		userToFollow = this.userService.findOne(username1Id);
+		caught = null;
+		try {
+			super.authenticate(user.getUserAccount().getUsername());
+			this.userService.followUser(userToFollow);
+			Assert.isTrue(user.getFollowed().contains(userToFollow));
+			this.unauthenticate();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+		this.checkExceptions(expected, caught);
+	}
+
+	//Use Case 16.2 Follow or unfollow another user.
+	//Unfollow
+	@Test
+	public void driverUnFollowUser() {
+		final Object testingData[][] = {
+			{
+				//El user 1 va a dejar de seguir al user 3 que es su seguidor
+				"user1", "user3", null
+			}, {
+				//El user 3 va a dejar de seguir al user3 que no lo seguia anteriormente
+				"user4", "user3", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateUnFollowUser(super.getEntityId((String) testingData[i][0]), super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+	}
+
+	private void templateUnFollowUser(final int usernameId, final int username1Id, final Class<?> expected) {
+		Class<?> caught;
+		User user;
+		User userToUnFollow;
+
+		user = this.userService.findOne(usernameId);
+		userToUnFollow = this.userService.findOne(username1Id);
+		caught = null;
+		try {
+			super.authenticate(user.getUserAccount().getUsername());
+			this.userService.unFollowUser(userToUnFollow);
+			Assert.isTrue(!user.getFollowed().contains(userToUnFollow));
+			this.unauthenticate();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+		this.checkExceptions(expected, caught);
+	}
+
+	//Use Case 16.3List the users who he or she follows.
+	@Test
+	public void driverListFollowed() {
+		final Object testingData[][] = {
+			{
+				//El user 1 tiene seguidores.
+				"user1", null
+			}, {
+				//El admin no tiene la posibilidad de tener seguidores por tanto no puede listarlos
+				"admin", NullPointerException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateListFollowed(super.getEntityId((String) testingData[i][0]), (Class<?>) testingData[i][1]);
+	}
+
+	private void templateListFollowed(final int usernameId, final Class<?> expected) {
+		Class<?> caught;
+		User user;
+		Collection<User> followed;
+
+		user = this.userService.findOne(usernameId);
+		caught = null;
+		try {
+			super.authenticate(user.getUserAccount().getUsername());
+			followed = user.getFollowed();
+			Assert.notEmpty(followed);
+			this.unauthenticate();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+		this.checkExceptions(expected, caught);
+	}
+
+	//Use Case 16.4 List the users who follow him or her..
+	@Test
+	public void driverListFollowers() {
+		final Object testingData[][] = {
+			{
+				//El user 1 es seguido por otros usuarios
+				"user1", null
+			}, {
+				//El admin no tiene la posibilidad de tener seguidores por tanto no puede listarlos
+				"admin", NullPointerException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateListFollowers(super.getEntityId((String) testingData[i][0]), (Class<?>) testingData[i][1]);
+	}
+
+	private void templateListFollowers(final int usernameId, final Class<?> expected) {
+		Class<?> caught;
+		User user;
+		Collection<User> followers;
+
+		user = this.userService.findOne(usernameId);
+		caught = null;
+		try {
+			super.authenticate(user.getUserAccount().getUsername());
+			followers = user.getFollowers();
+			Assert.notEmpty(followers);
+			this.unauthenticate();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+		this.checkExceptions(expected, caught);
+	}
+
 }

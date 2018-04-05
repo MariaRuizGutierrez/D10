@@ -12,7 +12,6 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ChirpService;
@@ -36,7 +35,7 @@ public class ChirpUserController extends AbstractController {
 	// Create -----------------------------------------------------------------
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create(@RequestParam final int chirpId) {
+	public ModelAndView create() {
 		ModelAndView result;
 		Chirp chirp;
 

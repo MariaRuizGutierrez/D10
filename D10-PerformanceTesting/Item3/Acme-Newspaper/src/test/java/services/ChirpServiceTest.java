@@ -1,6 +1,8 @@
 
 package services;
 
+import java.util.Collection;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -10,8 +12,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
+import domain.Actor;
 import domain.Chirp;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,6 +32,9 @@ public class ChirpServiceTest extends AbstractTest {
 
 	@Autowired
 	UserService		userService;
+
+	@Autowired
+	ActorService	actorService;
 
 	@Autowired
 	AdminService	adminService;
@@ -121,4 +128,37 @@ public class ChirpServiceTest extends AbstractTest {
 		super.unauthenticate();
 	}
 
+	//Use Case 16.5  Display a stream with the chirps posted by all of the users that he or she follows.
+	@Test
+	public void driverListChirpsOfMyFollowers() {
+		final Object testingData[][] = {
+			{
+				//El user 1 tiene seguidores y por tanto hay chirridos
+				"user1", null
+			}, {
+				//El admin no tiene seguidores posibles entonces no hay chirps
+				"admin", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateListChirpsOfMyFollowers(super.getEntityId((String) testingData[i][0]), (Class<?>) testingData[i][1]);
+	}
+
+	private void templateListChirpsOfMyFollowers(final int usernameId, final Class<?> expected) {
+		Class<?> caught;
+		Actor actorConnected;
+		actorConnected = this.actorService.findOne(usernameId);
+		Collection<Chirp> chirps;
+
+		caught = null;
+		try {
+			super.authenticate(actorConnected.getUserAccount().getUsername());
+			chirps = this.chirpService.getChirpsOfMyFollowers(usernameId);
+			Assert.notEmpty(chirps);
+			this.unauthenticate();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+		}
+		this.checkExceptions(expected, caught);
+	}
 }

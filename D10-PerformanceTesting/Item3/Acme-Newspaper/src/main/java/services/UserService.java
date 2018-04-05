@@ -136,9 +136,38 @@ public class UserService {
 		Assert.notNull(authorities);
 
 		final Authority auth = new Authority();
-		auth.setAuthority("RANGER");
+		auth.setAuthority("USER");
 
 		Assert.isTrue(authorities.contains(auth));
+	}
+
+	//Follow or unfollow another user.
+
+	public void followUser(final User user) {
+		Assert.notNull(user);
+		this.checkPrincipal();
+
+		User userConnected;
+		userConnected = this.findByPrincipal();
+		Assert.isTrue(!(userConnected.getFollowed().contains(user)));
+
+		userConnected.getFollowed().add(user);
+		user.getFollowers().add(userConnected);
+
+	}
+
+	public void unFollowUser(final User user) {
+		Assert.notNull(user);
+		this.checkPrincipal();
+
+		User userConnected;
+		userConnected = this.findByPrincipal();
+
+		Assert.isTrue(userConnected.getFollowed().contains(user));
+
+		userConnected.getFollowed().remove(user);
+		user.getFollowers().remove(userConnected);
+
 	}
 
 
