@@ -194,7 +194,7 @@ public class NewspaperServiceTest extends AbstractTest {
 	public void driverDelete() {
 		final Object testingData[][] = {
 			{
-				//Se elimina el newspaper2 correctamente
+				//Se elimina el newspaper2 correctamente ya que el rol de borrar lo tiene el admin
 				"admin", "newspaper2", null
 			}, {
 				//Se elimina el newspaper1 incorrectamente porque es privado y solo se pueden eliminar los publicos

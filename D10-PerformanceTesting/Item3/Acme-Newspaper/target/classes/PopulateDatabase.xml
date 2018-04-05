@@ -689,7 +689,7 @@
 		<!-- Articles -->
 		
 	 <bean id="article1" class="domain.Article">
-		<property name="publishedMoment" value="2017/10/21" />
+		<property name="publishedMoment" value="2017/09/20" />
 		<property name="title" value="title article 1" />
 		<property name="summary" value="summary chirp 1" />
 		<property name="body" value="body chirp 1" />
@@ -775,7 +775,7 @@
 	</bean> 
 	
 	<bean id="article5" class="domain.Article">
-		<property name="publishedMoment" value="2017/10/21" />
+		<property name="publishedMoment" value="2017/09/20" />
 		<property name="title" value="title article 5" />
 		<property name="summary" value="summary chirp 5" />
 		<property name="body" value="body chirp 5" />
@@ -797,7 +797,7 @@
 	</bean> 
 	
 	<bean id="article6" class="domain.Article">
-		<property name="publishedMoment" value="2017/10/21" />
+		<property name="publishedMoment" value="2017/09/20" />
 		<property name="title" value="title article 6" />
 		<property name="summary" value="summary chirp 6" />
 		<property name="body" value="body chirp 6" />
@@ -819,7 +819,7 @@
 	</bean>
 	
 	<bean id="article7" class="domain.Article">
-		<property name="publishedMoment" value="2017/10/21" />
+		<property name="publishedMoment" value="2017/09/20" />
 		<property name="title" value="title article 7" />
 		<property name="summary" value="summary chirp 7" />
 		<property name="body" value="body chirp 7" />
@@ -841,7 +841,7 @@
 	</bean>
 	
 	<bean id="article8" class="domain.Article">
-		<property name="publishedMoment" value="2017/10/21" />
+		<property name="publishedMoment" value="2017/09/20" />
 		<property name="title" value="title article 8" />
 		<property name="summary" value="summary chirp 8" />
 		<property name="body" value="body chirp 8" />
