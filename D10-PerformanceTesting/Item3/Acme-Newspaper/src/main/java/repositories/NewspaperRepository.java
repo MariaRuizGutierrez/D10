@@ -36,4 +36,7 @@ public interface NewspaperRepository extends JpaRepository<Newspaper, Integer> {
 	//Buscador newspaper
 	@Query("select n from Newspaper n where (n.title like %?1% or n.description like %?1%) and n.publicationDate!=null")
 	Collection<Newspaper> findNewspapersByKeyword(String keyWord);
+
+	@Query("select n from Newspaper n where n.publisher.id=?1")
+	Collection<Newspaper> findByUserId(int userId);
 }

@@ -10,6 +10,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.NewspaperRepository;
 import domain.Article;
@@ -34,6 +36,10 @@ public class NewspaperService {
 
 	@Autowired
 	AdminService		adminService;
+
+	//Importar la que pertenece a Spring
+	@Autowired
+	private Validator	validator;
 
 
 	// Constructors -----------------------------------------------------------
@@ -171,4 +177,39 @@ public class NewspaperService {
 		return result;
 	}
 
+	public Collection<Newspaper> findByUserId(final int userId) {
+		Collection<Newspaper> result;
+
+		result = this.newspaperRepository.findByUserId(userId);
+
+		return result;
+	}
+
+	public Newspaper reconstruct(final Newspaper newspaper, final BindingResult bindingResult) {
+		Newspaper result;
+		Newspaper newspaperBD;
+		if (newspaper.getId() == 0) {
+			User userPrincipal;
+			final Collection<Article> articles;
+
+			userPrincipal = this.userService.findByPrincipal();
+			articles = new ArrayList<Article>();
+			newspaper.setArticles(articles);
+			newspaper.setPublisher(userPrincipal);
+			result = newspaper;
+		} else {
+			newspaperBD = this.newspaperRepository.findOne(newspaper.getId());
+			newspaper.setId(newspaperBD.getId());
+			newspaper.setVersion(newspaperBD.getVersion());
+			newspaper.setPublicationDate(newspaperBD.getPublicationDate());
+			newspaper.setPublisher(newspaperBD.getPublisher());
+			if (newspaper.getArticles() == null)
+				newspaper.setArticles(new ArrayList<Article>());
+			else
+				newspaper.setArticles(newspaperBD.getArticles());
+			result = newspaper;
+		}
+		this.validator.validate(result, bindingResult);
+		return result;
+	}
 }

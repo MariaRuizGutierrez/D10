@@ -43,7 +43,15 @@
 			<li><a class="fNiv"><spring:message	code="master.page.chirp" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="chirp/user/list.do"><spring:message code="master.page.user.chirp.list" /></a></li>
+					<li><a href="chirp/user/list.do?d-16544-p=1"><spring:message code="master.page.user.chirp.list" /></a></li>
+					
+				</ul>
+			</li>
+			
+			<li><a class="fNiv"><spring:message	code="master.page.newspaper" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="newspaper/user/list.do?d-16544-p=1"><spring:message code="master.page.user.newspaper.list" /></a></li>
 					
 				</ul>
 			</li>

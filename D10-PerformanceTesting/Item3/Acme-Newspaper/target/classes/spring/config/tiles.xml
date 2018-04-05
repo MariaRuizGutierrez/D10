@@ -27,6 +27,7 @@
 		<value>/views/customer/tiles.xml</value>
 		<value>/views/profile/tiles.xml</value>
 		<value>/views/chirp/tiles.xml</value>
+		<value>/views/newspaper/tiles.xml</value>
 		<value>/views/configurationSystem/tiles.xml</value>
 	</util:list>
 
