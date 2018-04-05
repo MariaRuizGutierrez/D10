@@ -29,15 +29,17 @@ public class AdminServiceTest extends AbstractTest{
 	@PersistenceContext
 	EntityManager					entityManager;
 	
-	//Test para comprobar que un administrador se loguea correctamente.
+	//Login 
 	@Test
 	public void driveLoginAdmin() {
 
 		final Object testingData[][] = {
-			//admin está registrado
+			//Admin is registered
 			{
 				"admin", null
-			}, {
+			},
+			//Admin isn't registered
+			{
 				"adminNoRegistrado", IllegalArgumentException.class
 			}
 		};
@@ -58,37 +60,44 @@ public class AdminServiceTest extends AbstractTest{
 			this.unauthenticate();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
-			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
 			this.entityManager.clear();
 		}
 
 		this.checkExceptions(expected, caught);
 	}
 		
-	//Test que edita todos los atributos de administrador
+	//Test to edit all administrator attributes
 	@Test
 	public void driveEditNameAdministrator() {
 
 		final Object testingData[][] = {
-			//admin está registrado
+			//Try entering all the data of an admin with the null address and null telephone, positive case 
 			{
 				"admin", "admin", "adminTest", "surnameTest", null, null, "prueba@gmail.com", null
-			}, {
+			}, 
+			//Try entering a null phone number, this case positive
+			{
 				"admin", "admin", "adminTest", "surnameTest", "c/test", null, "prueba@gmail.com", null
-			}, {
+			}, 
+			//Try entering all the data of an admin, positive case
+			{
 				"admin", "admin", "adminTest", "surnameTest", "c/test", "+34657896576", "prueba@gmail.com", null
-			}, {
+			}, 
+			//Try entering a blank name, negative case
+			{
 				"admin", "admin", "", "surnameTest", null, null, "prueba@gmail.com", javax.validation.ConstraintViolationException.class
-			}, {
+			}, 
+			//Try entering a null name, negative case
+			{
 				"admin", "admin", null, "surnameTest", null, null, "prueba@gmail.com", javax.validation.ConstraintViolationException.class
-			}, {
-				"admin", "admin", "adminTest", "surnameTest", null, null, "prueba@gmail.com", null
-			}, {
+			}, 
+			//Try entering a blank surname, negative case
+			{
 				"admin", "admin", "adminTest", "", null, null, "prueba@gmail.com", javax.validation.ConstraintViolationException.class
-			}, {
+			}, 
+			//Try entering a null surname, negative case
+			{
 				"admin", "admin", "adminTest", null, null, null, "prueba@gmail.com", javax.validation.ConstraintViolationException.class
-			}, {
-				"admin", "admin", "adminTest", null, null, null, "pruebagmail.com", javax.validation.ConstraintViolationException.class
 			}
 		};
 
@@ -118,7 +127,6 @@ public class AdminServiceTest extends AbstractTest{
 			this.adminService.flush();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
-			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
 			this.entityManager.clear();
 		}
 
