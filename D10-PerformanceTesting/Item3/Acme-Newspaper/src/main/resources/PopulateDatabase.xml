@@ -188,7 +188,9 @@
 		<property name="phone" value="+34617557203" />
 		<property name="articles">
 			<list>
-				 <ref bean="article2"/> 
+				 <ref bean="article2"/>
+				 <ref bean="article9"/> 
+				 <ref bean="article11"/> 
 			</list>
 		</property>
 		<property name="followers">
@@ -206,12 +208,15 @@
 		</property>
 		<property name="newspapers">
 			<list>
+				 <ref bean="newspaper6"/> 
+				 <ref bean="newspaper8"/>  
 			</list>
 		</property>
 		<property name="chirps">
 			<list>
 				 <ref bean="chirp2"/> 
 				 <ref bean="chirp5"/>  
+				 
 			</list>
 		</property>
 	</bean>
@@ -226,7 +231,8 @@
 		<property name="articles">
 			<list>
 				 <ref bean="article3"/> 
-				 <ref bean="article4"/> 
+				 <ref bean="article4"/>
+				 <ref bean="article10"/> 
 			</list>
 		</property>
 		<property name="followers">
@@ -245,6 +251,7 @@
 		<property name="newspapers">
 			<list>
 				 <ref bean="newspaper4"/> 
+				 <ref bean="newspaper7"/>
 			</list>
 		</property>
 		<property name="chirps">
@@ -264,6 +271,7 @@
 		<property name="phone" value="+34648213455" />
 		<property name="articles">
 			<list>
+				 <ref bean="article12"/>
 			</list>
 		</property>
 		<property name="followers">
@@ -279,7 +287,8 @@
 		</property>
 		<property name="newspapers">
 			<list>
-				 <ref bean="newspaper5"/> 
+				 <ref bean="newspaper5"/>
+				 <ref bean="newspaper9"/> 
 			</list>
 		</property>
 		<property name="chirps">
@@ -482,6 +491,64 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="newspaper6" class="domain.Newspaper">
+		<property name="title" value="title newspaper 6" />
+		<property name="publicationDate" value="2017/09/21" />
+		<property name="description" value="description newspaper 6" />
+		<property name="picture" value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
+		<property name="open" value="true" />
+		<property name="publisher" ref="user2" />
+		<property name="articles">
+			<list>
+				<ref bean="article9"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="newspaper7" class="domain.Newspaper">
+		<property name="title" value="title newspaper 7" />
+		<property name="publicationDate" value="2017/09/21" />
+		<property name="description" value="description newspaper 7" />
+		<property name="picture" value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
+		<property name="open" value="true" />
+		<property name="publisher" ref="user3" />
+		<property name="articles">
+			<list>
+				<ref bean="article10"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="newspaper8" class="domain.Newspaper">
+		<property name="title" value="title newspaper 8" />
+		<property name="publicationDate" value="2017/09/21" />
+		<property name="description" value="description newspaper 8" />
+		<property name="picture" value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
+		<property name="open" value="false" />
+		<property name="publisher" ref="user2" />
+		<property name="articles">
+			<list>
+				<ref bean="article11"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="newspaper9" class="domain.Newspaper">
+		<property name="title" value="title newspaper 9" />
+		<property name="publicationDate" value="2017/09/21" />
+		<property name="description" value="description newspaper 9" />
+		<property name="picture" value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
+		<property name="open" value="false" />
+		<property name="publisher" ref="user4" />
+		<property name="articles">
+			<list>
+				<ref bean="article12"/>
+			</list>
+		</property>
+	</bean>
+	
+	
 	
 		<!-- FollowUps -->
 		
@@ -775,6 +842,91 @@
 		</property>
 		<property name="writer" ref="user3" />
 		<property name="newspaper" ref="newspaper5" />
+		<property name="draftMode" value="false"/>
+		<property name="followUps">
+			<list>
+			</list>
+		</property>
+	</bean> 
+	
+	
+	<bean id="article9" class="domain.Article">
+		<property name="publishedMoment" value="2016/10/21" />
+		<property name="title" value="title article 9" />
+		<property name="summary" value="summary chirp 9" />
+		<property name="body" value="body chirp 9" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+		<property name="writer" ref="user2" />
+		<property name="newspaper" ref="newspaper6" />
+		<property name="draftMode" value="false"/>
+		<property name="followUps">
+			<list>
+			</list>
+		</property>
+	</bean> 
+	
+	<bean id="article10" class="domain.Article">
+		<property name="publishedMoment" value="2016/10/21" />
+		<property name="title" value="title article 10" />
+		<property name="summary" value="summary chirp 10" />
+		<property name="body" value="body chirp 10" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+		<property name="writer" ref="user3" />
+		<property name="newspaper" ref="newspaper7" />
+		<property name="draftMode" value="false"/>
+		<property name="followUps">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="article11" class="domain.Article">
+		<property name="publishedMoment" value="2016/10/21" />
+		<property name="title" value="title article 11" />
+		<property name="summary" value="summary chirp 11" />
+		<property name="body" value="body chirp 11" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+		<property name="writer" ref="user2" />
+		<property name="newspaper" ref="newspaper8" />
+		<property name="draftMode" value="false"/>
+		<property name="followUps">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="article12" class="domain.Article">
+		<property name="publishedMoment" value="2016/10/21" />
+		<property name="title" value="title article 12" />
+		<property name="summary" value="summary chirp 12" />
+		<property name="body" value="body chirp 12" />
+		<property name="pictures">
+			<list>
+			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
+			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
+			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			</list>
+		</property>
+		<property name="writer" ref="user4" />
+		<property name="newspaper" ref="newspaper9" />
 		<property name="draftMode" value="false"/>
 		<property name="followUps">
 			<list>
