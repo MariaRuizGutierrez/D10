@@ -564,6 +564,7 @@
 		<property name="publicationMoment" value="2017/10/21" />
 		<property name="summary" value="summary 1" />
 		<property name="text" value="text 1" />
+		<property name="article" ref="article2"/>
 		<property name="pictures">
 			<list>
 			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
@@ -578,6 +579,7 @@
 		<property name="publicationMoment" value="2017/10/21" />
 		<property name="summary" value="summary 2" />
 		<property name="text" value="text followUp2" />
+		<property name="article" ref="article1"/>
 		<property name="pictures">
 			<list>
 			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
@@ -592,6 +594,7 @@
 		<property name="publicationMoment" value="2017/10/21" />
 		<property name="summary" value="summary 3" />
 		<property name="text" value="text followUp3" />
+		<property name="article" ref="article5"/>
 		<property name="pictures">
 			<list>
 			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
@@ -606,6 +609,7 @@
 		<property name="publicationMoment" value="2017/10/21" />
 		<property name="summary" value="summary 3" />
 		<property name="text" value="text followUp4" />
+		<property name="article" ref="article6"/>
 		<property name="pictures">
 			<list>
 			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
@@ -620,6 +624,7 @@
 		<property name="publicationMoment" value="2017/10/21" />
 		<property name="summary" value="summary 5" />
 		<property name="text" value="text followUp5" />
+		<property name="article" ref="article7"/>
 		<property name="pictures">
 			<list>
 			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>

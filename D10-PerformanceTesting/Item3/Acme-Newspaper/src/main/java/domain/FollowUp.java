@@ -8,8 +8,11 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -73,6 +76,23 @@ public class FollowUp extends DomainEntity {
 
 	public void setPictures(final Collection<String> pictures) {
 		this.pictures = pictures;
+	}
+
+
+	//Relationships-----------------------------------------------------------------
+
+	private Article	article;
+
+
+	@ManyToOne(optional = false)
+	@NotNull
+	@Valid
+	public Article getArticle() {
+		return this.article;
+	}
+
+	public void setArticle(final Article article) {
+		this.article = article;
 	}
 
 }

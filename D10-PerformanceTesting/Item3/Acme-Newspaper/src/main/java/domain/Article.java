@@ -115,7 +115,7 @@ public class Article extends DomainEntity {
 		this.newspaper = newspaper;
 	}
 
-	@OneToMany
+	@OneToMany(mappedBy = "article")
 	@Valid
 	public Collection<FollowUp> getFollowUps() {
 		return this.followUps;
