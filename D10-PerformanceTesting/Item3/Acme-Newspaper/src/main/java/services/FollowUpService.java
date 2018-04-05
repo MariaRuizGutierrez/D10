@@ -34,12 +34,16 @@ public class FollowUpService {
 	public FollowUp create() {
 		Date publicationMoment;
 		FollowUp followUp;
-		//User userConnected;
+
+		//Restricción no poder crear una followUp para un articulo en modo borrador
+		//Restricción no poder crear una followUp para un newspaper que no ha sido publicado
+		//Restricción no poder crear una followUp para un artículo que no sea del user conectado
 
 		publicationMoment = new Date(System.currentTimeMillis() - 1000);
+
 		//Comprobamos que sea un usuario
 		this.userService.checkPrincipal();
-		//userConnected = this.userService.findByPrincipal();
+
 		followUp = new FollowUp();
 		followUp.setPublicationMoment(publicationMoment);
 
@@ -47,7 +51,18 @@ public class FollowUpService {
 	}
 
 	public FollowUp save(final FollowUp followUp) {
-		return followUp;
+		Assert.notNull(followUp);
+		FollowUp result;
+		Date publicationMoment;
+
+		publicationMoment = new Date(System.currentTimeMillis() - 1000);
+
+		result = this.followUpRepository.save(followUp);
+		result.setPublicationMoment(publicationMoment);
+
+		Assert.notNull(result);
+
+		return result;
 
 	}
 
