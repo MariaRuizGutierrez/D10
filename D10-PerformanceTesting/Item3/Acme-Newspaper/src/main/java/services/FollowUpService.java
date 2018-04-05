@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.FollowUpRepository;
+import domain.Article;
 import domain.FollowUp;
+import domain.User;
 
 @Service
 @Transactional
@@ -31,13 +33,19 @@ public class FollowUpService {
 	}
 
 	// Simple CRUD methods ----------------------------------------------------
-	public FollowUp create() {
+	public FollowUp create(final Article article) {
 		Date publicationMoment;
 		FollowUp followUp;
+		User userConnected;
 
+		//Usuario conectado
+		userConnected = this.userService.findByPrincipal();
 		//Restricción no poder crear una followUp para un articulo en modo borrador
+		Assert.isTrue(!article.isDraftMode());
 		//Restricción no poder crear una followUp para un newspaper que no ha sido publicado
+		Assert.isTrue(article.getNewspaper().getPublicationDate() == null);
 		//Restricción no poder crear una followUp para un artículo que no sea del user conectado
+		Assert.isTrue(article.getWriter().equals(userConnected));
 
 		publicationMoment = new Date(System.currentTimeMillis() - 1000);
 
@@ -46,6 +54,7 @@ public class FollowUpService {
 
 		followUp = new FollowUp();
 		followUp.setPublicationMoment(publicationMoment);
+		followUp.setArticle(article);
 
 		return followUp;
 	}
