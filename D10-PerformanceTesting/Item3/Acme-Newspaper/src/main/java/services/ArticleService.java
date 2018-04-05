@@ -114,9 +114,16 @@ public class ArticleService {
 		result = this.articleRepository.findArticlesByKeyword(keyWord);
 		return result;
 	}
+
 	public Collection<Article> findArticlesByNewspaperId(final int newspaperId) {
 		Collection<Article> result;
 		result = this.articleRepository.findArticlesByNewspaperId(newspaperId);
+		return result;
+	}
+
+	public Collection<Article> findArticlesPublishedByUserId(final int userId) {
+		Collection<Article> result;
+		result = this.articleRepository.findArticlesPublishedByUserId(userId);
 		return result;
 	}
 
