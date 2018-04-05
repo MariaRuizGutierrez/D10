@@ -16,5 +16,5 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	Collection<Article> findArticlesByKeyword(String keyWord);
 
 	@Query("select a from Article a where a.newspaper.id=?1")
-	Collection<Article> findArticlesByNewspaperId(String newspaperId);
+	Collection<Article> findArticlesByNewspaperId(int newspaperId);
 }
