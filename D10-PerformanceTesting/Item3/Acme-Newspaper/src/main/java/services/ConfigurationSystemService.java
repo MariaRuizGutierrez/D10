@@ -68,6 +68,16 @@ public class ConfigurationSystemService {
 		return result;
 	}
 	
+
+	
+
+
+
+	// Other business methods -------------------------------------------------
+	public void flush() {
+		this.configurationSystemRepository.flush();
+	}
+	
 	public ConfigurationSystem addTabooWord(ConfigurationSystem configurationSystem, String tabooWord) {
 		Assert.notNull(configurationSystem);
 		Assert.notNull(tabooWord);
@@ -83,12 +93,14 @@ public class ConfigurationSystemService {
 
 		return result;
 	}
-
-
-
-	// Other business methods -------------------------------------------------
-	public void flush() {
-		this.configurationSystemRepository.flush();
+	
+	public ConfigurationSystem findConfigurationSystem(){
+		
+		ConfigurationSystem result;
+		
+		result = this.configurationSystemRepository.findConfigurationSystem();
+		
+		return result;
 	}
 
 }
