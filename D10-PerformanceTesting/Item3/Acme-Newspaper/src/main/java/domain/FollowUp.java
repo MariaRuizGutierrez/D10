@@ -18,6 +18,8 @@ import javax.validation.constraints.Past;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import cz.jirutka.validator.collection.constraints.EachURL;
+
 @Entity
 @Access(AccessType.PROPERTY)
 public class FollowUp extends DomainEntity {
@@ -70,6 +72,7 @@ public class FollowUp extends DomainEntity {
 	}
 
 	@ElementCollection
+	@EachURL
 	public Collection<String> getPictures() {
 		return this.pictures;
 	}
