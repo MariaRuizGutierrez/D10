@@ -17,6 +17,7 @@ import org.springframework.util.Assert;
 
 import security.UserAccount;
 import utilities.AbstractTest;
+import domain.Article;
 import domain.Newspaper;
 import domain.User;
 
@@ -32,11 +33,14 @@ public class UserServiceTest extends AbstractTest {
 	private UserService			userService;
 	@Autowired
 	private NewspaperService	newspaperService;
+	@Autowired
+	private ArticleService		articleService;
 
 	@PersistenceContext
 	EntityManager				entityManager;
 
 
+	//Test caso de uso extra: Login usuario
 	@Test
 	public void driverLoginUser() {
 
@@ -71,8 +75,8 @@ public class UserServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
-	//Test Create-------------------------------------------------
-	// Caso de uso 4.1:Register to the system as a user
+
+	//Test caso de uso 4.1:Register to the system as a user
 	@Test
 	public void driverCreateAndSave() {
 
@@ -128,6 +132,7 @@ public class UserServiceTest extends AbstractTest {
 
 	}
 
+	//Test caso de uso extra: Edit personal data of user
 	@Test
 	public void driverEditUser() {
 
@@ -187,44 +192,190 @@ public class UserServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 	}
 
-	// Test listAssist ------------------------------------------------------
-	// Se comprueba el listar las Rendezvouses para poder asistir
-	//Caso de uso 55: List the rendezvouses that he or shes RSVPd parte 1
+	//Test caso de uso 4.2: List the newspapers that are published and browse their articles.
 	@Test
-	public void driverLisNewspapers() {
+	public void driverListNewspapers() {
 		final Object testingData[][] = {
 			{
-				//El user 1 lista los newspapers publicados y aparece el newspaper5 porque ha sido publicado y está público
-				"user1", "newspaper5", null
+				//El user 1 lista los newspapers publicados y aparece el newspaper5 porque ha sido publicado y está público.
+				//El newspaper5 contiene el article 8
+				"user1", "newspaper5", "article8", null
 			}, {
-				//El user 1 lista los newspapers publicados y NO le aparece el newspaper2 porque NO ha sido publicado
-				"user1", "newspaper2", IllegalArgumentException.class
+				//El user 1 lista los newspapers publicados y NO le aparece el newspaper2 porque NO ha sido publicado.
+				//El newspaper2 contiene el article 2
+				"user1", "newspaper2", "article2", IllegalArgumentException.class
 			}, {
 				//El user 1 lista los newspapers publicados y NO le aparece el newspaper1 porque NO ha es público aunque SÍ ha sido públicado.
-				"user1", "newspaper1", IllegalArgumentException.class
+				//El newspaper1 contiene el article 1
+				"user1", "newspaper1", "article1", IllegalArgumentException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
-			this.templateListNewspapers(super.getEntityId((String) testingData[i][0]), super.getEntityId((String) testingData[i][1]), (Class<?>) testingData[i][2]);
+			this.templateListNewspapers(super.getEntityId((String) testingData[i][0]), super.getEntityId((String) testingData[i][1]), super.getEntityId((String) testingData[i][2]), (Class<?>) testingData[i][3]);
 	}
 
-	private void templateListNewspapers(final int usernameId, final int newspaperId, final Class<?> expected) {
+	private void templateListNewspapers(final int usernameId, final int newspaperId, final int articleId, final Class<?> expected) {
 		Class<?> caught;
 		User user;
 		Collection<Newspaper> newspapers;
+		final Collection<Article> articles;
 		final Newspaper newspaper;
+		Article article;
 
 		user = this.userService.findOne(usernameId);
 		newspaper = this.newspaperService.findOne(newspaperId);
+		article = this.articleService.findOne(articleId);
+		articles = this.articleService.findArticlesByNewspaperId(newspaperId);
 		caught = null;
 		try {
 			super.authenticate(user.getUserAccount().getUsername());
 			newspapers = this.newspaperService.findNewspapersPublishedAndOpen();
 			Assert.isTrue(newspapers.contains(newspaper));
+			Assert.isTrue(articles.contains(article));
 			this.unauthenticate();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}
 		this.checkExceptions(expected, caught);
 	}
+
+	//Test caso de uso 4.3: List the users of the system and display their profiles, 
+	//which must include their personal data an the list of articles that they 
+	//have written as long as they are published in a newspaper.
+	@Test
+	public void driverListUsers() {
+		final Object testingData[][] = {
+			{
+				//El user 1 lista todos los usuarios; 
+				//lista los articulos del user 2, conteniendo así el article 9 entre ellos.
+				"user1", "user2", "article9", null
+			}, {
+				//El user 1 lista todos los usuarios; 
+				//lista los articulos del user 2, NO conteniendo así el article 5(es del user 3) entre ellos.
+				"user1", "user2", "article5", IllegalArgumentException.class
+			}, {
+				//El user 1 lista todos los usuarios; 
+				//lista los articulos del user 2, NO conteniendo así el article 4(aún no ha sido publicado).
+				"user1", "user2", "article4", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateListUsers(super.getEntityId((String) testingData[i][0]), super.getEntityId((String) testingData[i][1]), super.getEntityId((String) testingData[i][2]), (Class<?>) testingData[i][3]);
+	}
+
+	private void templateListUsers(final int usernameIdLogin, final int usernameIdListArticles, final int articleId, final Class<?> expected) {
+		Class<?> caught;
+		User userLogin;
+		final Collection<Article> articles;
+		Article article;
+
+		userLogin = this.userService.findOne(usernameIdLogin);
+
+		caught = null;
+		try {
+			super.authenticate(userLogin.getUserAccount().getUsername());
+			//Articles publicados por el usuario 2
+			articles = this.articleService.findArticlesPublishedByUserId(usernameIdListArticles);
+			article = this.articleService.findOne(articleId);
+			Assert.isTrue(articles.contains(article));
+			this.unauthenticate();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			this.entityManager.clear();
+		}
+		this.checkExceptions(expected, caught);
+	}
+
+	//Test caso de uso 4.4: Search for a published article using a single key word that must appear somewhere
+	//in its title, summary, or body.
+	@Test
+	public void driverSearchPublishedArticle() {
+		final Object testingData[][] = {
+			{
+				//El user 1 busca por la palabra "especial" mostrándole el article 1 
+				//que contiene dicha palabra en el summary y ha sido publicado.
+				"user1", "especial", "article1", null
+			}, {
+				//El user 1 busca por la palabra "impresionante" mostrándole el article 10 
+				//que contienen dicha palabra en el body y ha sido publicado.
+				"user1", "impresionante", "article10", null
+			}, {
+				//El user 1 busca por la palabra article 1 mostrándole el article 1
+				//que contiene article 1 en el título y ha sido publicado.
+				"user1", "article 1", "article11", null
+			}, {
+				//El user 1 busca por la palabra article 4 no mostrándole ningún article
+				//ya que el article 4 NO ha sido publicado.
+				"user1", "article 4", "article4", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateSearchArticles(super.getEntityId((String) testingData[i][0]), (String) testingData[i][1], super.getEntityId((String) testingData[i][2]), (Class<?>) testingData[i][3]);
+	}
+
+	private void templateSearchArticles(final int usernameId, final String keyWord, final int articleId, final Class<?> expected) {
+		Class<?> caught;
+		User userLogin;
+		Collection<Article> articles;
+		Article articleExpected;
+		caught = null;
+		userLogin = this.userService.findOne(usernameId);
+
+		try {
+			super.authenticate(userLogin.getUserAccount().getUsername());
+			articleExpected = this.articleService.findOne(articleId);
+			articles = this.articleService.findArticleByKeyword(keyWord);
+			Assert.isTrue(articles.contains(articleExpected));
+			this.unauthenticate();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			this.entityManager.clear();
+		}
+		this.checkExceptions(expected, caught);
+	}
+
+	//Test caso de uso 4.5: Search for a published newspaper using a single keyword that must appear somewhere
+	//in its title or its description.
+	@Test
+	public void driverSearchPublishedNewspaper() {
+		final Object testingData[][] = {
+			{
+				//El user 1 busca por la palabra "terror" mostrándole el newspaper7 
+				//que contiene dicha palabra en el título y ha sido publicado.
+				"user1", "terror", "newspaper7", null
+			}, {
+				//El user 1 busca por la palabra "amanecer" mostrándole el newspaper8
+				//que contienen dicha palabra en la descripción y ha sido publicado.
+				"user1", "amanecer", "newspaper8", null
+			}, {
+				//El user 1 busca por la palabra "accidente" NO mostrándole el newspaper3
+				//pese a que lo contiene en el título pero NO ha sido publicado
+				"user1", "accidente", "newspaper3", IllegalArgumentException.class
+			}
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.templateSearchNewspapers(super.getEntityId((String) testingData[i][0]), (String) testingData[i][1], super.getEntityId((String) testingData[i][2]), (Class<?>) testingData[i][3]);
+	}
+
+	private void templateSearchNewspapers(final int usernameId, final String keyWord, final int newspaperId, final Class<?> expected) {
+		Class<?> caught;
+		User userLogin;
+		Collection<Newspaper> newspapers;
+		Newspaper newspaperExpected;
+		caught = null;
+		userLogin = this.userService.findOne(usernameId);
+
+		try {
+			super.authenticate(userLogin.getUserAccount().getUsername());
+			newspaperExpected = this.newspaperService.findOne(newspaperId);
+			newspapers = this.newspaperService.findNewspapersByKeyword(keyWord);
+			Assert.isTrue(newspapers.contains(newspaperExpected));
+			this.unauthenticate();
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			this.entityManager.clear();
+		}
+		this.checkExceptions(expected, caught);
+	}
+
 }
