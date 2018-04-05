@@ -1,5 +1,5 @@
 <%--
- * list.jsp
+ * edit.jsp
  *
  * Copyright (C) 2017 Universidad de Sevilla
  * 
@@ -20,19 +20,24 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<display:table pagesize="5" class="displaytag" keepStatus="true"
-	name="configurationSystem" requestURI="${requestURI}" id="row">
-	
-	<!-- Attributes -->
+<form:form action="${RequestURI }" modelAttribute="configurationSystem">
 
-	<acme:column code="configurationSystem.tabooWords" property="tabooWords"/>
+	<form:hidden path="id" />
+	<form:hidden path="version" />
+	<form:hidden path= "tabooWordsDefault"/>
 	
-</display:table>
+	<B><acme:textbox code="configurationSystem.tabooWord" path="tabooWordsNew"/></B>
+	<br />
+			
+	
 
-<security:authorize access="hasRole('ADMIN')">
-	<div>
-		<a href="configurationSystem/admin/edit.do"> <spring:message
-				code="configurationSystem.create" />
-		</a>
-	</div>
-</security:authorize>
+<!-- 	//BOTONES -->
+	
+	<input type="submit" name="save"
+		value="<spring:message code="configurationSystem.save" />" />&nbsp; 
+	
+	<input type="button" name="cancel"
+		value="<spring:message code="configurationSystem.cancel" />"
+		onclick="javascript:  window.location.replace('welcome/index.do');" />
+	<br />
+</form:form>

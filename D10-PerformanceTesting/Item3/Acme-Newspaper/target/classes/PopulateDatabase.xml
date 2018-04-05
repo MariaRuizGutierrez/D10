@@ -944,12 +944,16 @@
 		<!-- Configuration System -->
 	
 		 <bean id="configurationSystem" class="domain.ConfigurationSystem">
-			<property name="tabooWords">
+			<property name="tabooWordsDefault">
 				<list>
 					<value>sex</value>
 					<value>cialis</value>
 					<value>sexo</value>
 					<value>viagra</value>
+				</list>
+			</property>
+			<property name="tabooWordsNew">
+				<list>
 				</list>
 			</property>
 		</bean>   
