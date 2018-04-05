@@ -149,6 +149,9 @@
 		<property name="articles">
 			<list>
 				 <ref bean="article1"/> 
+				 <ref bean="article2"/> 
+				 <ref bean="article3"/> 
+				 <ref bean="article4"/>
 			</list>
 		</property>
 		<property name="followers">
@@ -188,9 +191,9 @@
 		<property name="phone" value="+34617557203" />
 		<property name="articles">
 			<list>
-				 <ref bean="article2"/>
 				 <ref bean="article9"/> 
 				 <ref bean="article11"/> 
+				 <ref bean="article6"/> 
 			</list>
 		</property>
 		<property name="followers">
@@ -230,9 +233,10 @@
 		<property name="phone" value="+34648213455" />
 		<property name="articles">
 			<list>
-				 <ref bean="article3"/> 
-				 <ref bean="article4"/>
+				 
 				 <ref bean="article10"/> 
+				 <ref bean="article5"/> 
+				 <ref bean="article7"/> 
 			</list>
 		</property>
 		<property name="followers">
@@ -272,6 +276,7 @@
 		<property name="articles">
 			<list>
 				 <ref bean="article12"/>
+				 <ref bean="article8"/>
 			</list>
 		</property>
 		<property name="followers">
@@ -474,6 +479,7 @@
 		<property name="articles">
 			<list>
 				<ref bean="article5"/>
+				<ref bean="article7"/>
 			</list>
 		</property>
 	</bean>
@@ -501,6 +507,7 @@
 		<property name="publisher" ref="user2" />
 		<property name="articles">
 			<list>
+				<ref bean="article6"/>
 				<ref bean="article9"/>
 			</list>
 		</property>
@@ -710,7 +717,7 @@
 			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
 			</list>
 		</property>
-		<property name="writer" ref="user2" />
+		<property name="writer" ref="user1" />
 		<property name="newspaper" ref="newspaper2" />
 		<property name="draftMode" value="false"/>
 		<property name="followUps">
@@ -732,7 +739,7 @@
 			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
 			</list>
 		</property>
-		<property name="writer" ref="user3" />
+		<property name="writer" ref="user1" />
 		<property name="newspaper"><null /></property>
 		<property name="draftMode" value="true"/>
 		<property name="followUps">
@@ -753,7 +760,7 @@
 			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
 			</list>
 		</property>
-		<property name="writer" ref="user3" />
+		<property name="writer" ref="user1" />
 		<property name="newspaper" ref="newspaper3" />
 		<property name="draftMode" value="true"/>
 		<property name="followUps">
@@ -774,7 +781,7 @@
 			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
 			</list>
 		</property>
-		<property name="writer" ref="user1" />
+		<property name="writer" ref="user3" />
 		<property name="newspaper" ref="newspaper4" />
 		<property name="draftMode" value="false"/>
 		<property name="followUps">
@@ -797,7 +804,7 @@
 			</list>
 		</property>
 		<property name="writer" ref="user2" />
-		<property name="newspaper" ref="newspaper4" />
+		<property name="newspaper" ref="newspaper6" />
 		<property name="draftMode" value="false"/>
 		<property name="followUps">
 			<list>
@@ -840,7 +847,7 @@
 			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
 			</list>
 		</property>
-		<property name="writer" ref="user3" />
+		<property name="writer" ref="user4" />
 		<property name="newspaper" ref="newspaper5" />
 		<property name="draftMode" value="false"/>
 		<property name="followUps">
