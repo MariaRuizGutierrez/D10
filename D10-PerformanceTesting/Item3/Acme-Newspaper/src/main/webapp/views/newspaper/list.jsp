@@ -24,6 +24,19 @@
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="newspapers" requestURI="${requestURI}" id="row">
 	
+	
+	<!-- 	DISPLAY -->
+	
+	<security:authorize access="hasRole('USER')">
+		<spring:message code="newspaper.display" var="display" />
+		<display:column title="${display}" sortable="true" >
+			<spring:url value="newspaper/user/display.do" var="displayURL">
+				<spring:param name="newspaperId" value="${row.id }" />
+			</spring:url>
+			<a href="${displayURL}"><spring:message
+					code="newspaper.display" /></a>
+		</display:column>
+	</security:authorize>
 	<!--  EDIT -->
 	
 	<security:authorize access="hasRole('USER')">

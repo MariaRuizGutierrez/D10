@@ -121,6 +121,39 @@ public class ArticleUserController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/listSummary", method = RequestMethod.GET)
+	public ModelAndView listSummary(@RequestParam final int articleId) {
+
+		ModelAndView result;
+		String summary;
+
+		summary = this.articleService.findSummaryByArticleId(articleId);
+
+		result = new ModelAndView("article/display");
+
+		result.addObject("requestURI", "article/user/listSummay.do");
+		result.addObject("article", summary);
+
+		return result;
+
+	}
+
+	// Display ----------------------------------------------------------------
+
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam final int articleId) {
+		final ModelAndView result;
+		Article article = new Article();
+
+		article = this.articleService.findOne(articleId);
+
+		result = new ModelAndView("article/display");
+		result.addObject("article", article);
+		result.addObject("requestURI", "article/user/display.do");
+
+		return result;
+	}
+
 	//Auxiliares ---------------------------------------------------------
 
 	protected ModelAndView createEditModelAndView(final Article article) {

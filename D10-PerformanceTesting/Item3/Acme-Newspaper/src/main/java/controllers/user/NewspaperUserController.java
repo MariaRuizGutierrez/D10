@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ArticleService;
 import services.NewspaperService;
 import services.UserService;
 import controllers.AbstractController;
+import domain.Article;
 import domain.Newspaper;
 import domain.User;
 
@@ -28,6 +30,9 @@ public class NewspaperUserController extends AbstractController {
 
 	@Autowired
 	private UserService			userService;
+
+	@Autowired
+	private ArticleService		articleService;
 
 
 	//List my newspapers-----------------------------------------------------------
@@ -127,6 +132,27 @@ public class NewspaperUserController extends AbstractController {
 			else
 				result = this.list("newspaper.commit.error");
 		}
+		return result;
+	}
+
+	// Display ----------------------------------------------------------------
+
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam final int newspaperId) {
+		final ModelAndView result;
+		Newspaper newspaper = new Newspaper();
+		final Collection<Article> articles;
+
+		newspaper = this.newspaperService.findOne(newspaperId);
+
+		//TODOS LOS ARTÍCULOS DE UN PERIÓDICO
+		articles = this.articleService.findArticlesByNewspaperId(newspaperId);
+
+		result = new ModelAndView("newspaper/display");
+		result.addObject("newspaper", newspaper);
+		result.addObject("articles", articles);
+		result.addObject("requestURI", "newspaper/user/display.do");
+
 		return result;
 	}
 	//Auxiliares ---------------------------------------------------------

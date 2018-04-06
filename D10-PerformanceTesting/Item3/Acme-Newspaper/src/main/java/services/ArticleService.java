@@ -176,4 +176,15 @@ public class ArticleService {
 		return result;
 	}
 
+	public String findSummaryByArticleId(final int articleId) {
+		Article article;
+		String summary;
+
+		article = this.articleRepository.findOne(articleId);
+		summary = article.getSummary();
+
+		return summary;
+
+	}
+
 }
