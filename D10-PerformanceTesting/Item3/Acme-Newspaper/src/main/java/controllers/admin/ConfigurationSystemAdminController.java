@@ -3,18 +3,13 @@ package controllers.admin;
 
 import java.util.Collection;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ConfigurationSystemService;
-import services.TabooWordService;
 import controllers.AbstractController;
 import domain.ConfigurationSystem;
 import domain.TabooWord;
@@ -27,9 +22,6 @@ public class ConfigurationSystemAdminController extends AbstractController{
 
 	@Autowired
 	private ConfigurationSystemService	configurationSystemService;
-	
-	@Autowired
-	private TabooWordService tabooWordService;
 	
 	
 	//Constructor--------------------------------------------------------

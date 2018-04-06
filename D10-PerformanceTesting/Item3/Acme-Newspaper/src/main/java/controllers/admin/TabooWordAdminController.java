@@ -82,12 +82,43 @@ public class TabooWordAdminController extends AbstractController{
 			try {
 				
 				if(tabooWord.getId() == 0){
+					Assert.isTrue(!this.tabooWordService.findTabooWordByName().contains(tabooWord.getName()), "The list contains word");
 					tabooWordSaved = this.tabooWordService.save(tabooWord);
 					configurationSystem.getTabooWords().add(tabooWordSaved);
 					this.configurationSystemService.save(configurationSystem);
 				}else
 					tabooWordSaved = this.tabooWordService.save(tabooWord);
 				
+				result = new ModelAndView("redirect:/configurationSystem/admin/tabooWord/list.do?d-16544-p=1");
+			} catch (final Throwable oops) {
+				if(oops.getMessage().equals("The list contains word"))
+					result = this.createEditModelAndView(tabooWord, "tabooWord.commit.error.contains");
+				else
+				
+					result = this.createEditModelAndView(tabooWord, "tabooWord.commit.error");
+			}
+		
+		return result;
+
+		}
+	
+	//Delete-----------------
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(@Valid final TabooWord tabooWord, final BindingResult binding) {
+
+		ModelAndView result;
+		ConfigurationSystem configurationSystem;
+		
+		configurationSystem = this.configurationSystemService.findConfigurationSystem();
+
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(tabooWord);
+		else
+			try {
+				configurationSystem.getTabooWords().remove(tabooWord);
+				this.configurationSystemService.save(configurationSystem);
+				this.tabooWordService.delete(tabooWord);
 				result = new ModelAndView("redirect:/configurationSystem/admin/tabooWord/list.do?d-16544-p=1");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(tabooWord, "tabooWord.commit.error");

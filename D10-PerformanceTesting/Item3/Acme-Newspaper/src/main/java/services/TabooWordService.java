@@ -90,4 +90,14 @@ public class TabooWordService {
 		
 	}
 
+	//Other 
+	
+	public Collection<String> findTabooWordByName(){
+		
+		Collection<String> result;
+		
+		result = this.tabooWordRepository.findTabooWordByName();
+		
+		return result;
+	}
 }

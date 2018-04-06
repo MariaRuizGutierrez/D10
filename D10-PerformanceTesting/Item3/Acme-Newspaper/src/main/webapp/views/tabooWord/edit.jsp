@@ -33,11 +33,12 @@
 
 <!-- 	//BOTONES -->
 	
-	<input type="submit" name="save"
-		value="<spring:message code="tabooWord.save" />" />&nbsp; 
+	<acme:submit name="save" code="tabooWord.save"/>
 	
-	<input type="button" name="cancel"
-		value="<spring:message code="tabooWord.cancel" />"
-		onclick="javascript:  window.location.replace('welcome/index.do');" />
+	<jstl:if test="${tabooWord.id != 0 }">
+	 	<acme:submit_with_on_click name="delete" code="tabooWord.delete" code2="tabooWord.confirm.delete"/>
+	</jstl:if>
+	
+	<acme:cancel url="welcome/index.do" code="tabooWord.cancel"/>
 	<br />
 </form:form>
