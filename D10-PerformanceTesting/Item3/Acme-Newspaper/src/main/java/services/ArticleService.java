@@ -153,7 +153,6 @@ public class ArticleService {
 			article.setWriter(userPrincipal);
 			followUps = new ArrayList<FollowUp>();
 			article.setFollowUps(followUps);
-			article.setDraftMode(true);
 			Assert.isTrue(article.getNewspaper().getPublisher().equals(userPrincipal));
 			Assert.isNull(article.getNewspaper().getPublicationDate());
 
