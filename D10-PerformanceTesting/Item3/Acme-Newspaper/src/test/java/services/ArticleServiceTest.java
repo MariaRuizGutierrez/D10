@@ -51,47 +51,43 @@ public class ArticleServiceTest extends AbstractTest {
 		final Object testingData[][] = {
 
 			{
-				//Se edita el article4 para el newspaper3 (publico y no publicado) correctamente
-				"user3", "article4", "newspaper3", "title test", null, "body test", picturesOk, true, true, null
+				//Se edita el article3 para el newspaper3 (publico y no publicado) correctamente
+				"user1", "article3", "newspaper3", "title test", null, "summary test", "body test", picturesOk, true, true, null
 			}, {
-				//Se edita el article4 para el newspaper3 (publico y no publicado) incorrectamente porque el user2 no es el creador del article4
-				"user2", "article4", "newspaper3", "title test", null, "body test", picturesOk, true, true, IllegalArgumentException.class
+				//Se edita el article3 para el newspaper3 (publico y no publicado) incorrectamente porque el user2 no es el creador del article4
+				"user2", "article3", "newspaper3", "title test", null, "summary test", "body test", picturesOk, true, true, IllegalArgumentException.class
 			}, {
-				//Se edita el article4 para el newspaper3 (publico y no publicado) incorrectamente porque tiene el title en blank
-				"user3", "article4", "newspaper3", "", null, "body test", picturesOk, true, true, javax.validation.ConstraintViolationException.class
+				//Se edita el article3 para el newspaper3 (publico y no publicado) incorrectamente porque tiene el title en blank
+				"user1", "article3", "newspaper3", "", null, "summary test", "body test", picturesOk, true, true, javax.validation.ConstraintViolationException.class
 			}, {
-				//Se edita el article4 para el newspaper3 (publico y no publicado) incorrectamente porque tiene el body en blank
-				"user3", "article4", "newspaper3", "title test", null, "", picturesOk, true, true, javax.validation.ConstraintViolationException.class
+				//Se edita el article3 para el newspaper3 (publico y no publicado) incorrectamente porque tiene el summary en blank
+				"user1", "article3", "newspaper3", "title test", null, "", "body test", picturesOk, true, true, javax.validation.ConstraintViolationException.class
 			}, {
-				//Se edita el article4 para el newspaper3 (publico y no publicado) correctamente con la lista de pictures vacia
-				"user3", "article4", "newspaper3", "title test", null, "body test", new ArrayList<String>(), true, true, null
+				//Se edita el article3 para el newspaper3 (publico y no publicado) incorrectamente porque tiene el body en blank
+				"user1", "article3", "newspaper3", "title test", null, "summary test", "", picturesOk, true, true, javax.validation.ConstraintViolationException.class
 			}, {
-				//Se edita el article4 para el newspaper3 (publico y no publicado) incorrectamente con la lista de pictures con mala urls
-				//TODO Corregir el modelo java para que el fallo sea javax.validation.ConstraintViolationException.class
-				"user3", "article4", "newspaper3", "title test", null, "body test", picturesBadUrls, true, true, null
+				//Se edita el article3 para el newspaper3 (publico y no publicado) correctamente con la lista de pictures vacia
+				"user1", "article3", "newspaper3", "title test", null, "summary test", "body test", new ArrayList<String>(), true, true, null
 			}, {
-				//Se edita el article4 para el newspaper3 (publico y no publicado) correctamente poniendo el article en modo final
-				"user3", "article4", "newspaper3", "title test", null, "body test", picturesOk, false, true, null
+				//Se edita el article3 para el newspaper3 (publico y no publicado) incorrectamente con la lista de pictures con mala urls
+				"user1", "article3", "newspaper3", "title test", null, "summary test", "body test", picturesBadUrls, true, true, javax.validation.ConstraintViolationException.class
+			}, {
+				//Se edita el article3 para el newspaper3 (publico y no publicado) correctamente poniendo el article en modo final
+				"user1", "article3", "newspaper3", "title test", null, "summary test", "body test", picturesOk, false, true, null
 			}, {
 				//Se edita el article4 para el newspaper1 (publico y no publicado) incorrectamente porque el newspaper1 ya esta publicado (comprobamos el list)
-				"user3", "article4", "newspaper1", "title test", null, "body test", picturesOk, true, true, IllegalArgumentException.class
+				"user1", "article1", "newspaper1", "title test", null, "summary test", "body test", picturesOk, true, true, IllegalArgumentException.class
 			}, {
 				//Se edita el article1 para el newspaper1 (privado y publicado) incorrectamente porque ya esta publicado el newspaper
-				"user1", "article1", "newspaper1", "title test", null, "body test", picturesOk, true, false, IllegalArgumentException.class
-			}, {
-				//Se edita el article4 para el newspaper3 (publico y no publicado) correctamente poniendo el newspaper en null con el draftMode en true
-				"user3", "article4", null, "title test", null, "body test", picturesOk, true, false, null
-			}, {
-				//Se edita el article4 para el newspaper3 (publico y no publicado) incorrectamente poniendo el newspaper en null con el draftMode en false
-				"user3", "article4", null, "title test", null, "body test", picturesOk, false, false, IllegalArgumentException.class
+				"user1", "article1", "newspaper1", "title test", null, "summary test", "body test", picturesOk, true, false, IllegalArgumentException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
 			this.templateListAndEdit((String) testingData[i][0], (Integer) super.getEntityId((String) testingData[i][1]), (String) testingData[i][2], (String) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5],
-				(Collection<String>) testingData[i][6], (boolean) testingData[i][7], (boolean) testingData[i][8], (Class<?>) testingData[i][9]);
+				(String) testingData[i][6], (Collection<String>) testingData[i][7], (boolean) testingData[i][8], (boolean) testingData[i][9], (Class<?>) testingData[i][10]);
 	}
-	private void templateListAndEdit(final String username, final Integer articleId, final String newspaperBean, final String title, final String publishedMoment, final String body, final Collection<String> pictures, final boolean draftMode,
-		final boolean checkList, final Class<?> expected) {
+	private void templateListAndEdit(final String username, final Integer articleId, final String newspaperBean, final String title, final String publishedMoment, final String summary, final String body, final Collection<String> pictures,
+		final boolean draftMode, final boolean checkList, final Class<?> expected) {
 		Article article;
 		Newspaper newspaper;
 		Collection<Newspaper> newspapersNotPublished;
@@ -101,18 +97,15 @@ public class ArticleServiceTest extends AbstractTest {
 		try {
 			super.authenticate(username);
 			article = this.articleService.findOne(articleId);
-			if (newspaperBean != null) {
-				newspaper = this.newspaperService.findOne(super.getEntityId(newspaperBean));
-				article.setNewspaper(newspaper);
-				if (checkList) {
-					newspapersNotPublished = this.newspaperService.findNewspaperNotPublished();
-					//Se comprueba que el newspaper pasado por parametro se encuentra en la lista de newspapers no publicados aun
-					Assert.isTrue(newspapersNotPublished.contains(newspaper), "el newspaper no se encuentra entre los no publicados");
-				}
-			} else
-				article.setNewspaper(null);
-
+			newspaper = this.newspaperService.findOne(super.getEntityId(newspaperBean));
+			article.setNewspaper(newspaper);
+			if (checkList) {
+				newspapersNotPublished = this.newspaperService.findNewspaperNotPublished();
+				//Se comprueba que el newspaper pasado por parametro se encuentra en la lista de newspapers no publicados aun
+				Assert.isTrue(newspapersNotPublished.contains(newspaper), "el newspaper no se encuentra entre los no publicados");
+			}
 			article.setTitle(title);
+			article.setSummary(summary);
 			article.setBody(body);
 			article.setPictures(pictures);
 			article.setDraftMode(draftMode);
@@ -142,20 +135,26 @@ public class ArticleServiceTest extends AbstractTest {
 
 			{
 				//Se crea un article para el newspaper3 (publico y no publicado) correctamente
-				"user3", "newspaper3", "title test", null, "body test", picturesOk, true, null
+				"user1", "newspaper3", "title test", null, "summary test", "body test", picturesOk, true, null
 			}, {
-				//Se crea un article para el newspaper1 (privado y publicado) incorrectamente porque ya esta publicado
-				"user3", "newspaper1", "title test", null, "body test", picturesOk, true, IllegalArgumentException.class
+				//Se crea un article para el newspaper5 (publico y publicado) incorrectamente porque ya esta publicado
+				"user4", "newspaper5", "title test", null, "summary test", "body test", picturesOk, true, IllegalArgumentException.class
+			}, {
+
+				//Se crea un article para el newspaper9 (privado y no publicado) correctamente
+				"user4", "newspaper9", "title test", null, "summary test", "body test", picturesOk, true, null
+
 			}, {
 				//Se crea un article para el newspaper1 (privado y publicado) incorrectamente porque solo lo puede crear el user
-				"customer1", "newspaper1", "title test", null, "body test", picturesOk, true, IllegalArgumentException.class
+				"customer1", "newspaper1", "title test", null, "summary test", "body test", picturesOk, true, IllegalArgumentException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
-			this.templateCreateAndSave((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], (String) testingData[i][4], (Collection<String>) testingData[i][5], (boolean) testingData[i][6],
-				(Class<?>) testingData[i][7]);
+			this.templateCreateAndSave((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5], (Collection<String>) testingData[i][6],
+				(boolean) testingData[i][7], (Class<?>) testingData[i][8]);
 	}
-	private void templateCreateAndSave(final String username, final String newspaperBean, final String title, final String publishedMoment, final String body, final Collection<String> pictures, final boolean draftMode, final Class<?> expected) {
+	private void templateCreateAndSave(final String username, final String newspaperBean, final String title, final String publishedMoment, final String summary, final String body, final Collection<String> pictures, final boolean draftMode,
+		final Class<?> expected) {
 		Article article;
 		Newspaper newspaper;
 		Class<?> caught;
@@ -167,6 +166,7 @@ public class ArticleServiceTest extends AbstractTest {
 			article = this.articleService.create(newspaper.getId());
 
 			article.setTitle(title);
+			article.setSummary(summary);
 			article.setBody(body);
 			article.setPictures(pictures);
 			article.setDraftMode(draftMode);
@@ -200,6 +200,9 @@ public class ArticleServiceTest extends AbstractTest {
 			}, {
 				//Se elimina el article4 correctamente
 				"admin", "article4", null
+			}, {
+				//Se elimina el article1 incorrectamente porque su newspaper ya esta publicado
+				"admin", "article1", IllegalArgumentException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)

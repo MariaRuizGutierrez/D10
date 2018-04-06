@@ -93,7 +93,7 @@ public class ArticleService {
 
 		Assert.notNull(article);
 		Assert.notNull(this.adminService.findByPrincipal());
-		Assert.notNull(article.getNewspaper().getPublicationDate(), "no se puede eliminar el articulo porque su periodico esta publicado");
+		Assert.isNull(article.getNewspaper().getPublicationDate(), "no se puede eliminar el articulo porque su periodico esta publicado");
 
 		this.articleRepository.delete(article);
 	}
