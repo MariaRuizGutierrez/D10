@@ -46,6 +46,31 @@
 		
 	</display:column>
 	
+	<jstl:if test="${seguidos}">
+	<spring:message code="user.action" var="actionHeader" />
+	<display:column title="${actionHeader}" sortable="true">
+		
+		<spring:url value="user/unfollow.do" var="unfollowURL">
+		<spring:param name="userId" value="${row.id}"/>
+		</spring:url>
+		<a href="${unfollowURL}"><spring:message code="user.unfollow"/></a>
+		
+	</display:column>
+	</jstl:if>
+	
+	
+	<jstl:if test="${seguidos==false}">
+	<spring:message code="user.action" var="actionHeader" />
+	<display:column title="${actionHeader}" sortable="true">
+		
+		<spring:url value="user/follow.do" var="followURL">
+		<spring:param name="userId" value="${row.id}"/>
+		</spring:url>
+		<a href="${followURL}"><spring:message code="user.follow"/></a>
+		
+	</display:column>
+	</jstl:if>
+	
 	
 	
 	

@@ -1,6 +1,8 @@
 
 package controllers;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -8,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.UserService;
@@ -61,6 +64,44 @@ public class UserController extends AbstractController {
 
 	}
 
+	@RequestMapping(value = "/listUserNotFollowed", method = RequestMethod.GET)
+	public ModelAndView listUserNotFollowed() {
+		ModelAndView result;
+		User userConnected;
+		Collection<User> userNotFollowed;
+
+		userNotFollowed = this.userService.findAll();
+		userConnected = this.userService.findByPrincipal();
+
+		userNotFollowed.removeAll(userConnected.getFollowed());
+		userNotFollowed.remove(userConnected);
+
+		result = new ModelAndView("user/list");
+		result.addObject("users", userNotFollowed);
+		result.addObject("seguidos", false);
+		result.addObject("requestURI", "/user/list.do");
+
+		return result;
+
+	}
+
+	@RequestMapping(value = "/listUserFollowed", method = RequestMethod.GET)
+	public ModelAndView listUserFollowed() {
+		ModelAndView result;
+		User userConnected;
+		Collection<User> userFollowed;
+
+		userConnected = this.userService.findByPrincipal();
+		userFollowed = userConnected.getFollowed();
+
+		result = new ModelAndView("user/list");
+		result.addObject("users", userFollowed);
+		result.addObject("seguidos", true);
+		result.addObject("requestURI", "/user/list.do");
+
+		return result;
+
+	}
 	//Displaying----------------------
 
 	//Create----------------------
@@ -126,6 +167,45 @@ public class UserController extends AbstractController {
 
 		return result;
 	}
+
+	//Follow
+	@RequestMapping(value = "/follow", method = RequestMethod.GET)
+	public ModelAndView follow(@RequestParam final int userId) {
+		ModelAndView result;
+
+		try {
+			User userToFollow;
+			userToFollow = this.userService.findOne(userId);
+			this.userService.followUser(userToFollow);
+			result = this.listUserNotFollowed();
+			result.addObject("message", "user.follow.commit.ok");
+		} catch (final Throwable oops) {
+			result = this.listUserNotFollowed();
+			result.addObject("message", "user.follow.commit.error");
+		}
+		return result;
+
+	}
+
+	//Unfollow
+	@RequestMapping(value = "/unfollow", method = RequestMethod.GET)
+	public ModelAndView unfollow(@RequestParam final int userId) {
+		ModelAndView result;
+
+		try {
+			User userToUnFollow;
+			userToUnFollow = this.userService.findOne(userId);
+			this.userService.unFollowUser(userToUnFollow);
+			result = this.listUserFollowed();
+			result.addObject("message", "user.unfollow.commit.ok");
+		} catch (final Throwable oops) {
+			result = this.listUserFollowed();
+			result.addObject("message", "user.unfollow.commit.error");
+		}
+		return result;
+
+	}
+
 	// Ancillary methods ------------------------------------------------------
 
 	protected ModelAndView createEditModelAndView(final UserForm userForm) {
