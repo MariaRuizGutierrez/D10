@@ -38,6 +38,7 @@ public class TabooWordService {
 		TabooWord result;
 		
 		result = new TabooWord();
+		result.setDefault_word(false);
 		
 		return result;
 		

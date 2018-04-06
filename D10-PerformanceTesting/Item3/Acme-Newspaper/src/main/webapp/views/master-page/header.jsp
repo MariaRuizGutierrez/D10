@@ -23,9 +23,14 @@
 		<security:authorize access="hasRole('ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.administrator" /></a>
 				<ul>
-					<li class="arrow"></li>
-					<li><a href="configurationSystem/admin/list.do"><spring:message code="master.page.administrator.tabooWords" /></a></li>				
+					<li class="arrow"></li>			
 					<li><a href="admin/dashboard.do"><spring:message code="master.page.statistics" /></a>
+				</ul>
+			</li>
+			<li><a class="fNiv"><spring:message	code="master.page.administrator.configurationSystem" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="configurationSystem/admin/tabooWord/list.do?d-16544-p=1"><spring:message code="master.page.administrator.tabooWords" /></a></li>				
 				</ul>
 			</li>
 		</security:authorize>

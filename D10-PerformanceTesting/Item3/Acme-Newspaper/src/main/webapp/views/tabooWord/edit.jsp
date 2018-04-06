@@ -20,13 +20,13 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="${RequestURI }" modelAttribute="configurationSystem">
+<form:form action="tabooWord/admin/edit.do" modelAttribute="tabooWord">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path= "tabooWordsDefault"/>
+	<form:hidden path= "default_word"/>
 	
-	<B><acme:textbox code="configurationSystem.tabooWord" path="tabooWordsNew"/></B>
+	<B><acme:textbox code="tabooWord.name" path="name"/></B>
 	<br />
 			
 	
@@ -34,10 +34,10 @@
 <!-- 	//BOTONES -->
 	
 	<input type="submit" name="save"
-		value="<spring:message code="configurationSystem.save" />" />&nbsp; 
+		value="<spring:message code="tabooWord.save" />" />&nbsp; 
 	
 	<input type="button" name="cancel"
-		value="<spring:message code="configurationSystem.cancel" />"
+		value="<spring:message code="tabooWord.cancel" />"
 		onclick="javascript:  window.location.replace('welcome/index.do');" />
 	<br />
 </form:form>

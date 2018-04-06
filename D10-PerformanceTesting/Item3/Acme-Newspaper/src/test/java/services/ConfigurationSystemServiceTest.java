@@ -70,55 +70,55 @@ public class ConfigurationSystemServiceTest extends AbstractTest{
 		this.checkExceptions(expected, caught);
 	}
 	
-	//B17.1 A admin manage a list of taboo words
-	@Test
-	public void driveEditConfiguration() {
-
-		final Object testingData[][] = {
-			//admin trys introducing a taboo word, positive case
-			{
-				"admin", "configurationSystem", "palabraPrueba", null
-			}, 
-			//User trys introducing a taboo word, negative case
-			{
-				"user1", "configurationSystem", "palabraPrueba", IllegalArgumentException.class
-			}, 
-			//User trys introducing a blank taboo word, negative case
-			{
-				"admin", "configurationSystem", "", IllegalArgumentException.class
-			},
-			////User trys introducing a null taboo word, negative case
-			{
-				"admin", "configurationSystem", null, IllegalArgumentException.class
-			}
-			
-		};
-
-		for (int i = 0; i < testingData.length; i++)
-			this.templateEditConfiguration((String)testingData[i][0], (String)testingData[i][1], (String)testingData[i][2], (Class<?>)testingData[i][3]);
-
-	}
-	
-	
-	public void templateEditConfiguration(String username, String entity, String tabooWord, Class<?> expected) {
- 
-		Class<?> caught;
-		ConfigurationSystem configurationSystem;
-
-		caught = null;
-		configurationSystem = this.configurationSystemService.findOne(super.getEntityId(entity));
-		
-
-		try {
-			this.authenticate(username);
-			this.configurationSystemService.addTabooWord(configurationSystem, tabooWord);
-			this.unauthenticate();
-		} catch (final Throwable oops) {
-			caught = oops.getClass();
-			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
-			this.entityManager.clear();
-		}
-
-		this.checkExceptions(expected, caught);
-	}
+//	//B17.1 A admin manage a list of taboo words
+//	@Test
+//	public void driveEditConfiguration() {
+//
+//		final Object testingData[][] = {
+//			//admin trys introducing a taboo word, positive case
+//			{
+//				"admin", "configurationSystem", "palabraPrueba", null
+//			}, 
+//			//User trys introducing a taboo word, negative case
+//			{
+//				"user1", "configurationSystem", "palabraPrueba", IllegalArgumentException.class
+//			}, 
+//			//User trys introducing a blank taboo word, negative case
+//			{
+//				"admin", "configurationSystem", "", IllegalArgumentException.class
+//			},
+//			////User trys introducing a null taboo word, negative case
+//			{
+//				"admin", "configurationSystem", null, IllegalArgumentException.class
+//			}
+//			
+//		};
+//
+//		for (int i = 0; i < testingData.length; i++)
+//			this.templateEditConfiguration((String)testingData[i][0], (String)testingData[i][1], (String)testingData[i][2], (Class<?>)testingData[i][3]);
+//
+//	}
+//	
+//	
+//	public void templateEditConfiguration(String username, String entity, String tabooWord, Class<?> expected) {
+// 
+//		Class<?> caught;
+//		ConfigurationSystem configurationSystem;
+//
+//		caught = null;
+//		configurationSystem = this.configurationSystemService.findOne(super.getEntityId(entity));
+//		
+//
+//		try {
+//			this.authenticate(username);
+//			this.configurationSystemService.addTabooWord(configurationSystem, tabooWord);
+//			this.unauthenticate();
+//		} catch (final Throwable oops) {
+//			caught = oops.getClass();
+//			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+//			this.entityManager.clear();
+//		}
+//
+//		this.checkExceptions(expected, caught);
+//	}
 }

@@ -32,10 +32,10 @@
 		<display:column title="${Edit}" sortable="true">
 		
 		<jstl:if test="${row.default_word==false}">
-			<spring:url value="configurationSystem/admin/edit.do" var="editURL">
+			<spring:url value="tabooWord/admin/edit.do" var="editURL">
 				<spring:param name="tabooWordId" value="${row.id}" />
 			</spring:url>
-			<a href="${editURL}"><spring:message code="serviceOffered.edit" /></a>
+			<a href="${editURL}"><spring:message code="configurationSystem.edit" /></a>
 		
 		</jstl:if>
 		</display:column>
@@ -49,7 +49,7 @@
 
 <security:authorize access="hasRole('ADMIN')">
 	<div>
-		<a href="configurationSystem/admin/edit.do"> <spring:message
+		<a href="tabooWord/admin/create.do"> <spring:message
 				code="configurationSystem.create" />
 		</a>
 	</div>

@@ -67,10 +67,6 @@ public class ConfigurationSystemService {
 
 		return result;
 	}
-	
-
-	
-
 
 
 	// Other business methods -------------------------------------------------
@@ -78,21 +74,6 @@ public class ConfigurationSystemService {
 		this.configurationSystemRepository.flush();
 	}
 	
-	public ConfigurationSystem addTabooWord(ConfigurationSystem configurationSystem, String tabooWord) {
-		Assert.notNull(configurationSystem);
-		Assert.notNull(tabooWord);
-		Assert.isTrue(!tabooWord.equals(""));
-		
-		this.adminService.checkPrincipal();
-
-		ConfigurationSystem result;
-		
-		configurationSystem.getTabooWords().add(tabooWord);
-		
-		result = this.configurationSystemRepository.save(configurationSystem);
-
-		return result;
-	}
 	
 	public ConfigurationSystem findConfigurationSystem(){
 		
