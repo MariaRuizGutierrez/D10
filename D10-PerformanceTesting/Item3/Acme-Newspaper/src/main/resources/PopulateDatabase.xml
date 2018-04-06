@@ -465,6 +465,7 @@
 		<property name="articles">
 			<list>
 				<ref bean="article4"/>
+				<ref bean="article3"/>
 			</list>
 		</property>
 	</bean>
@@ -744,7 +745,7 @@
 			</list>
 		</property>
 		<property name="writer" ref="user1" />
-		<property name="newspaper"><null /></property>
+		<property name="newspaper" ref="newspaper3" />
 		<property name="draftMode" value="true"/>
 		<property name="followUps">
 			<list>

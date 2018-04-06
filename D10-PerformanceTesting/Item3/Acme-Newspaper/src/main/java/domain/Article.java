@@ -104,11 +104,11 @@ public class Article extends DomainEntity {
 		return this.writer;
 	}
 
-	public void setWriter(final User writer) {
+	public void setWriter(User writer) {
 		this.writer = writer;
 	}
 
-	@ManyToOne(optional = true)
+	@ManyToOne(optional = false)
 	@Valid
 	public Newspaper getNewspaper() {
 		return this.newspaper;
