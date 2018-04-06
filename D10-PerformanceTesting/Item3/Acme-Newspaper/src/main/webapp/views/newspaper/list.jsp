@@ -63,7 +63,29 @@
 		
 		
 	<!-- Articles -->
-		
+	<security:authorize access="hasRole('USER')">
+		<spring:message code="newspaper.articles" var="articles" />
+		<display:column title="${articles}" sortable="true" >
+			<spring:url value="article/user/list.do" var="articleURL">
+				<spring:param name="newspaperId" value="${row.id }" />
+			</spring:url>
+			<a href="${articleURL}"><spring:message
+					code="newspaper.articles" /></a>
+		</display:column>
+	</security:authorize>
+	
+	<security:authorize access="isAnonymous()">
+		<spring:message code="newspaper.articles" var="articles" />
+		<display:column title="${articles}" sortable="true" >
+			<spring:url value="article/list.do" var="articleURL">
+				<spring:param name="newspaperId" value="${row.id }" />
+			</spring:url>
+			<a href="${articleURL}"><spring:message
+					code="newspaper.articles" /></a>
+		</display:column>
+	</security:authorize>
+	
+	<!-- ESTE LO USA ESPI -->
 	<security:authorize access="hasRole('USER')">
 	<jstl:if test="${showMyArticles}">
 		<spring:message code="newspaper.articles" var="articles" />
@@ -74,7 +96,7 @@
 			<a href="${articleURL}"><spring:message
 					code="newspaper.articles" /></a>
 		</display:column>
-	</jstl:if>
+	</jstl:if> 
 	
 	<jstl:if test="${showButtonPublish}">
 	<spring:message code="newspaper.publish" var="publish" />

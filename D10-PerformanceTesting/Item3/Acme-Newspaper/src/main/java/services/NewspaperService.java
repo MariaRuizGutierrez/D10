@@ -177,6 +177,14 @@ public class NewspaperService {
 		return result;
 	}
 
+	public Collection<Newspaper> findNewspapersPublished() {
+		Collection<Newspaper> result;
+
+		result = this.newspaperRepository.findNewspapersPublished();
+
+		return result;
+	}
+
 	public Collection<Newspaper> findByUserId(final int userId) {
 		Collection<Newspaper> result;
 
