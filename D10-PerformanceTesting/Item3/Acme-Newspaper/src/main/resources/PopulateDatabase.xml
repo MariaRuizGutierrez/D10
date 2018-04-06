@@ -543,7 +543,7 @@
 	
 	<bean id="newspaper9" class="domain.Newspaper">
 		<property name="title" value="title newspaper 9" />
-		<property name="publicationDate" value="2017/09/21" />
+		<property name="publicationDate"><null /></property>
 		<property name="description" value="description newspaper 9" />
 		<property name="picture" value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
 		<property name="open" value="false" />
@@ -564,7 +564,7 @@
 		<property name="publicationMoment" value="2017/10/21" />
 		<property name="summary" value="summary 1" />
 		<property name="text" value="text 1" />
-		<property name="article" ref="article2"/>
+		<property name="article" ref="article12"/>
 		<property name="pictures">
 			<list>
 			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
@@ -727,7 +727,6 @@
 		<property name="draftMode" value="false"/>
 		<property name="followUps">
 			<list>
-				<ref bean="followUp1"/>
 			</list>
 		</property>
 	</bean>

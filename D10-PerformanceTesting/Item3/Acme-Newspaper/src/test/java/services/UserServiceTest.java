@@ -82,7 +82,7 @@ public class UserServiceTest extends AbstractTest {
 
 		final Object testingData[][] = {
 			{
-				//Registrar user correctamente
+				//Registrar user correctamente(poniendo teléfono!=null)
 				"usertest1", "passwordtest1", "miguel", "ternero", "calle Huertas nº 3", "662657322", "Email@email.com", null
 			}, {
 				//Registrar user con name en blanco
@@ -96,6 +96,10 @@ public class UserServiceTest extends AbstractTest {
 			}, {
 				//Registrar user ya registrado
 				"usertest4", "passwordtest4", "miguel", "ternero", "calle Huertas nº 3", "662657322", "Email@gmail.com", org.springframework.dao.DataIntegrityViolationException.class
+			}, {
+				//Registrar user con número de teléfono vacío
+				"usertest9", "passwordtest9", "name1", "surname1", "calle Huertas nº 3", "", "maria@gmail.com", null
+
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)

@@ -92,6 +92,9 @@ public class CustomerServiceTest extends AbstractTest {
 			}, {
 				//Registrar customer ya registrado
 				"customertest4", "passwordtest4", "miguel", "ternero", "calle Huertas nº 3", "662657322", "Email@gmail.com", org.springframework.dao.DataIntegrityViolationException.class
+			}, {
+				//Registrar un customer con número de teléfono vacío
+				"customertest9", "passwordtest9", "miguel", "ternero", "calle Huertas nº 3", "", "Email@gmail.com", null
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
