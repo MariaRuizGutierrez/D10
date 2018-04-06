@@ -144,7 +144,6 @@ public class ArticleService {
 		Article result;
 		Article articleBD;
 
-		Assert.isTrue(article.getWriter().equals(this.userService.findByPrincipal()));
 		if (article.getId() == 0) {
 			User userPrincipal;
 			final Collection<FollowUp> followUps;
@@ -162,7 +161,6 @@ public class ArticleService {
 		} else {
 			articleBD = this.articleRepository.findOne(article.getId());
 			Assert.isNull(articleBD.getPublishedMoment(), "para editar un articulo no puede tener fecha de publicacion");
-			Assert.isTrue(articleBD.getWriter().equals(article.getWriter()), "el articulo tiene que pertenecer al usuario logueado");
 			Assert.isTrue(articleBD.getNewspaper().equals(article.getNewspaper()), "no se puede cambiar el periodico de un articulo");
 			article.setId(articleBD.getId());
 			article.setVersion(articleBD.getVersion());

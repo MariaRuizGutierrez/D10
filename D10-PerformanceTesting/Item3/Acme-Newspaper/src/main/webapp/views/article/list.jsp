@@ -29,12 +29,13 @@
 	<security:authorize access="hasRole('USER')">
 	<jstl:if test="${showButtonEdit}">
 		<spring:message code="article.edit" var="Edit" />
-
 		<display:column title="${Edit}" sortable="true">
+			<jstl:if test="${row.draftMode==true}">
 				<spring:url value="article/user/edit.do" var="editURL">
 					<spring:param name="articleId" value="${row.id}" />
 				</spring:url>
 				<a href="${editURL}"><spring:message code="article.edit" /></a>
+			</jstl:if>
 		</display:column>
 		</jstl:if>
 	</security:authorize>

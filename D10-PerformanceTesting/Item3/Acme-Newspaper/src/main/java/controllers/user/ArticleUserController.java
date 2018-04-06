@@ -55,7 +55,7 @@ public class ArticleUserController extends AbstractController {
 		result.addObject("articles", articles);
 		result.addObject("newspaper", newspaper);
 		result.addObject("showButtonEdit", true);
-		result.addObject("requestURI", "article/user/list.do");
+		result.addObject("requestURI", "article/user/listMyArticles.do");
 
 		return result;
 
