@@ -54,12 +54,13 @@
 	
 	<security:authorize access="hasRole('USER')">
 		<spring:message code="newspaper.edit" var="Edit" />
-
 		<display:column title="${Edit}" sortable="true">
+			<jstl:if test="${row.publicationDate==null}">
 				<spring:url value="newspaper/user/edit.do" var="editURL">
 					<spring:param name="newspaperId" value="${row.id}" />
 				</spring:url>
 				<a href="${editURL}"><spring:message code="newspaper.edit" /></a>
+			</jstl:if>
 		</display:column>
 	</security:authorize>
 

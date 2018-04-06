@@ -82,6 +82,7 @@ public class NewspaperUserController extends AbstractController {
 		user = this.userService.findByPrincipal();
 		newspaper = this.newspaperService.findOne(newspaperId);
 		Assert.isTrue(user.getNewspapers().contains(newspaper), "Cannot commit this operation, because it's illegal");
+		Assert.isNull(newspaper.getPublicationDate(), "the newspaper is published");
 		Assert.notNull(newspaper);
 		result = this.createEditModelAndView(newspaper);
 		return result;
