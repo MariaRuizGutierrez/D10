@@ -38,6 +38,7 @@
 		
 		<security:intercept-url pattern="/user/**" access="permitAll" />
 		<security:intercept-url pattern="/newspaper/**" access="permitAll" />
+		<security:intercept-url pattern="/article/**" access="permitAll" />
 
 		<security:intercept-url pattern="/security/login.do" access="permitAll" /> 
 		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" /> 

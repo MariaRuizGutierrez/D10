@@ -38,8 +38,6 @@ public class NewspaperController {
 
 		result = new ModelAndView("newspaper/list");
 		result.addObject("newspapers", newspapers);
-		result.addObject("showMyArticles", true);
-		//result.addObject("showButtonPublish", true);
 		result.addObject("requestURI", "newspaper/list.do");
 		result.addObject("message", messageCode);
 		return result;
