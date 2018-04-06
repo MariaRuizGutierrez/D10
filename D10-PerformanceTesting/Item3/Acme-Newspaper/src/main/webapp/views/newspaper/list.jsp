@@ -53,6 +53,7 @@
 	<!--  EDIT -->
 	
 	<security:authorize access="hasRole('USER')">
+	<jstl:if test="${showButtonEdit}">
 		<spring:message code="newspaper.edit" var="Edit" />
 		<display:column title="${Edit}" sortable="true">
 			<jstl:if test="${row.publicationDate==null}">
@@ -62,6 +63,7 @@
 				<a href="${editURL}"><spring:message code="newspaper.edit" /></a>
 			</jstl:if>
 		</display:column>
+	</jstl:if>
 	</security:authorize>
 
 	<!-- DISPLAY -->	
