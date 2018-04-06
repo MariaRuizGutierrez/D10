@@ -20,6 +20,17 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+<!-- 	SEARCH -->
+	<div>
+<security:authorize access="isAnonymous()">
+<form:form action="${requestURISearchArticle}"  method="get">
+	<label><spring:message code="article.search.keyword"/></label>
+	<input type="text" name="keyword"/> 
+	<input type="submit" value="<spring:message code="article.search" />" /> 	 	
+</form:form>
+</security:authorize>
+</div>
+<br />
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="articles" requestURI="${requestURI}" id="row">

@@ -89,6 +89,16 @@
 				</ul>
 			</li>
 			
+			<!-- BUSQUEDA DE ARTICULOS -->
+			<li><a class="fNiv"><spring:message code="master.page.articles" /></a>
+				<ul>
+					<li class="arrow"></li>
+					
+					<li><a href="article/list1.do?d-16544-p=1"><spring:message code="master.page.articles.list" /></a></li>
+				</ul>
+			</li>
+			
+			
 			<!-- REGISTRO DE USUARIOS -->
 				<li><a class="fNiv"><spring:message code="master.page.users" /></a>
 				<ul>
