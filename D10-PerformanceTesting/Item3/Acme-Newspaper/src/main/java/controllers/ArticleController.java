@@ -32,28 +32,9 @@ public class ArticleController extends AbstractController {
 
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
-		result.addObject("requestURI", "article/list1.do");
+		result.addObject("requestURI", "article/search.do");
 		result.addObject("requestURISearchArticle", "article/search.do");
 		return result;
-	}
-
-	//Listing-----------------------------------------------------------
-	@RequestMapping(value = "/list1", method = RequestMethod.GET)
-	public ModelAndView list(final String messageCode) {
-
-		ModelAndView result;
-		Collection<Article> articles;
-
-		//user = this.userService.findByPrincipal();
-		articles = this.articleService.findAll();
-
-		result = new ModelAndView("article/list");
-		result.addObject("articles", articles);
-		result.addObject("requestURI", "article/list1.do");
-		result.addObject("requestURISearchArticle", "article/search.do");
-		result.addObject("message", messageCode);
-		return result;
-
 	}
 
 	// List ---------------------------------------------------------

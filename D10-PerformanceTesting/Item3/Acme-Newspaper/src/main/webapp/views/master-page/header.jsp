@@ -101,7 +101,7 @@
 				<ul>
 					<li class="arrow"></li>
 					
-					<li><a href="article/list1.do?d-16544-p=1"><spring:message code="master.page.articles.list" /></a></li>
+					<li><a href="article/search.do?d-16544-p=1&&keyword="><spring:message code="master.page.articles.list" /></a></li>
 				</ul>
 			</li>
 			
