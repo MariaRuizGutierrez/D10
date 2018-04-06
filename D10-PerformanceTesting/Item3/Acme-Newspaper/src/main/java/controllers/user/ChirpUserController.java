@@ -83,6 +83,7 @@ public class ChirpUserController extends AbstractController {
 	}
 
 	// Listing ----------------------------------------------------------------
+	//Lista para que me de las chirps de los usuarios que sigo
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView result;
@@ -92,9 +93,27 @@ public class ChirpUserController extends AbstractController {
 		userConnected = this.userService.findByPrincipal();
 		chirp = new ArrayList<Chirp>(this.chirpService.getChirpsOfMyFollowers(userConnected.getId()));
 
-		result = new ModelAndView("chirp/list");
+		result = new ModelAndView("chirp/listFollows");
 		result.addObject("chirps", chirp);
 		result.addObject("requestURI", "chirp/user/list.do");
+
+		return result;
+	}
+
+	// Listing ----------------------------------------------------------------
+	//Lista para que me de las chirps del usuario logueado
+	@RequestMapping(value = "/listUser", method = RequestMethod.GET)
+	public ModelAndView listUser() {
+		ModelAndView result;
+		User userConnected;
+		Collection<Chirp> chirps;
+
+		userConnected = this.userService.findByPrincipal();
+		chirps = this.chirpService.findAllChirpsByUserId(userConnected.getId());
+
+		result = new ModelAndView("chirp/list");
+		result.addObject("chirps", chirps);
+		result.addObject("requestURI", "chirp/user/listUser.do");
 
 		return result;
 	}

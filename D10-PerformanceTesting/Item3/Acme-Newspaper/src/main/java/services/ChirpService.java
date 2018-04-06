@@ -42,7 +42,7 @@ public class ChirpService {
 		Chirp chirp;
 		User userConnected;
 
-		postedMoment = new Date(System.currentTimeMillis() - 1000);
+		postedMoment = new Date();
 		userConnected = this.userService.findByPrincipal();
 		chirp = new Chirp();
 		chirp.setPostedMoment(postedMoment);
@@ -101,6 +101,12 @@ public class ChirpService {
 	public Collection<Chirp> getChirpsOfMyFollowers(final int userId) {
 		Collection<Chirp> result;
 		result = this.chirpRepository.getChirpsOfMyFollowers(userId);
+		return result;
+	}
+
+	public Collection<Chirp> findAllChirpsByUserId(final int userId) {
+		Collection<Chirp> result;
+		result = this.chirpRepository.findAllChirpsByUserId(userId);
 		return result;
 	}
 

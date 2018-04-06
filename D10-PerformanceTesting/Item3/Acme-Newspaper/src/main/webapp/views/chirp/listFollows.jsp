@@ -24,7 +24,16 @@
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="chirps" requestURI="${requestURI}" id="row">
 
+<security:authorize access="hasRole('USER')">
+	<spring:message code="chirp.display" var="Display" />
+	<display:column title="${Display}" sortable="true">
+		<spring:url value="chirp/user/display.do" var="displayURL">
+			<spring:param name="chirpId" value="${row.id}" />
+		</spring:url>
+		<a href="${displayURL}"><spring:message code="chirp.display" /></a>
 
+	</display:column>
+</security:authorize>
 
 	<!-- ATRIBUTOS -->
 
@@ -40,15 +49,16 @@
 	<display:column property="description" title="${descriptionHeader}" sortable="true"/>
 		
 
-		
+		<spring:message code="chirp.user" var="userHeader" />
+		<display:column title="${userHeader}" sortable="true">
+			<spring:url value="user/display.do" var="userURL">
+				<spring:param name="userId" value="${row.user.id }" />
+			</spring:url>
+			<a href="${userURL}"><jstl:out value="${row.user.name }" /></a>
+		</display:column>
+
 </display:table>
-<security:authorize access="hasRole('USER')">
-	<div>
-		<a href="chirp/user/create.do"> 
-			<spring:message	code="chirp.create" />
-		</a>
-	</div>
-</security:authorize>
+
 
 
 

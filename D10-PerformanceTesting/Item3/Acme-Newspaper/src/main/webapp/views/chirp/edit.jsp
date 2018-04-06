@@ -25,17 +25,18 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="postedMoment"/>
 	<form:hidden path="user"/>
 
 	<!-- ATRIBUTOS -->
+	<acme:textbox code="chirp.postedMoment" path="postedMoment" readonly="true" />
+	<br />
 	<acme:textbox code="chirp.title" path="title" />
 	<br />
-	<br />
+	
 	
 	<acme:textbox code="chirp.description" path="description" />
 	<br />
-	<br />
+
 
 	<!-- BOTONES -->
 	<input type="submit" name="save"
@@ -43,7 +44,7 @@
 	
 
 	<acme:cancel
-		url="chirp/user/list.do?d-16544-p=1"
+		url="chirp/user/listUser.do?d-16544-p=1"
 		code="chirp.cancel" />
 
 

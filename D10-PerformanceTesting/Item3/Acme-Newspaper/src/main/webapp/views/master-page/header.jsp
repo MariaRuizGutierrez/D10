@@ -42,6 +42,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="chirp/user/list.do?d-16544-p=1"><spring:message code="master.page.user.chirp.list" /></a></li>
+					<li><a href="chirp/user/listUser.do?d-16544-p=1"><spring:message code="master.page.user.mychirp.list" /></a></li>
 					
 				</ul>
 			</li>
