@@ -96,6 +96,7 @@
 		<display:column title="${articles}" sortable="true" >
 			<spring:url value="article/list.do" var="articleURL">
 				<spring:param name="newspaperId" value="${row.id }" />
+				<spring:param name="d-16544-p" value="1" />
 			</spring:url>
 			<a href="${articleURL}"><spring:message
 					code="newspaper.articles" /></a>
@@ -109,6 +110,7 @@
 		<display:column title="${articles}" sortable="true" >
 			<spring:url value="article/user/listMyArticles.do" var="articleURL">
 				<spring:param name="newspaperId" value="${row.id }" />
+				<spring:param name="d-16544-p" value="1" />
 			</spring:url>
 			<a href="${articleURL}"><spring:message
 					code="newspaper.articles" /></a>
