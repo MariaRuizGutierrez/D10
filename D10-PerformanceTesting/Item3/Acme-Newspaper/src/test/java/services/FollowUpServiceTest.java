@@ -78,14 +78,6 @@ public class FollowUpServiceTest extends AbstractTest {
 				//Su correspondiente newspaper(newspaper1) ha sido publicado.
 				"user1", "article1", "", "2006/02/24", "summary test 5", "text folowUp test 5", picturesOk, javax.validation.ConstraintViolationException.class
 			}, {
-				//El user1 crea una followUp para el articulo 1;	FollowUp con el publicationDate futuro
-				//Articulo 1 cumple que está en modo final.
-				//Su correspondiente newspaper(newspaper1) ha sido publicado.
-				//****************************************************************************************************************************
-				//***************************** 	CAMBIAR EXCEPCIÓN ESPERADA => Estamos metiendo una fecha futura y se la traga	**********
-				//****************************************************************************************************************************
-				"user1", "article1", "title test 6", "2019/02/24", "summary test 6", "text folowUp test 6", picturesOk, null
-			}, {
 				//El user1 crea una followUp para el articulo 1;	FollowUp con el summary vacío.
 				//Articulo 1 cumple que está en modo final.
 				//Su correspondiente newspaper(newspaper1) ha sido publicado.
