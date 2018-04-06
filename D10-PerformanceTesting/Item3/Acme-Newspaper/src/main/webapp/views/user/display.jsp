@@ -27,53 +27,30 @@
   <!-- Attributes -->
 	
 	<display:column>
-	<spring:message code="user.name" />:
+	<B><spring:message code="user.name" />:</B>
 	<jstl:out value="${row.name}"></jstl:out>
 	
 
 	<p>
-		<spring:message code="user.surname" />:
+		<B><spring:message code="user.surname" />:</B>
 		<jstl:out value="${row.surname}"></jstl:out>
 	</p>
-	
+		
 	<p>
-		<spring:message code="user.format.birthDate" var="pattern"></spring:message>
-		<fmt:formatDate value="${row.birthDate}" pattern="${pattern}" var="newdatevar" />
-		<spring:message code="user.birthDate"></spring:message>:
-		<c:out value="${newdatevar}" />
-	 
-	</p>
-	
-	<p>
-		<spring:message code="user.postalAddress" />:
+		<B><spring:message code="user.postalAddress" />:</B>
 		<jstl:out value="${row.postalAddress}"></jstl:out>
 	</p>
 
 	<p>
-		<spring:message code="user.phoneNumber" />:
-		<jstl:out value="${row.phoneNumber}"></jstl:out>
+		<B><spring:message code="user.phoneNumber" />:</B>
+		<jstl:out value="${row.phone}"></jstl:out>
 	</p>
 	
 	<p>
-		<spring:message code="user.emailAddress" />:
-		<jstl:out value="${row.emailAddress}"></jstl:out>
+		<B><spring:message code="user.emailAddress" />:</B>
+		<jstl:out value="${row.email}"></jstl:out>
 	</p>
 	
-	<p>
-		<spring:message code="user.rendezvouse.name"></spring:message>:
-		<security:authorize access="isAnonymous()">
-		<spring:url value="rendezvous/listAssistant.do?d-16544-p=1" var="renURL">
-		<spring:param name="userId" value="${row.id}"/>
-		</spring:url>
-		</security:authorize>
-		<security:authorize access="hasRole('USER')">
-		<spring:url value="rendezvous/user/listAsistProfile.do?d-16544-p=1" var="renURL">
-		<spring:param name="userId" value="${row.id}"/>
-		</spring:url>
-		</security:authorize>
-		<a href="${renURL}"><spring:message code="user.rendezvouse"/></a>
-	</p>
-
 </display:column>
   
 </display:table>
