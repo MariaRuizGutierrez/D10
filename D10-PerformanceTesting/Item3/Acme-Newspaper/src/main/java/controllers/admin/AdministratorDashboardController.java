@@ -15,7 +15,7 @@ import domain.Newspaper;
 import domain.User;
 
 @Controller
-@RequestMapping(value = "/administrator")
+@RequestMapping(value = "/admin")
 public class AdministratorDashboardController extends AbstractController {
 
 	//Services---------------------
@@ -55,6 +55,7 @@ public class AdministratorDashboardController extends AbstractController {
 		newspaperHaveLeast10LeastPercentFewerArtclesThanAverage = this.adminService.newspaperHaveLeast10LeastPercentFewerArtclesThanAverage();
 		theRatioOfUsersWritingNewspaper = this.adminService.theRatioOfUsersWritingNewspaper();
 		theRatioOfUsersWritingArticle = this.adminService.theRatioOfUsersWritingArticle();
+		avgFollowupsPerArticle = this.adminService.avgFollowupsPerArticle();
 		avgNumberOfFollowUpsPerArticleAfterOneWeek = this.adminService.avgNumberOfFollowUpsPerArticleAfterOneWeek();
 		avgNumberOfFollowUpsPerArticleAfterTwoWeek = this.adminService.avgNumberOfFollowUpsPerArticleAfterTwoWeek();
 		avgAndStddevOfNumberOfChirpPerUser = this.adminService.avgAndStddevOfNumberOfChirpPerUser();
@@ -72,6 +73,7 @@ public class AdministratorDashboardController extends AbstractController {
 		result.addObject("newspaperHaveLeast10LeastPercentFewerArtclesThanAverage", newspaperHaveLeast10LeastPercentFewerArtclesThanAverage);
 		result.addObject("theRatioOfUsersWritingNewspaper", theRatioOfUsersWritingNewspaper);
 		result.addObject("theRatioOfUsersWritingArticle", theRatioOfUsersWritingArticle);
+		result.addObject("avgFollowupsPerArticle", avgFollowupsPerArticle);
 		result.addObject("avgNumberOfFollowUpsPerArticleAfterOneWeek", avgNumberOfFollowUpsPerArticleAfterOneWeek);
 		result.addObject("avgNumberOfFollowUpsPerArticleAfterTwoWeek", avgNumberOfFollowUpsPerArticleAfterTwoWeek);
 		result.addObject("avgAndStddevOfNumberOfChirpPerUser", avgAndStddevOfNumberOfChirpPerUser);

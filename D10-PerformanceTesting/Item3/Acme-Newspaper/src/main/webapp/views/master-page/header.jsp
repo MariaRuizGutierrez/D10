@@ -25,6 +25,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="configurationSystem/admin/list.do"><spring:message code="master.page.administrator.tabooWords" /></a></li>				
+					<li><a href="admin/dashboard.do"><spring:message code="master.page.statistics" /></a>
 				</ul>
 			</li>
 		</security:authorize>

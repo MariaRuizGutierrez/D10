@@ -3,6 +3,7 @@ package services;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import javax.transaction.Transactional;
 
@@ -185,8 +186,8 @@ public class AdminService {
 	public Double avgNumberOfFollowUpsPerArticleAfterOneWeek() {
 		//TODO
 		Double result;
-		Date since;
-		since = new Date();
+		long sevenDays = TimeUnit.DAYS.toMillis(7);
+		Date since = new Date(System.currentTimeMillis() - sevenDays);
 		result = this.adminRepository.avgNumberOfFollowUpsPerArticleAfterOneWeek(since);
 		return result;
 	}
@@ -194,8 +195,8 @@ public class AdminService {
 	public Double avgNumberOfFollowUpsPerArticleAfterTwoWeek() {
 		//TODO
 		Double result;
-		Date since;
-		since = new Date();
+		long foorteenDays = TimeUnit.DAYS.toMillis(14);
+		Date since = new Date(System.currentTimeMillis() - foorteenDays);
 		result = this.adminRepository.avgNumberOfFollowUpsPerArticleAfterTwoWeek(since);
 		return result;
 	}
