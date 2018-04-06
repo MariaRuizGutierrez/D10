@@ -24,16 +24,6 @@
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="chirps" requestURI="${requestURI}" id="row">
 
-<security:authorize access="hasRole('USER')">
-	<spring:message code="chirp.display" var="Display" />
-	<display:column title="${Display}" sortable="true">
-		<spring:url value="chirp/user/display.do" var="displayURL">
-			<spring:param name="chirpId" value="${row.id}" />
-		</spring:url>
-		<a href="${displayURL}"><spring:message code="chirp.display" /></a>
-
-	</display:column>
-</security:authorize>
 
 	<!-- ATRIBUTOS -->
 

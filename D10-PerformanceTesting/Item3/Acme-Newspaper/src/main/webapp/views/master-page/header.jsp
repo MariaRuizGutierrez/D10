@@ -49,7 +49,7 @@
 					<li class="arrow"></li>
 					<li><a href="chirp/user/list.do?d-16544-p=1"><spring:message code="master.page.user.chirp.list" /></a></li>
 					<li><a href="chirp/user/listUser.do?d-16544-p=1"><spring:message code="master.page.user.mychirp.list" /></a></li>
-					
+					<li><a href="chirp/user/create.do"><spring:message code="master.page.user.chirp.create"/></a>
 				</ul>
 			</li>
 			
@@ -60,6 +60,11 @@
 					
 				</ul>
 			</li>
+			<li><a class="fNiv"><spring:message code="master.page.user"/></a>
+				<ul>
+					<li><a href="user/listFollowers.do"><spring:message code="master.page.user.followers"/></a>
+					<li><a href="user/listFollowed.do"><spring:message code="master.page.user.followed"/></a>
+				</ul>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">

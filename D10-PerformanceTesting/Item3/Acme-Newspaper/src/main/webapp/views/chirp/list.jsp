@@ -42,13 +42,7 @@
 
 		
 </display:table>
-<security:authorize access="hasRole('USER')">
-	<div>
-		<a href="chirp/user/create.do"> 
-			<spring:message	code="chirp.create" />
-		</a>
-	</div>
-</security:authorize>
+
 
 
 

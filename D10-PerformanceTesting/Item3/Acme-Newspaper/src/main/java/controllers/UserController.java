@@ -31,6 +31,35 @@ public class UserController extends AbstractController {
 	}
 
 	//Listing-----------------------------------------------------------
+	@RequestMapping(value = "/listFollowers", method = RequestMethod.GET)
+	public ModelAndView listMyFollowers() {
+		ModelAndView result;
+		User userConnected;
+
+		userConnected = this.userService.findByPrincipal();
+
+		result = new ModelAndView("user/list");
+		result.addObject("users", userConnected.getFollowers());
+		result.addObject("requestURI", "/user/list.do");
+
+		return result;
+
+	}
+
+	@RequestMapping(value = "/listFollowed", method = RequestMethod.GET)
+	public ModelAndView listMyFollowed() {
+		ModelAndView result;
+		User userConnected;
+
+		userConnected = this.userService.findByPrincipal();
+
+		result = new ModelAndView("user/list");
+		result.addObject("users", userConnected.getFollowed());
+		result.addObject("requestURI", "/user/list.do");
+
+		return result;
+
+	}
 
 	//Displaying----------------------
 
