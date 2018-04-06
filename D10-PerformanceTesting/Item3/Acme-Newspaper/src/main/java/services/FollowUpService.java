@@ -24,6 +24,7 @@ public class FollowUpService {
 	private FollowUpRepository	followUpRepository;
 
 	// Supporting services ----------------------------------------------------
+	@Autowired
 	private UserService			userService;
 
 
@@ -43,7 +44,7 @@ public class FollowUpService {
 		//Restricción no poder crear una followUp para un articulo en modo borrador
 		Assert.isTrue(!article.isDraftMode());
 		//Restricción no poder crear una followUp para un newspaper que no ha sido publicado
-		Assert.isTrue(article.getNewspaper().getPublicationDate() == null);
+		Assert.isTrue(article.getNewspaper().getPublicationDate() != null);
 		//Restricción no poder crear una followUp para un artículo que no sea del user conectado
 		Assert.isTrue(article.getWriter().equals(userConnected));
 
