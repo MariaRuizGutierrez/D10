@@ -48,11 +48,12 @@
 	<br />
 	<acme:textbox code="user.surname" path="user.surname"/>
 	<br />
-	<acme:textbox code="user.postalAddress" path="user.postalAddress"/>
+	<acme:textbox code="user.postalAddress" path="user.postalAdress"/>
 	<br />
-	<acme:textbox code="user.phoneNumber" path="user.phoneNumber" />
+	<acme:textbox code="user.phoneNumber" path="user.phone" />
+	phoneNumber
 	<br />
-	<acme:textbox code="user.emailAddress" path="user.emailAddress"/>
+	<acme:textbox code="user.emailAddress" path="user.email"/>
 	<br />
 	
 	<acme:submit name="save" code="user.save"/>
