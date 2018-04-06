@@ -116,7 +116,7 @@ public class UserServiceTest extends AbstractTest {
 			user = this.userService.create();
 			user.setName(name);
 			user.setSurname(surname);
-			user.setPostalAdress(postalAdress);
+			user.setPostalAddress(postalAdress);
 			user.setPhone(phone);
 			user.setEmail(email);
 			userAccount = user.getUserAccount();
@@ -180,7 +180,7 @@ public class UserServiceTest extends AbstractTest {
 			super.authenticate(user.getUserAccount().getUsername());
 			user.setName(name);
 			user.setSurname(surname);
-			user.setPostalAdress(postalAdress);
+			user.setPostalAddress(postalAdress);
 			user.setPhone(phone);
 			user.setEmail(email);
 			user = this.userService.save(user);

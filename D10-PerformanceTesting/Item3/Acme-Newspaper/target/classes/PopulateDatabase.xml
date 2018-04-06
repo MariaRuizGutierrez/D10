@@ -132,7 +132,7 @@
 		<property name="userAccount" ref="userAccountAdmin" />
 		<property name="name" value="admin 1" />
 		<property name="surname" value="surname admin 1" />
-		<property name="postalAdress" value="postal Adress admin 1" />
+		<property name="postalAddress" value="postal Adress admin 1" />
 		<property name="email" value="admin@acmenewspaper.com" />
 		<property name="phone" value="+34617557203" />
 	</bean>
@@ -143,7 +143,7 @@
 		<property name="userAccount" ref="userAccountUser1" />
 		<property name="name" value="user 1" />
 		<property name="surname" value="surname user 1" />
-		<property name="postalAdress" value="postal Adress user 1" />
+		<property name="postalAddress" value="postal Adress user 1" />
 		<property name="email" value="user1@acmenewspaper.com" />
 		<property name="phone" value="+34617557203" />
 		<property name="articles">
@@ -186,7 +186,7 @@
 		<property name="userAccount" ref="userAccountUser2" />
 		<property name="name" value="user 2" />
 		<property name="surname" value="surname user 2" />
-		<property name="postalAdress" value="postal Adress user 2" />
+		<property name="postalAddress" value="postal Adress user 2" />
 		<property name="email" value="user2@acmenewspaper.com" />
 		<property name="phone" value="+34617557203" />
 		<property name="articles">
@@ -228,7 +228,7 @@
 		<property name="userAccount" ref="userAccountUser3" />
 		<property name="name" value="user 3" />
 		<property name="surname" value="surname user 3" />
-		<property name="postalAdress" value="postal Adress user 3" />
+		<property name="postalAddress" value="postal Adress user 3" />
 		<property name="email" value="user3@acmenewspaper.com" />
 		<property name="phone" value="+34648213455" />
 		<property name="articles">
@@ -270,7 +270,7 @@
 		<property name="userAccount" ref="userAccountUser4" />
 		<property name="name" value="user 4" />
 		<property name="surname" value="surname user 4" />
-		<property name="postalAdress" value="postal Adress user 4" />
+		<property name="postalAddress" value="postal Adress user 4" />
 		<property name="email" value="user4@acmenewspaper.com" />
 		<property name="phone" value="+34648213455" />
 		<property name="articles">
@@ -309,7 +309,7 @@
 		<property name="userAccount" ref="userAccountCustomer1" />
 		<property name="name" value="customer 1" />
 		<property name="surname" value="surname customer 1" />
-		<property name="postalAdress" value="postal Adress customer 1" />
+		<property name="postalAddress" value="postal Adress customer 1" />
 		<property name="email" value="customer1@acmenewspaper.com" />
 		<property name="phone" value="+34617557203" />
 		<property name="subcriptions">
@@ -323,7 +323,7 @@
 		<property name="userAccount" ref="userAccountCustomer2" />
 		<property name="name" value="customer 2" />
 		<property name="surname" value="surname customer 2" />
-		<property name="postalAdress" value="postal Adress customer 2" />
+		<property name="postalAddress" value="postal Adress customer 2" />
 		<property name="email" value="customer2@acmenewspaper.com" />
 		<property name="phone" value="+34652582643" />
 		<property name="subcriptions">
@@ -337,7 +337,7 @@
 		<property name="userAccount" ref="userAccountCustomer3" />
 		<property name="name" value="customer 3" />
 		<property name="surname" value="surname customer 3" />
-		<property name="postalAdress" value="postal Adress customer 3" />
+		<property name="postalAddress" value="postal Adress customer 3" />
 		<property name="email" value="customer3@acmenewspaper.com" />
 		<property name="phone" value="+34667437865" />
 		<property name="subcriptions">
@@ -351,7 +351,7 @@
 		<property name="userAccount" ref="userAccountCustomer4" />
 		<property name="name" value="customer 4" />
 		<property name="surname" value="surname customer 4" />
-		<property name="postalAdress" value="postal Adress customer 4" />
+		<property name="postalAddress" value="postal Adress customer 4" />
 		<property name="email" value="customer4@acmenewspaper.com" />
 		<property name="phone" value="+34667437865" />
 		<property name="subcriptions">

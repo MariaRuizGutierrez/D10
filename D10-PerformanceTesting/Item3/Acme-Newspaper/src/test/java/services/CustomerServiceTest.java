@@ -111,7 +111,7 @@ public class CustomerServiceTest extends AbstractTest {
 			customer = this.customerService.create();
 			customer.setName(name);
 			customer.setSurname(surname);
-			customer.setPostalAdress(postalAdress);
+			customer.setPostalAddress(postalAdress);
 			customer.setPhone(phone);
 			customer.setEmail(email);
 			userAccount = customer.getUserAccount();
@@ -175,7 +175,7 @@ public class CustomerServiceTest extends AbstractTest {
 			super.authenticate(customer.getUserAccount().getUsername());
 			customer.setName(name);
 			customer.setSurname(surname);
-			customer.setPostalAdress(postalAdress);
+			customer.setPostalAddress(postalAdress);
 			customer.setPhone(phone);
 			customer.setEmail(email);
 			customer = this.customerService.save(customer);

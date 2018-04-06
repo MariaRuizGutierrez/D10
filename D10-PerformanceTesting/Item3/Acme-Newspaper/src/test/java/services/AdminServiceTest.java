@@ -1,3 +1,4 @@
+
 package services;
 
 import javax.persistence.EntityManager;
@@ -10,25 +11,25 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import domain.Admin;
-
 import utilities.AbstractTest;
+import domain.Admin;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 	"classpath:spring/junit.xml"
 })
 @Transactional
-public class AdminServiceTest extends AbstractTest{
-	
+public class AdminServiceTest extends AbstractTest {
+
 	// Supporting services ----------------------------------------------------
 
 	@Autowired
 	private AdminService	adminService;
-		
+
 	@PersistenceContext
-	EntityManager					entityManager;
-	
+	EntityManager			entityManager;
+
+
 	//Login 
 	@Test
 	public void driveLoginAdmin() {
@@ -65,7 +66,7 @@ public class AdminServiceTest extends AbstractTest{
 
 		this.checkExceptions(expected, caught);
 	}
-		
+
 	//Test to edit all administrator attributes
 	@Test
 	public void driveEditNameAdministrator() {
@@ -74,27 +75,27 @@ public class AdminServiceTest extends AbstractTest{
 			//Try entering all the data of an admin with the null address and null telephone, positive case 
 			{
 				"admin", "admin", "adminTest", "surnameTest", null, null, "prueba@gmail.com", null
-			}, 
+			},
 			//Try entering a null phone number, this case positive
 			{
 				"admin", "admin", "adminTest", "surnameTest", "c/test", null, "prueba@gmail.com", null
-			}, 
+			},
 			//Try entering all the data of an admin, positive case
 			{
 				"admin", "admin", "adminTest", "surnameTest", "c/test", "+34657896576", "prueba@gmail.com", null
-			}, 
+			},
 			//Try entering a blank name, negative case
 			{
 				"admin", "admin", "", "surnameTest", null, null, "prueba@gmail.com", javax.validation.ConstraintViolationException.class
-			}, 
+			},
 			//Try entering a null name, negative case
 			{
 				"admin", "admin", null, "surnameTest", null, null, "prueba@gmail.com", javax.validation.ConstraintViolationException.class
-			}, 
+			},
 			//Try entering a blank surname, negative case
 			{
 				"admin", "admin", "adminTest", "", null, null, "prueba@gmail.com", javax.validation.ConstraintViolationException.class
-			}, 
+			},
 			//Try entering a null surname, negative case
 			{
 				"admin", "admin", "adminTest", null, null, null, "prueba@gmail.com", javax.validation.ConstraintViolationException.class
@@ -119,7 +120,7 @@ public class AdminServiceTest extends AbstractTest{
 			super.authenticate(username);
 			admin.setName(name);
 			admin.setSurname(surname);
-			admin.setPostalAdress(postalAddress);
+			admin.setPostalAddress(postalAddress);
 			admin.setPhone(phone);
 			admin.setEmail(email);
 			this.adminService.save(admin);
@@ -133,6 +134,5 @@ public class AdminServiceTest extends AbstractTest{
 		this.checkExceptions(expected, caught);
 
 	}
-		
 
 }
