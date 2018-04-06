@@ -129,7 +129,7 @@ public class ArticleUserController extends AbstractController {
 
 		summary = this.articleService.findSummaryByArticleId(articleId);
 
-		result = new ModelAndView("article/display");
+		result = new ModelAndView("article/displaySummary");
 
 		result.addObject("requestURI", "article/user/listSummay.do");
 		result.addObject("article", summary);
@@ -140,16 +140,16 @@ public class ArticleUserController extends AbstractController {
 
 	// Display ----------------------------------------------------------------
 
-	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	@RequestMapping(value = "/displaySummary", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam final int articleId) {
 		final ModelAndView result;
 		Article article = new Article();
 
 		article = this.articleService.findOne(articleId);
 
-		result = new ModelAndView("article/display");
+		result = new ModelAndView("article/displaySummary");
 		result.addObject("article", article);
-		result.addObject("requestURI", "article/user/display.do");
+		result.addObject("requestURI", "article/user/displaySummary.do");
 
 		return result;
 	}
