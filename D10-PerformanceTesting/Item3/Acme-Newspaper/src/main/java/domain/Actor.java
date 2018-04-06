@@ -47,7 +47,7 @@ public abstract class Actor extends DomainEntity {
 	}
 
 	@Email
-	//@NotBlank estaba puesto la otra vez porque no salía el error de email
+	@NotBlank
 	public String getEmail() {
 		return this.email;
 	}
