@@ -95,5 +95,7 @@ public class FollowUpService {
 	}
 
 	// Other business methods -------------------------------------------------
-
+	public void flush() {
+		this.followUpRepository.flush();
+	}
 }
