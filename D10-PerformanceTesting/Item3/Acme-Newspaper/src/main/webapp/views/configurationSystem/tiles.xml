@@ -20,7 +20,7 @@
 
 
 
-	<definition name="configurationSystem/listTabooWord" extends="master.page">	
+	<definition name="configurationSystem/list" extends="master.page">	
 		<put-attribute name="title" value="List of taboo words" />
 		<put-attribute name="body" value="/views/configurationSystem/listTabooWord.jsp" />
 	</definition>

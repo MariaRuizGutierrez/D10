@@ -949,17 +949,35 @@
 		<!-- Configuration System -->
 	
 		 <bean id="configurationSystem" class="domain.ConfigurationSystem">
-			<property name="tabooWordsDefault">
+			<property name="tabooWords">
 				<list>
-					<value>sex</value>
-					<value>cialis</value>
-					<value>sexo</value>
-					<value>viagra</value>
-				</list>
-			</property>
-			<property name="tabooWordsNew">
-				<list>
+					<ref bean="tabooWord1"/>
+					<ref bean="tabooWord2"/>
+					<ref bean="tabooWord3"/>
+					<ref bean="tabooWord4"/>
 				</list>
 			</property>
 		</bean>   
+		
+		<!-- Taboo words -->
+	
+	<bean id="tabooWord1" class="domain.TabooWord">
+		<property name="name" value="sex"/>
+		<property name="default_word" value="true"/>
+	</bean>   
+	
+	<bean id="tabooWord2" class="domain.TabooWord">
+		<property name="name" value="sexo"/>
+		<property name="default_word" value="true"/>
+	</bean>
+	
+	<bean id="tabooWord3" class="domain.TabooWord">
+		<property name="name" value="viagra"/>
+		<property name="default_word" value="true"/>
+	</bean>
+	
+	<bean id="tabooWord4" class="domain.TabooWord">
+		<property name="name" value="cialis"/>
+		<property name="default_word" value="true"/>
+	</bean>
 </beans>

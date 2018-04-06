@@ -19,15 +19,33 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
-	name="configurationSystem" requestURI="${requestURI}" id="row">
+	name="tabooWords" requestURI="${requestURI}" id="row">
 	
 	<!-- Attributes -->
-
-	<acme:column code="configurationSystem.tabooWords" property="tabooWords"/>
 	
+	<security:authorize access="hasRole('ADMIN')">
+		<spring:message code="configurationSystem.edit" var="Edit" />
+		
+		<display:column title="${Edit}" sortable="true">
+		
+		<jstl:if test="${row.default_word==false}">
+			<spring:url value="configurationSystem/admin/edit.do" var="editURL">
+				<spring:param name="tabooWordId" value="${row.id}" />
+			</spring:url>
+			<a href="${editURL}"><spring:message code="serviceOffered.edit" /></a>
+		
+		</jstl:if>
+		</display:column>
+	</security:authorize>
+
+	<acme:column code="configurationSystem.tabooWord" property="name"/>
+
+
 </display:table>
+
 
 <security:authorize access="hasRole('ADMIN')">
 	<div>

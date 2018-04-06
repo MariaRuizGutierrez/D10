@@ -1,14 +1,13 @@
 
 package domain;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -16,43 +15,24 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Access(AccessType.PROPERTY)
 public class ConfigurationSystem extends DomainEntity {
+	
+	// Relationships---------------------------------------------------------------
 
-	private Collection<String>	tabooWordsDefault;
-	private Collection<String> tabooWordsNew;
+	private Collection<TabooWord>	tabooWords;
 	
 	@ElementCollection
 	@NotEmpty
 	@NotNull
-	public Collection<String> getTabooWordsDefault() {
-		return this.tabooWordsDefault;
+	@Valid
+	public Collection<TabooWord> getTabooWords() {
+		return this.tabooWords;
 	}
 
-	public void setTabooWordsDefault(final Collection<String> tabooWordsDefault) {
-		this.tabooWordsDefault = tabooWordsDefault;
+	public void setTabooWords(final Collection<TabooWord> tabooWords) {
+		this.tabooWords = tabooWords;
 	}
 
-	@ElementCollection
-	@NotNull
-	public Collection<String> getTabooWordsNew() {
-		return tabooWordsNew;
-	}
 
-	
-	public void setTabooWordsNew(Collection<String> tabooWordsNew) {
-		this.tabooWordsNew = tabooWordsNew;
-	}
-
-	@Transient
-	public Collection<String> getTabooWords() {
-		Collection<String> tabooWords;
-		
-		tabooWords = new ArrayList<>();
-		
-		tabooWords.addAll(this.getTabooWordsDefault());
-		tabooWords.addAll(this.getTabooWordsNew());
-		
-		return tabooWords;
-	}
 	
 
 }
