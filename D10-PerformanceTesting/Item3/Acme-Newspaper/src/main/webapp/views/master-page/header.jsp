@@ -58,6 +58,30 @@
 		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
+					
+			<!-- REGISTRO DE USUARIO -->			
+			<li><a class="fNiv"><spring:message code="master.page.register" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="user/create.do"><spring:message code="master.page.user.register" /></a></li>
+				</ul>
+			</li>
+			
+			<!-- LISTA DE PERIODICOS -->
+			<li><a class="fNiv"><spring:message code="master.page.newspapers" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="newspaper/list.do"><spring:message code="master.page.newspaper.list" /></a></li>
+				</ul>
+			</li>
+			
+			<!-- REGISTRO DE USUARIOS -->
+				<li><a class="fNiv"><spring:message code="master.page.users" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="newspaper/list.do"><spring:message code="master.page.users.list" /></a></li>
+				</ul>
+			</li>
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
