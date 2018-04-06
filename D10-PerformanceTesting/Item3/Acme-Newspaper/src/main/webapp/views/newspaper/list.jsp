@@ -75,6 +75,20 @@
 					code="newspaper.articles" /></a>
 		</display:column>
 	</jstl:if>
+	
+	<jstl:if test="${showButtonPublish}">
+	<spring:message code="newspaper.publish" var="publish" />
+		<display:column title="${publish}" sortable="true" >
+			<jstl:if test="${row.publicationDate == null}">
+				<spring:url value="newspaper/user/publish.do" var="publishURL">
+					<spring:param name="newspaperId" value="${row.id }" />
+				</spring:url>
+				<a href="${publishURL}"><spring:message
+						code="newspaper.publish" /></a>
+			</jstl:if>		
+		</display:column>
+	</jstl:if>	
+	
 	</security:authorize>
 	
 

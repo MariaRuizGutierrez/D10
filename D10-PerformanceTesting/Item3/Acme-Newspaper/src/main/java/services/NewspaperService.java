@@ -123,7 +123,7 @@ public class NewspaperService {
 	public void publish(Newspaper newspaper) {
 
 		Assert.isTrue(newspaper.getId() != 0);
-		Assert.isTrue(newspaper.getPublisher().equals(this.userService.findByPrincipal()));
+		Assert.isTrue(newspaper.getPublisher().equals(this.userService.findByPrincipal()), "el publicador del periodico debe ser el mismo que el logueado");
 		Assert.isTrue(this.isAllFinalMode(newspaper.getId()), "todos sus articulos tienen que estar en modo final");
 		Assert.isTrue(newspaper.getArticles().size() != 0, "tiene que tener al menos un articulo para publicarse");
 		Assert.isNull(newspaper.getPublicationDate(), "la fecha de publicacion tiene que estar vacia");

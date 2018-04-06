@@ -33,7 +33,7 @@ public class NewspaperUserController extends AbstractController {
 	//List my newspapers-----------------------------------------------------------
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
+	public ModelAndView list(final String messageCode) {
 
 		ModelAndView result;
 		Collection<Newspaper> newspapers;
@@ -45,7 +45,9 @@ public class NewspaperUserController extends AbstractController {
 		result = new ModelAndView("newspaper/list");
 		result.addObject("newspapers", newspapers);
 		result.addObject("showMyArticles", true);
+		result.addObject("showButtonPublish", true);
 		result.addObject("requestURI", "newspaper/user/list.do");
+		result.addObject("message", messageCode);
 
 		return result;
 
@@ -98,6 +100,35 @@ public class NewspaperUserController extends AbstractController {
 		return result;
 	}
 
+	//Publish --------------------------------------------------------------------------------
+
+	@RequestMapping(value = "/publish", method = RequestMethod.GET)
+	public ModelAndView publish(@RequestParam final int newspaperId) {
+		ModelAndView result;
+		Newspaper newspaper;
+		User user;
+
+		user = this.userService.findByPrincipal();
+		newspaper = this.newspaperService.findOne(newspaperId);
+		Assert.isTrue(user.getNewspapers().contains(newspaper), "Cannot commit this operation, because it's illegal");
+		Assert.notNull(newspaper);
+		try {
+			this.newspaperService.publish(newspaper);
+			result = this.list("newspaper.publish.succesful");
+		} catch (final Throwable oops) {
+			if (oops.getMessage().equals("el publicador del periodico debe ser el mismo que el logueado"))
+				result = this.list("newspaper.publishEqualsLoggin.error");
+			else if (oops.getMessage().equals("todos sus articulos tienen que estar en modo final"))
+				result = this.list("newspaper.allArticlesFinalMode.error");
+			else if (oops.getMessage().equals("tiene que tener al menos un articulo para publicarse"))
+				result = this.list("newspaper.atLeastOneArticle.error");
+			else if (oops.getMessage().equals("la fecha de publicacion tiene que estar vacia"))
+				result = this.list("newspaper.publicationDateNotNull.error");
+			else
+				result = this.list("newspaper.commit.error");
+		}
+		return result;
+	}
 	//Auxiliares ---------------------------------------------------------
 
 	protected ModelAndView createEditModelAndView(final Newspaper newspaper) {
