@@ -28,15 +28,11 @@
 	<form:hidden path="publisher" />
 	<form:hidden path="articles" /> --%>
 <!-- ATRIBUTOS -->
-
-	
-	
-	
 	<acme:textbox code="newspaper.title" path="title"/>
 	<br />
 	<acme:textbox code="newspaper.description" path="description"/>
 	<br />
-	<acme:textbox code="newspaper.picture" path="picture"/>
+	<acme:textbox code="newspaper.picture" path="picture" placeHolder="http://"/>
 	<br />
 	<acme:booleanselect code="newspaper.open" path="open"/>
 	<br />
@@ -44,9 +40,8 @@
 <!-- BOTONES -->
 
 	<input type="submit" name="save" value="<spring:message code="newspaper.save" />" />&nbsp; 
-	
-	<input type="button" name="cancel"
-		value="<spring:message code="newspaper.cancel" />"
-		onclick="javascript:  window.location.replace('newspaper/user/list.do');" />
-	<br />
+
+	<acme:cancel
+		url="newspaper/user/list.do?d-16544-p=1"
+		code="chirp.cancel" />
 </form:form>

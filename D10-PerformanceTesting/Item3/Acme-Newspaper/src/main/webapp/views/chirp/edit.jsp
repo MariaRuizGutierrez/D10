@@ -43,7 +43,7 @@
 	
 
 	<acme:cancel
-		url="chirp/user/list.do"
+		url="chirp/user/list.do?d-16544-p=1"
 		code="chirp.cancel" />
 
 
