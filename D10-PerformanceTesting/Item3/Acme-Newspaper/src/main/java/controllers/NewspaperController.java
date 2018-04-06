@@ -50,7 +50,7 @@ public class NewspaperController {
 		Collection<Newspaper> newspapers;
 
 		//user = this.userService.findByPrincipal();
-		newspapers = this.newspaperService.findNewspapersPublished();
+		newspapers = this.newspaperService.findNewspapersPublishedAndOpen();
 
 		result = new ModelAndView("newspaper/list");
 		result.addObject("newspapers", newspapers);

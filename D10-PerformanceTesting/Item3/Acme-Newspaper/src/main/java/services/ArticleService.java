@@ -155,7 +155,8 @@ public class ArticleService {
 			article.setFollowUps(followUps);
 			Assert.isTrue(article.getNewspaper().getPublisher().equals(userPrincipal));
 			Assert.isNull(article.getNewspaper().getPublicationDate());
-
+			if (!article.isDraftMode())
+				article.setPublishedMoment(new Date(System.currentTimeMillis() - 1000));
 			result = article;
 		} else {
 			articleBD = this.articleRepository.findOne(article.getId());
