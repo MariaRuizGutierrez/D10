@@ -20,12 +20,12 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="subscription/user/edit.do" modelAttribute="subscription">
+<form:form action="subscription/customer/edit.do" modelAttribute="subscription">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="newspaper" />
-	<form:hidden path="customer" />
+	<%-- <form:hidden path="customer" /> --%>
 	
 <!-- ATRIBUTOS -->
 
@@ -48,6 +48,6 @@
 	<input type="submit" name="save" value="<spring:message code="subscription.save" />" />&nbsp; 
 
 	<acme:cancel
-		url="subscription/user/list.do?d-16544-p=1"
+		url="subscription/customer/list.do?d-16544-p=1"
 		code="subscription.cancel" />
 </form:form>

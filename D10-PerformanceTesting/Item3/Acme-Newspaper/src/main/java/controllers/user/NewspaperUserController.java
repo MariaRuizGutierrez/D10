@@ -100,7 +100,7 @@ public class NewspaperUserController extends AbstractController {
 				this.newspaperService.save(newspaper);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(newspaper, "newspapere.commit.error");
+				result = this.createEditModelAndView(newspaper, "newspaper.commit.error");
 			}
 		return result;
 	}

@@ -93,13 +93,8 @@ public class SubscriptionServiceTest extends AbstractTest {
 		caught = null;
 		try {
 			super.authenticate(username);
-			subscription = this.subscriptionService.create();
-			if (newspaperBean != null) {
-				newspaper = this.newspaperService.findOne(super.getEntityId(newspaperBean));
-				subscription.setNewspaper(newspaper);
-			} else
-				subscription.setNewspaper(null);
-
+			newspaper = this.newspaperService.findOne(super.getEntityId(newspaperBean));
+			subscription = this.subscriptionService.create(newspaper.getId());
 			subscription.setCreditCard(creditCard);
 			subscription = this.subscriptionService.save(subscription);
 			this.subscriptionService.flush();
