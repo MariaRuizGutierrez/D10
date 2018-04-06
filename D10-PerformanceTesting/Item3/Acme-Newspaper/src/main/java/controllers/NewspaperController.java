@@ -37,6 +37,7 @@ public class NewspaperController {
 
 		result = new ModelAndView("newspaper/list");
 		result.addObject("newspapers", newspapers);
+		result.addObject("requestURI", "newspaper/list.do");
 		result.addObject("requestURISearchNewspaper", "newspaper/search.do");
 		return result;
 	}
@@ -54,6 +55,7 @@ public class NewspaperController {
 		result = new ModelAndView("newspaper/list");
 		result.addObject("newspapers", newspapers);
 		result.addObject("requestURI", "newspaper/list.do");
+		result.addObject("requestURISearchNewspaper", "newspaper/search.do");
 		result.addObject("message", messageCode);
 		return result;
 
