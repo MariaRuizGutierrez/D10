@@ -12,6 +12,7 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div>
 	<img src="images/logo.png" alt="Acme-Newspaper Co., Inc." />
@@ -116,3 +117,16 @@
 	<a href="?language=en">en</a> | <a href="?language=es">es</a>
 </div>
 
+<div>
+<security:authorize access="isAnonymous()">
+
+<form:form action="newspaper/search.do" method="get">
+	<label><spring:message code="newspaper.search.keyword"/></label>
+	<input type="text" name="keyword"/> <br />
+	<br>
+	
+	<input type="submit" value="<spring:message code="newspaper.search" />" /> 	 	
+</form:form>
+
+</security:authorize>
+</div>
