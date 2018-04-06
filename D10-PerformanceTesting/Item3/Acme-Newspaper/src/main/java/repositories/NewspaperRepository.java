@@ -43,4 +43,10 @@ public interface NewspaperRepository extends JpaRepository<Newspaper, Integer> {
 
 	@Query("select n from Newspaper n where n.publisher.id=?1")
 	Collection<Newspaper> findByUserId(int userId);
+
+	@Query("select n from Newspaper n where n.open=false and n.publicationDate!=null")
+	Collection<Newspaper> findPrivateAndPublicatedNewspapersToSubscribe();
+
+	@Query("select s.newspaper from Subscription s where s.customer.id=?1")
+	Collection<Newspaper> findNewspapersSubscribedByCustomerId(int customerId);
 }

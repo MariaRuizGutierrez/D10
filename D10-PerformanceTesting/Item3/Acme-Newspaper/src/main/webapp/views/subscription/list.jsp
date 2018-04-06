@@ -20,24 +20,11 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<!-- 	SEARCH -->
-	<div>
-<security:authorize access="isAnonymous()">
-<form:form action="${requestURISearchNewspaper}"  method="get">
-	<label><spring:message code="newspaper.search.keyword"/></label>
-	<input type="text" name="keyword"/> 
-	<input type="submit" value="<spring:message code="newspaper.search" />" /> 	 	
-</form:form>
-</security:authorize>
-</div>
-<br />
-
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="newspapers" requestURI="${requestURI}" id="row">
 	
 	
-
 	<!-- 	DISPLAY -->
 	
 	<security:authorize access="hasRole('USER')">
@@ -127,21 +114,6 @@
 		</display:column>
 	</jstl:if>	
 	
-	</security:authorize>
-	
-	<security:authorize access="hasRole('CUSTOMER')">
-		<jstl:if test="${showButtonSubscription}">
-		<spring:message code="newspaper.subscription" var="subscription" />
-		<display:column title="${subscription}" sortable="true" >
-			<jstl:if test="${!newspapersSubscribed.contains(row)}">
-				<spring:url value="subscription/customer/create.do" var="subscriptionURL">
-					<spring:param name="newspaperId" value="${row.id }" />
-				</spring:url>
-				<a href="${subscriptionURL}"><spring:message
-						code="newspaper.subscription" /></a>
-			</jstl:if>		
-		</display:column>
-		</jstl:if>
 	</security:authorize>
 	
 

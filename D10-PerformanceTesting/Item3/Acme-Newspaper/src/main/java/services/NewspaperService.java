@@ -193,6 +193,22 @@ public class NewspaperService {
 		return result;
 	}
 
+	public Collection<Newspaper> findPrivateAndPublicatedNewspapersToSubscribe() {
+		Collection<Newspaper> result;
+
+		result = this.newspaperRepository.findPrivateAndPublicatedNewspapersToSubscribe();
+
+		return result;
+	}
+
+	public Collection<Newspaper> findNewspapersSubscribedByCustomerId(final int customerId) {
+		Collection<Newspaper> result;
+
+		result = this.newspaperRepository.findNewspapersSubscribedByCustomerId(customerId);
+
+		return result;
+	}
+
 	public Newspaper reconstruct(final Newspaper newspaper, final BindingResult bindingResult) {
 		Newspaper result;
 		Newspaper newspaperBD;
@@ -220,4 +236,5 @@ public class NewspaperService {
 		this.validator.validate(result, bindingResult);
 		return result;
 	}
+
 }
