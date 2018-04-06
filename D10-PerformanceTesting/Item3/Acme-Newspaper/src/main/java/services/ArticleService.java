@@ -3,6 +3,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -15,6 +16,7 @@ import org.springframework.validation.Validator;
 import repositories.ArticleRepository;
 import domain.Article;
 import domain.FollowUp;
+import domain.Newspaper;
 import domain.User;
 
 @Service
@@ -51,14 +53,18 @@ public class ArticleService {
 	// Simple CRUD methods ----------------------------------------------------
 
 	//CREATE
-	public Article create() {
+	public Article create(final int newspaperId) {
 		Article result;
 		User userPrincipal;
+		Newspaper newspaper;
 		final Collection<FollowUp> followUps;
 
 		result = new Article();
+		newspaper = this.newspaperService.findOne(newspaperId);
 		userPrincipal = this.userService.findByPrincipal();
+		Assert.isTrue(newspaper.getPublisher().equals(userPrincipal));
 		result.setWriter(userPrincipal);
+		result.setNewspaper(newspaper);
 		followUps = new ArrayList<FollowUp>();
 		result.setFollowUps(followUps);
 		result.setDraftMode(true);
@@ -87,6 +93,7 @@ public class ArticleService {
 
 		Assert.notNull(article);
 		Assert.notNull(this.adminService.findByPrincipal());
+		Assert.notNull(article.getNewspaper().getPublicationDate(), "no se puede eliminar el articulo porque su periodico esta publicado");
 
 		this.articleRepository.delete(article);
 	}
@@ -143,17 +150,27 @@ public class ArticleService {
 			final Collection<FollowUp> followUps;
 
 			userPrincipal = this.userService.findByPrincipal();
+
 			article.setWriter(userPrincipal);
 			followUps = new ArrayList<FollowUp>();
 			article.setFollowUps(followUps);
 			article.setDraftMode(true);
+			Assert.isTrue(article.getNewspaper().getPublisher().equals(userPrincipal));
+			Assert.isNull(article.getNewspaper().getPublicationDate());
 
 			result = article;
 		} else {
 			articleBD = this.articleRepository.findOne(article.getId());
-			Assert.isTrue(articleBD.getWriter().equals(article.getWriter()));
+			Assert.isNull(articleBD.getPublishedMoment(), "para editar un articulo no puede tener fecha de publicacion");
+			Assert.isTrue(articleBD.getWriter().equals(article.getWriter()), "el articulo tiene que pertenecer al usuario logueado");
+			Assert.isTrue(articleBD.getNewspaper().equals(article.getNewspaper()), "no se puede cambiar el periodico de un articulo");
 			article.setId(articleBD.getId());
 			article.setVersion(articleBD.getVersion());
+			if (!article.isDraftMode())
+				article.setPublishedMoment(new Date(System.currentTimeMillis() - 1000));
+			article.setWriter(articleBD.getWriter());
+			article.setFollowUps(articleBD.getFollowUps());
+			article.setNewspaper(articleBD.getNewspaper());
 
 			result = article;
 		}

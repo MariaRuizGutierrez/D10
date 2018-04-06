@@ -63,16 +63,6 @@
 		
 		
 	<!-- Articles -->
-	<security:authorize access="hasRole('USER')">
-		<spring:message code="newspaper.articles" var="articles" />
-		<display:column title="${articles}" sortable="true" >
-			<spring:url value="article/user/list.do" var="articleURL">
-				<spring:param name="newspaperId" value="${row.id }" />
-			</spring:url>
-			<a href="${articleURL}"><spring:message
-					code="newspaper.articles" /></a>
-		</display:column>
-	</security:authorize>
 	
 	<security:authorize access="isAnonymous()">
 		<spring:message code="newspaper.articles" var="articles" />
@@ -90,7 +80,7 @@
 	<jstl:if test="${showMyArticles}">
 		<spring:message code="newspaper.articles" var="articles" />
 		<display:column title="${articles}" sortable="true" >
-			<spring:url value="article/user/list.do" var="articleURL">
+			<spring:url value="article/user/listMyArticles.do" var="articleURL">
 				<spring:param name="newspaperId" value="${row.id }" />
 			</spring:url>
 			<a href="${articleURL}"><spring:message

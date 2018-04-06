@@ -163,12 +163,8 @@ public class ArticleServiceTest extends AbstractTest {
 		caught = null;
 		try {
 			super.authenticate(username);
-			article = this.articleService.create();
-			if (newspaperBean != null) {
-				newspaper = this.newspaperService.findOne(super.getEntityId(newspaperBean));
-				article.setNewspaper(newspaper);
-			} else
-				article.setNewspaper(null);
+			newspaper = this.newspaperService.findOne(super.getEntityId(newspaperBean));
+			article = this.articleService.create(newspaper.getId());
 
 			article.setTitle(title);
 			article.setBody(body);

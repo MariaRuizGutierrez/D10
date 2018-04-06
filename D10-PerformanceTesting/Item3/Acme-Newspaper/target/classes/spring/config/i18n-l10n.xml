@@ -31,6 +31,7 @@
 		<value>/views/newspaper/messages</value>
 		<value>/views/configurationSystem/messages</value>
 		<value>/views/tabooWord/messages</value>
+		<value>/views/article/messages</value>
 		
 	</util:list>
 
