@@ -1,3 +1,4 @@
+
 package controllers.admin;
 
 import javax.validation.Valid;
@@ -19,52 +20,51 @@ import domain.TabooWord;
 
 @Controller
 @RequestMapping(value = "/tabooWord/admin")
-public class TabooWordAdminController extends AbstractController{
-	
+public class TabooWordAdminController extends AbstractController {
+
 	//Services--------------------------------------------
 
 	@Autowired
-	private TabooWordService tabooWordService;
-	
+	private TabooWordService			tabooWordService;
+
 	@Autowired
 	private ConfigurationSystemService	configurationSystemService;
 
+
 	//Constructor--------------------------------------------------------
-	
-	public TabooWordAdminController(){
+
+	public TabooWordAdminController() {
 		super();
 	}
-	
+
 	//Creating--------------
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
-			
+
 		ModelAndView result;
 		TabooWord tabooWord;
-			
+
 		tabooWord = this.tabooWordService.create();
-			
+
 		result = this.createEditModelAndView(tabooWord);
 		return result;
-			
+
 	}
-	
+
 	//Edition---------------
-	
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam int tabooWordId) {
+	public ModelAndView edit(@RequestParam final int tabooWordId) {
 		ModelAndView result;
 		TabooWord tabooWord;
 
 		tabooWord = this.tabooWordService.findOne(tabooWordId);
-
+		Assert.isTrue(tabooWord.isDefault_word() == false, "cannot commit this operation because it's illegal");
 		Assert.notNull(tabooWord);
 		result = this.createEditModelAndView(tabooWord);
 		return result;
 	}
-	
-	
-	
+
 	//Saving-----------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
@@ -73,35 +73,35 @@ public class TabooWordAdminController extends AbstractController{
 		ModelAndView result;
 		ConfigurationSystem configurationSystem;
 		TabooWord tabooWordSaved;
-		
+
 		configurationSystem = this.configurationSystemService.findConfigurationSystem();
 
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(tabooWord);
 		else
 			try {
-				
-				if(tabooWord.getId() == 0){
+
+				if (tabooWord.getId() == 0) {
 					Assert.isTrue(!this.tabooWordService.findTabooWordByName().contains(tabooWord.getName()), "The list contains word");
 					tabooWordSaved = this.tabooWordService.save(tabooWord);
 					configurationSystem.getTabooWords().add(tabooWordSaved);
 					this.configurationSystemService.save(configurationSystem);
-				}else
+				} else
 					tabooWordSaved = this.tabooWordService.save(tabooWord);
-				
+
 				result = new ModelAndView("redirect:/configurationSystem/admin/tabooWord/list.do?d-16544-p=1");
 			} catch (final Throwable oops) {
-				if(oops.getMessage().equals("The list contains word"))
+				if (oops.getMessage().equals("The list contains word"))
 					result = this.createEditModelAndView(tabooWord, "tabooWord.commit.error.contains");
 				else
-				
+
 					result = this.createEditModelAndView(tabooWord, "tabooWord.commit.error");
 			}
-		
+
 		return result;
 
-		}
-	
+	}
+
 	//Delete-----------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
@@ -109,7 +109,7 @@ public class TabooWordAdminController extends AbstractController{
 
 		ModelAndView result;
 		ConfigurationSystem configurationSystem;
-		
+
 		configurationSystem = this.configurationSystemService.findConfigurationSystem();
 
 		if (binding.hasErrors())
@@ -123,14 +123,14 @@ public class TabooWordAdminController extends AbstractController{
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(tabooWord, "tabooWord.commit.error");
 			}
-		
+
 		return result;
 
-		}
-	
+	}
+
 	//Auxiliary-----------------------
 
-	protected ModelAndView createEditModelAndView(TabooWord tabooWord) {
+	protected ModelAndView createEditModelAndView(final TabooWord tabooWord) {
 
 		Assert.notNull(tabooWord);
 		ModelAndView result;
@@ -138,7 +138,7 @@ public class TabooWordAdminController extends AbstractController{
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(TabooWord tabooWord, String messageCode) {
+	protected ModelAndView createEditModelAndView(final TabooWord tabooWord, final String messageCode) {
 		assert tabooWord != null;
 
 		ModelAndView result;
@@ -149,5 +149,5 @@ public class TabooWordAdminController extends AbstractController{
 
 		return result;
 
-		}
+	}
 }
