@@ -692,7 +692,7 @@
 	 <bean id="article1" class="domain.Article">
 		<property name="publishedMoment" value="2017/09/20" />
 		<property name="title" value="title article 1" />
-		<property name="summary" value="summary chirp 1" />
+		<property name="summary" value="summary article 1 this article is so long" />
 		<property name="body" value="body chirp 1" />
 		<property name="pictures">
 			<list>
@@ -715,7 +715,7 @@
 		<property name="publishedMoment" value="2017/10/21" />
 		<property name="title" value="title article 2" />
 		<property name="body" value="body chirp 2" />
-		<property name="summary" value="summary chirp 2" />
+		<property name="summary" value="summary article 1 this article is so long and interesting" />
 		<property name="pictures">
 			<list>
 			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
@@ -735,7 +735,7 @@
 	<bean id="article3" class="domain.Article">
 		<property name="publishedMoment"><null /></property>
 		<property name="title" value="title article 3" />
-		<property name="summary" value="summary chirp 3" />
+		<property name="summary" value="summary article 1 this article is so refreshing" />
 		<property name="body" value="body chirp 3" />
 		<property name="pictures">
 			<list>
@@ -756,7 +756,7 @@
 	<bean id="article4" class="domain.Article">
 		<property name="publishedMoment"><null /></property>
 		<property name="title" value="title article 4" />
-		<property name="summary" value="summary chirp 4" />
+		<property name="summary" value="summary article 1 this article is so long" />
 		<property name="body" value="body chirp 4" />
 		<property name="pictures">
 			<list>
@@ -777,7 +777,7 @@
 	<bean id="article5" class="domain.Article">
 		<property name="publishedMoment" value="2017/09/20" />
 		<property name="title" value="title article 5" />
-		<property name="summary" value="summary chirp 5" />
+		<property name="summary" value="summary article 1 this article is so cool" />
 		<property name="body" value="body chirp 5" />
 		<property name="pictures">
 			<list>
@@ -821,7 +821,7 @@
 	<bean id="article7" class="domain.Article">
 		<property name="publishedMoment" value="2017/09/20" />
 		<property name="title" value="title article 7" />
-		<property name="summary" value="summary chirp 7" />
+		<property name="summary" value="summary article 1 this article is so long" />
 		<property name="body" value="body chirp 7" />
 		<property name="pictures">
 			<list>
@@ -843,7 +843,7 @@
 	<bean id="article8" class="domain.Article">
 		<property name="publishedMoment" value="2017/09/20" />
 		<property name="title" value="title article 8" />
-		<property name="summary" value="summary chirp 8" />
+		<property name="summary" value="summary article 1 this article is so long" />
 		<property name="body" value="body impresionante chirp 8" />
 		<property name="pictures">
 			<list>
@@ -865,7 +865,7 @@
 	<bean id="article9" class="domain.Article">
 		<property name="publishedMoment" value="2016/10/21" />
 		<property name="title" value="title article 9" />
-		<property name="summary" value="summary chirp 9" />
+		<property name="summary" value="summary article 1 this article is so long" />
 		<property name="body" value="body chirp 9" />
 		<property name="pictures">
 			<list>
@@ -886,7 +886,7 @@
 	<bean id="article10" class="domain.Article">
 		<property name="publishedMoment" value="2016/10/21" />
 		<property name="title" value="title article 10" />
-		<property name="summary" value="summary chirp 10" />
+		<property name="summary" value="summary article 1 this article is so long" />
 		<property name="body" value="body chirp 10" />
 		<property name="pictures">
 			<list>
@@ -907,7 +907,7 @@
 	<bean id="article11" class="domain.Article">
 		<property name="publishedMoment" value="2016/10/21" />
 		<property name="title" value="title article 11" />
-		<property name="summary" value="summary chirp 11" />
+		<property name="summary" value="summary article 1 this article is so long" />
 		<property name="body" value="body chirp 11" />
 		<property name="pictures">
 			<list>
@@ -928,7 +928,7 @@
 	<bean id="article12" class="domain.Article">
 		<property name="publishedMoment" value="2016/10/21" />
 		<property name="title" value="title article 12" />
-		<property name="summary" value="summary chirp 12" />
+		<property name="summary" value="summary article 1 this article is so long" />
 		<property name="body" value="body chirp 12" />
 		<property name="pictures">
 			<list>

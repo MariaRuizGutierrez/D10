@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -38,6 +39,7 @@ public class Article extends DomainEntity {
 	private String				body;
 	private Collection<String>	pictures;
 	private boolean				draftMode;
+	private String				preSummary;
 
 
 	@NotBlank
@@ -110,7 +112,7 @@ public class Article extends DomainEntity {
 		return this.writer;
 	}
 
-	public void setWriter(User writer) {
+	public void setWriter(final User writer) {
 		this.writer = writer;
 	}
 
@@ -133,5 +135,22 @@ public class Article extends DomainEntity {
 	public void setFollowUps(final Collection<FollowUp> followUps) {
 		this.followUps = followUps;
 	}
+
+	@Transient
+	public String getPreSummary() {
+		this.preSummary = this.summary.substring(0, 25) + "...";
+		return this.preSummary;
+	}
+
+	public void setPreSummary(final String preSummary) {
+		this.preSummary = preSummary;
+	}
+
+	//	public String substring(final Article article) {
+	//
+	//		final String summary = article.getSummary();
+	//		final String sSubCadena = summary.substring(0, 10);
+	//		return sSubCadena;
+	//	}
 
 }

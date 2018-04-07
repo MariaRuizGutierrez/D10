@@ -64,12 +64,12 @@
 	<display:table name="articles" id="row" class="displaytag">
 
 		
-		<spring:message code="newspaper.article.summary" var="summary" />
+		<spring:message code="newspaper.article.summary" var="summary" /> 
 		<display:column title="${summary}" sortable="true" >
 		<spring:url value="article/user/listSummary.do" var="articleURL">
 			<spring:param name="articleId" value="${row.id}" />
 		</spring:url>
-		<a href="${articleURL}"><spring:message code="newspaper.article.summary" /></a>
+		<a href="${articleURL}"><B><jstl:out value="${row.preSummary}"></jstl:out></B></a>
 		</display:column>
 		
 		<spring:message code="newspaper.articles" var="writer" />
