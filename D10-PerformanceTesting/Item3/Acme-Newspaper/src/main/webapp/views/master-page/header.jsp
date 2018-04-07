@@ -34,6 +34,7 @@
 					<li><a href="configurationSystem/admin/tabooWord/list.do?d-16544-p=1"><spring:message code="master.page.administrator.tabooWords" /></a></li>				
 				</ul>
 			</li>
+			<li><a href="chirp/admin/list.do?d-16544-p=1"><spring:message code="master.page.chirps" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">
@@ -85,6 +86,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="user/create.do"><spring:message code="master.page.user.register" /></a></li>
+					<li><a href="customer/create.do"><spring:message code="master.page.customer.register" /></a></li>
 				</ul>
 			</li>
 			
@@ -106,7 +108,7 @@
 			</li>
 			
 			
-			<!-- REGISTRO DE USUARIOS -->
+			<!-- LISTA DE USUARIOS -->
 				<li><a class="fNiv"><spring:message code="master.page.users" /></a>
 				<ul>
 					<li class="arrow"></li>
