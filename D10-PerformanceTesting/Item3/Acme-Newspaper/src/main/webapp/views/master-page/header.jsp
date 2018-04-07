@@ -86,6 +86,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="user/create.do"><spring:message code="master.page.user.register" /></a></li>
+					<li><a href="customer/create.do"><spring:message code="master.page.customer.register" /></a></li>
 				</ul>
 			</li>
 			
@@ -107,7 +108,7 @@
 			</li>
 			
 			
-			<!-- REGISTRO DE USUARIOS -->
+			<!-- LISTA DE USUARIOS -->
 				<li><a class="fNiv"><spring:message code="master.page.users" /></a>
 				<ul>
 					<li class="arrow"></li>
