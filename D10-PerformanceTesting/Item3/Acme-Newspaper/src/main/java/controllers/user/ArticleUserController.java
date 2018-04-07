@@ -53,6 +53,24 @@ public class ArticleUserController extends AbstractController {
 	}
 
 	// List ---------------------------------------------------------
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView listArticlesUser() {
+		User user;
+		ModelAndView result;
+		final Collection<Article> articles;
+		user = this.userService.findByPrincipal();
+
+		articles = this.articleService.findArticlesByUserId(user.getId());
+		result = new ModelAndView("article/list");
+		result.addObject("articles", articles);
+		result.addObject("showCreate", false);
+		result.addObject("requestURI", "article/user/list.do");
+
+		return result;
+
+	}
+
+	// List ---------------------------------------------------------
 	@RequestMapping(value = "/listb", method = RequestMethod.GET)
 	public ModelAndView listArticlesByUser(@RequestParam final int userId) {
 

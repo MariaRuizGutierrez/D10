@@ -39,7 +39,7 @@ public class ArticleService {
 
 	@Autowired
 	AdminService		adminService;
-	
+
 	@Autowired
 	FollowUpService		followUpService;
 
@@ -97,16 +97,15 @@ public class ArticleService {
 	}
 	//DELETE
 	public void delete(final Article article) {
-		
+
 		Collection<Subscription> subscriptions;
 
 		Assert.notNull(article);
 		Assert.notNull(this.adminService.findByPrincipal());
-		
-		subscriptions = this.subscriptionService.findSubscriptionByNewspaper(article.getNewspaper().getId());
-		
-		Assert.isTrue(article.getNewspaper().isOpen() ||article.getNewspaper().isOpen()==false && subscriptions.size() == 0, "This article can't delete because his newspaper have subscriptions");
 
+		subscriptions = this.subscriptionService.findSubscriptionByNewspaper(article.getNewspaper().getId());
+
+		Assert.isTrue(article.getNewspaper().isOpen() || article.getNewspaper().isOpen() == false && subscriptions.size() == 0, "This article can't delete because his newspaper have subscriptions");
 
 		this.articleRepository.delete(article);
 	}
@@ -144,6 +143,12 @@ public class ArticleService {
 	public Collection<Article> findArticlesPublishedByUserId(final int userId) {
 		Collection<Article> result;
 		result = this.articleRepository.findArticlesPublishedByUserId(userId);
+		return result;
+	}
+
+	public Collection<Article> findArticlesByUserId(final int userId) {
+		Collection<Article> result;
+		result = this.articleRepository.findArticlesByUserId(userId);
 		return result;
 	}
 

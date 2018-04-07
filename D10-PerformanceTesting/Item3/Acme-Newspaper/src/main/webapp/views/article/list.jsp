@@ -85,6 +85,15 @@
 	</display:column>
 	</security:authorize>
 	
+	<security:authorize access="hasRole('USER')">
+	<spring:message code="article.display" var="Display" />
+	<display:column title="${Display}" sortable="true" >
+		<spring:url value="article/user/display.do" var="editURL">
+			<spring:param name="articleId" value="${row.id}" />
+		</spring:url>
+		<a href="${editURL}"><spring:message code="article.display" /></a>
+	</display:column>
+	</security:authorize>
 	
 
 	<!-- ATRIBUTOS -->
@@ -107,6 +116,39 @@
 		</display:column>
 	</security:authorize>
 	
+
+	<spring:message code="article.draftMode" var="draftMode" />
+	<display:column title="${draftMode}">
+		<jstl:if test="${row.draftMode==true}">
+			<div
+				style=" width: 30px; height: 30px; margin-left: 20px; ">
+
+				<img src="images/no.png" width="30" height="30">
+			</div>
+		</jstl:if>
+		<jstl:if test="${row.draftMode==false}">
+			<div
+				style=" width: 30px; height: 30px; margin-left: 20px; ">
+
+				<img src="images/yes.png" width="30" height="30">
+			</div>
+		</jstl:if>
+		
+</display:column>
+
+<security:authorize access="hasRole('USER')">
+		<spring:message code="article.createFollowUp"
+			var="createFollowUp" />
+		<display:column title="${createFollowUp}" sortable="true" >
+		<%-- <jstl:if test="${util.organisedMoment(row.organisedMoment)==true}"> --%>
+			<spring:url value="followUp/user/create.do" var="editURL">
+				<spring:param name="articleId" value="${row.id}" />
+			</spring:url>
+			<a href="${editURL}"><spring:message
+					code="article.followUp" /></a>
+		<%-- </jstl:if> --%>
+		</display:column>
+	</security:authorize>
 
 </display:table>
 
