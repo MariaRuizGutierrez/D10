@@ -18,6 +18,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -43,6 +44,7 @@ public class Article extends DomainEntity {
 
 
 	@NotBlank
+	@Size(min = 9, max = 500)
 	public String getSummary() {
 		return this.summary;
 	}
@@ -97,6 +99,20 @@ public class Article extends DomainEntity {
 		this.pictures = pictures;
 	}
 
+	@Transient
+	public String getPreSummary() {
+		if (this.summary.length() < 25)
+			this.preSummary = this.summary.substring(0, 9) + "...";
+		else
+			this.preSummary = this.summary.substring(0, 25) + "...";
+
+		return this.preSummary;
+	}
+
+	public void setPreSummary(final String preSummary) {
+		this.preSummary = preSummary;
+	}
+
 
 	// Relationships---------------------------------------------------------------
 
@@ -135,22 +151,5 @@ public class Article extends DomainEntity {
 	public void setFollowUps(final Collection<FollowUp> followUps) {
 		this.followUps = followUps;
 	}
-
-	@Transient
-	public String getPreSummary() {
-		this.preSummary = this.summary.substring(0, 25) + "...";
-		return this.preSummary;
-	}
-
-	public void setPreSummary(final String preSummary) {
-		this.preSummary = preSummary;
-	}
-
-	//	public String substring(final Article article) {
-	//
-	//		final String summary = article.getSummary();
-	//		final String sSubCadena = summary.substring(0, 10);
-	//		return sSubCadena;
-	//	}
 
 }

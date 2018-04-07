@@ -799,7 +799,7 @@
 	<bean id="article6" class="domain.Article">
 		<property name="publishedMoment" value="2017/09/20" />
 		<property name="title" value="title article 6" />
-		<property name="summary" value="summary especial chirp 6" />
+		<property name="summary" value="summary especial article 6 this article is so long" />
 		<property name="body" value="body chirp 6" />
 		<property name="pictures">
 			<list>
