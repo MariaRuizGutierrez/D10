@@ -59,6 +59,25 @@ public class NewspaperUserController extends AbstractController {
 
 	}
 
+	//Listing newspapers 5.1 ----------------------------------------------
+	@RequestMapping(value = "/listb", method = RequestMethod.GET)
+	public ModelAndView listb(final String messageCode) {
+
+		ModelAndView result;
+		Collection<Newspaper> newspapers;
+
+		//user = this.userService.findByPrincipal();
+		newspapers = this.newspaperService.findNewspapersPublishedAndOpen();
+
+		result = new ModelAndView("newspaper/list");
+		result.addObject("newspapers", newspapers);
+		result.addObject("requestURI", "newspaper/user/listb.do");
+		result.addObject("requestURISearchNewspaper", "newspaper/user/search.do");
+		result.addObject("message", messageCode);
+		return result;
+
+	}
+
 	// Create -----------------------------------------------------------------
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
