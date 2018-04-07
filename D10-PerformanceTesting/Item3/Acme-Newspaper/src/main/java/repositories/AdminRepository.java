@@ -50,10 +50,10 @@ public interface AdminRepository extends JpaRepository<Admin, Integer> {
 	@Query("select avg(a.followUps.size) from Article a")
 	Double avgFollowupsPerArticle();
 	//TODO B2: The average number of follow-ups per article up to one week after the corresponding newspaper’s been published.
-	@Query("select avg(a.followUps.size) from Article a where a.newspaper.publicationDate>?1")
+	@Query("select avg(a.followUps.size) from Article a where a.newspaper.publicationDate<?1")
 	Double avgNumberOfFollowUpsPerArticleAfterOneWeek(Date since);
-	//TODO B3: The average number of follow-ups per article up to two weeks after the corresponding newspaper’s been published.
-	@Query("select avg(a.followUps.size) from Article a where a.newspaper.publicationDate>?1")
+	//TODO B3: The average number of follow-ups per article up to two weeks after the corresponding newspapers been published.
+	@Query("select avg(a.followUps.size) from Article a where a.newspaper.publicationDate<?1")
 	Double avgNumberOfFollowUpsPerArticleAfterTwoWeek(Date since);
 	//B4: The average and the standard deviation of the number of chirps per user.
 	@Query("select avg(u.chirps.size),stddev(u.chirps.size) from User u")
