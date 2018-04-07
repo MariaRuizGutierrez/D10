@@ -74,4 +74,20 @@ public class ArticleController extends AbstractController {
 
 	}
 
+	// Display all article----------------------------------------------------------------
+
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView displayArticle(@RequestParam final int articleId) {
+		final ModelAndView result;
+		Article article = new Article();
+
+		article = this.articleService.findOne(articleId);
+
+		result = new ModelAndView("article/display");
+		result.addObject("article", article);
+		result.addObject("requestURI", "article/display.do");
+
+		return result;
+	}
+
 }

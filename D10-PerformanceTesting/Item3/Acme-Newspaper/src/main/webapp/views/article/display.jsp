@@ -50,7 +50,7 @@
 	
 	<p>
 			<jstl:if test="${row.publishedMoment!=null }">
- 			<spring:message code="article.format.publishedMoment" var="pattern"></spring:message>
+ 			<spring:message code="article.format.publishedMoment1" var="pattern"></spring:message>
 			<fmt:formatDate value="${row.publishedMoment}" pattern="${pattern}" var="newdatevar" />
 			<B><spring:message code="article.publishedMoment"></spring:message></B>
 			<c:out value="${newdatevar}" />
