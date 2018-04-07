@@ -39,17 +39,30 @@
 	</p>
 		
 	<p>
-		<B><spring:message code="article.body" />:</B>
+		<B><spring:message code="article.body" /></B>
 		<jstl:out value="${row.body}"></jstl:out>
 	</p>
 	
 	<p>
-			
+		<B><spring:message code="article.draftMode" /></B>
+		<jstl:out value="${row.draftMode}"></jstl:out>
+	</p>
+	
+	<p>
+			<jstl:if test="${row.publishedMoment!=null }">
  			<spring:message code="article.format.publishedMoment" var="pattern"></spring:message>
 			<fmt:formatDate value="${row.publishedMoment}" pattern="${pattern}" var="newdatevar" />
-			<B><spring:message code="article.publishedMoment"></spring:message>:</B>
+			<B><spring:message code="article.publishedMoment"></spring:message></B>
 			<c:out value="${newdatevar}" />
+			</jstl:if>
+			
+			<jstl:if test="${row.publishedMoment==null}">
+			<B><spring:message code="article.publishedMoment"></spring:message></B>
+			<B><spring:message code ="nothing.found"></spring:message></B>
+			</jstl:if>
+	
 	</p>
+	
 	
 	<%--  <p>
 	
