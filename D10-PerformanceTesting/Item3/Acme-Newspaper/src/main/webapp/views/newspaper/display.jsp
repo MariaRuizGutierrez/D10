@@ -81,7 +81,7 @@
 		<spring:url value="article/user/display.do" var="renURL">
 			<spring:param name="articleId" value="${row.id}" />
 		</spring:url>
-		<a href="${renURL}"><spring:message code="newspaper.articles" /></a>
+		<a href="${renURL}"><jstl:out value="${row.title}"></jstl:out></a>
 		</display:column> 
 		
 		<!-- CUANDO ESTÉ EL DISPLAY DE PROFILE LO PONGO AQUÍ -->
