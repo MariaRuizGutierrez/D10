@@ -3,6 +3,9 @@ package services;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -29,6 +32,9 @@ public class ChirpService {
 
 	@Autowired
 	private AdminService	adminService;
+	
+	@Autowired
+	private TabooWordService	 tabooWordService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -108,6 +114,31 @@ public class ChirpService {
 		Collection<Chirp> result;
 		result = this.chirpRepository.findAllChirpsByUserId(userId);
 		return result;
+	}
+	
+	public Collection<Chirp> findChirpWithTabooWord(String tabooWord){
+		
+		Collection<Chirp> result;
+		
+		result = this.chirpRepository.findChirpWithTabooWord(tabooWord);
+		
+		return result;
+	}
+	
+	public Set<Chirp> ChirpWithTabooWord(){
+		
+		Set<Chirp> result;
+		Collection<String> tabooWords;
+		Iterator<String> it;
+		
+		result = new HashSet<>();
+		tabooWords = this.tabooWordService.findTabooWordByName();
+		it = tabooWords.iterator();
+		while(it.hasNext())
+			result.addAll(this.findChirpWithTabooWord(it.next()));
+		
+		return result;
+		
 	}
 
 	public void flush() {

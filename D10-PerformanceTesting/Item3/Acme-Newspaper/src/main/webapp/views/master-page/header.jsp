@@ -48,7 +48,14 @@
 					<li><a href="newspaper/admin/listTabooWord.do?d-16544-p=1"><spring:message code="master.page.listNewspaperTabooWord" /></a></li>				
 				</ul>
 			</li>
-			<li><a href="chirp/admin/list.do?d-16544-p=1"><spring:message code="master.page.chirps" /></a></li>
+			<li><a class="fNiv"><spring:message	code="master.page.chirps" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="chirp/admin/list.do?d-16544-p=1"><spring:message code="master.page.chirps" /></a></li>
+					<li><a href="chirp/admin/listTabooWord.do?d-16544-p=1"><spring:message code="master.page.listChirpTabooWord" /></a></li>				
+				</ul>
+			</li>
+			
 			
 		</security:authorize>
 		

@@ -4,7 +4,9 @@ package services;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -264,13 +266,13 @@ public class NewspaperService {
 		return result;
 	}
 	
-	public Collection<Newspaper> NewspaperWithTabooWord(){
+	public Set<Newspaper> NewspaperWithTabooWord(){
 		
-		Collection<Newspaper> result;
+		Set<Newspaper> result;
 		Collection<String> tabooWords;
 		Iterator<String> it;
 		
-		result = new ArrayList<>();
+		result = new HashSet<>();
 		tabooWords = this.tabooWordService.findTabooWordByName();
 		it = tabooWords.iterator();
 		while(it.hasNext())

@@ -59,7 +59,7 @@ public class NewspaperAdminController extends AbstractController{
 
 		result = new ModelAndView("newspaper/list");
 		result.addObject("newspapers", newspapers);
-		result.addObject("requestURI", "newspaper/admin/list.do?d-16544-p=1");
+		result.addObject("requestURI", "newspaper/admin/listTabooWord.do?d-16544-p=1");
 		return result;
 	}	
 	

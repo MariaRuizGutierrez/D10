@@ -60,7 +60,7 @@ public class ArticleAdminController extends AbstractController{
 
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
-		result.addObject("requestURI", "article/admin/list.do?d-16544-p=1");
+		result.addObject("requestURI", "article/admin/listTabooWord.do?d-16544-p=1");
 		return result;
 
 	}

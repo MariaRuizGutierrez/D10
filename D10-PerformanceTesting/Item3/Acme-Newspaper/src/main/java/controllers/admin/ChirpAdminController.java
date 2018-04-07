@@ -47,6 +47,24 @@ public class ChirpAdminController extends AbstractController{
 
 	}
 	
+	//Listing with taboo word
+	
+	@RequestMapping(value = "/listTabooWord", method = RequestMethod.GET)
+	public ModelAndView listTabooWord() {
+
+		ModelAndView result;
+		Collection<Chirp> chirps;
+		
+
+		chirps = this.chirpService.ChirpWithTabooWord();
+
+		result = new ModelAndView("chirp/list");
+		result.addObject("chirps", chirps);
+		result.addObject("requestURI", "chirp/admin/listTabooWord.do?d-16544-p=1");
+		return result;
+
+	}
+	
 	//Delete---------------------------------------------------------------------
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView delete(int chirpId) {
