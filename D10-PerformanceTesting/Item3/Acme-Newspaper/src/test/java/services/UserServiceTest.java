@@ -296,17 +296,13 @@ public class UserServiceTest extends AbstractTest {
 	public void driverSearchPublishedArticle() {
 		final Object testingData[][] = {
 			{
-				//El user 1 busca por la palabra "especial" mostrándole el article 1 
+				//El user 1 busca por la palabra "especial" mostrándole el article 6 
 				//que contiene dicha palabra en el summary y ha sido publicado.
-				"user1", "especial", "article1", null
+				"user1", "especial", "article6", null
 			}, {
-				//El user 1 busca por la palabra "impresionante" mostrándole el article 10 
+				//El user 1 busca por la palabra "impresionante" mostrándole el article 8 
 				//que contienen dicha palabra en el body y ha sido publicado.
-				"user1", "impresionante", "article10", null
-			}, {
-				//El user 1 busca por la palabra article 1 mostrándole el article 1
-				//que contiene article 1 en el título y ha sido publicado.
-				"user1", "article 1", "article11", null
+				"user1", "impresionante", "article8", null
 			}, {
 				//El user 1 busca por la palabra article 4 no mostrándole ningún article
 				//ya que el article 4 NO ha sido publicado.
@@ -348,9 +344,9 @@ public class UserServiceTest extends AbstractTest {
 				//que contiene dicha palabra en el título y ha sido publicado.
 				"user1", "terror", "newspaper7", null
 			}, {
-				//El user 1 busca por la palabra "amanecer" mostrándole el newspaper8
+				//El user 1 busca por la palabra "amanecer" mostrándole el newspaper6
 				//que contienen dicha palabra en la descripción y ha sido publicado.
-				"user1", "amanecer", "newspaper8", null
+				"user1", "amanecer", "newspaper6", null
 			}, {
 				//El user 1 busca por la palabra "accidente" NO mostrándole el newspaper3
 				//pese a que lo contiene en el título pero NO ha sido publicado

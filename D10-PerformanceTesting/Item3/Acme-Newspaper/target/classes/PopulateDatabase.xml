@@ -502,7 +502,7 @@
 	<bean id="newspaper6" class="domain.Newspaper">
 		<property name="title" value="title newspaper 6" />
 		<property name="publicationDate" value="2017/09/21" />
-		<property name="description" value="description newspaper 6" />
+		<property name="description" value="description amanecer newspaper 6" />
 		<property name="picture" value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
 		<property name="open" value="true" />
 		<property name="publisher" ref="user2" />
@@ -531,7 +531,7 @@
 	<bean id="newspaper8" class="domain.Newspaper">
 		<property name="title" value="title newspaper 8" />
 		<property name="publicationDate" value="2017/09/21" />
-		<property name="description" value="description amanecer newspaper 8" />
+		<property name="description" value="description newspaper 8" />
 		<property name="picture" value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
 		<property name="open" value="false" />
 		<property name="publisher" ref="user2" />
@@ -692,7 +692,7 @@
 	 <bean id="article1" class="domain.Article">
 		<property name="publishedMoment" value="2017/09/20" />
 		<property name="title" value="title article 1" />
-		<property name="summary" value="summary especial chirp 1" />
+		<property name="summary" value="summary chirp 1" />
 		<property name="body" value="body chirp 1" />
 		<property name="pictures">
 			<list>
@@ -799,7 +799,7 @@
 	<bean id="article6" class="domain.Article">
 		<property name="publishedMoment" value="2017/09/20" />
 		<property name="title" value="title article 6" />
-		<property name="summary" value="summary chirp 6" />
+		<property name="summary" value="summary especial chirp 6" />
 		<property name="body" value="body chirp 6" />
 		<property name="pictures">
 			<list>
@@ -844,7 +844,7 @@
 		<property name="publishedMoment" value="2017/09/20" />
 		<property name="title" value="title article 8" />
 		<property name="summary" value="summary chirp 8" />
-		<property name="body" value="body chirp 8" />
+		<property name="body" value="body impresionante chirp 8" />
 		<property name="pictures">
 			<list>
 			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
@@ -887,7 +887,7 @@
 		<property name="publishedMoment" value="2016/10/21" />
 		<property name="title" value="title article 10" />
 		<property name="summary" value="summary chirp 10" />
-		<property name="body" value="body impresionante chirp 10" />
+		<property name="body" value="body chirp 10" />
 		<property name="pictures">
 			<list>
 			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
