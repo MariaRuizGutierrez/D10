@@ -140,6 +140,9 @@ public class ArticleUserController extends AbstractController {
 		Assert.isTrue(user.getArticles().contains(article), "Cannot commit this operation, because it's illegal");
 		Assert.isTrue(article.getPublishedMoment() == null && article.isDraftMode() == true, "Tiene que estar en modo borrador y sin fecha de publicacion");
 		Assert.notNull(article);
+		// Esta restriccion esta en el save del servicio pero la jefa quiere que tambien este aqui
+		if (article.getNewspaper() != null)
+			Assert.isNull(article.getNewspaper().getPublicationDate(), "el periodico no puede estar publicado para introducir este articulo");
 		result = this.createEditModelAndView(article);
 		return result;
 	}
