@@ -21,31 +21,25 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="chirp/user/edit.do" modelAttribute="chirp">
+<form:form action="followUp/user/edit.do" modelAttribute="followUp">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="user"/>
+	<form:hidden path="publicationMoment"/>
+	<form:hidden path="article"/>
 
 	<!-- ATRIBUTOS -->
-	<acme:textbox code="chirp.postedMoment" path="postedMoment" readonly="true" />
+	<acme:textbox code="followUp.title" path="title" />
+	<br />	
+	<acme:textbox code="followUp.summary" path="summary" />
 	<br />
-	<acme:textbox code="chirp.title" path="title" />
+	<acme:textbox code="followUp.text" path="text" />
 	<br />
-	
-	
-	<acme:textbox code="chirp.description" path="description" />
+	<acme:textbox code="followUp.pictures" path="pictures" placeHolder="http://"/>
 	<br />
 
 
 	<!-- BOTONES -->
 	<input type="submit" name="save"
-		value="<spring:message code="chirp.save"/>" />&nbsp;
-	
-
-	<acme:cancel
-		url="chirp/user/listUser.do?d-16544-p=1"
-		code="chirp.cancel" />
-
-
+		value="<spring:message code="followUp.save"/>" />&nbsp;
 </form:form>

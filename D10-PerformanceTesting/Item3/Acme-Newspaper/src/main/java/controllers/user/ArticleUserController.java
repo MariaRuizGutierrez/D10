@@ -64,6 +64,7 @@ public class ArticleUserController extends AbstractController {
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
 		result.addObject("showCreate", false);
+		result.addObject("showSearch", false);
 		result.addObject("requestURI", "article/user/list.do");
 
 		return result;

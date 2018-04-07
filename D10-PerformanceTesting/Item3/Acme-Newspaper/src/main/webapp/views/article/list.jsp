@@ -45,11 +45,13 @@
 <!-- 	SEARCH USERS -->
 	<div>
 <security:authorize access="hasRole('USER')">
+<jstl:if test="${showSearch}">
 <form:form action="${requestURISearchArticle}"  method="get">
 	<label><spring:message code="article.search.keyword"/></label>
 	<input type="text" name="keyword"/> 
 	<input type="submit" value="<spring:message code="article.search" />" /> 	 	
 </form:form>
+</jstl:if>
 </security:authorize>
 </div>
 <br />
