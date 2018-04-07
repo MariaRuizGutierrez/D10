@@ -34,6 +34,7 @@
 					<li><a href="configurationSystem/admin/tabooWord/list.do?d-16544-p=1"><spring:message code="master.page.administrator.tabooWords" /></a></li>				
 				</ul>
 			</li>
+			<li><a href="chirp/admin/list.do?d-16544-p=1"><spring:message code="master.page.chirps" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">

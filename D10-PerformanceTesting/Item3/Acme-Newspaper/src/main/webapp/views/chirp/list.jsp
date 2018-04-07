@@ -19,7 +19,18 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+
+<script type="text/javascript">
+	function confirmDelete(chirpId) {
+		confirm=confirm('<spring:message code="chirp.confirm.delete"/>');
+		if (confirm)
+		  window.location.href ="chirp/admin/delete.do?chirpId=" + chirpId;
+		  else
+			  window.location.href ="chirp/admin/list.do";
+	}
+</script>
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="chirps" requestURI="${requestURI}" id="row">
@@ -38,6 +49,16 @@
 
 	<spring:message code="chirp.description" var="descriptionHeader" />
 	<display:column property="description" title="${descriptionHeader}" sortable="true"/>
+	
+	<!-- Boton de delete para el admin ya que puede borrar los chirps que quiera pero no editarlas -->
+	<security:authorize access="hasRole('ADMIN')">
+	<spring:message code="chirp.delete" var="deleteHeader" />
+		<display:column title="${deleteHeader}" sortable="true">
+			<input type="button" name="delete"
+				value="<spring:message code="chirp.delete" />"
+				onclick="confirmDelete(${row.id});" />
+		</display:column>
+	</security:authorize>
 		
 
 		
@@ -49,6 +70,8 @@
 		</a>
 	</div>
 </security:authorize>
+
+
 
 
 
