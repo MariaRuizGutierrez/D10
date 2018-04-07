@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Index;
@@ -123,7 +124,7 @@ public class Article extends DomainEntity {
 		this.newspaper = newspaper;
 	}
 
-	@OneToMany(mappedBy = "article")
+	@OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
 	@Valid
 	public Collection<FollowUp> getFollowUps() {
 		return this.followUps;

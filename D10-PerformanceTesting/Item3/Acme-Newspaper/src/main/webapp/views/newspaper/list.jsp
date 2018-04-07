@@ -20,6 +20,16 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+<script type="text/javascript">
+	function confirmDelete(newspaperId) {
+		confirm=confirm('<spring:message code="newspaper.confirm.delete"/>');
+		if (confirm)
+		  window.location.href ="newspaper/admin/delete.do?newspaperId=" + newspaperId;
+		  else
+			  window.location.href ="newspaper/admin/list.do";
+	}
+</script>
+
 <!-- 	SEARCH -->
 	<div>
 <security:authorize access="isAnonymous()">
@@ -147,6 +157,16 @@
 			</jstl:if>		
 		</display:column>
 		</jstl:if>
+	</security:authorize>
+	
+	<!-- Boton de delete para el admin ya que puede borrar los periódicos que quiera pero no editarlas -->
+	<security:authorize access="hasRole('ADMIN')">
+	<spring:message code="newspaper.delete" var="deleteHeader" />
+		<display:column title="${deleteHeader}" sortable="true">
+			<input type="button" name="delete"
+				value="<spring:message code="newspaper.delete" />"
+				onclick="confirmDelete(${row.id});" />
+		</display:column>
 	</security:authorize>
 	
 

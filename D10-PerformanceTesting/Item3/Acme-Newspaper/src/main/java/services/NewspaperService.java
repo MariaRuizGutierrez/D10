@@ -16,6 +16,7 @@ import org.springframework.validation.Validator;
 import repositories.NewspaperRepository;
 import domain.Article;
 import domain.Newspaper;
+import domain.Subscription;
 import domain.User;
 
 @Service
@@ -36,6 +37,9 @@ public class NewspaperService {
 
 	@Autowired
 	AdminService		adminService;
+	
+	@Autowired
+	SubscriptionService	subscriptionService;
 
 	//Importar la que pertenece a Spring
 	@Autowired
@@ -79,10 +83,18 @@ public class NewspaperService {
 
 	//DELETE
 	public void delete(final Newspaper newspaper) {
+		
+		Collection<Subscription> subscriptions;
+		
+		subscriptions = this.subscriptionService.findSubscriptionByNewspaper(newspaper.getId());
+		
 		Assert.notNull(newspaper);
 		Assert.notNull(this.adminService.findByPrincipal());
 		//Solo se pueden eliminar los newspaper publicos
-		Assert.isTrue(newspaper.isOpen(), "solo se pueden eliminar los periodicos publicos");
+		Assert.isTrue(newspaper.isOpen() || (newspaper.isOpen()== false && subscriptions.size() == 0), "Se pueden eliminar los periodicos publicos y privado que aún no tengas suscripciones");
+		
+
+		
 
 		this.newspaperRepository.delete(newspaper);
 	}

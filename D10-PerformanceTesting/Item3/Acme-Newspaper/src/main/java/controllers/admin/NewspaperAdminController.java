@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ArticleService;
+import services.NewspaperService;
 
 import controllers.AbstractController;
-import domain.Article;
+import domain.Newspaper;
 
 @Controller
-@RequestMapping(value = "/article/admin")
-public class ArticleAdminController extends AbstractController{
+@RequestMapping(value = "/newspaper/admin")
+public class NewspaperAdminController extends AbstractController{
 	
 	//Services--------------------------------------------
-
+	
 	@Autowired
-	private ArticleService	articleService;
+	private NewspaperService newspaperService;
 	
 	//Constructor--------------------------------------------------------
 	
-	public ArticleAdminController(){
+	public NewspaperAdminController(){
 		super();
 	}
 	
@@ -35,34 +35,33 @@ public class ArticleAdminController extends AbstractController{
 	public ModelAndView list() {
 
 		ModelAndView result;
-		Collection<Article> articles;
-			
+		Collection<Newspaper> newspapers;
+				
 
-		articles = this.articleService.findAll();
+		newspapers = this.newspaperService.findAll();
 
-		result = new ModelAndView("article/list");
-		result.addObject("articles", articles);
-		result.addObject("requestURI", "article/admin/list.do?d-16544-p=1");
+		result = new ModelAndView("newspaper/list");
+		result.addObject("newspapers", newspapers);
+		result.addObject("requestURI", "newspaper/admin/list.do?d-16544-p=1");
 		return result;
-
-	}
-		
-	//Delete---------------------------------------------------------------------
+	}	
+	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public ModelAndView delete(int articleId) {
+	public ModelAndView delete(int newspaperId) {
 		ModelAndView result;
-		Article article;
+		Newspaper newspaper;
 
-		article = this.articleService.findOne(articleId);
-		Assert.notNull(article);
+		newspaper = this.newspaperService.findOne(newspaperId);
+		Assert.notNull(newspaper);
 		try {
-			this.articleService.delete(article);
+			this.newspaperService.delete(newspaper);
 			result = new ModelAndView("redirect:list.do");
 		} catch (final Throwable oops) {
-			if(oops.getMessage().equals("This article can't delete because his newspaper have subscriptions"))
-				result = this.listWithMessage("article.commit.error.newspaper");
+			
+			if(oops.getMessage().equals("Se pueden eliminar los periodicos publicos y privado que aún no tengas suscripciones"))
+				result = this.listWithMessage("newspaper.commit.error.private");
 			else
-				result = this.listWithMessage("article.commit.error");
+				result = this.listWithMessage("newspaper.commit.error");
 		}
 
 		return result;
@@ -72,15 +71,14 @@ public class ArticleAdminController extends AbstractController{
 
 	protected ModelAndView listWithMessage(final String message) {
 		final ModelAndView result;
-		Collection<Article> articles;
-		articles = this.articleService.findAll();
-		result = new ModelAndView("article/list");
-		result.addObject("articles", articles);
-		result.addObject("requestURI", "/article/admin/list.do");
+		Collection<Newspaper> newspapers;
+		newspapers = this.newspaperService.findAll();
+		result = new ModelAndView("newspaper/list");
+		result.addObject("newspapers", newspapers);
+		result.addObject("requestURI", "/newspaper/admin/list.do");
 		result.addObject("message", message);
 		return result;
 
 	}
-		
 
 }

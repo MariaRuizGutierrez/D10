@@ -1,6 +1,8 @@
 
 package services;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,6 +99,15 @@ public class SubscriptionService {
 			result = subscription;
 		}
 		this.validator.validate(result, binding);
+		return result;
+	}
+	
+	public Collection<Subscription> findSubscriptionByNewspaper(int newspaperId){
+		
+		Collection<Subscription> result;
+		
+		result = this.subscriptionRepository.findSubscriptionByNewspaper(newspaperId);
+		
 		return result;
 	}
 

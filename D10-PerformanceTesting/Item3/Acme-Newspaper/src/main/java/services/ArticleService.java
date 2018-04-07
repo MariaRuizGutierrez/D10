@@ -4,7 +4,6 @@ package services;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Iterator;
 
 import javax.transaction.Transactional;
 
@@ -18,6 +17,7 @@ import repositories.ArticleRepository;
 import domain.Article;
 import domain.FollowUp;
 import domain.Newspaper;
+import domain.Subscription;
 import domain.User;
 
 @Service
@@ -42,6 +42,9 @@ public class ArticleService {
 	
 	@Autowired
 	FollowUpService		followUpService;
+
+	@Autowired
+	SubscriptionService	subscriptionService;
 
 	//Importar la que pertenece a Spring
 	@Autowired
@@ -94,22 +97,16 @@ public class ArticleService {
 	}
 	//DELETE
 	public void delete(final Article article) {
+		
+		Collection<Subscription> subscriptions;
 
 		Assert.notNull(article);
 		Assert.notNull(this.adminService.findByPrincipal());
-		Assert.isNull(article.getNewspaper().getPublicationDate(), "no se puede eliminar el articulo porque su periodico esta publicado");
-	
-		Collection<FollowUp> followUps;
-		Iterator<FollowUp> it;
 		
-		followUps = article.getFollowUps();
-		it = followUps.iterator();
+		subscriptions = this.subscriptionService.findSubscriptionByNewspaper(article.getNewspaper().getId());
 		
-		
-		while (it.hasNext()) {
-			this.followUpService.delete(it.next());
-			
-		}
+		Assert.isTrue(article.getNewspaper().isOpen() ||article.getNewspaper().isOpen()==false && subscriptions.size() == 0, "This article can't delete because his newspaper have subscriptions");
+
 
 		this.articleRepository.delete(article);
 	}
@@ -201,15 +198,6 @@ public class ArticleService {
 
 		return summary;
 
-	}
-	
-	public Collection<Article> findArticleNewspaperNoPublished(){
-		
-		Collection<Article> result;
-		
-		result = this.articleRepository.findArticleNewspaperNoPublished();
-		
-		return result;
 	}
 
 }
