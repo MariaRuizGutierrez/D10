@@ -50,18 +50,34 @@
 		<B><spring:message code="user.emailAddress" />:</B>
 		<jstl:out value="${row.email}"></jstl:out>
 	</p>
+	
+	
 	<p>
 		<B><spring:message code="user.articles1" />:</B>
-		<spring:url value="article/listb.do" var="articleURL">
-		<spring:param name="userId" value="${row.id }" />
-		</spring:url>
+		<security:authorize access="isAnonymous()">
+			<spring:url value="article/listb.do" var="articleURL">
+			<spring:param name="userId" value="${row.id }" />
+			</spring:url>
+		</security:authorize>
+		<security:authorize access="hasRole('USER')">
+			<spring:url value="article/user/listb.do" var="articleURL">
+			<spring:param name="userId" value="${row.id }" />
+			</spring:url>
+		</security:authorize>
 			<a href="${articleURL}"><spring:message code="user.articles" /></a>
 	</p>
 		<p>
 		<B><spring:message code="user.chirps1" />:</B>
-		<spring:url value="chirp/listb.do" var="chirpURL">
-		<spring:param name="userId" value="${row.id }" />
-		</spring:url>
+		<security:authorize access="isAnonymous()">
+			<spring:url value="chirp/listb.do" var="chirpURL">
+			<spring:param name="userId" value="${row.id }" />
+			</spring:url>
+		</security:authorize>
+		<security:authorize access="hasRole('USER')">
+			<spring:url value="chirp/user/listb.do" var="chirpURL">
+			<spring:param name="userId" value="${row.id }" />
+			</spring:url>
+		</security:authorize>
 			<a href="${chirpURL}"><spring:message code="user.chirps" /></a>
 	</p>
 	

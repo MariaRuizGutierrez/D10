@@ -67,7 +67,7 @@ public class NewspaperUserController extends AbstractController {
 		Collection<Newspaper> newspapers;
 
 		//user = this.userService.findByPrincipal();
-		newspapers = this.newspaperService.findNewspapersPublishedAndOpen();
+		newspapers = this.newspaperService.findNewspapersPublished();
 
 		result = new ModelAndView("newspaper/list");
 		result.addObject("newspapers", newspapers);

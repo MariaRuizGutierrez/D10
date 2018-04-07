@@ -12,6 +12,7 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ChirpService;
@@ -115,6 +116,21 @@ public class ChirpUserController extends AbstractController {
 		result.addObject("chirps", chirps);
 		result.addObject("requestURI", "chirp/user/listUser.do");
 
+		return result;
+	}
+
+	// List ---------------------------------------------------------
+	@RequestMapping(value = "/listb", method = RequestMethod.GET)
+	public ModelAndView listArticlesByUser(@RequestParam final int userId) {
+
+		ModelAndView result;
+		final Collection<Chirp> chirps;
+		//final Newspaper newspaper;
+
+		chirps = this.chirpService.findAllChirpsByUserId(userId);
+		result = new ModelAndView("chirp/list");
+		result.addObject("chirps", chirps);
+		result.addObject("requestURI", "chirp/user/listb.do");
 		return result;
 	}
 

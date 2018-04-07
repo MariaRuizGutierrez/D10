@@ -36,6 +36,22 @@ public class ArticleUserController extends AbstractController {
 	private UserService			userService;
 
 
+	// List ---------------------------------------------------------
+	@RequestMapping(value = "/listb", method = RequestMethod.GET)
+	public ModelAndView listArticlesByUser(@RequestParam final int userId) {
+
+		ModelAndView result;
+		final Collection<Article> articles;
+
+		articles = this.articleService.findArticlesPublishedByUserId(userId);
+		result = new ModelAndView("article/list");
+		result.addObject("articles", articles);
+		result.addObject("requestURI", "article/user/listb.do");
+
+		return result;
+
+	}
+
 	//List my articles-----------------------------------------------------------
 
 	@RequestMapping(value = "/listMyArticles", method = RequestMethod.GET)
