@@ -86,13 +86,13 @@
 		</display:column> --%>
 		
 		<!-- CUANDO ESTÉ EL DISPLAY DE PROFILE LO PONGO AQUÍ -->
-		<%-- <spring:message code="newspaper.article.writer" var="writer" />
+		<spring:message code="newspaper.article.writer" var="writer" />
 		<display:column title="${writer}" sortable="true" >
-		<spring:url value="newspaper/listMaker.do" var="renURL">
-			<spring:param name="rendezvousId" value="${row.id}" />
+		<spring:url value="article/user/display.do" var="renURL">
+			<spring:param name="userId" value="${row.writer.id}" />
 		</spring:url>
-		<a href="${renURL}"><spring:message code="user.maker" /></a>
-		</display:column> --%>
+		<a href="${renURL}"><spring:message code="newspaper.article.writer" /></a>
+		</display:column> 
 		
 	
 	</display:table>

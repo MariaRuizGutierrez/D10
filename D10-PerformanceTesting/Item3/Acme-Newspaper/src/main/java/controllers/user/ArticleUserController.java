@@ -138,7 +138,7 @@ public class ArticleUserController extends AbstractController {
 
 	}
 
-	// Display ----------------------------------------------------------------
+	// Display article summary----------------------------------------------------------------
 
 	@RequestMapping(value = "/displaySummary", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam final int articleId) {
@@ -150,6 +150,23 @@ public class ArticleUserController extends AbstractController {
 		result = new ModelAndView("article/displaySummary");
 		result.addObject("article", article);
 		result.addObject("requestURI", "article/user/displaySummary.do");
+
+		return result;
+	}
+
+	//Displaying writer of an article----------------------
+
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView displayUser(@RequestParam final int userId) {
+
+		ModelAndView result;
+		User user;
+
+		user = this.userService.findOne(userId);
+
+		result = new ModelAndView("user/display");
+		result.addObject("user", user);
+		result.addObject("requestURI", "article/user/display.do");
 
 		return result;
 	}
