@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ArticleService;
+import services.ChirpService;
 import services.UserService;
+import domain.Article;
+import domain.Chirp;
 import domain.User;
 import forms.UserForm;
 
@@ -24,7 +28,11 @@ public class UserController extends AbstractController {
 	// Services---------------------------------------------------------
 
 	@Autowired
-	private UserService	userService;
+	private UserService		userService;
+	@Autowired
+	private ArticleService	articlesService;
+	@Autowired
+	private ChirpService	chirpsService;
 
 
 	//Constructor--------------------------------------------------------
@@ -55,7 +63,11 @@ public class UserController extends AbstractController {
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam final int userId) {
+		Collection<Article> articles;
+		final Collection<Chirp> chirps;
 
+		articles = this.articlesService.findArticlesPublishedByUserId(userId);
+		chirps = this.chirpsService.findAllChirpsByUserId(userId);
 		ModelAndView result;
 		User user;
 
@@ -63,11 +75,12 @@ public class UserController extends AbstractController {
 
 		result = new ModelAndView("user/display");
 		result.addObject("user", user);
+		result.addObject("chirps", chirps);
+		result.addObject("articles", articles);
 		result.addObject("requestURI", "user/display.do");
 
 		return result;
 	}
-
 	//Listing-----------------------------------------------------------
 	@RequestMapping(value = "/listFollowers", method = RequestMethod.GET)
 	public ModelAndView listMyFollowers() {

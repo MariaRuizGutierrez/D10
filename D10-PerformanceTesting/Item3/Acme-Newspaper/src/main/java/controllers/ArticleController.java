@@ -58,4 +58,20 @@ public class ArticleController extends AbstractController {
 
 	}
 
+	// List ---------------------------------------------------------
+	@RequestMapping(value = "/listb", method = RequestMethod.GET)
+	public ModelAndView listArticlesByUser(@RequestParam final int userId) {
+
+		ModelAndView result;
+		final Collection<Article> articles;
+
+		articles = this.articleService.findArticlesPublishedByUserId(userId);
+		result = new ModelAndView("article/list");
+		result.addObject("articles", articles);
+		result.addObject("requestURI", "chirp/listb.do");
+
+		return result;
+
+	}
+
 }

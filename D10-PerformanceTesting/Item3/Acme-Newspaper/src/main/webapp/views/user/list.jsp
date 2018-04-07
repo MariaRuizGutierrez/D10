@@ -27,16 +27,7 @@
 	name="users" requestURI="${requestURI}" id="row">
 	
 	
-	
-	<!-- Attributes -->
-
-	<acme:column code="user.name" property="name"/>
-	<acme:column code="user.surname" property="surname"/>
-	
-	<!-- Action links -->
-
-		
-	<spring:message code="user.profile" var="profileHeader" />
+		<spring:message code="user.profile" var="profileHeader" />
 	<display:column title="${profileHeader}" sortable="true">
 		
 		<spring:url value="user/display.do" var="profileURL">
@@ -45,6 +36,15 @@
 		<a href="${profileURL}"><spring:message code="user.profile"/></a>
 		
 	</display:column>
+	<!-- Attributes -->
+
+	<acme:column code="user.name" property="name"/>
+	<acme:column code="user.surname" property="surname"/>
+	
+	<!-- Action links -->
+
+		
+
 	
 	<jstl:if test="${seguidos}">
 	<spring:message code="user.action" var="actionHeader" />
@@ -57,24 +57,7 @@
 		
 	</display:column>
 	</jstl:if>
-	
-	<spring:message code="user.articles" var="Articles" />
-	<display:column title="${Articles}" sortable="true">
-		<spring:url value="article/listb.do" var="articleURL">
-		<spring:param name="userId" value="${row.id }" />
-		</spring:url>
-			<a href="${articleURL}"><spring:message code="user.articles" /></a>
-	</display:column>
-	
-	<spring:message code="user.chirps" var="Chirps" />
-	<display:column title="${Articles}" sortable="true">
-		<spring:url value="chirp/listb.do" var="chirpURL">
-		<spring:param name="userId" value="${row.id }" />
-		</spring:url>
-			<a href="${chirpURL}"><spring:message code="user.chirps" /></a>
-	</display:column>
-	
-	
+
 	
 	<jstl:if test="${seguidos==false}">
 	<spring:message code="user.action" var="actionHeader" />
