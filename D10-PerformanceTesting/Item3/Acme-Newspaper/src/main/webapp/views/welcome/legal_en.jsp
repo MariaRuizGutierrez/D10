@@ -48,15 +48,11 @@ Access to the OWNER website implies without reservation the acceptance of these 
 
 <blockquote>
 
-<p> 
 
-<strong>1.1 .- </strong> The publication of any inappropriate word in a comment, announcement or appointment (for example, viagra, sex ...) will be deleted by an administrator.
-
-</p>
 
 <p>
 
-<Strong> 1.2 .- </strong> The use of the website of THE OWNER, does not imply the obligation of registration of the USER. The conditions of access and use of this website are strictly governed by the current legality and by the principle of good faith committing the USER to make a good use of the web. All acts that violate the legality, rights or interests of third parties are prohibited: privacy, data protection, intellectual property, etc. The OWNER expressly forbids the following:
+<Strong> 1.1 .- </strong> The use of the website of THE OWNER, does not imply the obligation of registration of the USER. The conditions of access and use of this website are strictly governed by the current legality and by the principle of good faith committing the USER to make a good use of the web. All acts that violate the legality, rights or interests of third parties are prohibited: privacy, data protection, intellectual property, etc. The OWNER expressly forbids the following:
 
 </p>
 
@@ -64,7 +60,7 @@ Access to the OWNER website implies without reservation the acceptance of these 
 
 <p>
 
-<strong> 1.2.1 .- </strong> Perform actions that can produce on the website or through it by any means any type of damage to the OWNER systems or to third parties.
+<strong> 1.1.1 .- </strong> Perform actions that can produce on the website or through it by any means any type of damage to the OWNER systems or to third parties.
 
 </p>
 
@@ -72,7 +68,7 @@ Access to the OWNER website implies without reservation the acceptance of these 
 
 <p>
 
-<Strong> 1.2.2 .- </strong> To carry out any type of publicity or commercial information directly or covertly, sending out massive emails ("spaming") or sending large messages in order to block Mail servers
+<Strong> 1.1.2 .- </strong> To carry out any type of publicity or commercial information directly or covertly, sending out massive emails ("spaming") or sending large messages in order to block Mail servers
 
 </p>
 
@@ -80,7 +76,7 @@ Access to the OWNER website implies without reservation the acceptance of these 
 
 <p>
 
-<strong> 1.3 .- </strong> THE OWNER, may at any time interrupt access to your website if it detects a use contrary to legality, good faith or these general conditions - see clause five.
+<strong> 1.2 .- </strong> THE OWNER, may at any time interrupt access to your website if it detects a use contrary to legality, good faith or these general conditions - see clause five.
 
 </p>
 
