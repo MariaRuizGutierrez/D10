@@ -85,19 +85,19 @@ public class UserServiceTest extends AbstractTest {
 				//Registrar user correctamente(poniendo teléfono!=null)
 				"usertest1", "passwordtest1", "miguel", "ternero", "calle Huertas nº 3", "662657322", "Email@email.com", null
 			}, {
-				//Registrar user con name en blanco
+				//Registrar user incorrectamente con name en blanco
 				"usertest2", "passwordtest2", "", "ternero", "calle Huertas nº 3", "662657322", "Email@email.com", javax.validation.ConstraintViolationException.class
 			}, {
 				//Registrar user con surname en blanco
 				"usertest3", "passwordtest3", "miguel", "", "calle Huertas nº 3", "662657322", "Email@email.com", javax.validation.ConstraintViolationException.class
 			}, {
-				//Registrar user con un email no válido
+				//Registrar user incorrectamente con un email no válido
 				"usertest4", "passwordtest4", "miguel", "ternero", "calle Huertas nº 3", "662657322", "Email", javax.validation.ConstraintViolationException.class
 			}, {
-				//Registrar user ya registrado
+				//Registrar user incorrectamente ya que está registrado
 				"usertest4", "passwordtest4", "miguel", "ternero", "calle Huertas nº 3", "662657322", "Email@gmail.com", org.springframework.dao.DataIntegrityViolationException.class
 			}, {
-				//Registrar user con número de teléfono vacío
+				//Registrar user correctamente con número de teléfono vacío
 				"usertest9", "passwordtest9", "name1", "surname1", "calle Huertas nº 3", "", "maria@gmail.com", null
 
 			}
@@ -388,7 +388,7 @@ public class UserServiceTest extends AbstractTest {
 	public void driverFollowUser() {
 		final Object testingData[][] = {
 			{
-				//El user 4 va a seguir al user 1 que aun no lo sige.
+				//El user 4 va a seguir de manera correcta al user 1 que aun no lo sige.
 				"user4", "user1", null
 			}, {
 				//El user 2 va a seguir al user 3 al cual sige ya y debe dar error
