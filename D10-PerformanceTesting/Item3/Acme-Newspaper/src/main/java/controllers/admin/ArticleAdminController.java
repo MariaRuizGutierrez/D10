@@ -46,6 +46,24 @@ public class ArticleAdminController extends AbstractController{
 		return result;
 
 	}
+	
+	//Listing taboo word
+	
+	@RequestMapping(value = "/listTabooWord", method = RequestMethod.GET)
+	public ModelAndView listTabooWord() {
+
+		ModelAndView result;
+		Collection<Article> articles;
+			
+
+		articles = this.articleService.articleWithTabooWord();
+
+		result = new ModelAndView("article/list");
+		result.addObject("articles", articles);
+		result.addObject("requestURI", "article/admin/list.do?d-16544-p=1");
+		return result;
+
+	}
 		
 	//Delete---------------------------------------------------------------------
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)

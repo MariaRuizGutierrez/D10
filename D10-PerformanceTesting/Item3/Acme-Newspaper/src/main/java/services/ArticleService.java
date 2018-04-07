@@ -4,6 +4,7 @@ package services;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.transaction.Transactional;
 
@@ -45,6 +46,9 @@ public class ArticleService {
 
 	@Autowired
 	SubscriptionService	subscriptionService;
+	
+	@Autowired
+	TabooWordService tabooWordService;
 
 	//Importar la que pertenece a Spring
 	@Autowired
@@ -204,5 +208,29 @@ public class ArticleService {
 		return summary;
 
 	}
-
+	
+public Collection<Article> findArticleWithTabooWord(String tabooWord){
+		
+		Collection<Article> result;
+		
+		result = this.articleRepository.findArticleWithTabooWord(tabooWord);
+		
+		return result;
+	}
+	
+	public Collection<Article> articleWithTabooWord(){
+		
+		Collection<Article> result;
+		Collection<String> tabooWords;
+		Iterator<String> it;
+		
+		result = new ArrayList<>();
+		tabooWords = this.tabooWordService.findTabooWordByName();
+		it = tabooWords.iterator();
+		while(it.hasNext())
+			result.addAll(this.findArticleWithTabooWord(it.next()));
+		
+		return result;
+		
+	}
 }
