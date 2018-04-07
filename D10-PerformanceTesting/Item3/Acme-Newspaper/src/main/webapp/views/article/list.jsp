@@ -16,9 +16,9 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib prefix="security"
-	uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <script type="text/javascript">
 	function confirmDelete(articleId) {
@@ -80,10 +80,10 @@
 	<spring:message code="article.title" var="titleHeader" />
 	<display:column property="title" title="${titleHeader}" sortable="true" />
 	
+	
 	<spring:message code="article.format.publishedMoment" var="pattern"></spring:message>
-	<spring:message code="article.publishedMoment" var="postedHeader" />
-	<display:column property="publishedMoment" title="${postedHeader}"
-		sortable="true" format="${pattern}" />	
+	<spring:message code="article.publishedMoment" var="startDateHeader" />
+	<display:column property="publishedMoment" title="${startDateHeader}" sortable="true" format="${pattern}"/>
 		
 		<!-- Boton de delete para el admin ya que puede borrar los articles que quiera pero no editarlas -->
 	<security:authorize access="hasRole('ADMIN')">
