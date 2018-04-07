@@ -94,7 +94,7 @@
 	class="displaytag">
 	<spring:message code="newspapers.title" var="nameHeader" />
 	<display:column title="${nameHeader}">
-		<spring:url value="newspaper/display.do" var="idURL">
+		<spring:url value="newspaper/admin/display.do" var="idURL">
 			<spring:param name="newspaperId" value="${row.id }" />
 		</spring:url>
 		<a href="${idURL}"><jstl:out value="${row.title}" /></a>
@@ -109,7 +109,7 @@
 	class="displaytag">
 	<spring:message code="newspapers.title" var="nameHeader" />
 	<display:column title="${nameHeader}">
-		<spring:url value="newspaper/display.do" var="idURL">
+		<spring:url value="newspaper/admin/display.do" var="idURL">
 			<spring:param name="newspaperId" value="${row.id }" />
 		</spring:url>
 		<a href="${idURL}"><jstl:out value="${row.title}" /></a>
