@@ -79,6 +79,14 @@
 					<li><a href="user/listUserNotFollowed.do?d-16544-p=1"><spring:message code="master.page.user.notFollowed"/></a>
 					<li><a href="user/listUserFollowed.do?d-16544-p=1"><spring:message code="master.page.user.followed"/></a>
 				</ul>
+				<!-- BUSQUEDA DE ARTICULOS -->
+			<li><a class="fNiv"><spring:message code="master.page.articles" /></a>
+				<ul>
+					<li class="arrow"></li>
+					
+					<li><a href="article/user/search.do?d-16544-p=1&&keyword="><spring:message code="master.page.articles.list" /></a></li>
+				</ul>
+			</li>
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">

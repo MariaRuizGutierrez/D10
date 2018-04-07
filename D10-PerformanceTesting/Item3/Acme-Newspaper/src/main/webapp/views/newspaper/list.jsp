@@ -33,25 +33,30 @@
 <!-- 	SEARCH NO AUTENTICADOS-->
 	<div>
 <security:authorize access="isAnonymous()">
+
 <form:form action="${requestURISearchNewspaper}"  method="get">
 	<label><spring:message code="newspaper.search.keyword"/></label>
 	<input type="text" name="keyword"/> 
 	<input type="submit" value="<spring:message code="newspaper.search" />" /> 	 	
 </form:form>
+
 </security:authorize>
 </div>
 <br />
 
 <!-- 	SEARCH USERS-->
-<div>
+
+<jstl:if test="${!showCreate}">
 <security:authorize access="hasRole('USER')">
 <form:form action="${requestURISearchNewspaper}"  method="get">
 	<label><spring:message code="newspaper.search.keyword"/></label>
 	<input type="text" name="keyword"/> 
 	<input type="submit" value="<spring:message code="newspaper.search" />" /> 	 	
 </form:form>
+
 </security:authorize>
-</div>
+</jstl:if>
+
 <br />
 
 
@@ -183,7 +188,7 @@
 	
 
 </display:table>
-
+<jstl:if test="${showCreate}">
 <security:authorize access="hasRole('USER')">
 	<div>
 		<a href="newspaper/user/create.do"> <spring:message
@@ -191,4 +196,4 @@
 		</a>
 	</div>
 </security:authorize>
-
+</jstl:if>

@@ -36,6 +36,22 @@ public class ArticleUserController extends AbstractController {
 	private UserService			userService;
 
 
+	//Search -----------------------------------------------------------
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView listNewspaperByKeyword(@RequestParam final String keyword) {
+		final ModelAndView result;
+		Collection<Article> articles;
+
+		articles = this.articleService.findArticleByKeyword(keyword);
+
+		result = new ModelAndView("article/list");
+		result.addObject("articles", articles);
+		result.addObject("showCreate", false);
+		result.addObject("requestURI", "article/user/search.do");
+		result.addObject("requestURISearchArticle", "article/user/search.do");
+		return result;
+	}
+
 	// List ---------------------------------------------------------
 	@RequestMapping(value = "/listb", method = RequestMethod.GET)
 	public ModelAndView listArticlesByUser(@RequestParam final int userId) {
@@ -46,6 +62,7 @@ public class ArticleUserController extends AbstractController {
 		articles = this.articleService.findArticlesPublishedByUserId(userId);
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
+		result.addObject("showCreate", false);
 		result.addObject("requestURI", "article/user/listb.do");
 
 		return result;
@@ -70,6 +87,7 @@ public class ArticleUserController extends AbstractController {
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
 		result.addObject("newspaper", newspaper);
+		result.addObject("showCreate", true);
 		result.addObject("showButtonEdit", true);
 		result.addObject("requestURI", "article/user/listMyArticles.do");
 

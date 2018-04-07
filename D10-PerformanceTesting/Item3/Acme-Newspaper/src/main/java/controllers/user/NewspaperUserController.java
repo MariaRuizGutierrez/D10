@@ -52,6 +52,7 @@ public class NewspaperUserController extends AbstractController {
 		result.addObject("showMyArticles", true);
 		result.addObject("showButtonPublish", true);
 		result.addObject("showButtonEdit", true);
+		result.addObject("showCreate", true);
 		result.addObject("requestURISearchNewspaper", "newspaper/user/search.do");
 		result.addObject("requestURI", "newspaper/user/list.do");
 		result.addObject("message", messageCode);
@@ -73,7 +74,8 @@ public class NewspaperUserController extends AbstractController {
 		result = new ModelAndView("newspaper/list");
 		result.addObject("newspapers", newspapers);
 		result.addObject("requestURI", "newspaper/user/listb.do");
-		result.addObject("requestURISearchNewspaper", "newspaper/user/search.do");
+		result.addObject("showCreate", false);
+		//result.addObject("requestURISearchNewspaper", "newspaper/user/search.do");
 		result.addObject("message", messageCode);
 		return result;
 
