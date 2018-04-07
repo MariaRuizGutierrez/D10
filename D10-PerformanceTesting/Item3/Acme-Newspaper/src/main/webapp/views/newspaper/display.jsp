@@ -44,13 +44,9 @@
 			<img src="${row.picture}" width="500" height="300">
 		</div>
 	</display:column>
-	
+	</jstl:if>
 	<display:column>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
 	<B><spring:message code="newspaper.title" /></B>
 		<jstl:out value="${row.title}"></jstl:out>
 		<p>
@@ -59,7 +55,7 @@
 		<jstl:out value="${row.description}"></jstl:out>
 		<p>
 	</display:column>
-	</jstl:if>	
+	
 	
 	</display:table>
 	
