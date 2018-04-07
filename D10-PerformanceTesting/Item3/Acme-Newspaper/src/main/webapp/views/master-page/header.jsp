@@ -104,7 +104,7 @@
 				<ul>
 					<li class="arrow"></li>		
 					<li><a href="article/user/search.do?d-16544-p=1&&keyword="><spring:message code="master.page.articles.list" /></a></li>
-					<li><a href="article/user/list.do?d-16544-p=1&&keyword="><spring:message code="master.page.articles.mylist" /></a></li>
+					<li><a href="article/user/list.do?d-16544-p=1"><spring:message code="master.page.articles.mylist" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
