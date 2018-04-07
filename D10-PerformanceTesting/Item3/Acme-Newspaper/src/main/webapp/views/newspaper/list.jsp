@@ -77,6 +77,23 @@
 					code="newspaper.display" /></a>
 		</display:column>
 	</security:authorize>
+	
+	<!-- 	DISPLAY PARA CUSTOMER (NEWSPAPER PRIVADAS QUE ME HE SUSCRITO)-->
+
+	<security:authorize access="hasRole('CUSTOMER')">
+	<jstl:if test="${showButtonDisplay}">
+		<spring:message code="newspaper.display" var="display" />
+		<display:column title="${display}" sortable="true" >
+			<jstl:if test="${newspapersSubscribed.contains(row)}">
+				<spring:url value="subscription/customer/displayNewspaper.do" var="displayURL">
+					<spring:param name="newspaperId" value="${row.id }" />
+				</spring:url>
+				<a href="${displayURL}"><spring:message
+						code="newspaper.display" /></a>
+			</jstl:if>
+		</display:column>
+	</jstl:if>
+	</security:authorize>
 	<!--  EDIT -->
 	
 	<security:authorize access="hasRole('USER')">

@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ArticleService;
 import services.CustomerService;
 import services.NewspaperService;
 import services.SubscriptionService;
+import domain.Article;
 import domain.Customer;
 import domain.Newspaper;
 import domain.Subscription;
@@ -31,9 +33,35 @@ public class SubscriptionCustomerController {
 	private CustomerService		customerService;
 
 	@Autowired
+	private ArticleService		articleService;
+
+	@Autowired
 	private SubscriptionService	subscriptionService;
 
 
+	// Display ----------------------------------------------------------------
+
+	@RequestMapping(value = "/displayNewspaper", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam final int newspaperId) {
+		final ModelAndView result;
+		Newspaper newspaper = new Newspaper();
+		final Collection<Article> articles;
+		Collection<Newspaper> myNewspapersSubscription;
+
+		newspaper = this.newspaperService.findOne(newspaperId);
+		myNewspapersSubscription = this.newspaperService.findNewspapersSubscribedByCustomerId(this.customerService.findByPrincipal().getId());
+		Assert.isTrue(myNewspapersSubscription.contains(newspaper), "you are not subscribed to this newspaper");
+
+		//TODOS LOS ARTÍCULOS DE UN PERIÓDICO
+		articles = this.articleService.findArticlesByNewspaperId(newspaperId);
+
+		result = new ModelAndView("newspaper/display");
+		result.addObject("newspaper", newspaper);
+		result.addObject("articles", articles);
+		result.addObject("requestURI", "subscription/customer/displayNewspaper.do");
+
+		return result;
+	}
 	//List private newspapers-----------------------------------------------------------
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -52,6 +80,7 @@ public class SubscriptionCustomerController {
 		result.addObject("newspapers", newspapersToSubscribe);
 		result.addObject("newspapersSubscribed", newspapersSubscribed);
 		result.addObject("showButtonSubscription", true);
+		result.addObject("showButtonDisplay", true);
 		result.addObject("requestURI", "subscription/customer/list.do");
 
 		return result;
