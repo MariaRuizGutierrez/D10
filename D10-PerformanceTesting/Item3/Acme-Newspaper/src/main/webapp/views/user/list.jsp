@@ -58,6 +58,23 @@
 	</display:column>
 	</jstl:if>
 	
+	<spring:message code="user.articles" var="Articles" />
+	<display:column title="${Articles}" sortable="true">
+		<spring:url value="article/listb.do" var="articleURL">
+		<spring:param name="userId" value="${row.id }" />
+		</spring:url>
+			<a href="${articleURL}"><spring:message code="user.articles" /></a>
+	</display:column>
+	
+	<spring:message code="user.chirps" var="Chirps" />
+	<display:column title="${Articles}" sortable="true">
+		<spring:url value="chirp/listb.do" var="chirpURL">
+		<spring:param name="userId" value="${row.id }" />
+		</spring:url>
+			<a href="${chirpURL}"><spring:message code="user.chirps" /></a>
+	</display:column>
+	
+	
 	
 	<jstl:if test="${seguidos==false}">
 	<spring:message code="user.action" var="actionHeader" />
