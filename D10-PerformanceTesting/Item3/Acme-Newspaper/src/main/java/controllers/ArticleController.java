@@ -32,6 +32,7 @@ public class ArticleController extends AbstractController {
 
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
+		result.addObject("showButtonSearchNotAuthenticated", true);
 		result.addObject("requestURI", "article/search.do");
 		result.addObject("requestURISearchArticle", "article/search.do");
 		return result;

@@ -31,7 +31,8 @@
 </script>
 
 <!-- 	SEARCH NO AUTENTICADOS -->
-	<div>
+<jstl:if test="${showButtonSearchNotAuthenticated}">
+<div>
 <security:authorize access="isAnonymous()">
 <form:form action="${requestURISearchArticle}"  method="get">
 	<label><spring:message code="article.search.keyword"/></label>
@@ -41,7 +42,7 @@
 </security:authorize>
 </div>
 <br />
-
+</jstl:if>
 <!-- 	SEARCH USERS -->
 	<div>
 <security:authorize access="hasRole('USER')">
