@@ -428,7 +428,7 @@
 		<!-- Newspapers	 -->
 		
 	<bean id="newspaper1" class="domain.Newspaper">
-		<property name="title" value="title newspaper 1" />
+		<property name="title" value="title newspaper 1 viagra" />
 		<property name="publicationDate" value="2017/09/21" />
 		<property name="description" value="description newspaper 1" />
 		<property name="picture" value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
@@ -444,7 +444,7 @@
 	<bean id="newspaper2" class="domain.Newspaper">
 		<property name="title" value="title newspaper 2" />
 		<property name="publicationDate"><null /></property>
-		<property name="description" value="description newspaper 2" />
+		<property name="description" value="description newspaper 2 sex" />
 		<property name="picture" value="https://supergracioso.com/wp-content/uploads/2015/05/Errores-en-peri%C3%B3dicos-%C2%A1INCRE%C3%8DBLES-Parte-I.jpg" />
 		<property name="open" value="true" />
 		<property name="publisher" ref="user1" />
@@ -488,7 +488,7 @@
 	<bean id="newspaper5" class="domain.Newspaper">
 		<property name="title" value="title newspaper 5" />
 		<property name="publicationDate" value="2017/09/21" />
-		<property name="description" value="description newspaper 5" />
+		<property name="description" value="description newspaper 5 cialis" />
 		<property name="picture" value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
 		<property name="open" value="true" />
 		<property name="publisher" ref="user4" />
@@ -640,14 +640,14 @@
 		
 	<bean id="chirp1" class="domain.Chirp">
 		<property name="postedMoment" value="2017/10/21" />
-		<property name="title" value="title chirp 1" />
+		<property name="title" value="title chirp 1 cialis" />
 		<property name="description" value="description chirp 1" />
 		<property name="user" ref="user1" />
 	</bean> 
 	
 	<bean id="chirp2" class="domain.Chirp">
 		<property name="postedMoment" value="2018/01/21" />
-		<property name="title" value="title chirp 2" />
+		<property name="title" value="title chirp 2 sexo" />
 		<property name="description" value="description chirp 2" />
 		<property name="user" ref="user2" />
 	</bean> 
@@ -655,7 +655,7 @@
 	<bean id="chirp3" class="domain.Chirp">
 		<property name="postedMoment" value="2018/01/21" />
 		<property name="title" value="title chirp 3" />
-		<property name="description" value="description chirp 3" />
+		<property name="description" value="description chirp 3 sex" />
 		<property name="user" ref="user3" />
 	</bean> 
 	
@@ -691,7 +691,7 @@
 		
 	 <bean id="article1" class="domain.Article">
 		<property name="publishedMoment" value="2017/09/20" />
-		<property name="title" value="title article 1" />
+		<property name="title" value="title article 1 sex" />
 		<property name="summary" value="summary article 1 this article is so long" />
 		<property name="body" value="body chirp 1" />
 		<property name="pictures">
@@ -714,7 +714,7 @@
 	<bean id="article2" class="domain.Article">
 		<property name="publishedMoment" value="2017/10/21" />
 		<property name="title" value="title article 2" />
-		<property name="body" value="body chirp 2" />
+		<property name="body" value="body chirp 2 cialis" />
 		<property name="summary" value="summary article 1 this article is so long and interesting" />
 		<property name="pictures">
 			<list>
@@ -777,7 +777,7 @@
 	<bean id="article5" class="domain.Article">
 		<property name="publishedMoment" value="2017/09/20" />
 		<property name="title" value="title article 5" />
-		<property name="summary" value="summary article 1 this article is so cool" />
+		<property name="summary" value="summary article 1 this article is so cool viagra" />
 		<property name="body" value="body chirp 5" />
 		<property name="pictures">
 			<list>
