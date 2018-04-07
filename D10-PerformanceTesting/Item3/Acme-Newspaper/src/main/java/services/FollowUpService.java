@@ -77,10 +77,10 @@ public class FollowUpService {
 	}
 
 	public void delete(final FollowUp followUp) {
-		
+
 		Assert.notNull(followUp);
 		Assert.isTrue(followUp.getId() != 0);
-		
+
 		this.followUpRepository.delete(followUp);
 
 	}
@@ -97,6 +97,11 @@ public class FollowUpService {
 		Collection<FollowUp> result;
 
 		result = this.followUpRepository.findAll();
+		return result;
+	}
+	public Collection<FollowUp> findFollowUpsByArticle(final int articleId) {
+		Collection<FollowUp> result;
+		result = this.followUpRepository.findFollowUpsByArticle(articleId);
 		return result;
 	}
 

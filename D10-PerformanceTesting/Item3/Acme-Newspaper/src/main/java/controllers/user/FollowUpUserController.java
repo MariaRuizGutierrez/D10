@@ -1,6 +1,8 @@
 
 package controllers.user;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +62,21 @@ public class FollowUpUserController extends AbstractController {
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(followUp, "followUp.commit.error");
 			}
+		return result;
+	}
+
+	// List
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list(@RequestParam final int articleId) {
+		ModelAndView result;
+		Collection<FollowUp> followUps;
+
+		followUps = this.followUpService.findFollowUpsByArticle(articleId);
+
+		result = new ModelAndView("announcement/list");
+		result.addObject("followUps", followUps);
+		result.addObject("requestURI", "followUp/user/list.do");
+
 		return result;
 	}
 
