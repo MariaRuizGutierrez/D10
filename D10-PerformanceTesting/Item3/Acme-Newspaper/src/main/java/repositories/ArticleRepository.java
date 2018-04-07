@@ -27,6 +27,7 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	@Query("select a.summary from Article a where a.id=?1")
 	String findSummaryByArticleId(int articleId);
 	
+	//Me devuelve los articulos con alguna palabra en el título, cuerpo o resumen (para las palabras tabú)
 	@Query("select a from Article a where a.title like %?1% or a.body like %?1% or a.summary like %?1%")
 	Collection<Article> findArticleWithTabooWord(String tabooWord);
 

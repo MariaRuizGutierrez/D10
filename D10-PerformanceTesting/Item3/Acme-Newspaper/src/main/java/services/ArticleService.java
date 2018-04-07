@@ -209,7 +209,7 @@ public class ArticleService {
 
 	}
 	
-public Collection<Article> findArticleWithTabooWord(String tabooWord){
+	public Collection<Article> findArticleWithTabooWord(String tabooWord){
 		
 		Collection<Article> result;
 		

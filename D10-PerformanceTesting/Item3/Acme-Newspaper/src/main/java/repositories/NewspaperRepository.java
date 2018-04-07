@@ -53,5 +53,9 @@ public interface NewspaperRepository extends JpaRepository<Newspaper, Integer> {
 
 	@Query("select s.newspaper from Subscription s where s.customer.id=?1")
 	Collection<Newspaper> findNewspapersSubscribedByCustomerId(int customerId);
+	
+	//Me devuelve los newspaper con alguna palabra en el título, cuerpo o resumen (para las palabras tabú)
+	@Query("select n from Newspaper n where n.title like %?1% or n.description like %?1%")
+	Collection<Newspaper> findNewspaperWithTabooWord(String tabooWord);
 
 }

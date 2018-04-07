@@ -46,6 +46,23 @@ public class NewspaperAdminController extends AbstractController{
 		return result;
 	}	
 	
+	//Listing
+	
+	@RequestMapping(value = "/listTabooWord", method = RequestMethod.GET)
+	public ModelAndView listTabooWord() {
+
+		ModelAndView result;
+		Collection<Newspaper> newspapers;
+				
+
+		newspapers = this.newspaperService.NewspaperWithTabooWord();
+
+		result = new ModelAndView("newspaper/list");
+		result.addObject("newspapers", newspapers);
+		result.addObject("requestURI", "newspaper/admin/list.do?d-16544-p=1");
+		return result;
+	}	
+	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView delete(int newspaperId) {
 		ModelAndView result;
