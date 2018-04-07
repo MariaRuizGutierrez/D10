@@ -101,12 +101,17 @@ public class NewspaperServiceTest extends AbstractTest {
 	}
 
 	//Caso de uso 6.1: Create a newspaper. A user who has created a newspaper is commonly referred to as a publisher. (parte 2)
+	//Caso de uso 23.1: Decide on whether a newspaper that he or she's created is public or private.
+	//El caso de uso 23.1 se va a comprobar demostrando que se puede crear un newspaper privado y publico
 	@Test
 	public void driverCreateAndSave() {
 		final Object testingData[][] = {
 			{
-				//Se crea un newspaper correctamente
+				//Se crea un newspaper correctamente publico
 				"user1", "title test", "description test", "http://www.pictureTest.com", true, null
+			}, {
+				//Se crea un newspaper correctamente privado
+				"user1", "title test", "description test", "http://www.pictureTest.com", false, null
 			}, {
 				//Se crea un newspaper incorrectamente porque lo crea un customer
 				"customer1", "title test", "description test", "http://www.pictureTest.com", true, IllegalArgumentException.class
