@@ -92,3 +92,25 @@
 	
 	</display:table>
 	</security:authorize>	
+	
+	
+	<!-- ---------------------------LISTA DE ARTICLES PARA CUSTOMERS-------------------------------- -->
+	
+	<security:authorize access="hasRole('CUSTOMER')">
+	<jstl:if test="${showButtonDisplayArticle}">
+	<h2><spring:message code="newspaper.articles" /></h2>	
+	<display:table name="articles" id="row" class="displaytag">
+
+		<spring:message code="article.display" var="displayArticleCustomer" /> 
+		<display:column title="${displayArticleCustomer}" sortable="true" >
+		<spring:url value="subscription/customer/displayArticle.do" var="articleCustomerURL">
+			<spring:param name="articleId" value="${row.id}" />
+		</spring:url>
+		<a href="${articleCustomerURL}"><B><jstl:out value="${row.title}"></jstl:out></B></a>
+		</display:column>
+	
+	</display:table>
+	</jstl:if>
+	</security:authorize>	
+	
+	<!-- ---------------------------FIN DE LISTA DE ARTICLES PARA CUSTOMERS-------------------------------- -->

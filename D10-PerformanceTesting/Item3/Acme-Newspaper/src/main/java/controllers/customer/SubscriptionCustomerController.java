@@ -39,10 +39,10 @@ public class SubscriptionCustomerController {
 	private SubscriptionService	subscriptionService;
 
 
-	// Display ----------------------------------------------------------------
+	// Display Newspaper----------------------------------------------------------------
 
 	@RequestMapping(value = "/displayNewspaper", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam final int newspaperId) {
+	public ModelAndView displayNewspaper(@RequestParam final int newspaperId) {
 		final ModelAndView result;
 		Newspaper newspaper = new Newspaper();
 		final Collection<Article> articles;
@@ -58,10 +58,31 @@ public class SubscriptionCustomerController {
 		result = new ModelAndView("newspaper/display");
 		result.addObject("newspaper", newspaper);
 		result.addObject("articles", articles);
+		result.addObject("showButtonDisplayArticle", true);
 		result.addObject("requestURI", "subscription/customer/displayNewspaper.do");
 
 		return result;
 	}
+
+	// Display Newspaper----------------------------------------------------------------
+
+	@RequestMapping(value = "/displayArticle", method = RequestMethod.GET)
+	public ModelAndView displayArticle(@RequestParam final int articleId) {
+		final ModelAndView result;
+		Article article;
+		Collection<Newspaper> myNewspapersSubscription;
+
+		article = this.articleService.findOne(articleId);
+		myNewspapersSubscription = this.newspaperService.findNewspapersSubscribedByCustomerId(this.customerService.findByPrincipal().getId());
+		Assert.isTrue(myNewspapersSubscription.contains(article.getNewspaper()), "you are not subscribed to the newspaper of this article");
+
+		result = new ModelAndView("article/display");
+		result.addObject("article", article);
+		result.addObject("requestURI", "subscription/customer/displayArticle.do");
+
+		return result;
+	}
+
 	//List private newspapers-----------------------------------------------------------
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
