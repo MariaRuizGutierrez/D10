@@ -4,6 +4,7 @@ package services;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.transaction.Transactional;
 
@@ -38,6 +39,9 @@ public class ArticleService {
 
 	@Autowired
 	AdminService		adminService;
+	
+	@Autowired
+	FollowUpService		followUpService;
 
 	//Importar la que pertenece a Spring
 	@Autowired
@@ -94,6 +98,18 @@ public class ArticleService {
 		Assert.notNull(article);
 		Assert.notNull(this.adminService.findByPrincipal());
 		Assert.isNull(article.getNewspaper().getPublicationDate(), "no se puede eliminar el articulo porque su periodico esta publicado");
+	
+		Collection<FollowUp> followUps;
+		Iterator<FollowUp> it;
+		
+		followUps = article.getFollowUps();
+		it = followUps.iterator();
+		
+		
+		while (it.hasNext()) {
+			this.followUpService.delete(it.next());
+			
+		}
 
 		this.articleRepository.delete(article);
 	}
@@ -185,6 +201,15 @@ public class ArticleService {
 
 		return summary;
 
+	}
+	
+	public Collection<Article> findArticleNewspaperNoPublished(){
+		
+		Collection<Article> result;
+		
+		result = this.articleRepository.findArticleNewspaperNoPublished();
+		
+		return result;
 	}
 
 }

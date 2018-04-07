@@ -35,6 +35,7 @@
 				</ul>
 			</li>
 			<li><a href="chirp/admin/list.do?d-16544-p=1"><spring:message code="master.page.chirps" /></a></li>
+			<li><a href="article/admin/list.do?d-16544-p=1"><spring:message code="master.page.listArticles" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('CUSTOMER')">

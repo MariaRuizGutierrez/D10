@@ -23,4 +23,8 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 
 	@Query("select a.summary from Article a where a.id=?1")
 	String findSummaryByArticleId(int articleId);
+	
+	//Query para el caso 7.1. Un admin podrá borrar aquellos articulos que aún no han sido publicados
+	@Query("select a from Article a where a.newspaper.publicationDate=null")
+	Collection<Article> findArticleNewspaperNoPublished();
 }

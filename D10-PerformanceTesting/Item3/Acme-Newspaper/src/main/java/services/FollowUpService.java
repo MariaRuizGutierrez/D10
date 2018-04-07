@@ -77,6 +77,11 @@ public class FollowUpService {
 	}
 
 	public void delete(final FollowUp followUp) {
+		
+		Assert.notNull(followUp);
+		Assert.isTrue(followUp.getId() != 0);
+		
+		this.followUpRepository.delete(followUp);
 
 	}
 
