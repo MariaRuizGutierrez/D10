@@ -68,13 +68,14 @@ public class TabooWordAdminController extends AbstractController {
 	//Saving-----------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final TabooWord tabooWord, final BindingResult binding) {
+	public ModelAndView save(@Valid TabooWord tabooWord, BindingResult binding) {
 
 		ModelAndView result;
 		ConfigurationSystem configurationSystem;
 		TabooWord tabooWordSaved;
 
 		configurationSystem = this.configurationSystemService.findConfigurationSystem();
+		tabooWord = this.tabooWordService.reconstruct(tabooWord, binding);
 
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(tabooWord);

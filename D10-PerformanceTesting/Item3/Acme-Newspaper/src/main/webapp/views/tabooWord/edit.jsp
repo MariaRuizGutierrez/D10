@@ -24,7 +24,6 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path= "default_word"/>
 	
 	<B><acme:textbox code="tabooWord.name" path="name"/></B>
 	<br />

@@ -7,6 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import domain.TabooWord;
 
@@ -24,6 +26,9 @@ public class TabooWordService {
 		
 	@Autowired
 	private AdminService	adminService;
+	
+	@Autowired
+	private Validator	validator;
 	
 	// Constructors -----------------------------------------------------------
 		
@@ -98,6 +103,25 @@ public class TabooWordService {
 		
 		result = this.tabooWordRepository.findTabooWordByName();
 		
+		return result;
+	}
+	
+	public TabooWord reconstruct(final TabooWord tabooWord, final BindingResult bindingResult) {
+		TabooWord result;
+		TabooWord tabooWordBD;
+		if (tabooWord.getId() == 0) {
+			tabooWord.setDefault_word(false);
+			
+			result = tabooWord;
+		} else {
+			tabooWordBD = this.tabooWordRepository.findOne(tabooWord.getId());
+			tabooWord.setId(tabooWordBD.getId());
+			tabooWord.setVersion(tabooWordBD.getVersion());
+			tabooWord.setDefault_word(tabooWordBD.isDefault_word());
+		
+			result = tabooWord;
+		}
+		this.validator.validate(result, bindingResult);
 		return result;
 	}
 }
