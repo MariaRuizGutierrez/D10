@@ -37,7 +37,7 @@ public class NewspaperService {
 
 	@Autowired
 	AdminService		adminService;
-	
+
 	@Autowired
 	SubscriptionService	subscriptionService;
 
@@ -83,18 +83,15 @@ public class NewspaperService {
 
 	//DELETE
 	public void delete(final Newspaper newspaper) {
-		
+
 		Collection<Subscription> subscriptions;
-		
+
 		subscriptions = this.subscriptionService.findSubscriptionByNewspaper(newspaper.getId());
-		
+
 		Assert.notNull(newspaper);
 		Assert.notNull(this.adminService.findByPrincipal());
 		//Solo se pueden eliminar los newspaper publicos
-		Assert.isTrue(newspaper.isOpen() || (newspaper.isOpen()== false && subscriptions.size() == 0), "Se pueden eliminar los periodicos publicos y privado que aún no tengas suscripciones");
-		
-
-		
+		Assert.isTrue(newspaper.isOpen() || (newspaper.isOpen() == false && subscriptions.size() == 0), "Se pueden eliminar los periodicos publicos y privado que aún no tengas suscripciones");
 
 		this.newspaperRepository.delete(newspaper);
 	}
@@ -122,6 +119,11 @@ public class NewspaperService {
 	public Collection<Newspaper> findNewspapersByKeyword(final String keyWord) {
 		Collection<Newspaper> result;
 		result = this.newspaperRepository.findNewspapersByKeyword(keyWord);
+		return result;
+	}
+	public Collection<Newspaper> findNewspapersByKeywordAuthenticate(final String keyWord) {
+		Collection<Newspaper> result;
+		result = this.newspaperRepository.findNewspapersByKeywordAuthenticate(keyWord);
 		return result;
 	}
 

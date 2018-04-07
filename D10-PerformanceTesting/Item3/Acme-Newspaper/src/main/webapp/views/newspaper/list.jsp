@@ -30,9 +30,21 @@
 	}
 </script>
 
-<!-- 	SEARCH -->
+<!-- 	SEARCH NO AUTENTICADOS-->
 	<div>
 <security:authorize access="isAnonymous()">
+<form:form action="${requestURISearchNewspaper}"  method="get">
+	<label><spring:message code="newspaper.search.keyword"/></label>
+	<input type="text" name="keyword"/> 
+	<input type="submit" value="<spring:message code="newspaper.search" />" /> 	 	
+</form:form>
+</security:authorize>
+</div>
+<br />
+
+<!-- 	SEARCH USERS-->
+<div>
+<security:authorize access="hasRole('USER')">
 <form:form action="${requestURISearchNewspaper}"  method="get">
 	<label><spring:message code="newspaper.search.keyword"/></label>
 	<input type="text" name="keyword"/> 

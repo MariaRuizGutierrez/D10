@@ -52,6 +52,7 @@ public class NewspaperUserController extends AbstractController {
 		result.addObject("showMyArticles", true);
 		result.addObject("showButtonPublish", true);
 		result.addObject("showButtonEdit", true);
+		result.addObject("requestURISearchNewspaper", "newspaper/user/search.do");
 		result.addObject("requestURI", "newspaper/user/list.do");
 		result.addObject("message", messageCode);
 
@@ -76,6 +77,21 @@ public class NewspaperUserController extends AbstractController {
 		result.addObject("message", messageCode);
 		return result;
 
+	}
+
+	//Search -----------------------------------------------------------
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView listNewspaperByKeyword(@RequestParam final String keyword) {
+		final ModelAndView result;
+		Collection<Newspaper> newspapers;
+
+		newspapers = this.newspaperService.findNewspapersByKeywordAuthenticate(keyword);
+
+		result = new ModelAndView("newspaper/list");
+		result.addObject("newspapers", newspapers);
+		result.addObject("requestURI", "newspaper/user/search.do");
+		result.addObject("requestURISearchNewspaper", "newspaper/user/search.do");
+		return result;
 	}
 
 	// Create -----------------------------------------------------------------
