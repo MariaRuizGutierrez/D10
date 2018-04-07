@@ -76,19 +76,18 @@
 		<a href="${articleURL}"><spring:message code="newspaper.article.summary" /></a>
 		</display:column>
 		
-		<!-- QUE ME LLEVE AL DISPLAY DE ARTICLE -->
-		<%-- <spring:message code="newspaper.article.title" var="title" />
-		<display:column title="${title}" sortable="true" >
-		<spring:url value="newspaper/listMaker.do" var="renURL">
-			<spring:param name="rendezvousId" value="${row.id}" />
+		<spring:message code="newspaper.articles" var="writer" />
+		<display:column title="${writer}" sortable="true" >
+		<spring:url value="article/user/display.do" var="renURL">
+			<spring:param name="articleId" value="${row.id}" />
 		</spring:url>
-		<a href="${renURL}"><spring:message code="user.maker" /></a>
-		</display:column> --%>
+		<a href="${renURL}"><spring:message code="newspaper.articles" /></a>
+		</display:column> 
 		
 		<!-- CUANDO ESTÉ EL DISPLAY DE PROFILE LO PONGO AQUÍ -->
 		<spring:message code="newspaper.article.writer" var="writer" />
 		<display:column title="${writer}" sortable="true" >
-		<spring:url value="article/user/display.do" var="renURL">
+		<spring:url value="article/user/displayUser.do" var="renURL">
 			<spring:param name="userId" value="${row.writer.id}" />
 		</spring:url>
 		<a href="${renURL}"><spring:message code="newspaper.article.writer" /></a>
@@ -96,32 +95,4 @@
 		
 	
 	</display:table>
-	</security:authorize>
-	
-	
-	<!-- public String substring(final Article article) {
-
-		final String summary = article.getSummary();
-		final String sSubCadena = summary.substring(0, 10);
-		return sSubCadena;
-
-	} -->
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	</security:authorize>	

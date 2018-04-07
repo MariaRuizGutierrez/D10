@@ -27,8 +27,13 @@
 	</definition>
 	
 	<definition name="article/displaySummary" extends="master.page">	
-		<put-attribute name="title" value="Sumario" />
+		<put-attribute name="title" value="Summary" />
 		<put-attribute name="body" value="/views/article/displaySummary.jsp" />
+	</definition>
+	
+	<definition name="article/display" extends="master.page">	
+		<put-attribute name="title" value="Display article" />
+		<put-attribute name="body" value="/views/article/display.jsp" />
 	</definition>
 	
 	
