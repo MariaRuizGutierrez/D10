@@ -20,37 +20,23 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="article/user/edit.do" modelAttribute="article">
+<form:form action="followUp/user/edit.do" modelAttribute="article">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<%-- <form:hidden path="publishedMoment" />
-	<form:hidden path="writer" />
-	<form:hidden path="followUps" /> --%>
-	<form:hidden path="newspaper" />
+	<form:hidden path="article" />
 <!-- ATRIBUTOS -->
-	<acme:textbox code="article.title" path="title"/>
+	<acme:textbox code="followUp.title" path="title"/>
 	<br />
-	<acme:textbox code="article.summary" path="summary"/>
+	<acme:textbox code="followUp.summary" path="summary"/>
 	<br />
-	<acme:textbox code="article.body" path="body"/>
+	<acme:textbox code="followUp.text" path="text"/>
 	<br />
-	<acme:textbox code="article.pictures" path="pictures" placeHolder="http://"/>
-	<br />
-	<acme:booleanselect code="article.draftMode" path="draftMode"/>
+	<acme:textbox code="followUp.pictures" path="pictures" placeHolder="http://"/>
 	<br />
 	
 <!-- BOTONES -->
 
-	<input type="submit" name="save" value="<spring:message code="article.save" />" />&nbsp; 
-
-	<spring:url value="article/user/listMyArticles.do" var="editURL">
-			<spring:param name="newspaperId" value="${article.newspaper.id}" />
-			<spring:param name="d-16544-p" value="1" />
-	</spring:url>
-	<acme:cancel
-		url="${editURL }"
-		code="chirp.cancel" />
-		
+	<input type="submit" name="save" value="<spring:message code="followUp.save" />" />&nbsp; 
 		
 </form:form>

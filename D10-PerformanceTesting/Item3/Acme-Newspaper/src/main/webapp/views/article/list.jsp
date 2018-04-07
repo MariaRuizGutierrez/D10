@@ -137,7 +137,7 @@
 </display:column>
 
 <security:authorize access="hasRole('USER')">
-		<spring:message code="article.createFollowUp"
+		<spring:message code="followUp.createFollowUp"
 			var="createFollowUp" />
 		<display:column title="${createFollowUp}" sortable="true" >
 		<%-- <jstl:if test="${util.organisedMoment(row.organisedMoment)==true}"> --%>
@@ -145,7 +145,21 @@
 				<spring:param name="articleId" value="${row.id}" />
 			</spring:url>
 			<a href="${editURL}"><spring:message
-					code="article.followUp" /></a>
+					code="followUp.create" /></a>
+		<%-- </jstl:if> --%>
+		</display:column>
+	</security:authorize>
+	
+	<security:authorize access="hasRole('USER')">
+		<spring:message code="followU.listFollowUp"
+			var="listFollowUp" />
+		<display:column title="${listFollowUp}" sortable="true" >
+		<%-- <jstl:if test="${util.organisedMoment(row.organisedMoment)==true}"> --%>
+			<spring:url value="followUp/user/list.do" var="editURL">
+				<spring:param name="articleId" value="${row.id}" />
+			</spring:url>
+			<a href="${editURL}"><spring:message
+					code="followUp.list" /></a>
 		<%-- </jstl:if> --%>
 		</display:column>
 	</security:authorize>
