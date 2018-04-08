@@ -25,6 +25,13 @@
 			<li><a class="fNiv"><spring:message	code="master.page.administrator" /></a>
 				<ul>
 					<li class="arrow"></li>			
+					<li><a href="profile/admin/edit.do"><spring:message code="master.page.users.edit" /></a></li>
+					<li><a href="admin/dashboard.do"><spring:message code="master.page.statistics" /></a>
+				</ul>
+			</li>
+			<li><a class="fNiv"><spring:message	code="master.page.administrator" /></a>
+				<ul>
+					<li class="arrow"></li>			
 					<li><a href="admin/dashboard.do"><spring:message code="master.page.statistics" /></a>
 				</ul>
 			</li>
@@ -63,6 +70,7 @@
 			<li><a class="fNiv"><spring:message	code="master.page.customer" /></a>
 				<ul>
 					<li class="arrow"></li>
+					<li><a href="profile/customer/edit.do"><spring:message code="master.page.users.edit" /></a></li>
 				</ul>
 			</li>
 			
