@@ -25,8 +25,6 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="publicationMoment"/>
-	<form:hidden path="article"/>
 
 	<!-- ATRIBUTOS -->
 	<acme:textbox code="followUp.title" path="title" />
@@ -42,4 +40,9 @@
 	<!-- BOTONES -->
 	<input type="submit" name="save"
 		value="<spring:message code="followUp.save"/>" />&nbsp;
+		
+		<acme:cancel
+		url="article/user/list.do?d-16544-p=1"
+		code="chirp.cancel" />
 </form:form>
+
