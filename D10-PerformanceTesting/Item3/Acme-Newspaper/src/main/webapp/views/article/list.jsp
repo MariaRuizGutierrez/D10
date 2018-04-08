@@ -125,6 +125,27 @@
 </security:authorize>
 
 
+<security:authorize access="hasRole('ADMIN')">
+	<spring:message code="article.draftMode" var="draftMode" />
+	<display:column title="${draftMode}">
+		<jstl:if test="${row.draftMode==true}">
+			<div
+				style=" width: 30px; height: 30px; margin-left: 20px; ">
+
+				<img src="images/yes.png" width="30" height="30">
+			</div>
+		</jstl:if>
+		<jstl:if test="${row.draftMode==false}">
+			<div
+				style=" width: 30px; height: 30px; margin-left: 20px; ">
+
+				<img src="images/no.png" width="30" height="30">
+			</div>
+		</jstl:if>
+</display:column>
+</security:authorize>
+
+
 <jstl:if test="${showCreateFollowUp}">
 <security:authorize access="hasRole('USER')">
 		<spring:message code="article.createFollowUp"
