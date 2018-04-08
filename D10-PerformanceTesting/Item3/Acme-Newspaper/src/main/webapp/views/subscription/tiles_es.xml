@@ -15,11 +15,6 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
       
 <tiles-definitions>
-
-	<definition name="subscription/list" extends="master.page">	
-		<put-attribute name="title" value="Lista de suscripcions" />
-		<put-attribute name="body" value="/views/subscription/list.jsp" />
-	</definition>
 	
 	<definition name="subscription/edit" extends="master.page">	
 		<put-attribute name="title" value="Editar suscripcion" />
