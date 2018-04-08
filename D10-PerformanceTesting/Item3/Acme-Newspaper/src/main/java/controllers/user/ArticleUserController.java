@@ -183,8 +183,12 @@ public class ArticleUserController extends AbstractController {
 
 		ModelAndView result;
 		String summary;
+		Article article;
 
 		summary = this.articleService.findSummaryByArticleId(articleId);
+		article = this.articleService.findOne(articleId);
+		if (!article.getNewspaper().isOpen())
+			Assert.isTrue(this.userService.findByPrincipal().getArticles().contains(article), "This article belongs to a private newspaper that is not yours");
 
 		result = new ModelAndView("article/displaySummary");
 
@@ -204,6 +208,9 @@ public class ArticleUserController extends AbstractController {
 
 		article = this.articleService.findOne(articleId);
 
+		if (!article.getNewspaper().isOpen())
+			Assert.isTrue(this.userService.findByPrincipal().getArticles().contains(article), "This article belongs to a private newspaper that is not yours");
+
 		result = new ModelAndView("article/displaySummary");
 		result.addObject("article", article);
 		result.addObject("requestURI", "article/user/displaySummary.do");
@@ -219,6 +226,9 @@ public class ArticleUserController extends AbstractController {
 		Article article = new Article();
 
 		article = this.articleService.findOne(articleId);
+
+		if (!article.getNewspaper().isOpen())
+			Assert.isTrue(this.userService.findByPrincipal().getArticles().contains(article), "This article belongs to a private newspaper that is not yours");
 
 		result = new ModelAndView("article/display");
 		result.addObject("article", article);

@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -74,46 +73,31 @@ public class NewspaperCustomerController extends AbstractController {
 		final ModelAndView result;
 		Newspaper newspaper = new Newspaper();
 		final Collection<Article> articles;
+		Collection<Newspaper> myNewspapersSubscription;
+		boolean hideAttributes;
+		boolean isSubscribed;
 
 		newspaper = this.newspaperService.findOne(newspaperId);
+		myNewspapersSubscription = this.newspaperService.findNewspapersSubscribedByCustomerId(this.customerService.findByPrincipal().getId());
+		isSubscribed = myNewspapersSubscription.contains(newspaper);
 
 		//TODOS LOS ARTÍCULOS DE UN PERIÓDICO
 		articles = this.articleService.findArticlesByNewspaperId(newspaperId);
 
+		//Si no esta suscrito, escondo sus atributos
+		hideAttributes = !isSubscribed;
+
 		result = new ModelAndView("newspaper/display");
 		result.addObject("newspaper", newspaper);
 		result.addObject("articles", articles);
+		result.addObject("showButtonDisplayArticle", true);
+		result.addObject("hideAttributes", hideAttributes);
 		result.addObject("requestURI", "newspaper/customer/display.do");
 
 		return result;
 	}
 
 	//-----------------------CODIGO QUE ANTES ESTABA EN SubscriptionCustomerController
-
-	// Display Newspaper----------------------------------------------------------------
-
-	@RequestMapping(value = "/displayNewspaperSubscripted", method = RequestMethod.GET)
-	public ModelAndView displayNewspaper(@RequestParam final int newspaperId) {
-		final ModelAndView result;
-		Newspaper newspaper = new Newspaper();
-		final Collection<Article> articles;
-		Collection<Newspaper> myNewspapersSubscription;
-
-		newspaper = this.newspaperService.findOne(newspaperId);
-		myNewspapersSubscription = this.newspaperService.findNewspapersSubscribedByCustomerId(this.customerService.findByPrincipal().getId());
-		Assert.isTrue(myNewspapersSubscription.contains(newspaper), "you are not subscribed to this newspaper");
-
-		//TODOS LOS ARTÍCULOS DE UN PERIÓDICO
-		articles = this.articleService.findArticlesByNewspaperId(newspaperId);
-
-		result = new ModelAndView("newspaper/display");
-		result.addObject("newspaper", newspaper);
-		result.addObject("articles", articles);
-		result.addObject("showButtonDisplayArticle", true);
-		result.addObject("requestURI", "newspaper/customer/displayNewspaperSubscripted.do");
-
-		return result;
-	}
 
 	//List private newspapers-----------------------------------------------------------
 
@@ -133,7 +117,6 @@ public class NewspaperCustomerController extends AbstractController {
 		result.addObject("newspapers", newspapersToSubscribe);
 		result.addObject("newspapersSubscribed", newspapersSubscribed);
 		result.addObject("showButtonSubscription", true);
-		result.addObject("showButtonDisplay", true);
 		result.addObject("requestURI", "newspaper/customer/listAllPrivate.do");
 
 		return result;
