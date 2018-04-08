@@ -53,6 +53,7 @@ public class NewspaperUserController extends AbstractController {
 		result.addObject("showButtonPublish", true);
 		result.addObject("showButtonEdit", true);
 		result.addObject("showCreate", true);
+		result.addObject("requestProfileURL", "/user/display.do");
 		result.addObject("requestURISearchNewspaper", "newspaper/user/search.do");
 		result.addObject("requestURI", "newspaper/user/list.do");
 		result.addObject("message", messageCode);
