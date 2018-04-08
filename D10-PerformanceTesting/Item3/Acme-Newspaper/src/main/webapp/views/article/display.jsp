@@ -64,13 +64,15 @@
 	</p>
 	
 	
-	<%--  <p>
 	
 	<spring:message code="article.pictures" var="titleHeader" />
-	<jstl:out value="${row.pictures}"></jstl:out>
-	
-	</p> 
- --%>
+	<table>
+	<tr>
+	<jstl:forEach items="${row.pictures}" var="picture">
+	<td><img src="${picture}" width="250" height="150"></td>
+	</jstl:forEach>
+</tr>
+</table>
 	
 </display:column>
 
