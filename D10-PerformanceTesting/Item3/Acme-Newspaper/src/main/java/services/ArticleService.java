@@ -222,6 +222,8 @@ public class ArticleService {
 	
 	public Set<Article> articleWithTabooWord(){
 		
+		this.adminService.checkPrincipal();
+		
 		Set<Article> result;
 		Collection<String> tabooWords;
 		Iterator<String> it;

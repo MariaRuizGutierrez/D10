@@ -980,4 +980,8 @@
 		<property name="name" value="cialis"/>
 		<property name="default_word" value="true"/>
 	</bean>
+	<bean id="tabooWord5" class="domain.TabooWord">
+		<property name="name" value="cialis 1"/>
+		<property name="default_word" value="false"/>
+	</bean>
 </beans>

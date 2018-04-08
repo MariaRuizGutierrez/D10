@@ -268,6 +268,8 @@ public class NewspaperService {
 	
 	public Set<Newspaper> NewspaperWithTabooWord(){
 		
+		this.adminService.checkPrincipal();
+		
 		Set<Newspaper> result;
 		Collection<String> tabooWords;
 		Iterator<String> it;

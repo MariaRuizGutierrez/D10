@@ -21,6 +21,7 @@ public class TabooWordService {
 	// Managed repository -----------------------------------------------------
 	@Autowired
 	private TabooWordRepository	tabooWordRepository;
+	
 		
 	// Supporting services ----------------------------------------------------
 		
@@ -39,7 +40,7 @@ public class TabooWordService {
 	// Simple CRUD methods ----------------------------------------------------
 	
 	public TabooWord create(){
-		
+		this.adminService.checkPrincipal();
 		TabooWord result;
 		
 		result = new TabooWord();
@@ -50,20 +51,22 @@ public class TabooWordService {
 	}
 	
 	public TabooWord findOne(int tabooWordId){
-		
+		this.adminService.checkPrincipal();
 		TabooWord result;
 		
 		Assert.notNull(tabooWordId);
 		Assert.isTrue(tabooWordId != 0);
 		
+		
 		result = this.tabooWordRepository.findOne(tabooWordId);
+		Assert.isTrue(result.isDefault_word() == false);
 		
 		return result;
 		
 	}
 	
 	public Collection<TabooWord> findAll(){
-		
+		this.adminService.checkPrincipal();
 		Collection<TabooWord> result;
 		
 		result = this.tabooWordRepository.findAll();
@@ -87,7 +90,7 @@ public class TabooWordService {
 	}
 	
 	public void delete(TabooWord tabooWord){
-		
+		this.adminService.checkPrincipal();
 		Assert.notNull(tabooWord);
 		Assert.isTrue(tabooWord.getId() != 0);
 		
@@ -123,5 +126,9 @@ public class TabooWordService {
 		}
 		this.validator.validate(result, bindingResult);
 		return result;
+	}
+	
+	public void flush(){
+		this.tabooWordRepository.flush();
 	}
 }

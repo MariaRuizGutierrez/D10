@@ -132,6 +132,8 @@ public class ChirpService {
 
 	public Set<Chirp> ChirpWithTabooWord() {
 
+		this.adminService.checkPrincipal();
+		
 		Set<Chirp> result;
 		Collection<String> tabooWords;
 		Iterator<String> it;
