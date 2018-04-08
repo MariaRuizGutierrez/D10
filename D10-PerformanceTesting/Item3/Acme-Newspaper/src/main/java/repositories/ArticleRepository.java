@@ -30,5 +30,8 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	//Me devuelve los articulos con alguna palabra en el título, cuerpo o resumen (para las palabras tabú)
 	@Query("select a from Article a where a.title like %?1% or a.body like %?1% or a.summary like %?1%")
 	Collection<Article> findArticleWithTabooWord(String tabooWord);
+	
+	@Query("select a from Article a where a.writer.id=?1 and a.publishedMoment!=null and a.newspaper.publicationDate!=null")
+	Collection<Article> findArticlesIfNewspaperPublishedByUserId(int userId);
 
 }

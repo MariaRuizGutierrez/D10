@@ -161,6 +161,16 @@ public class ArticleService {
 	public void flush() {
 		this.articleRepository.flush();
 	}
+	
+	public Collection<Article> findArticlesIfNewspaperPublishedByUserId(int userId){
+		
+		Collection<Article> result;
+		
+		result = this.articleRepository.findArticlesIfNewspaperPublishedByUserId(userId);
+		
+		return result;
+		
+	}
 
 	// Other business methods -------------------------------------------------
 
