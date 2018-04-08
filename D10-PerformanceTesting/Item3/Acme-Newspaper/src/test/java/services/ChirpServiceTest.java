@@ -15,8 +15,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
-import domain.Actor;
 import domain.Chirp;
+import domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -133,28 +133,28 @@ public class ChirpServiceTest extends AbstractTest {
 	public void driverListChirpsOfMyFollowers() {
 		final Object testingData[][] = {
 			{
-				//El user 1 tiene seguidores y por tanto hay chirridos
-				"user1", null
+				//El user 1 tiene 5 chirps en sus seguidores
+				"user1", 5, null
 			}, {
-				//El admin no tiene seguidores posibles entonces no hay chirps
-				"admin", IllegalArgumentException.class
+				//El user 2 no tiene un total de 4 chirps asociadas a sus seguidores.
+				"user2", 4, IllegalArgumentException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
-			this.templateListChirpsOfMyFollowers(super.getEntityId((String) testingData[i][0]), (Class<?>) testingData[i][1]);
+			this.templateListChirpsOfMyFollowers(super.getEntityId((String) testingData[i][0]), (int) testingData[i][1], (Class<?>) testingData[i][2]);
 	}
 
-	private void templateListChirpsOfMyFollowers(final int usernameId, final Class<?> expected) {
+	private void templateListChirpsOfMyFollowers(final int usernameId, final int size, final Class<?> expected) {
 		Class<?> caught;
-		Actor actorConnected;
-		actorConnected = this.actorService.findOne(usernameId);
+		User userConnected;
+		userConnected = this.userService.findOne(usernameId);
 		Collection<Chirp> chirps;
 
 		caught = null;
 		try {
-			super.authenticate(actorConnected.getUserAccount().getUsername());
+			super.authenticate(userConnected.getUserAccount().getUsername());
 			chirps = this.chirpService.getChirpsOfMyFollowers(usernameId);
-			Assert.notEmpty(chirps);
+			Assert.isTrue(chirps.size() == size);
 			this.unauthenticate();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();

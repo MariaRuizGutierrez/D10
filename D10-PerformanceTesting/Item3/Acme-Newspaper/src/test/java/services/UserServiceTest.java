@@ -455,18 +455,18 @@ public class UserServiceTest extends AbstractTest {
 	public void driverListFollowed() {
 		final Object testingData[][] = {
 			{
-				//El user 1 tiene seguidores.
-				"user1", null
+				//El user 4 no sigue a nadie.
+				"user4", 0, null
 			}, {
-				//El admin no tiene la posibilidad de tener seguidores por tanto no puede listarlos
-				"admin", NullPointerException.class
+				//El user 4 no sige a nadie por tanto debe dar error
+				"user4", 4, IllegalArgumentException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
-			this.templateListFollowed(super.getEntityId((String) testingData[i][0]), (Class<?>) testingData[i][1]);
+			this.templateListFollowed(super.getEntityId((String) testingData[i][0]), (int) testingData[i][1], (Class<?>) testingData[i][2]);
 	}
 
-	private void templateListFollowed(final int usernameId, final Class<?> expected) {
+	private void templateListFollowed(final int usernameId, final int size, final Class<?> expected) {
 		Class<?> caught;
 		User user;
 		Collection<User> followed;
@@ -476,7 +476,7 @@ public class UserServiceTest extends AbstractTest {
 		try {
 			super.authenticate(user.getUserAccount().getUsername());
 			followed = user.getFollowed();
-			Assert.notEmpty(followed);
+			Assert.isTrue(followed.size() == size);
 			this.unauthenticate();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
@@ -484,23 +484,23 @@ public class UserServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 	}
 
-	//Use Case 16.4 List the users who follow him or her..
+	//Use Case 16.4 List the users who follow him or her..lo siguen
 	@Test
 	public void driverListFollowers() {
 		final Object testingData[][] = {
 			{
-				//El user 1 es seguido por otros usuarios
-				"user1", null
+				//El user 1 es seguido por 2 usuarios.
+				"user1", 2, null
 			}, {
-				//El admin no tiene la posibilidad de tener seguidores por tanto no puede listarlos
-				"admin", NullPointerException.class
+				//El user 4 no es seguido por 2 usuarios por tanto debe ser error
+				"user4", 2, IllegalArgumentException.class
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
-			this.templateListFollowers(super.getEntityId((String) testingData[i][0]), (Class<?>) testingData[i][1]);
+			this.templateListFollowers(super.getEntityId((String) testingData[i][0]), (int) testingData[i][1], (Class<?>) testingData[i][2]);
 	}
 
-	private void templateListFollowers(final int usernameId, final Class<?> expected) {
+	private void templateListFollowers(final int usernameId, final int size, final Class<?> expected) {
 		Class<?> caught;
 		User user;
 		Collection<User> followers;
@@ -510,7 +510,7 @@ public class UserServiceTest extends AbstractTest {
 		try {
 			super.authenticate(user.getUserAccount().getUsername());
 			followers = user.getFollowers();
-			Assert.notEmpty(followers);
+			Assert.isTrue(followers.size() == size);
 			this.unauthenticate();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
