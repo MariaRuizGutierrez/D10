@@ -64,6 +64,11 @@
 			<spring:param name="userId" value="${row.id }" />
 			</spring:url>
 		</security:authorize>
+		<security:authorize access="hasRole('CUSTOMER')">
+			<spring:url value="article/customer/list.do" var="articleURL">
+			<spring:param name="userId" value="${row.id }" />
+			</spring:url>
+		</security:authorize>
 			<a href="${articleURL}"><spring:message code="user.articles" /></a>
 	</p>
 		<p>
@@ -75,6 +80,11 @@
 		</security:authorize>
 		<security:authorize access="hasRole('USER')">
 			<spring:url value="chirp/user/listb.do" var="chirpURL">
+			<spring:param name="userId" value="${row.id }" />
+			</spring:url>
+		</security:authorize>
+		<security:authorize access="hasRole('CUSTOMER')">
+			<spring:url value="chirp/customer/list.do" var="chirpURL">
 			<spring:param name="userId" value="${row.id }" />
 			</spring:url>
 		</security:authorize>

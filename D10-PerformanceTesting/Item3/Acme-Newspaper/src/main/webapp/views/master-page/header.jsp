@@ -80,6 +80,12 @@
 				</ul>
 			</li>
 			
+						<li><a class="fNiv"><spring:message code="master.page.user"/></a>
+				<ul>
+					<li><a href="user/customer/list.do?d-16544-p=1"><spring:message code="master.page.users.list" /></a></li>
+				</ul>
+				</li>
+			
 			
 		</security:authorize>
 		
@@ -114,6 +120,7 @@
 					<li><a href="user/listUserNotFollowed.do?d-16544-p=1"><spring:message code="master.page.user.notFollowed"/></a>
 					<li><a href="user/listUserFollowed.do?d-16544-p=1"><spring:message code="master.page.user.followed"/></a>
 				</ul>
+				</li>
 				<!-- BUSQUEDA DE ARTICULOS -->
 			<li><a class="fNiv"><spring:message code="master.page.articles" /></a>
 				<ul>
