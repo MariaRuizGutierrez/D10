@@ -65,6 +65,20 @@ public class ArticleAdminController extends AbstractController {
 
 	}
 
+	// List ---------------------------------------------------------
+	@RequestMapping(value = "/listb", method = RequestMethod.GET)
+	public ModelAndView listArticlesByUser(@RequestParam final int userId) {
+
+		ModelAndView result;
+		final Collection<Article> articles;
+
+		articles = this.articleService.findArticlesByUserId(userId);
+		result = new ModelAndView("article/list");
+		result.addObject("articles", articles);
+		result.addObject("requestURI", "article/admin/listb.do");
+		return result;
+	}
+
 	//Listing taboo word
 
 	@RequestMapping(value = "/listTabooWord", method = RequestMethod.GET)

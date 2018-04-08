@@ -38,5 +38,18 @@ public class ArticleCustomerController extends AbstractController {
 		result.addObject("requestURISearchArticle", "article/customer/search.do");
 		return result;
 	}
+	// List ---------------------------------------------------------
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView listArticlesByUser(@RequestParam final int userId) {
+
+		ModelAndView result;
+		final Collection<Article> articles;
+
+		articles = this.articleService.findArticlesByUserId(userId);
+		result = new ModelAndView("article/list");
+		result.addObject("articles", articles);
+		result.addObject("requestURI", "article/customer/list.do");
+		return result;
+	}
 
 }
