@@ -26,18 +26,16 @@
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="users" requestURI="${requestURI}" id="row">
 	
+		
+		<spring:message code="user.profile" var="userHeader" />
+		<display:column title="${userHeader}" sortable="true">
+			<spring:url value="user/display.do" var="userURL">
+				<spring:param name="userId" value="${row.id }" />
+			</spring:url>
+			<a href="${userURL}"><spring:message code ="user.profile"/></a>
+		</display:column>
+		
 	
-		<spring:message code="user.profile" var="profileHeader" />
-		<display:column title="${profileHeader}" sortable="true">
-		
-		
-		<spring:url value="${requestProfileURL}" var="profileURL">
-		<spring:param name="userId" value="${row.id}"/>
-		</spring:url>
-		
-		<a href="${profileURL}"><spring:message code="user.profile"/></a>
-		
-	</display:column>
 	<!-- Attributes -->
 
 	<acme:column code="user.name" property="name"/>

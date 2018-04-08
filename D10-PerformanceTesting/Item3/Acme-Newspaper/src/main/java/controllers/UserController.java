@@ -110,6 +110,7 @@ public class UserController extends AbstractController {
 
 		result = new ModelAndView("user/list");
 		result.addObject("users", userConnected.getFollowed());
+		result.addObject("seguidos", true);
 		result.addObject("requestProfileURL", "/user/display.do");
 		result.addObject("requestURI", "/user/list.do");
 
@@ -139,24 +140,6 @@ public class UserController extends AbstractController {
 
 	}
 
-	@RequestMapping(value = "/listUserFollowed", method = RequestMethod.GET)
-	public ModelAndView listUserFollowed() {
-		ModelAndView result;
-		User userConnected;
-		Collection<User> userFollowed;
-
-		userConnected = this.userService.findByPrincipal();
-		userFollowed = userConnected.getFollowed();
-
-		result = new ModelAndView("user/list");
-		result.addObject("users", userFollowed);
-		result.addObject("seguidos", true);
-		result.addObject("requestProfileURL", "/user/display.do");
-		result.addObject("requestURI", "/user/list.do");
-
-		return result;
-
-	}
 	//Displaying----------------------
 
 	//Create----------------------
@@ -251,16 +234,15 @@ public class UserController extends AbstractController {
 			User userToUnFollow;
 			userToUnFollow = this.userService.findOne(userId);
 			this.userService.unFollowUser(userToUnFollow);
-			result = this.listUserFollowed();
+			result = this.listMyFollowed();
 			result.addObject("message", "user.unfollow.commit.ok");
 		} catch (final Throwable oops) {
-			result = this.listUserFollowed();
+			result = this.listMyFollowed();
 			result.addObject("message", "user.unfollow.commit.error");
 		}
 		return result;
 
 	}
-
 	// Ancillary methods ------------------------------------------------------
 
 	protected ModelAndView createEditModelAndView(final UserForm userForm) {

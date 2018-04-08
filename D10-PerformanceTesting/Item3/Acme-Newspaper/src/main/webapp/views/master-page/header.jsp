@@ -136,7 +136,6 @@
 					<li><a href="user/listFollowers.do?d-16544-p=1"><spring:message code="master.page.user.followers"/></a>
 					<li><a href="user/listFollowed.do?d-16544-p=1"><spring:message code="master.page.user.followed"/></a>
 					<li><a href="user/listUserNotFollowed.do?d-16544-p=1"><spring:message code="master.page.user.notFollowed"/></a>
-					<li><a href="user/listUserFollowed.do?d-16544-p=1"><spring:message code="master.page.user.followed"/></a>
 				</ul>
 				</li>
 				<!-- BUSQUEDA DE ARTICULOS -->
