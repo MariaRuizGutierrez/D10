@@ -23,18 +23,19 @@ public class ArticleCustomerController extends AbstractController {
 	private ArticleService	articleService;
 
 
-	// List ---------------------------------------------------------
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView listArticlesByUser(@RequestParam final int userId) {
+	//Search -----------------------------------------------------------
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView listNewspaperByKeyword(@RequestParam final String keyword) {
+		final ModelAndView result;
+		Collection<Article> articles;
 
-		ModelAndView result;
-		final Collection<Article> articles;
+		articles = this.articleService.findArticleByKeyword(keyword);
 
-		articles = this.articleService.findArticlesPublishedByUserId(userId);
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
-		result.addObject("requestURI", "article/customer/list.do");
-
+		result.addObject("showSearch", true);
+		result.addObject("requestURI", "article/customer/search.do");
+		result.addObject("requestURISearchArticle", "article/customer/search.do");
 		return result;
 	}
 

@@ -30,32 +30,14 @@
 	}
 </script>
 
-<!-- 	SEARCH NO AUTENTICADOS -->
-<jstl:if test="${showButtonSearchNotAuthenticated}">
-<div>
-<security:authorize access="isAnonymous()">
-<form:form action="${requestURISearchArticle}"  method="get">
-	<label><spring:message code="article.search.keyword"/></label>
-	<input type="text" name="keyword"/> 
-	<input type="submit" value="<spring:message code="article.search" />" /> 	 	
-</form:form>
-</security:authorize>
-</div>
-<br />
-</jstl:if>
-<!-- 	SEARCH USERS -->
-	<div>
-<security:authorize access="hasRole('USER')">
 <jstl:if test="${showSearch}">
 <form:form action="${requestURISearchArticle}"  method="get">
 	<label><spring:message code="article.search.keyword"/></label>
 	<input type="text" name="keyword"/> 
 	<input type="submit" value="<spring:message code="article.search" />" /> 	 	
 </form:form>
-</jstl:if>
-</security:authorize>
-</div>
 <br />
+</jstl:if>
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="articles" requestURI="${requestURI}" id="row">
