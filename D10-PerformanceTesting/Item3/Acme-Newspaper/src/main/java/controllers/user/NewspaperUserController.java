@@ -184,15 +184,24 @@ public class NewspaperUserController extends AbstractController {
 		final ModelAndView result;
 		Newspaper newspaper = new Newspaper();
 		final Collection<Article> articles;
+		boolean isMyNewspaperPrivate;
+		boolean hideAttributes;
 
 		newspaper = this.newspaperService.findOne(newspaperId);
 
+		//Si el periodico es privado y creado por el user se muestra completamente, si no, solo la tabla de contenido
+		isMyNewspaperPrivate = (newspaper.isOpen() == false && newspaper.getPublisher().equals(this.userService.findByPrincipal()));
+		if (isMyNewspaperPrivate)
+			hideAttributes = false;
+		else
+			hideAttributes = true;
 		//TODOS LOS ARTÍCULOS DE UN PERIÓDICO
 		articles = this.articleService.findArticlesByNewspaperId(newspaperId);
 
 		result = new ModelAndView("newspaper/display");
 		result.addObject("newspaper", newspaper);
 		result.addObject("articles", articles);
+		result.addObject("hideAttributes", hideAttributes);
 		result.addObject("requestURI", "newspaper/user/display.do");
 
 		return result;
