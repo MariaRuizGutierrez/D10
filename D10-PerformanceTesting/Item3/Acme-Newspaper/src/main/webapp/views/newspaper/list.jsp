@@ -109,10 +109,10 @@
 	
 
 	<!-- ATRIBUTOS -->
-
+<security:authorize access="hasRole('USER')">
 	<spring:message code="newspaper.title" var="titleHeader" />
 	<display:column property="title" title="${titleHeader}" sortable="true" />
-	
+</security:authorize>
 	<spring:message code="newspaper.format.publicationDate" var="pattern"></spring:message>
 	<spring:message code="newspaper.publicationDate" var="postedHeader" />
 	<display:column property="publicationDate" title="${postedHeader}"
@@ -159,7 +159,19 @@
 			</jstl:if>		
 		</display:column>
 	</jstl:if>	
+	</security:authorize>
 	
+	
+	<security:authorize access="hasRole('CUSTOMER')">
+		<spring:message code="newspaper.articles" var="articles" />
+		<display:column title="${articles}" sortable="true" >
+			<spring:url value="article/customer/listArticles.do" var="articleURL">
+				<spring:param name="newspaperId" value="${row.id }" />
+				<spring:param name="d-16544-p" value="1" />
+			</spring:url>
+			<a href="${articleURL}"><spring:message
+					code="newspaper.articles" /></a>
+		</display:column>
 	</security:authorize>
 	
 	<security:authorize access="hasRole('CUSTOMER')">

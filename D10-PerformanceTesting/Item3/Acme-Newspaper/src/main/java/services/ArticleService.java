@@ -48,9 +48,9 @@ public class ArticleService {
 
 	@Autowired
 	SubscriptionService	subscriptionService;
-	
+
 	@Autowired
-	TabooWordService tabooWordService;
+	TabooWordService	tabooWordService;
 
 	//Importar la que pertenece a Spring
 	@Autowired
@@ -161,15 +161,15 @@ public class ArticleService {
 	public void flush() {
 		this.articleRepository.flush();
 	}
-	
-	public Collection<Article> findArticlesIfNewspaperPublishedByUserId(int userId){
-		
+
+	public Collection<Article> findArticlesIfNewspaperPublishedByUserId(final int userId) {
+
 		Collection<Article> result;
-		
+
 		result = this.articleRepository.findArticlesIfNewspaperPublishedByUserId(userId);
-		
+
 		return result;
-		
+
 	}
 
 	// Other business methods -------------------------------------------------
@@ -220,31 +220,39 @@ public class ArticleService {
 		return summary;
 
 	}
-	
-	public Collection<Article> findArticleWithTabooWord(String tabooWord){
-		
+
+	public Collection<Article> findArticleWithTabooWord(final String tabooWord) {
+
 		Collection<Article> result;
-		
+
 		result = this.articleRepository.findArticleWithTabooWord(tabooWord);
-		
+
 		return result;
 	}
-	
-	public Set<Article> articleWithTabooWord(){
-		
+
+	public Set<Article> articleWithTabooWord() {
+
 		this.adminService.checkPrincipal();
-		
+
 		Set<Article> result;
 		Collection<String> tabooWords;
 		Iterator<String> it;
-		
+
 		result = new HashSet<>();
 		tabooWords = this.tabooWordService.findTabooWordByName();
 		it = tabooWords.iterator();
-		while(it.hasNext())
+		while (it.hasNext())
 			result.addAll(this.findArticleWithTabooWord(it.next()));
-		
+
 		return result;
-		
+
+	}
+
+	public Collection<Article> findAllArticlesByCustomerNewspaperList(final int newspaperId) {
+		Collection<Article> articles;
+
+		articles = this.articleRepository.findAllArticlesByCustomerNewspaperList(newspaperId);
+
+		return articles;
 	}
 }
