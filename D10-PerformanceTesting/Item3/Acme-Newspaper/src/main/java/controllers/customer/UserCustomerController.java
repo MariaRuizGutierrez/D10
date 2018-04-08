@@ -68,6 +68,8 @@ public class UserCustomerController extends AbstractController {
 		result.addObject("chirps", chirps);
 		result.addObject("articles", articles);
 		result.addObject("requestURI", "user/customer/display.do");
+		result.addObject("requestArticlesURL", "article/customer/list.do");
+		result.addObject("requestChirpsURL", "chirp/customer/list.do");
 
 		return result;
 	}
