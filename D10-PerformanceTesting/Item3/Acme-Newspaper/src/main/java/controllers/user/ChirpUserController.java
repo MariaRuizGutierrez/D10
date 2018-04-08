@@ -75,7 +75,7 @@ public class ChirpUserController extends AbstractController {
 		else
 			try {
 				this.chirpService.save(chirp);
-				result = new ModelAndView("redirect:list.do");
+				result = new ModelAndView("redirect:/chirp/user/listUser.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(chirp, "chirp.commit.error");
 			}
