@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,6 +80,9 @@ public class NewspaperController {
 
 		//TODOS LOS ARTÍCULOS DE UN PERIÓDICO
 		articles = this.articleService.findArticlesByNewspaperId(newspaperId);
+
+		Assert.isTrue(newspaper.isOpen() == true, "Cannot display a private newspaper");
+		Assert.isTrue(newspaper.getPublicationDate() != null, "Cannot display a not publicated newspaper ");
 
 		result = new ModelAndView("newspaper/display");
 		result.addObject("newspaper", newspaper);

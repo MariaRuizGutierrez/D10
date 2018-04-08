@@ -87,6 +87,7 @@ public class ArticleController extends AbstractController {
 
 		article = this.articleService.findOne(articleId);
 		Assert.isTrue(article.getNewspaper().isOpen() == true, "Cannot commit this operation");
+		Assert.isTrue(!article.isDraftMode(), "The article is in DraftMode");
 		result = new ModelAndView("article/display");
 		result.addObject("article", article);
 		result.addObject("requestURI", "article/display.do");
