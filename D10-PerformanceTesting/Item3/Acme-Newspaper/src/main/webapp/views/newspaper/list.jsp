@@ -187,6 +187,77 @@
 		</display:column>
 	</security:authorize>
 	
+	
+	<security:authorize access="hasRole('USER')">
+		<spring:message code="newspaper.open" var="draftMode" />
+	<display:column title="${draftMode}">
+		<jstl:if test="${row.open==true}">
+			<div
+				style="position: relative; width: 30px; height: 30px; margin-left: auto; margin-right: auto;">
+
+				<img src="images/yes.png" width="30" height="30">
+			</div>
+		</jstl:if>
+		<jstl:if test="${row.open==false}">
+			<div
+				style="position: relative; width: 30px; height: 30px; margin-left: auto; margin-right: auto;">
+
+				<img src="images/no.png" width="30" height="30">
+			</div>
+		</jstl:if>
+		
+</display:column>
+		</security:authorize>
+		
+		
+		<security:authorize access="hasRole('ADMIN')">
+		<spring:message code="newspaper.open" var="draftMode" />
+	<display:column title="${draftMode}">
+		<jstl:if test="${row.open==true}">
+			<div
+				style="position: relative; width: 30px; height: 30px; margin-left: auto; margin-right: auto;">
+
+				<img src="images/yes.png" width="30" height="30">
+			</div>
+		</jstl:if>
+		<jstl:if test="${row.open==false}">
+			<div
+				style="position: relative; width: 30px; height: 30px; margin-left: auto; margin-right: auto;">
+
+				<img src="images/no.png" width="30" height="30">
+			</div>
+		</jstl:if>
+		
+</display:column>
+		</security:authorize>
+		
+		
+		<security:authorize access="hasRole('CUSTOMER')">
+		<spring:message code="newspaper.open" var="draftMode" />
+	<display:column title="${draftMode}">
+		<jstl:if test="${row.open==true}">
+			<div
+				style="position: relative; width: 30px; height: 30px; margin-left: auto; margin-right: auto;">
+
+				<img src="images/yes.png" width="30" height="30">
+			</div>
+		</jstl:if>
+		<jstl:if test="${row.open==false}">
+			<div
+				style="position: relative; width: 30px; height: 30px; margin-left: auto; margin-right: auto;">
+
+				<img src="images/no.png" width="30" height="30">
+			</div>
+		</jstl:if>
+		
+</display:column>
+		</security:authorize>
+	
+	
+	
+		
+	
+	
 
 </display:table>
 <jstl:if test="${showCreate}">
