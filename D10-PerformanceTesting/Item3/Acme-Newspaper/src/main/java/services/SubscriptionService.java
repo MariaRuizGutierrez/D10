@@ -1,7 +1,9 @@
 
 package services;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.GregorianCalendar;
 
 import javax.transaction.Transactional;
 
@@ -12,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.SubscriptionRepository;
+import domain.CreditCard;
 import domain.Customer;
 import domain.Newspaper;
 import domain.Subscription;
@@ -73,6 +76,7 @@ public class SubscriptionService {
 		Assert.isTrue(subscription.getCustomer().equals(customerPrincipal), "El cliente de la subscripcion debe ser el mismo que el logueado");
 		Assert.isTrue(!subscription.getNewspaper().isOpen(), "solo se pueden subscribir a los periodicos privados");
 		Assert.notNull(subscription.getNewspaper().getPublicationDate(), "solo se pueden subscribir a los periodicos publicados");
+		Assert.isTrue(this.checkCreditCard(subscription.getCreditCard()), "Invalid credit card");
 
 		result = this.subscriptionRepository.save(subscription);
 		return result;
@@ -101,14 +105,31 @@ public class SubscriptionService {
 		this.validator.validate(result, binding);
 		return result;
 	}
-	
-	public Collection<Subscription> findSubscriptionByNewspaper(int newspaperId){
-		
+
+	public Collection<Subscription> findSubscriptionByNewspaper(final int newspaperId) {
+
 		Collection<Subscription> result;
-		
+
 		result = this.subscriptionRepository.findSubscriptionByNewspaper(newspaperId);
-		
+
 		return result;
+	}
+
+	public boolean checkCreditCard(final CreditCard creditCard) {
+		boolean res;
+		Calendar calendar;
+		int actualYear;
+
+		res = false;
+		calendar = new GregorianCalendar();
+		actualYear = calendar.get(Calendar.YEAR);
+		actualYear = actualYear % 100;
+		if (creditCard.getExpirationYear() != null)
+			if (Integer.parseInt(creditCard.getExpirationYear()) > actualYear)
+				res = true;
+			else if (Integer.parseInt(creditCard.getExpirationYear()) == actualYear && Integer.parseInt(creditCard.getExpirationMonth()) >= calendar.get(Calendar.MONTH))
+				res = true;
+		return res;
 	}
 
 }

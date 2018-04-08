@@ -143,8 +143,11 @@ public class SubscriptionCustomerController extends AbstractController {
 					result = this.createEditModelAndView(subscription, "subscription.onlyPrivateNewspaper.error");
 				else if (oops.getMessage().equals("solo se pueden subscribir a los periodicos publicados"))
 					result = this.createEditModelAndView(subscription, "subscription.onlyPublishedNewspaper.error");
+				else if (oops.getMessage().equals("Invalid credit card"))
+					result = this.createEditModelAndView(subscription, "subscription.creditCard.Error");
 				else
 					result = this.createEditModelAndView(subscription, "subscription.commit.error");
+
 			}
 		return result;
 	}
