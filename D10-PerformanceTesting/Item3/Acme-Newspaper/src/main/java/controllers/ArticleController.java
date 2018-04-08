@@ -66,7 +66,7 @@ public class ArticleController extends AbstractController {
 		ModelAndView result;
 		final Collection<Article> articles;
 
-		articles = this.articleService.findArticlesPublishedByUserId(userId);
+		articles = this.articleService.findArticlesIfNewspaperPublishedByUserId(userId);
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
 		result.addObject("requestURI", "article/listb.do");
