@@ -69,7 +69,7 @@
 		<spring:message code="newspaper.display" var="display" />
 		<display:column title="${display}" sortable="true" >
 			<jstl:if test="${newspapersSubscribed.contains(row)}">
-				<spring:url value="subscription/customer/displayNewspaper.do" var="displayURL">
+				<spring:url value="newspaper/customer/displayNewspaperSubscripted.do" var="displayURL">
 					<spring:param name="newspaperId" value="${row.id }" />
 				</spring:url>
 				<a href="${displayURL}"><spring:message

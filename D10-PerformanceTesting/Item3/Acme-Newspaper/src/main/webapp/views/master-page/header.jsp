@@ -79,7 +79,7 @@
 			<li><a class="fNiv"><spring:message	code="master.page.subscription" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="subscription/customer/list.do?d-16544-p=1"><spring:message code="master.page.customer.subscription.list" /></a></li>
+					<li><a href="newspaper/customer/listAllPrivate.do?d-16544-p=1"><spring:message code="master.page.customer.subscription.list" /></a></li>
 				</ul>
 			</li>
 			

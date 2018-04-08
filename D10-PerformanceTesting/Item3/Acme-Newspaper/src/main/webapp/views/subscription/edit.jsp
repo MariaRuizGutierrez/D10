@@ -48,6 +48,6 @@
 	<input type="submit" name="save" value="<spring:message code="subscription.save" />" />&nbsp; 
 
 	<acme:cancel
-		url="subscription/customer/list.do?d-16544-p=1"
+		url="newspaper/customer/listAllPrivate.do?d-16544-p=1"
 		code="subscription.cancel" />
 </form:form>

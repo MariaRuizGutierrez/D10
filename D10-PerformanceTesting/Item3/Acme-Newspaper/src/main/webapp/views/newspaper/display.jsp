@@ -103,7 +103,7 @@
 
 		<spring:message code="article.display" var="displayArticleCustomer" /> 
 		<display:column title="${displayArticleCustomer}" sortable="true" >
-		<spring:url value="subscription/customer/displayArticle.do" var="articleCustomerURL">
+		<spring:url value="article/customer/displayArticleSubscripted.do" var="articleCustomerURL">
 			<spring:param name="articleId" value="${row.id}" />
 		</spring:url>
 		<a href="${articleCustomerURL}"><B><jstl:out value="${row.title}"></jstl:out></B></a>
