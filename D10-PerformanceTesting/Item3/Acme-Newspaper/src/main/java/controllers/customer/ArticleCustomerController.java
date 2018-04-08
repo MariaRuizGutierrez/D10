@@ -14,9 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ArticleService;
 import services.CustomerService;
 import services.NewspaperService;
+import services.UserService;
 import controllers.AbstractController;
 import domain.Article;
 import domain.Newspaper;
+import domain.User;
 
 @Controller
 @RequestMapping("/article/customer")
@@ -31,6 +33,9 @@ public class ArticleCustomerController extends AbstractController {
 
 	@Autowired
 	private CustomerService		customerService;
+
+	@Autowired
+	private UserService			userService;
 
 
 	//Search -----------------------------------------------------------
@@ -62,22 +67,32 @@ public class ArticleCustomerController extends AbstractController {
 		return result;
 	}
 
-	// Display Article Subscripted----------------------------------------------------------------
-
-	@RequestMapping(value = "/displayArticleSubscripted", method = RequestMethod.GET)
-	public ModelAndView displayArticle(@RequestParam final int articleId) {
+	// Display ---------------------------------------------------------
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam final int articleId) {
 		final ModelAndView result;
 		Article article;
 		Collection<Newspaper> myNewspapersSubscription;
 
 		article = this.articleService.findOne(articleId);
-		myNewspapersSubscription = this.newspaperService.findNewspapersSubscribedByCustomerId(this.customerService.findByPrincipal().getId());
-		Assert.isTrue(myNewspapersSubscription.contains(article.getNewspaper()), "you are not subscribed to the newspaper of this article");
+		if (!article.getNewspaper().isOpen()) {
+			myNewspapersSubscription = this.newspaperService.findNewspapersSubscribedByCustomerId(this.customerService.findByPrincipal().getId());
+			Assert.isTrue(myNewspapersSubscription.contains(article.getNewspaper()), "you are not subscribed to the newspaper of this article");
+		}
 
 		result = new ModelAndView("article/display");
 		result.addObject("article", article);
-		result.addObject("requestURI", "article/customer/displayArticleSubscripted.do");
+		result.addObject("requestURI", "article/customer/display.do");
 
+		return result;
+	}
+
+	// Display Article Subscripted----------------------------------------------------------------
+
+	@RequestMapping(value = "/displayArticleSubscripted", method = RequestMethod.GET)
+	public ModelAndView displayArticle(@RequestParam final int articleId) {
+		final ModelAndView result;
+		result = this.display(articleId);
 		return result;
 	}
 
@@ -94,6 +109,46 @@ public class ArticleCustomerController extends AbstractController {
 		result.addObject("requestURI", "newspaper/customer/list.do");
 		result.addObject("requestURISearchNewspaper", "newspaper/customer/search.do");
 		result.addObject("showSearch", true);
+
+		return result;
+	}
+
+	@RequestMapping(value = "/listSummary", method = RequestMethod.GET)
+	public ModelAndView listSummary(@RequestParam final int articleId) {
+
+		ModelAndView result;
+		String summary;
+		Article article;
+		Collection<Newspaper> myNewspapersSubscription;
+
+		summary = this.articleService.findSummaryByArticleId(articleId);
+		article = this.articleService.findOne(articleId);
+		if (!article.getNewspaper().isOpen()) {
+			myNewspapersSubscription = this.newspaperService.findNewspapersSubscribedByCustomerId(this.customerService.findByPrincipal().getId());
+			Assert.isTrue(myNewspapersSubscription.contains(article.getNewspaper()), "you are not subscribed to the newspaper of this article");
+		}
+
+		result = new ModelAndView("article/displaySummary");
+
+		result.addObject("requestURI", "article/customer/listSummay.do");
+		result.addObject("article", summary);
+
+		return result;
+
+	}
+
+	//Displaying writer of an article----------------------
+
+	@RequestMapping(value = "/displayUser", method = RequestMethod.GET)
+	public ModelAndView displayUser(@RequestParam final int userId) {
+		ModelAndView result;
+		User user;
+
+		user = this.userService.findOne(userId);
+
+		result = new ModelAndView("user/display");
+		result.addObject("user", user);
+		result.addObject("requestURI", "article/user/display.do");
 
 		return result;
 	}
