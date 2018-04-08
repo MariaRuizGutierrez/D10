@@ -138,21 +138,22 @@
 		</jstl:if>
 		
 </display:column>
-
+<jstl:if test="${showCreateFollowUp}">
 <security:authorize access="hasRole('USER')">
 		<spring:message code="article.createFollowUp"
 			var="createFollowUp" />
 		<display:column title="${createFollowUp}" sortable="true" >
-		<%-- <jstl:if test="${util.organisedMoment(row.organisedMoment)==true}"> --%>
+		<%--  <jstl:if test="${!row.draftMode==true}">  --%>
+		 <jstl:if test="${(row.newspaper.publicationDate!=null)and(row.draftMode==false)}"> 
 			<spring:url value="followUp/user/create.do" var="editURL">
 				<spring:param name="articleId" value="${row.id}" />
 			</spring:url>
 			<a href="${editURL}"><spring:message
 					code="article.followUp" /></a>
-		<%-- </jstl:if> --%>
+		 </jstl:if> 
 		</display:column>
 	</security:authorize>
-
+</jstl:if>
 </display:table>
 
 
