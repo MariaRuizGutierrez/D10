@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -85,7 +86,7 @@ public class ArticleController extends AbstractController {
 		Article article = new Article();
 
 		article = this.articleService.findOne(articleId);
-
+		Assert.isTrue(article.getNewspaper().isOpen() == true, "Cannot commit this operation");
 		result = new ModelAndView("article/display");
 		result.addObject("article", article);
 		result.addObject("requestURI", "article/display.do");
