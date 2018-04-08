@@ -94,6 +94,7 @@ public class UserController extends AbstractController {
 
 		result = new ModelAndView("user/list");
 		result.addObject("users", userConnected.getFollowers());
+		result.addObject("requestProfileURL", "/user/display.do");
 		result.addObject("requestURI", "/user/list.do");
 
 		return result;
@@ -109,6 +110,7 @@ public class UserController extends AbstractController {
 
 		result = new ModelAndView("user/list");
 		result.addObject("users", userConnected.getFollowed());
+		result.addObject("requestProfileURL", "/user/display.do");
 		result.addObject("requestURI", "/user/list.do");
 
 		return result;
@@ -130,6 +132,7 @@ public class UserController extends AbstractController {
 		result = new ModelAndView("user/list");
 		result.addObject("users", userNotFollowed);
 		result.addObject("seguidos", false);
+		result.addObject("requestProfileURL", "/user/display.do");
 		result.addObject("requestURI", "/user/list.do");
 
 		return result;
@@ -148,6 +151,7 @@ public class UserController extends AbstractController {
 		result = new ModelAndView("user/list");
 		result.addObject("users", userFollowed);
 		result.addObject("seguidos", true);
+		result.addObject("requestProfileURL", "/user/display.do");
 		result.addObject("requestURI", "/user/list.do");
 
 		return result;
