@@ -106,7 +106,7 @@ public class ArticleCustomerController extends AbstractController {
 
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
-		result.addObject("requestURI", "newspaper/customer/list.do");
+		result.addObject("requestURI", "article/customer/listArticles.do");
 		result.addObject("requestURISearchNewspaper", "newspaper/customer/search.do");
 		result.addObject("showSearch", true);
 
@@ -148,7 +148,7 @@ public class ArticleCustomerController extends AbstractController {
 
 		result = new ModelAndView("user/display");
 		result.addObject("user", user);
-		result.addObject("requestURI", "article/user/display.do");
+		result.addObject("requestURI", "article/user/displayUser.do");
 
 		return result;
 	}

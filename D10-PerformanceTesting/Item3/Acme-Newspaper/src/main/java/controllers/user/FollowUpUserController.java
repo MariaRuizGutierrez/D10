@@ -27,13 +27,13 @@ public class FollowUpUserController extends AbstractController {
 	// Services ---------------------------------------------------------------
 
 	@Autowired
-	private FollowUpService	followUpService;
+	private FollowUpService			followUpService;
 
 	@Autowired
-	private ArticleService	articleService;
-	
+	private ArticleService			articleService;
+
 	@Autowired
-	private ArticleUserController articleUserController;
+	private ArticleUserController	articleUserController;
 
 
 	// Create -----------------------------------------------------------------
@@ -61,7 +61,7 @@ public class FollowUpUserController extends AbstractController {
 			try {
 
 				this.followUpService.save(followUp);
-				result = articleUserController.listArticlesUser();
+				result = this.articleUserController.listArticlesUser();
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(followUp, "followUp.commit.error");
 			}
@@ -78,7 +78,7 @@ public class FollowUpUserController extends AbstractController {
 
 		result = new ModelAndView("followUp/list");
 		result.addObject("followUps", followUps);
-		result.addObject("requestURI", "articles/user/list.do");
+		result.addObject("requestURI", "/followUp/user/list.do");
 
 		return result;
 	}
