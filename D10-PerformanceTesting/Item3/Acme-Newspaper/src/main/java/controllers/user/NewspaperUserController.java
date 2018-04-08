@@ -61,7 +61,7 @@ public class NewspaperUserController extends AbstractController {
 
 	}
 
-	//Listing newspapers 5.1 ----------------------------------------------
+	//Listing newspapers 5.2 ----------------------------------------------
 	@RequestMapping(value = "/listb", method = RequestMethod.GET)
 	public ModelAndView listb(final String messageCode) {
 

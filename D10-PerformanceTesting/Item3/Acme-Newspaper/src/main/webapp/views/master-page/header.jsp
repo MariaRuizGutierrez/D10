@@ -72,6 +72,15 @@
 					<li><a href="subscription/customer/list.do?d-16544-p=1"><spring:message code="master.page.customer.subscription.list" /></a></li>
 				</ul>
 			</li>
+			
+			<li><a class="fNiv"><spring:message	code="master.page.newspaper" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="newspaper/customer/list.do?d-16544-p=1"><spring:message code="master.page.user.newspaper.list1" /></a></li>
+				</ul>
+			</li>
+			
+			
 		</security:authorize>
 		
 		<security:authorize access="hasRole('USER')">

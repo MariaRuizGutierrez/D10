@@ -16,6 +16,7 @@ import services.ArticleService;
 import services.CustomerService;
 import services.NewspaperService;
 import services.SubscriptionService;
+import controllers.AbstractController;
 import domain.Article;
 import domain.Customer;
 import domain.Newspaper;
@@ -23,7 +24,7 @@ import domain.Subscription;
 
 @Controller
 @RequestMapping("/subscription/customer")
-public class SubscriptionCustomerController {
+public class SubscriptionCustomerController extends AbstractController {
 
 	// Services ---------------------------------------------------------------
 	@Autowired
