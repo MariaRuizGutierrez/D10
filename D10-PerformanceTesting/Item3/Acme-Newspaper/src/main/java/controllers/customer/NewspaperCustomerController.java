@@ -52,7 +52,7 @@ public class NewspaperCustomerController extends AbstractController {
 		final ModelAndView result;
 		Collection<Newspaper> newspapers;
 
-		newspapers = this.newspaperService.findNewspapersByKeywordAuthenticate(keyword);
+		newspapers = this.newspaperService.findNewspapersByKeyword(keyword);
 
 		result = new ModelAndView("newspaper/list");
 		result.addObject("newspapers", newspapers);

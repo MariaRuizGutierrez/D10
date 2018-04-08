@@ -29,12 +29,6 @@
 					<li><a href="admin/dashboard.do"><spring:message code="master.page.statistics" /></a>
 				</ul>
 			</li>
-			<li><a class="fNiv"><spring:message	code="master.page.administrator" /></a>
-				<ul>
-					<li class="arrow"></li>			
-					<li><a href="admin/dashboard.do"><spring:message code="master.page.statistics" /></a>
-				</ul>
-			</li>
 			<li><a class="fNiv"><spring:message	code="master.page.administrator.configurationSystem" /></a>
 				<ul>
 					<li class="arrow"></li>
@@ -45,14 +39,16 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="article/admin/list.do?d-16544-p=1"><spring:message code="master.page.listArticles" /></a></li>
-					<li><a href="article/admin/listTabooWord.do?d-16544-p=1"><spring:message code="master.page.listArticlesTabooWord" /></a></li>				
+					<li><a href="article/admin/listTabooWord.do?d-16544-p=1"><spring:message code="master.page.listArticlesTabooWord" /></a></li>
+					<li><a href="article/admin/search.do?d-16544-p=1&&keyword="><spring:message code="master.page.articles.list" /></a></li>				
 				</ul>
 			</li>
 			<li><a class="fNiv"><spring:message	code="master.page.newspaper.list" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="newspaper/admin/list.do?d-16544-p=1"><spring:message code="master.page.admin.newspaper.list" /></a></li>
-					<li><a href="newspaper/admin/listTabooWord.do?d-16544-p=1"><spring:message code="master.page.listNewspaperTabooWord" /></a></li>				
+					<li><a href="newspaper/admin/listTabooWord.do?d-16544-p=1"><spring:message code="master.page.listNewspaperTabooWord" /></a></li>
+					<li><a href="newspaper/admin/search.do?d-16544-p=1&&keyword="><spring:message code="newspaper.search.keyword" /></a></li>				
 				</ul>
 			</li>
 			<li><a class="fNiv"><spring:message	code="master.page.chirps" /></a>

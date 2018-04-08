@@ -93,12 +93,14 @@
 		
 		<!-- Boton de delete para el admin ya que puede borrar los articles que quiera pero no editarlas -->
 	<security:authorize access="hasRole('ADMIN')">
+	<jstl:if test="${showDelete}">
 	<spring:message code="article.delete" var="deleteHeader" />
 		<display:column title="${deleteHeader}" sortable="true">
 			<input type="button" name="delete"
 				value="<spring:message code="article.delete" />"
 				onclick="confirmDelete(${row.id});" />
 		</display:column>
+		</jstl:if>
 	</security:authorize>
 	
 

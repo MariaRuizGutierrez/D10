@@ -1,3 +1,4 @@
+
 package controllers.admin;
 
 import java.util.Collection;
@@ -7,36 +8,52 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.NewspaperService;
-
 import controllers.AbstractController;
 import domain.Newspaper;
 
 @Controller
 @RequestMapping(value = "/newspaper/admin")
-public class NewspaperAdminController extends AbstractController{
-	
+public class NewspaperAdminController extends AbstractController {
+
 	//Services--------------------------------------------
-	
+
 	@Autowired
-	private NewspaperService newspaperService;
-	
+	private NewspaperService	newspaperService;
+
+
 	//Constructor--------------------------------------------------------
-	
-	public NewspaperAdminController(){
+
+	public NewspaperAdminController() {
 		super();
 	}
-	
+
+	//Search -----------------------------------------------------------
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView listNewspaperByKeyword(@RequestParam final String keyword) {
+		final ModelAndView result;
+		Collection<Newspaper> newspapers;
+
+		newspapers = this.newspaperService.findNewspapersByKeywordAuthenticate(keyword);
+
+		result = new ModelAndView("newspaper/list");
+		result.addObject("newspapers", newspapers);
+		result.addObject("showSearch", true);
+		result.addObject("requestURI", "newspaper/admin/search.do");
+		result.addObject("requestURISearchArticle", "newspaper/admin/search.do");
+		return result;
+	}
+
 	//Listing
-	
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 
 		ModelAndView result;
 		Collection<Newspaper> newspapers;
-				
 
 		newspapers = this.newspaperService.findAll();
 
@@ -44,16 +61,15 @@ public class NewspaperAdminController extends AbstractController{
 		result.addObject("newspapers", newspapers);
 		result.addObject("requestURI", "newspaper/admin/list.do?d-16544-p=1");
 		return result;
-	}	
-	
+	}
+
 	//Listing
-	
+
 	@RequestMapping(value = "/listTabooWord", method = RequestMethod.GET)
 	public ModelAndView listTabooWord() {
 
 		ModelAndView result;
 		Collection<Newspaper> newspapers;
-				
 
 		newspapers = this.newspaperService.NewspaperWithTabooWord();
 
@@ -61,10 +77,10 @@ public class NewspaperAdminController extends AbstractController{
 		result.addObject("newspapers", newspapers);
 		result.addObject("requestURI", "newspaper/admin/listTabooWord.do?d-16544-p=1");
 		return result;
-	}	
-	
+	}
+
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public ModelAndView delete(int newspaperId) {
+	public ModelAndView delete(final int newspaperId) {
 		ModelAndView result;
 		Newspaper newspaper;
 
@@ -74,8 +90,8 @@ public class NewspaperAdminController extends AbstractController{
 			this.newspaperService.delete(newspaper);
 			result = new ModelAndView("redirect:list.do");
 		} catch (final Throwable oops) {
-			
-			if(oops.getMessage().equals("Se pueden eliminar los periodicos publicos y privado que aún no tengas suscripciones"))
+
+			if (oops.getMessage().equals("Se pueden eliminar los periodicos publicos y privado que aún no tengas suscripciones"))
 				result = this.listWithMessage("newspaper.commit.error.private");
 			else
 				result = this.listWithMessage("newspaper.commit.error");
@@ -83,7 +99,7 @@ public class NewspaperAdminController extends AbstractController{
 
 		return result;
 	}
-	
+
 	//ancially methods---------------------------------------------------------------------------
 
 	protected ModelAndView listWithMessage(final String message) {
