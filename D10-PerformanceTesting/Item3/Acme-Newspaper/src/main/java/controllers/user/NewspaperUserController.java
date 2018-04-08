@@ -76,6 +76,7 @@ public class NewspaperUserController extends AbstractController {
 		result.addObject("newspapers", newspapers);
 		result.addObject("requestURI", "newspaper/user/listb.do");
 		result.addObject("showCreate", false);
+		result.addObject("showSearch", true);
 		//result.addObject("requestURISearchNewspaper", "newspaper/user/search.do");
 		result.addObject("message", messageCode);
 		return result;
@@ -92,6 +93,7 @@ public class NewspaperUserController extends AbstractController {
 
 		result = new ModelAndView("newspaper/list");
 		result.addObject("newspapers", newspapers);
+		result.addObject("showSearch", true);
 		result.addObject("requestURI", "newspaper/user/search.do");
 		result.addObject("requestURISearchNewspaper", "newspaper/user/search.do");
 		return result;
