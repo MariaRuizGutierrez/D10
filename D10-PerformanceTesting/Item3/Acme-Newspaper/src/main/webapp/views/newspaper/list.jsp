@@ -49,7 +49,7 @@
 	
 	
 
-	<!-- 	DISPLAY -->
+	<!-- 	DISPLAY PARA USER-->
 	
 	<security:authorize access="hasRole('USER')">
 		<spring:message code="newspaper.display" var="display" />
@@ -62,12 +62,25 @@
 		</display:column>
 	</security:authorize>
 	
-	<!-- 	DISPLAY PARA CUSTOMER (NEWSPAPER PRIVADAS QUE ME HE SUSCRITO)-->
+	<!-- 	DISPLAY PARA CUSTOMER -->
 
 	<security:authorize access="hasRole('CUSTOMER')">
 		<spring:message code="newspaper.display" var="display" />
 		<display:column title="${display}" sortable="true" >
 				<spring:url value="newspaper/customer/display.do" var="displayURL">
+					<spring:param name="newspaperId" value="${row.id }" />
+				</spring:url>
+				<a href="${displayURL}"><spring:message
+						code="newspaper.display" /></a>
+		</display:column>
+	</security:authorize>
+	
+	<!-- 	DISPLAY PARA ADMIN -->
+
+	<security:authorize access="hasRole('ADMIN')">
+		<spring:message code="newspaper.display" var="display" />
+		<display:column title="${display}" sortable="true" >
+				<spring:url value="newspaper/admin/display.do" var="displayURL">
 					<spring:param name="newspaperId" value="${row.id }" />
 				</spring:url>
 				<a href="${displayURL}"><spring:message
@@ -110,6 +123,12 @@
 	<spring:message code="newspaper.title" var="titleHeader" />
 	<display:column property="title" title="${titleHeader}" sortable="true" />
 </security:authorize>
+
+<security:authorize access="hasRole('ADMIN')">
+	<spring:message code="newspaper.title" var="titleHeader" />
+	<display:column property="title" title="${titleHeader}" sortable="true" />
+</security:authorize>
+
 	<spring:message code="newspaper.format.publicationDate" var="pattern"></spring:message>
 	<spring:message code="newspaper.publicationDate" var="postedHeader" />
 	<display:column property="publicationDate" title="${postedHeader}"

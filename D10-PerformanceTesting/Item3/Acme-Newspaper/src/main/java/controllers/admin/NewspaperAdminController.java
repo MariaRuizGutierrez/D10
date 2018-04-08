@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ArticleService;
 import services.NewspaperService;
 import controllers.AbstractController;
+import domain.Article;
 import domain.Newspaper;
 
 @Controller
@@ -24,11 +26,35 @@ public class NewspaperAdminController extends AbstractController {
 	@Autowired
 	private NewspaperService	newspaperService;
 
+	@Autowired
+	private ArticleService		articleService;
+
 
 	//Constructor--------------------------------------------------------
 
 	public NewspaperAdminController() {
 		super();
+	}
+
+	// Display ----------------------------------------------------------------
+
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam final int newspaperId) {
+		final ModelAndView result;
+		Newspaper newspaper = new Newspaper();
+		final Collection<Article> articles;
+
+		newspaper = this.newspaperService.findOne(newspaperId);
+
+		//TODOS LOS ARTÍCULOS DE UN PERIÓDICO
+		articles = this.articleService.findArticlesByNewspaperId(newspaperId);
+
+		result = new ModelAndView("newspaper/display");
+		result.addObject("newspaper", newspaper);
+		result.addObject("articles", articles);
+		result.addObject("requestURI", "newspaper/admin/display.do");
+
+		return result;
 	}
 
 	//Search -----------------------------------------------------------

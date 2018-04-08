@@ -22,7 +22,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<jstl:if test="${hideAttributes==false}">
+<jstl:if test="${!hideAttributes}">
 	<display:table name="newspaper" class="displaytag"
 		requestURI="${requestURI}" id="row">
 
@@ -56,6 +56,7 @@
 	</display:table>
 </jstl:if>
 
+<!-- ---------------------------TABLA DE CONTENIDO PARA USERS-------------------------------- -->
 
 <security:authorize access="hasRole('USER')">
 	<h2>
@@ -65,7 +66,7 @@
 
 		<!-- Columna de Summary -->
 
-		<jstl:if test="${hideAttributes==false}">
+		<jstl:if test="${!hideAttributes}">
 			<spring:message code="newspaper.article.summary" var="summary" />
 			<display:column title="${summary}" sortable="true">
 				<spring:url value="article/user/listSummary.do" var="articleURL">
@@ -76,7 +77,7 @@
 			</display:column>
 		</jstl:if>
 
-		<jstl:if test="${hideAttributes==true}">
+		<jstl:if test="${hideAttributes}">
 			<spring:message code="article.summary" var="summaryHeader" />
 			<display:column property="summary" title="${summaryHeader}"
 				sortable="true" />
@@ -84,7 +85,7 @@
 
 		<!-- Columna de Article -->
 
-		<jstl:if test="${hideAttributes==false}">
+		<jstl:if test="${!hideAttributes}">
 			<spring:message code="newspaper.articles" var="writer" />
 			<display:column title="${writer}" sortable="true">
 				<spring:url value="article/user/display.do" var="renURL">
@@ -94,7 +95,7 @@
 			</display:column>
 		</jstl:if>
 
-		<jstl:if test="${hideAttributes==true}">
+		<jstl:if test="${hideAttributes}">
 			<spring:message code="article.title" var="titleHeader" />
 			<display:column property="title" title="${titleHeader}"
 				sortable="true" />
@@ -102,7 +103,7 @@
 
 		<!-- Columna de Writer -->
 		<!-- CUANDO ESTÉ EL DISPLAY DE PROFILE LO PONGO AQUÍ -->
-		<jstl:if test="${hideAttributes==false}">
+		<jstl:if test="${!hideAttributes}">
 			<spring:message code="newspaper.article.writer" var="writer" />
 			<display:column title="${writer}" sortable="true">
 				<spring:url value="article/user/displayUser.do" var="renURL">
@@ -112,7 +113,7 @@
 			</display:column>
 		</jstl:if>
 
-		<jstl:if test="${hideAttributes==true}">
+		<jstl:if test="${hideAttributes}">
 			<spring:message code="newspaper.article.writer" var="writerHeader" />
 			<display:column property="writer.name" title="${writerHeader}"
 				sortable="true" />
@@ -123,7 +124,7 @@
 </security:authorize>
 
 
-<!-- ---------------------------LISTA DE ARTICLES PARA CUSTOMERS-------------------------------- -->
+<!-- ---------------------------TABLA DE CONTENIDO PARA CUSTOMERS-------------------------------- -->
 
 <security:authorize access="hasRole('CUSTOMER')">
 	<h2>
@@ -133,7 +134,7 @@
 
 		<!-- Columna de Summary -->
 
-		<jstl:if test="${hideAttributes==false}">
+		<jstl:if test="${!hideAttributes}">
 			<spring:message code="newspaper.article.summary" var="summary" />
 			<display:column title="${summary}" sortable="true">
 				<spring:url value="article/customer/listSummary.do" var="articleURL">
@@ -144,7 +145,7 @@
 			</display:column>
 		</jstl:if>
 
-		<jstl:if test="${hideAttributes==true}">
+		<jstl:if test="${hideAttributes}">
 			<spring:message code="article.summary" var="summaryHeader" />
 			<display:column property="summary" title="${summaryHeader}"
 				sortable="true" />
@@ -152,7 +153,7 @@
 
 		<!-- Columna de Article -->
 
-		<jstl:if test="${hideAttributes==false}">
+		<jstl:if test="${!hideAttributes}">
 			<spring:message code="newspaper.articles" var="writer" />
 			<display:column title="${writer}" sortable="true">
 				<spring:url value="article/customer/display.do" var="renURL">
@@ -162,7 +163,7 @@
 			</display:column>
 		</jstl:if>
 
-		<jstl:if test="${hideAttributes==true}">
+		<jstl:if test="${hideAttributes}">
 			<spring:message code="article.title" var="titleHeader" />
 			<display:column property="title" title="${titleHeader}"
 				sortable="true" />
@@ -170,7 +171,7 @@
 
 		<!-- Columna de Writer -->
 		<!-- CUANDO ESTÉ EL DISPLAY DE PROFILE LO PONGO AQUÍ -->
-		<jstl:if test="${hideAttributes==false}">
+		<jstl:if test="${!hideAttributes}">
 			<spring:message code="newspaper.article.writer" var="writer" />
 			<display:column title="${writer}" sortable="true">
 				<spring:url value="article/customer/displayUser.do" var="renURL">
@@ -180,7 +181,7 @@
 			</display:column>
 		</jstl:if>
 
-		<jstl:if test="${hideAttributes==true}">
+		<jstl:if test="${hideAttributes}">
 			<spring:message code="newspaper.article.writer" var="writerHeader" />
 			<display:column property="writer.name" title="${writerHeader}"
 				sortable="true" />
@@ -190,5 +191,44 @@
 	</display:table>
 </security:authorize>
 
+<!-- ---------------------------TABLA DE CONTENIDO PARA ADMIN-------------------------------- -->
 
-<!-- ---------------------------FIN DE LISTA DE ARTICLES PARA CUSTOMERS-------------------------------- -->
+<security:authorize access="hasRole('ADMIN')">
+	<h2>
+		<spring:message code="newspaper.articles" />
+	</h2>
+	<display:table name="articles" id="row" class="displaytag">
+
+		<!-- Columna de Summary -->
+
+		<spring:message code="newspaper.article.summary" var="summary" />
+		<display:column title="${summary}" sortable="true">
+			<spring:url value="article/admin/listSummary.do" var="articleURL">
+				<spring:param name="articleId" value="${row.id}" />
+			</spring:url>
+			<a href="${articleURL}"><B><jstl:out
+						value="${row.preSummary}"></jstl:out></B></a>
+		</display:column>
+
+		<!-- Columna de Article -->
+
+		<spring:message code="newspaper.articles" var="writer" />
+		<display:column title="${writer}" sortable="true">
+			<spring:url value="article/admin/display.do" var="renURL">
+				<spring:param name="articleId" value="${row.id}" />
+			</spring:url>
+			<a href="${renURL}"><jstl:out value="${row.title}"></jstl:out></a>
+		</display:column>
+
+		<!-- Columna de Writer -->
+		<!-- CUANDO ESTÉ EL DISPLAY DE PROFILE LO PONGO AQUÍ -->
+		<spring:message code="newspaper.article.writer" var="writer" />
+		<display:column title="${writer}" sortable="true">
+			<spring:url value="article/admin/displayUser.do" var="renURL">
+				<spring:param name="userId" value="${row.writer.id}" />
+			</spring:url>
+			<a href="${renURL}"><jstl:out value="${row.writer.name}" /></a>
+		</display:column>
+
+	</display:table>
+</security:authorize>

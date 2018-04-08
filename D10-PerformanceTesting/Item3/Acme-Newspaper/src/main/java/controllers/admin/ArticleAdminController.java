@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ArticleService;
+import services.UserService;
 import controllers.AbstractController;
 import domain.Article;
+import domain.User;
 
 @Controller
 @RequestMapping(value = "/article/admin")
@@ -23,6 +25,9 @@ public class ArticleAdminController extends AbstractController {
 
 	@Autowired
 	private ArticleService	articleService;
+
+	@Autowired
+	private UserService		userService;
 
 
 	//Constructor--------------------------------------------------------
@@ -114,6 +119,55 @@ public class ArticleAdminController extends AbstractController {
 			else
 				result = this.listWithMessage("article.commit.error");
 		}
+
+		return result;
+	}
+
+	//List Summary ---------------------------------------------------------------
+
+	@RequestMapping(value = "/listSummary", method = RequestMethod.GET)
+	public ModelAndView listSummary(@RequestParam final int articleId) {
+
+		ModelAndView result;
+		String summary;
+
+		summary = this.articleService.findSummaryByArticleId(articleId);
+		result = new ModelAndView("article/displaySummary");
+
+		result.addObject("requestURI", "article/admin/listSummay.do");
+		result.addObject("article", summary);
+
+		return result;
+
+	}
+
+	// Display ---------------------------------------------------------
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam final int articleId) {
+		final ModelAndView result;
+		Article article;
+
+		article = this.articleService.findOne(articleId);
+
+		result = new ModelAndView("article/display");
+		result.addObject("article", article);
+		result.addObject("requestURI", "article/admin/display.do");
+
+		return result;
+	}
+
+	//Displaying writer of an article----------------------
+
+	@RequestMapping(value = "/displayUser", method = RequestMethod.GET)
+	public ModelAndView displayUser(@RequestParam final int userId) {
+		ModelAndView result;
+		User user;
+
+		user = this.userService.findOne(userId);
+
+		result = new ModelAndView("user/display");
+		result.addObject("user", user);
+		result.addObject("requestURI", "article/admin/display.do");
 
 		return result;
 	}
