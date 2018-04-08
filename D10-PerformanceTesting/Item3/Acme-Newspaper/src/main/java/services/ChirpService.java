@@ -12,6 +12,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.ChirpRepository;
 import domain.Chirp;
@@ -24,17 +26,20 @@ public class ChirpService {
 	// Managed repository -----------------------------------------------------
 
 	@Autowired
-	private ChirpRepository	chirpRepository;
+	private ChirpRepository		chirpRepository;
 
 	// Supporting services ----------------------------------------------------
 	@Autowired
-	private UserService		userService;
+	private UserService			userService;
 
 	@Autowired
-	private AdminService	adminService;
-	
+	private Validator			validator;
+
 	@Autowired
-	private TabooWordService	 tabooWordService;
+	private AdminService		adminService;
+
+	@Autowired
+	private TabooWordService	tabooWordService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -115,33 +120,57 @@ public class ChirpService {
 		result = this.chirpRepository.findAllChirpsByUserId(userId);
 		return result;
 	}
-	
-	public Collection<Chirp> findChirpWithTabooWord(String tabooWord){
-		
+
+	public Collection<Chirp> findChirpWithTabooWord(final String tabooWord) {
+
 		Collection<Chirp> result;
-		
+
 		result = this.chirpRepository.findChirpWithTabooWord(tabooWord);
-		
+
 		return result;
 	}
-	
-	public Set<Chirp> ChirpWithTabooWord(){
-		
+
+	public Set<Chirp> ChirpWithTabooWord() {
+
 		Set<Chirp> result;
 		Collection<String> tabooWords;
 		Iterator<String> it;
-		
+
 		result = new HashSet<>();
 		tabooWords = this.tabooWordService.findTabooWordByName();
 		it = tabooWords.iterator();
-		while(it.hasNext())
+		while (it.hasNext())
 			result.addAll(this.findChirpWithTabooWord(it.next()));
-		
+
 		return result;
-		
+
 	}
 
 	public void flush() {
 		this.chirpRepository.flush();
+	}
+
+	public Chirp reconstruct(final Chirp chirp, final BindingResult bindingResult) {
+		Chirp result;
+		Chirp chirpBD;
+		if (chirp.getId() == 0) {
+			User userPrincipal;
+
+			userPrincipal = this.userService.findByPrincipal();
+			chirp.setUser(userPrincipal);
+			result = chirp;
+		} else {
+			chirpBD = this.chirpRepository.findOne(chirp.getId());
+			chirp.setId(chirpBD.getId());
+			chirp.setVersion(chirpBD.getVersion());
+			chirp.setPostedMoment(chirpBD.getPostedMoment());
+			chirp.setUser(chirpBD.getUser());
+			chirp.setDescription(chirpBD.getDescription());
+			chirp.setTitle(chirpBD.getTitle());
+
+			result = chirp;
+		}
+		this.validator.validate(result, bindingResult);
+		return result;
 	}
 }
