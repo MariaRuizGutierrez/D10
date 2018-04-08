@@ -1,5 +1,5 @@
 
-package controllers.customer;
+package controllers.admin;
 
 import java.util.Collection;
 
@@ -19,8 +19,8 @@ import domain.Chirp;
 import domain.User;
 
 @Controller
-@RequestMapping("/user/customer")
-public class UserCustomerController extends AbstractController {
+@RequestMapping("/user/admin")
+public class UserAdminController extends AbstractController {
 
 	// Services ---------------------------------------------------------------
 	@Autowired
@@ -43,8 +43,8 @@ public class UserCustomerController extends AbstractController {
 
 		result = new ModelAndView("user/list");
 		result.addObject("users", users);
-		result.addObject("requestProfileURL", "user/customer/display.do");
-		result.addObject("requestURI", "user/customer/list.do");
+		result.addObject("requestURI", "user/admin/list.do");
+		result.addObject("requestProfileURL", "user/admin/display.do");
 
 		return result;
 
@@ -68,9 +68,9 @@ public class UserCustomerController extends AbstractController {
 		result.addObject("user", user);
 		result.addObject("chirps", chirps);
 		result.addObject("articles", articles);
-		result.addObject("requestURI", "user/customer/display.do");
-		result.addObject("requestArticlesURL", "article/customer/list.do");
-		result.addObject("requestChirpsURL", "chirp/customer/list.do");
+		result.addObject("requestURI", "user/admin/display.do");
+		result.addObject("requestArticlesURL", "article/admin/listb.do");
+		result.addObject("requestChirpsURL", "chirp/admin/listb.do");
 
 		return result;
 	}

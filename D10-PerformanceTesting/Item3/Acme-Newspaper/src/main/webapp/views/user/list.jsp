@@ -30,23 +30,11 @@
 		<spring:message code="user.profile" var="profileHeader" />
 		<display:column title="${profileHeader}" sortable="true">
 		
-		<security:authorize access="hasRole('USER')">
-		<spring:url value="user/display.do" var="profileURL">
-		<spring:param name="userId" value="${row.id}"/>
-		</spring:url>
-		</security:authorize>
 		
-		<security:authorize access="isAnonymous()">
-		<spring:url value="user/display.do" var="profileURL">
+		<spring:url value="${requestProfileURL}" var="profileURL">
 		<spring:param name="userId" value="${row.id}"/>
 		</spring:url>
-		</security:authorize>
 		
-		<security:authorize access="hasRole('CUSTOMER')">
-		<spring:url value="user/customer/display.do" var="profileURL">
-		<spring:param name="userId" value="${row.id}"/>
-		</spring:url>
-		</security:authorize>
 		<a href="${profileURL}"><spring:message code="user.profile"/></a>
 		
 	</display:column>
