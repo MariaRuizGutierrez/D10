@@ -84,6 +84,12 @@
 		</security:authorize>
 		
 		<security:authorize access="hasRole('USER')">
+		
+			<li><a class="fNiv"><spring:message code="master.page.users.profile"/></a>
+				<ul>
+					<li><a href="profile/user/edit.do"><spring:message code="master.page.users.edit" /></a></li>
+					
+				</ul>
 			<li><a class="fNiv"><spring:message	code="master.page.chirp" /></a>
 				<ul>
 					<li class="arrow"></li>
