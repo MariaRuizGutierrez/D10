@@ -287,4 +287,12 @@ public class ArticleService {
 		articles = this.articleRepository.findArticlesOfUserWhatIsOpen(userId);
 		return articles;
 	}
+
+	public Collection<Article> findArticlesOfUserWhatNotIsDraftMode(final int userId) {
+		Collection<Article> findArticlesOfUserWhatNotIsDraftMode;
+
+		findArticlesOfUserWhatNotIsDraftMode = this.articleRepository.findArticlesOfUserWhatNotIsDraftMode(userId);
+
+		return findArticlesOfUserWhatNotIsDraftMode;
+	}
 }

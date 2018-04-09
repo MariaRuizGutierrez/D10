@@ -47,4 +47,7 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	@Query("select c from Article c where c.writer.id = ?1 and c.newspaper.open =true")
 	Collection<Article> findArticlesOfUserWhatIsOpen(int userId);
 
+	@Query("select c from Article c where c.writer.id = ?1 and c.draftMode = false")
+	Collection<Article> findArticlesOfUserWhatNotIsDraftMode(int userId);
+
 }
