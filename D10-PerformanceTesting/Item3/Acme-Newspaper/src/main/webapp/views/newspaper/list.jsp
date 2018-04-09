@@ -34,7 +34,7 @@
 <jstl:if test="${showSearch}">
 <input type="text" id="keyword" value="">
 	<input type="button" id="search"
-		value="<spring:message code="article.search"/>" />
+		value="<spring:message code="newspaper.search"/>" />
 
 	<security:authorize access="isAnonymous()">
 		<input type="hidden" id="rol" value="/" />
