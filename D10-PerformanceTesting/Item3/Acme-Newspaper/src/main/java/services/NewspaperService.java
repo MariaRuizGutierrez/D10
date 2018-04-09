@@ -267,10 +267,8 @@ public class NewspaperService {
 
 	public Collection<Newspaper> findNewspapersForUser(final String keyWord) {
 		Collection<Newspaper> newspapers;
-		User user;
 
-		user = this.userService.findByPrincipal();
-		newspapers = this.newspaperRepository.findNewspapersForUser(keyWord, user.getId());
+		newspapers = this.newspaperRepository.findNewspapersForUser(keyWord);
 		return newspapers;
 	}
 
