@@ -45,6 +45,16 @@
 			<a href="${userURL}"><spring:message code ="user.profile"/></a>
 		</display:column>
 	</security:authorize>
+	
+	<security:authorize access="hasRole('CUSTOMER')">
+		<spring:message code="user.profile" var="userHeader" />
+		<display:column title="${userHeader}" sortable="true">
+			<spring:url value="user/customer/display.do" var="userURL">
+				<spring:param name="userId" value="${row.id }" />
+			</spring:url>
+			<a href="${userURL}"><spring:message code ="user.profile"/></a>
+		</display:column>
+	</security:authorize>
 		
 	
 	<!-- Attributes -->
