@@ -35,7 +35,7 @@
 	<br />
 	<acme:textbox code="article.body" path="body"/>
 	<br />
-	<acme:textbox code="article.pictures" path="pictures" placeHolder="http://"/>
+	<acme:textbox code="article.pictures" path="pictures" placeHolder="http://imagen1, http://imagen2"/>
 	<br />
 	<acme:booleanselect code="article.draftMode" path="draftMode"/>
 	<br />

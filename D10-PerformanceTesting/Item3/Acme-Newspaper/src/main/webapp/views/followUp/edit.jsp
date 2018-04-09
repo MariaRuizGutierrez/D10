@@ -34,7 +34,7 @@
 	<br />
 	<acme:textbox code="followUp.text" path="text" />
 	<br />
-	<acme:textbox code="followUp.pictures" path="pictures" placeHolder="http://"/>
+	<acme:textbox code="followUp.pictures" path="pictures" placeHolder="http://imagen1, http://imagen2"/>
 	<br />
 
 
