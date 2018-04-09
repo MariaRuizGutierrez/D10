@@ -61,6 +61,7 @@ public class NewspaperCustomerController extends AbstractController {
 
 		result = new ModelAndView("newspaper/list");
 		result.addObject("newspapers", newspapers);
+		result.addObject("showSearch", true);
 		result.addObject("requestURI", "newspaper/customer/search.do");
 		result.addObject("requestURISearchNewspaper", "newspaper/customer/search.do");
 		return result;
