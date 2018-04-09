@@ -114,6 +114,16 @@
 			<a href="${displayURL}"><spring:message code="newspaper.display" /></a>
 		</display:column>
 	</security:authorize>
+	
+	<security:authorize access="hasRole('CUSTOMER')">
+		<spring:message code="article.display" var="display" />
+		<display:column title="${display}" sortable="true">
+			<spring:url value="article/customer/display.do" var="displayURL">
+				<spring:param name="articleId" value="${row.id }" />
+			</spring:url>
+			<a href="${displayURL}"><spring:message code="newspaper.display" /></a>
+		</display:column>
+	</security:authorize>
 
 
 	<!-- ATRIBUTOS -->
