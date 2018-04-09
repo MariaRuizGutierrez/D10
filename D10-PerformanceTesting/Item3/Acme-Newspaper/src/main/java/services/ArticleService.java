@@ -160,7 +160,7 @@ public class ArticleService {
 		result = this.articleRepository.findArticlesByUserId(userId);
 		return result;
 	}
-	public Collection<Article> findArticlesPublishedByUserIdAndNotPrivate(int userId) {
+	public Collection<Article> findArticlesPublishedByUserIdAndNotPrivate(final int userId) {
 		Collection<Article> result;
 		result = this.articleRepository.findArticlesPublishedByUserIdAndNotPrivate(userId);
 		return result;
@@ -191,7 +191,7 @@ public class ArticleService {
 
 		customer = this.customerService.findByPrincipal();
 		articlesByWord = this.articleRepository.findArticlesByKeyword(keyWord);
-		articlesPrivatesByCustomer = this.articleRepository.findArticlesPrivateBySubcriptionCustomer(customer.getId());
+		articlesPrivatesByCustomer = this.articleRepository.findArticlesPrivateBySubcriptionCustomer(customer.getId(), keyWord);
 		articlesPrivatesByCustomer.addAll(articlesByWord);
 		return articlesPrivatesByCustomer;
 	}
@@ -204,9 +204,9 @@ public class ArticleService {
 		articles = this.articleRepository.findArticlesForUser(keyWord, user.getId());
 		return articles;
 	}
-	public Collection<Article> findArticlesPrivateBySubcriptionCustomer(final int customerId) {
+	public Collection<Article> findArticlesPrivateBySubcriptionCustomer(final int customerId, final String keyWord) {
 		Collection<Article> result;
-		result = this.articleRepository.findArticlesPrivateBySubcriptionCustomer(customerId);
+		result = this.articleRepository.findArticlesPrivateBySubcriptionCustomer(customerId, keyWord);
 		return result;
 	}
 
