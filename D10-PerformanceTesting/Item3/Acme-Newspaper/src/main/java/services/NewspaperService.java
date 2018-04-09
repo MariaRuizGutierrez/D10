@@ -241,6 +241,14 @@ public class NewspaperService {
 		return result;
 	}
 
+	public Collection<Newspaper> findAllNewspapersByAdmin(String keyword) {
+		Collection<Newspaper> result;
+
+		result = this.newspaperRepository.findAllNewspapersByAdmin(keyword);
+
+		return result;
+	}
+
 	public Collection<Newspaper> findNewsPapersSearchForCustomer(final String keyWord) {
 		final Collection<Newspaper> newspapersWord;
 		final Collection<Newspaper> newspapersCustomer;
