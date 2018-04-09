@@ -42,10 +42,10 @@
 		<security:intercept-url pattern="/newspaper/list.do" access="permitAll" />
 		<security:intercept-url pattern="/newspaper/search.do" access="permitAll" />
 		<security:intercept-url pattern="/newspaper/display.do" access="permitAll" />
-		<security:intercept-url pattern="article/search.do" access="permitAll"/>
-		<security:intercept-url pattern="article/list.do" access="permitAll"/>
-		<security:intercept-url pattern="article/listb.do" access="permitAll"/>
-		<security:intercept-url pattern="article/display.do" access="permitAll"/>
+		<security:intercept-url pattern="/article/search.do" access="permitAll"/>
+		<security:intercept-url pattern="/article/list.do" access="permitAll"/>
+		<security:intercept-url pattern="/article/listb.do" access="permitAll"/>
+		<security:intercept-url pattern="/article/display.do" access="permitAll"/>
 
 		<security:intercept-url pattern="/security/login.do" access="permitAll" /> 
 		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" /> 
