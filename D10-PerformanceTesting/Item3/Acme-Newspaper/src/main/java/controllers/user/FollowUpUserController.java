@@ -3,8 +3,6 @@ package controllers.user;
 
 import java.util.Collection;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -49,7 +47,7 @@ public class FollowUpUserController extends AbstractController {
 
 	// Save -----------------------------------------------------------------
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid FollowUp followUp, final BindingResult binding) {
+	public ModelAndView save(FollowUp followUp, final BindingResult binding) {
 		ModelAndView result;
 
 		followUp = this.followUpService.reconstruct(followUp, binding);
