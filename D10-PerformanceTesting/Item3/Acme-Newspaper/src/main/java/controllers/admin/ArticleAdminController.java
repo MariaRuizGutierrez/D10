@@ -76,7 +76,7 @@ public class ArticleAdminController extends AbstractController {
 		ModelAndView result;
 		final Collection<Article> articles;
 
-		articles = this.articleService.findArticlesByUserId(userId);
+		articles = this.articleService.findArticlesPublishedByUserId(userId);
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
 		result.addObject("requestURI", "article/admin/listb.do?d-16544-p=1");
@@ -167,8 +167,8 @@ public class ArticleAdminController extends AbstractController {
 		result = new ModelAndView("user/display");
 		result.addObject("user", user);
 		result.addObject("requestURI", "article/admin/displayUser.do?d-16544-p=1");
-		result.addObject("requestArticlesURL", "article/listb.do?d-16544-p=1");
-		result.addObject("requestChirpsURL", "chirp/listb.do");
+		result.addObject("requestArticlesURL", "article/admin/listb.do?d-16544-p=1");
+		result.addObject("requestChirpsURL", "chirp/admin/listb.do");
 
 		return result;
 	}
