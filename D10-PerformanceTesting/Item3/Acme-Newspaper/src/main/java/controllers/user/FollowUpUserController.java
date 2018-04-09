@@ -92,8 +92,10 @@ public class FollowUpUserController extends AbstractController {
 	public ModelAndView display(@RequestParam final int followUpId) {
 		final ModelAndView result;
 		final FollowUp followUp;
-
+		User principal;
+		principal = this.userService.findByPrincipal();
 		followUp = this.followUpService.findOne(followUpId);
+		Assert.isTrue(followUp.getArticle().getWriter().equals(principal), "This article is not show,because is not your");
 		result = new ModelAndView("followUp/display");
 		result.addObject("followUp", followUp);
 		result.addObject("requestURI", "followUp/user/display.do");
