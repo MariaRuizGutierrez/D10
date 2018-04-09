@@ -13,8 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ArticleService;
 import services.FollowUpService;
+import services.NewspaperService;
 import domain.Article;
 import domain.FollowUp;
+import domain.Newspaper;
 
 @Controller
 @RequestMapping("/article")
@@ -22,10 +24,13 @@ public class ArticleController extends AbstractController {
 
 	// Services---------------------------------------------------------
 	@Autowired
-	private ArticleService	articleService;
+	private ArticleService		articleService;
 
 	@Autowired
-	private FollowUpService	followUpService;
+	private FollowUpService		followUpService;
+
+	@Autowired
+	private NewspaperService	newspaperService;
 
 
 	//Search -----------------------------------------------------------
@@ -51,8 +56,11 @@ public class ArticleController extends AbstractController {
 
 		ModelAndView result;
 		final Collection<Article> articles;
-		//final Newspaper newspaper;
+		final Newspaper newspaper;
 
+		newspaper = this.newspaperService.findOne(newspaperId);
+		Assert.isTrue(newspaper.isOpen() == true, "Cannot display a private newspaper");
+		Assert.isTrue(newspaper.getPublicationDate() != null, "Cannot display a not publicated newspaper ");
 		articles = this.articleService.findArticlesByNewspaperId(newspaperId);
 
 		result = new ModelAndView("article/list");
