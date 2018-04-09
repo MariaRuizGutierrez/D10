@@ -36,13 +36,16 @@
 
 		<security:intercept-url pattern="/views/misc/index.jsp" access="permitAll" /> 
 		
-		<security:intercept-url pattern="/chirp/**" access="permitAll" />
+		<security:intercept-url pattern="/chirp/listb.do" access="permitAll" />
 		<security:intercept-url pattern="/user/**" access="permitAll" />
 		<security:intercept-url pattern="/customer/**" access="permitAll" />
 		<security:intercept-url pattern="/newspaper/list.do" access="permitAll" />
 		<security:intercept-url pattern="/newspaper/search.do" access="permitAll" />
 		<security:intercept-url pattern="/newspaper/display.do" access="permitAll" />
-		<security:intercept-url pattern="/article/**" access="permitAll" />
+		<security:intercept-url pattern="article/search.do" access="permitAll"/>
+		<security:intercept-url pattern="article/list.do" access="permitAll"/>
+		<security:intercept-url pattern="article/listb.do" access="permitAll"/>
+		<security:intercept-url pattern="article/display.do" access="permitAll"/>
 
 		<security:intercept-url pattern="/security/login.do" access="permitAll" /> 
 		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" /> 
@@ -69,6 +72,7 @@
 		<security:intercept-url pattern="/subscription/customer/**" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/profile/customer/**" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/newspaper/customer/**" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/article/customer/**" access="hasRole('CUSTOMER')"/>
 	
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
