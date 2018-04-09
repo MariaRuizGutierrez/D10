@@ -18,6 +18,7 @@ import org.springframework.validation.Validator;
 
 import repositories.NewspaperRepository;
 import domain.Article;
+import domain.Customer;
 import domain.Newspaper;
 import domain.Subscription;
 import domain.User;
@@ -42,10 +43,13 @@ public class NewspaperService {
 	AdminService		adminService;
 
 	@Autowired
-	SubscriptionService	subscriptionService;
-	
+	CustomerService		customerService;
+
 	@Autowired
-	TabooWordService tabooWordService;
+	SubscriptionService	subscriptionService;
+
+	@Autowired
+	TabooWordService	tabooWordService;
 
 	//Importar la que pertenece a Spring
 	@Autowired
@@ -229,6 +233,30 @@ public class NewspaperService {
 		return result;
 	}
 
+	public Collection<Newspaper> findNewspapersByCustomerId(final int customerId) {
+		Collection<Newspaper> result;
+
+		result = this.newspaperRepository.findNewspapersByCustomerId(customerId);
+
+		return result;
+	}
+
+	public Collection<Newspaper> findNewsPapersSearchForCustomer(final String keyWord) {
+		final Collection<Newspaper> newspapersWord;
+		final Collection<Newspaper> newspapersCustomer;
+		Collection<Newspaper> newspaperPublic;
+		Customer customer;
+
+		customer = this.customerService.findByPrincipal();
+		newspapersWord = this.newspaperRepository.findNewspapersByKeywordAuthenticate(keyWord);
+		newspapersCustomer = this.newspaperRepository.findNewspapersByCustomerId(customer.getId());
+		newspaperPublic = this.findNewspapersByKeyword(keyWord);
+		newspapersCustomer.retainAll(newspapersWord);
+		newspapersCustomer.addAll(newspaperPublic);
+		return newspapersCustomer;
+
+	}
+
 	public Newspaper reconstruct(final Newspaper newspaper, final BindingResult bindingResult) {
 		Newspaper result;
 		Newspaper newspaperBD;
@@ -256,32 +284,32 @@ public class NewspaperService {
 		this.validator.validate(result, bindingResult);
 		return result;
 	}
-	
-	public Collection<Newspaper> findNewspaperWithTabooWord(String tabooWord){
-		
+
+	public Collection<Newspaper> findNewspaperWithTabooWord(final String tabooWord) {
+
 		Collection<Newspaper> result;
-		
+
 		result = this.newspaperRepository.findNewspaperWithTabooWord(tabooWord);
-		
+
 		return result;
 	}
-	
-	public Set<Newspaper> NewspaperWithTabooWord(){
-		
+
+	public Set<Newspaper> NewspaperWithTabooWord() {
+
 		this.adminService.checkPrincipal();
-		
+
 		Set<Newspaper> result;
 		Collection<String> tabooWords;
 		Iterator<String> it;
-		
+
 		result = new HashSet<>();
 		tabooWords = this.tabooWordService.findTabooWordByName();
 		it = tabooWords.iterator();
-		while(it.hasNext())
+		while (it.hasNext())
 			result.addAll(this.findNewspaperWithTabooWord(it.next()));
-		
+
 		return result;
-		
+
 	}
 
 }
