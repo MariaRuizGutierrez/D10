@@ -77,7 +77,7 @@ public class NewspaperUserController extends AbstractController {
 		result.addObject("requestURI", "newspaper/user/listb.do");
 		result.addObject("showCreate", false);
 		result.addObject("showSearch", true);
-		//result.addObject("requestURISearchNewspaper", "newspaper/user/search.do");
+		result.addObject("requestURISearchNewspaper", "newspaper/user/search.do");
 		result.addObject("message", messageCode);
 		return result;
 
