@@ -184,7 +184,6 @@ public class AdminService {
 	}
 	//B2
 	public Double avgNumberOfFollowUpsPerArticleAfterOneWeek() {
-		//TODO
 		Double result;
 		long sevenDays = TimeUnit.DAYS.toMillis(7);
 		Date since = new Date(System.currentTimeMillis() - sevenDays);
@@ -193,7 +192,6 @@ public class AdminService {
 	}
 	//B3
 	public Double avgNumberOfFollowUpsPerArticleAfterTwoWeek() {
-		//TODO
 		Double result;
 		long foorteenDays = TimeUnit.DAYS.toMillis(14);
 		Date since = new Date(System.currentTimeMillis() - foorteenDays);
@@ -237,7 +235,11 @@ public class AdminService {
 		return result;
 	}
 	//A5
-	//TODO consulta falta
+	public Double theAverageRatioOfPrivateVersusPublicNewspaperPerPublished() {
+		Double result;
+		result = this.adminRepository.theAverageRatioOfPrivateVersusPublicNewspaperPerPublished();
+		return result;
+	}
 	public AdminForm reconstruct(final AdminForm adminForm, final BindingResult bindingResult) {
 		final AdminForm result;
 		final Admin adminBD;
