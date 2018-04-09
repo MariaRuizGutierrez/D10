@@ -73,7 +73,7 @@ public class ArticleUserController extends AbstractController {
 		result.addObject("showSearch", false);
 		result.addObject("showListFollowUps", true);
 		result.addObject("showCreateFollowUp", true);
-		result.addObject("requestURI", "article/user/list.do&d-16544-p=1");
+		result.addObject("requestURI", "article/user/list.do");
 
 		return result;
 

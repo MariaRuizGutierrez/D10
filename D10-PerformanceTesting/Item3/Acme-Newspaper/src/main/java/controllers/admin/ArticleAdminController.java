@@ -91,7 +91,7 @@ public class ArticleAdminController extends AbstractController {
 		ModelAndView result;
 		final Collection<Article> articles;
 
-		articles = this.articleService.findArticlesPublishedByUserId(userId);
+		articles = this.articleService.findArticlesPublishedByUserIdAndNotPrivate(userId);
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
 		result.addObject("requestURI", "article/admin/listb.do?d-16544-p=1");

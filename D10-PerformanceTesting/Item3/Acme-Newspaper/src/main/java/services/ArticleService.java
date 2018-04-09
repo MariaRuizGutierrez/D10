@@ -160,7 +160,11 @@ public class ArticleService {
 		result = this.articleRepository.findArticlesByUserId(userId);
 		return result;
 	}
-
+	public Collection<Article> findArticlesPublishedByUserIdAndNotPrivate(int userId) {
+		Collection<Article> result;
+		result = this.articleRepository.findArticlesPublishedByUserIdAndNotPrivate(userId);
+		return result;
+	}
 	public void flush() {
 		this.articleRepository.flush();
 	}
@@ -323,14 +327,14 @@ public class ArticleService {
 		return result;
 
 	}
-	
-	public Collection<Article> findArticlesFinalMode(){
-		
+
+	public Collection<Article> findArticlesFinalMode() {
+
 		Collection<Article> result;
-		
+
 		result = this.articleRepository.findArticlesFinalMode();
-		
+
 		return result;
-		
+
 	}
 }

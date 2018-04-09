@@ -27,6 +27,9 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	@Query("select a from Article a where a.writer.id=?1 and a.publishedMoment!=null")
 	Collection<Article> findArticlesPublishedByUserId(int newspaperId);
 
+	@Query("select a from Article a where a.writer.id=?1 and a.publishedMoment!=null and a.newspaper.open=true")
+	Collection<Article> findArticlesPublishedByUserIdAndNotPrivate(int newspaperId);
+
 	@Query("select a from Article a where a.writer.id=?1")
 	Collection<Article> findArticlesByUserId(int userId);
 
@@ -47,7 +50,7 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	@Query("select a from Article a where (a.title like %?1% or a.summary like %?1% or a.body like %?1%)and a.draftMode=false")
 	Collection<Article> findAllArticlesByAdmin(String keyWord);
 
-	@Query("select c from Article c where c.writer.id = ?1 and c.newspaper.open =true")
+	@Query("select c from Article c where c.writer.id = ?1 and c.newspaper.open =true and c.draftMode=false")
 	Collection<Article> findArticlesOfUserWhatIsOpen(int userId);
 
 	@Query("select c from Article c where c.writer.id = ?1 and c.draftMode = false")
