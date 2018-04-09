@@ -25,24 +25,15 @@
 
 	<form:hidden path="customer.id" />
 	
-	<jstl:choose>
-			<jstl:when test="${customerForm.customer.id != 0}">
-				<acme:textbox path="customer.userAccount.username"
-					code="customer.username" readonly="true" /><br/>
-			</jstl:when>
-			<jstl:otherwise>
-				<acme:textbox path="customer.userAccount.username"
-					code="customer.username" /><br/>
-			</jstl:otherwise>
-		</jstl:choose>
-		<jstl:choose>
-			<jstl:when test="${customerForm.customer.id==0}">
-				<acme:password code="customer.password"
-					path="customer.userAccount.password" /><br/>
-				<acme:password code="customer.password" path="passwordCheck" /><br/>
-			</jstl:when>
-			<jstl:otherwise></jstl:otherwise>
-		</jstl:choose>	
+	
+<jstl:if test="${customerForm.customer.id == 0}">
+			<acme:textbox code="customer.username"
+				path="customer.userAccount.username" /><br />
+			<acme:password code="customer.password"
+				path="customer.userAccount.password" /><br />
+			<acme:password code="customer.password" path="passwordCheck" />
+			<br />
+		</jstl:if>
 	
 	<acme:textbox code="customer.name" path="customer.name"/>
 	<br />

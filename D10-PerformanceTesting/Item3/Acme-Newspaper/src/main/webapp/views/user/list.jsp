@@ -56,7 +56,7 @@
 		</display:column>
 	</security:authorize>
 	
-	<security:authorize access="permitAll">
+	<security:authorize access="isAnonymous()">
 		<spring:message code="user.profile" var="userHeader" />
 		<display:column title="${userHeader}" sortable="true">
 			<spring:url value="user/display.do" var="userURL">

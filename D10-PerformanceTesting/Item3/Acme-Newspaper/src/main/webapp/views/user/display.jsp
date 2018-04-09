@@ -87,7 +87,7 @@
 		
 	</p></security:authorize>
 	
-		<security:authorize access="permitAll">
+		<security:authorize access="isAnonymous()">
 	<p>
 	
 	<spring:message code="user.articles1" var="articlesHeader" />

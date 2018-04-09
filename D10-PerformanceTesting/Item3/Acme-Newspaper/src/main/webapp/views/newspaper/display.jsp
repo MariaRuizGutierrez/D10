@@ -147,7 +147,7 @@
 
 		<jstl:if test="${hideAttributes}">
 			<spring:message code="article.summary" var="summaryHeader" />
-			<display:column property="summary" title="${summaryHeader}"
+			<display:column property="preSummary" title="${summaryHeader}"
 				sortable="true" />
 		</jstl:if>
 
