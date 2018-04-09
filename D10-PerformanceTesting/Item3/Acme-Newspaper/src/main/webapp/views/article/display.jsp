@@ -29,6 +29,13 @@
 	<!-- Attributes -->
 
 <display:column>
+
+<B><spring:message code="article.newspaper" /></B>
+	<jstl:out value="${row.newspaper.title}"></jstl:out>
+	
+
+	<p>
+	
 	<B><spring:message code="article.title" /></B>
 	<jstl:out value="${row.title}"></jstl:out>
 	
