@@ -25,14 +25,10 @@ public class CustomerServiceTest extends AbstractTest {
 
 	// Supporting services ----------------------------------------------------
 	@Autowired
-	private CustomerService		customerService;
-	@Autowired
-	private NewspaperService	newspaperService;
-	@Autowired
-	private ArticleService		articleService;
+	private CustomerService	customerService;
 
 	@PersistenceContext
-	EntityManager				entityManager;
+	EntityManager			entityManager;
 
 
 	//Test caso de uso extra: Login customer

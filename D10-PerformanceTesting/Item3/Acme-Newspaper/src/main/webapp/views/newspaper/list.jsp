@@ -119,15 +119,9 @@
 	
 
 	<!-- ATRIBUTOS -->
-<security:authorize access="hasRole('USER')">
-	<spring:message code="newspaper.title" var="titleHeader" />
-	<display:column property="title" title="${titleHeader}" sortable="true" />
-</security:authorize>
 
-<security:authorize access="hasRole('ADMIN')">
 	<spring:message code="newspaper.title" var="titleHeader" />
 	<display:column property="title" title="${titleHeader}" sortable="true" />
-</security:authorize>
 
 	<spring:message code="newspaper.format.publicationDate" var="pattern"></spring:message>
 	<spring:message code="newspaper.publicationDate" var="postedHeader" />
