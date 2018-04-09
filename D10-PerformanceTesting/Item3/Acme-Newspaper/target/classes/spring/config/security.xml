@@ -68,6 +68,7 @@
 		
 		<security:intercept-url pattern="/subscription/customer/**" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/profile/customer/**" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/newspaper/customer/**" access="hasRole('CUSTOMER')"/>
 	
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
