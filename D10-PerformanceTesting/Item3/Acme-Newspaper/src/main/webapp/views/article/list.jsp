@@ -80,6 +80,19 @@
 	</display:column>
 	</security:authorize>
 	
+		<!-- 	DISPLAY PARA ADMIN -->
+
+	<security:authorize access="hasRole('ADMIN')">
+		<spring:message code="article.display" var="display" />
+		<display:column title="${display}" sortable="true" >
+				<spring:url value="article/admin/display.do" var="displayURL">
+					<spring:param name="articleId" value="${row.id }" />
+				</spring:url>
+				<a href="${displayURL}"><spring:message
+						code="newspaper.display" /></a>
+		</display:column>
+	</security:authorize>
+	
 
 	<!-- ATRIBUTOS -->
 

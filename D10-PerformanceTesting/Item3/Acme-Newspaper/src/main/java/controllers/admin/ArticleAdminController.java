@@ -96,7 +96,7 @@ public class ArticleAdminController extends AbstractController {
 
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
-		result.addObject("showDelete", true);
+		result.addObject("showDelete", false);
 		result.addObject("requestURI", "article/admin/listTabooWord.do?d-16544-p=1");
 		return result;
 
@@ -112,7 +112,7 @@ public class ArticleAdminController extends AbstractController {
 		Assert.notNull(article);
 		try {
 			this.articleService.delete(article);
-			result = new ModelAndView("redirect:list.do");
+			result = new ModelAndView("redirect:list.do?d-16544-p=1");
 		} catch (final Throwable oops) {
 			if (oops.getMessage().equals("This article can't delete because his newspaper have subscriptions"))
 				result = this.listWithMessage("article.commit.error.newspaper");
@@ -180,8 +180,10 @@ public class ArticleAdminController extends AbstractController {
 		articles = this.articleService.findAll();
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
-		result.addObject("requestURI", "/article/admin/list.do");
+		result.addObject("showDelete", true);
+		result.addObject("requestURI", "article/admin/list.do?d-16544-p=1");
 		result.addObject("message", message);
+		
 		return result;
 
 	}

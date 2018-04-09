@@ -207,12 +207,14 @@
 	
 	<!-- Boton de delete para el admin ya que puede borrar los periódicos que quiera pero no editarlas -->
 	<security:authorize access="hasRole('ADMIN')">
+	<jstl:if test="${showDelete}">
 	<spring:message code="newspaper.delete" var="deleteHeader" />
 		<display:column title="${deleteHeader}" sortable="true">
 			<input type="button" name="delete"
 				value="<spring:message code="newspaper.delete" />"
 				onclick="confirmDelete(${row.id});" />
 		</display:column>
+	</jstl:if>
 	</security:authorize>
 	
 	

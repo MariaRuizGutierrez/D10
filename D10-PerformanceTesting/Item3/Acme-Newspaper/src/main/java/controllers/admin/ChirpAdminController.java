@@ -43,6 +43,7 @@ public class ChirpAdminController extends AbstractController {
 
 		result = new ModelAndView("chirp/list");
 		result.addObject("chirps", chirps);
+		result.addObject("showDelete", true);
 		result.addObject("requestURI", "chirp/admin/list.do?d-16544-p=1");
 		return result;
 
@@ -59,6 +60,7 @@ public class ChirpAdminController extends AbstractController {
 		chirps = this.chirpService.findAllChirpsByUserId(userId);
 		result = new ModelAndView("chirp/list");
 		result.addObject("chirps", chirps);
+		result.addObject("showDelete", true);
 		result.addObject("requestURI", "chirp/admin/listb.do");
 		return result;
 	}
@@ -75,6 +77,7 @@ public class ChirpAdminController extends AbstractController {
 
 		result = new ModelAndView("chirp/list");
 		result.addObject("chirps", chirps);
+		result.addObject("showDelete", false);
 		result.addObject("requestURI", "chirp/admin/listTabooWord.do?d-16544-p=1");
 		return result;
 
@@ -106,6 +109,7 @@ public class ChirpAdminController extends AbstractController {
 		chirps = this.chirpService.findAll();
 		result = new ModelAndView("chirp/list");
 		result.addObject("chirps", chirps);
+		result.addObject("showDelete", true);
 		result.addObject("requestURI", "/chirp/admin/list.do");
 		result.addObject("message", message);
 		return result;
