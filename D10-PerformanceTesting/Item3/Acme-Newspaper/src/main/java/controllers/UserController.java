@@ -48,9 +48,12 @@ public class UserController extends AbstractController {
 
 		ModelAndView result;
 		Collection<User> users;
-
+		User principal;
+		
+		principal= this.userService.findByPrincipal();
 		users = this.userService.findAll();
-
+		users.remove(principal)
+;
 		result = new ModelAndView("user/list");
 		result.addObject("users", users);
 		result.addObject("requestURI", "user/list.do");
