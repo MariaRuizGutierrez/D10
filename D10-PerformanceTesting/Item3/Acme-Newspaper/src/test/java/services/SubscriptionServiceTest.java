@@ -73,7 +73,8 @@ public class SubscriptionServiceTest extends AbstractTest {
 				"customer1", "newspaper1", iterator.next(), javax.validation.ConstraintViolationException.class
 			}, {
 				//Se crea una subscription para el newspaper1 (privado y publicado) incorrectamente con una creditCard no válida || Year null
-				"customer1", "newspaper1", iterator.next(), javax.validation.ConstraintViolationException.class
+				//Salta el Assert de checkCreditCard que comprueba el año
+				"customer1", "newspaper1", iterator.next(), IllegalArgumentException.class
 			}, {
 				//Se crea una subscription para el newspaper1 (privado y publicado) incorrectamente con una creditCard no válida || Year fuera del rango
 				"customer1", "newspaper1", iterator.next(), javax.validation.ConstraintViolationException.class
