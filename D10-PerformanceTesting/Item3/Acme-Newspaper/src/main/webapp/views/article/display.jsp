@@ -66,6 +66,7 @@
 	
 	
 	<spring:message code="article.pictures" var="titleHeader" />
+	<jstl:if test="${row.pictures.size()!=0}">
 	<table>
 	<tr>
 	<jstl:forEach items="${row.pictures}" var="picture">
@@ -73,6 +74,12 @@
 	</jstl:forEach>
 </tr>
 </table>
+</jstl:if>
+
+<jstl:if test="${row.pictures.size()==0}">
+			<B><spring:message code="article.pictures"></spring:message></B>
+			<B><spring:message code ="nothing.found.images"></spring:message></B>
+			</jstl:if>
 
 <h2><spring:message code="article.followsUp" /></h2>
 <display:table name="followsUp" id="row1" class="displaytag">
