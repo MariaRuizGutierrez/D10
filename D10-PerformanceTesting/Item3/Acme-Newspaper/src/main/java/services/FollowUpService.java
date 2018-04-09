@@ -9,6 +9,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.FollowUpRepository;
 import domain.Article;
@@ -26,6 +28,8 @@ public class FollowUpService {
 	// Supporting services ----------------------------------------------------
 	@Autowired
 	private UserService			userService;
+	@Autowired
+	private Validator			validator;
 
 
 	// Constructors -----------------------------------------------------------
@@ -108,5 +112,26 @@ public class FollowUpService {
 	// Other business methods -------------------------------------------------
 	public void flush() {
 		this.followUpRepository.flush();
+	}
+
+	public FollowUp reconstruct(final FollowUp followUp, final BindingResult bindingResult) {
+		FollowUp result;
+		final FollowUp followUpBd;
+		Date publicationMoment;
+
+		if (followUp.getId() == 0) {
+			publicationMoment = new Date(System.currentTimeMillis() - 1000);
+			followUp.setPublicationMoment(publicationMoment);
+			result = followUp;
+		} else {
+			followUpBd = this.followUpRepository.findOne(followUp.getId());
+			followUp.setId(followUpBd.getId());
+			followUp.setVersion(followUpBd.getVersion());
+			followUp.setArticle(followUpBd.getArticle());
+
+			result = followUp;
+		}
+		this.validator.validate(result, bindingResult);
+		return result;
 	}
 }

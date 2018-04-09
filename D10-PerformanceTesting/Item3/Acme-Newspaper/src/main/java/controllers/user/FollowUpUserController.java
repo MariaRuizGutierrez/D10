@@ -52,8 +52,10 @@ public class FollowUpUserController extends AbstractController {
 
 	// Save -----------------------------------------------------------------
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final FollowUp followUp, final BindingResult binding) {
+	public ModelAndView save(@Valid FollowUp followUp, final BindingResult binding) {
 		ModelAndView result;
+
+		followUp = this.followUpService.reconstruct(followUp, binding);
 
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(followUp);
