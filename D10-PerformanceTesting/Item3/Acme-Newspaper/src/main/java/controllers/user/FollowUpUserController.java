@@ -76,9 +76,11 @@ public class FollowUpUserController extends AbstractController {
 		ModelAndView result;
 		Collection<FollowUp> followUps;
 		User userConnected;
+		Article article;
 
+		article = this.articleService.findOne(articleId);
 		userConnected = this.userService.findByPrincipal();
-		Assert.isTrue(userConnected.getArticles().contains(articleId));
+		Assert.isTrue(userConnected.getArticles().contains(article));
 		followUps = this.followUpService.findFollowUpsByArticle(articleId);
 
 		result = new ModelAndView("followUp/list");
@@ -87,7 +89,6 @@ public class FollowUpUserController extends AbstractController {
 
 		return result;
 	}
-
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam final int followUpId) {
 		final ModelAndView result;
