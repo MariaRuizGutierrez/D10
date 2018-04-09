@@ -191,6 +191,15 @@ public class ArticleService {
 		articlesPrivatesByCustomer.addAll(articlesByWord);
 		return articlesPrivatesByCustomer;
 	}
+
+	public Collection<Article> findArticlesForUser(final String keyWord) {
+		final Collection<Article> articles;
+		User user;
+
+		user = this.userService.findByPrincipal();
+		articles = this.articleRepository.findArticlesForUser(keyWord, user.getId());
+		return articles;
+	}
 	public Collection<Article> findArticlesPrivateBySubcriptionCustomer(final int customerId) {
 		Collection<Article> result;
 		result = this.articleRepository.findArticlesPrivateBySubcriptionCustomer(customerId);
@@ -295,23 +304,23 @@ public class ArticleService {
 
 		return findArticlesOfUserWhatNotIsDraftMode;
 	}
-	
-	public Collection<Article> findArticlesByUserSuscribed(int userId, int customerId){
-		
+
+	public Collection<Article> findArticlesByUserSuscribed(final int userId, final int customerId) {
+
 		Collection<Article> result;
-		
+
 		result = this.articleRepository.findArticlesByUserSuscribed(userId, customerId);
-		
+
 		return result;
 	}
-	
-	public Collection<Article> findArticlesByUserOpenAndFinalMode(int userId){
-		
+
+	public Collection<Article> findArticlesByUserOpenAndFinalMode(final int userId) {
+
 		Collection<Article> result;
-		
+
 		result = this.articleRepository.findArticlesByUserOpenAndFinalMode(userId);
-		
+
 		return result;
-		
+
 	}
 }

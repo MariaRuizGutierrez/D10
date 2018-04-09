@@ -47,7 +47,7 @@ public class ArticleUserController extends AbstractController {
 		final ModelAndView result;
 		Collection<Article> articles;
 
-		articles = this.articleService.findArticleByKeyword(keyword);
+		articles = this.articleService.findArticlesForUser(keyword);
 
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
