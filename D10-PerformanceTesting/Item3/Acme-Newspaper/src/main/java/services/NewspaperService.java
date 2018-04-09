@@ -241,7 +241,7 @@ public class NewspaperService {
 		return result;
 	}
 
-	public Collection<Newspaper> findAllNewspapersByAdmin(String keyword) {
+	public Collection<Newspaper> findAllNewspapersByAdmin(final String keyword) {
 		Collection<Newspaper> result;
 
 		result = this.newspaperRepository.findAllNewspapersByAdmin(keyword);
@@ -263,6 +263,15 @@ public class NewspaperService {
 		newspapersCustomer.addAll(newspaperPublic);
 		return newspapersCustomer;
 
+	}
+
+	public Collection<Newspaper> findNewspapersForUser(final String keyWord) {
+		Collection<Newspaper> newspapers;
+		User user;
+
+		user = this.userService.findByPrincipal();
+		newspapers = this.newspaperRepository.findNewspapersForUser(keyWord, user.getId());
+		return newspapers;
 	}
 
 	public Newspaper reconstruct(final Newspaper newspaper, final BindingResult bindingResult) {
