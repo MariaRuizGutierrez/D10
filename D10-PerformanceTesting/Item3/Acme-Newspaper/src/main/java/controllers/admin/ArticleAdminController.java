@@ -59,7 +59,7 @@ public class ArticleAdminController extends AbstractController {
 		ModelAndView result;
 		Collection<Article> articles;
 
-		articles = this.articleService.findAll();
+		articles = this.articleService.findArticlesFinalMode();
 
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);

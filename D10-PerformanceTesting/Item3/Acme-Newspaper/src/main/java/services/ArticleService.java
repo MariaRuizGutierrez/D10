@@ -323,4 +323,14 @@ public class ArticleService {
 		return result;
 
 	}
+	
+	public Collection<Article> findArticlesFinalMode(){
+		
+		Collection<Article> result;
+		
+		result = this.articleRepository.findArticlesFinalMode();
+		
+		return result;
+		
+	}
 }
