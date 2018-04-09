@@ -168,6 +168,8 @@ public class ArticleAdminController extends AbstractController {
 		result = new ModelAndView("user/display");
 		result.addObject("user", user);
 		result.addObject("requestURI", "article/admin/displayUser.do");
+		result.addObject("requestArticlesURL", "article/listb.do");
+		result.addObject("requestChirpsURL", "chirp/listb.do");
 
 		return result;
 	}
@@ -183,7 +185,7 @@ public class ArticleAdminController extends AbstractController {
 		result.addObject("showDelete", true);
 		result.addObject("requestURI", "article/admin/list.do?d-16544-p=1");
 		result.addObject("message", message);
-		
+
 		return result;
 
 	}
