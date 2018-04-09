@@ -102,6 +102,7 @@ public class ArticleController extends AbstractController {
 		article = this.articleService.findOne(articleId);
 		Assert.isTrue(article.getNewspaper().isOpen() == true, "the article belong to a private newspaper");
 		Assert.isTrue(!article.isDraftMode(), "The article is in DraftMode");
+		Assert.isTrue(article.getNewspaper().getPublicationDate() != null, "Cannot display a not publicated newspaper ");
 		followsUp = this.followUpService.findFollowUpsByArticle(articleId);
 		result = new ModelAndView("article/display");
 		result.addObject("article", article);
