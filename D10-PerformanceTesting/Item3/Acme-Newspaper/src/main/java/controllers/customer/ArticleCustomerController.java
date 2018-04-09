@@ -2,6 +2,8 @@
 package controllers.customer;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import services.NewspaperService;
 import services.UserService;
 import controllers.AbstractController;
 import domain.Article;
+import domain.Customer;
 import domain.Newspaper;
 import domain.User;
 
@@ -66,6 +69,28 @@ public class ArticleCustomerController extends AbstractController {
 		result.addObject("requestURI", "article/customer/list.do");
 		return result;
 	}
+	
+	// Listb ---------------------------------------------------------
+			@RequestMapping(value = "/listb", method = RequestMethod.GET)
+			public ModelAndView listArticlesByUserSuscribed(@RequestParam final int userId) {
+
+				ModelAndView result;
+				Collection<Article> articles;
+				Customer customer;
+				Set<Article> articlesAll;
+				
+				articlesAll = new HashSet<>();
+				
+				customer = this.customerService.findByPrincipal();
+
+				articles = this.articleService.findArticlesByUserSuscribed(userId, customer.getId());
+				articles.addAll(this.articleService.findArticlesByUserOpenAndFinalMode(userId));
+				articlesAll.addAll(articles);
+				result = new ModelAndView("article/list");
+				result.addObject("articles", articlesAll);
+				result.addObject("requestURI", "article/customer/listb.do");
+				return result;
+			}
 
 	// Display ---------------------------------------------------------
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
@@ -132,8 +157,8 @@ public class ArticleCustomerController extends AbstractController {
 		result = new ModelAndView("user/display");
 		result.addObject("user", user);
 		result.addObject("requestURI", "article/user/displayUser.do");
-		result.addObject("requestArticlesURL", "article/listb.do");
-		result.addObject("requestChirpsURL", "chirp/listb.do");
+		result.addObject("requestArticlesURL", "article/customer/listb.do");
+		result.addObject("requestChirpsURL", "chirp/customer/list.do");
 
 		return result;
 	}

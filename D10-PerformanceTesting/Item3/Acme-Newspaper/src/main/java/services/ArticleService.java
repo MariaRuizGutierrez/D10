@@ -295,4 +295,23 @@ public class ArticleService {
 
 		return findArticlesOfUserWhatNotIsDraftMode;
 	}
+	
+	public Collection<Article> findArticlesByUserSuscribed(int userId, int customerId){
+		
+		Collection<Article> result;
+		
+		result = this.articleRepository.findArticlesByUserSuscribed(userId, customerId);
+		
+		return result;
+	}
+	
+	public Collection<Article> findArticlesByUserOpenAndFinalMode(int userId){
+		
+		Collection<Article> result;
+		
+		result = this.articleRepository.findArticlesByUserOpenAndFinalMode(userId);
+		
+		return result;
+		
+	}
 }
