@@ -14,9 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ArticleService;
 import services.FollowUpService;
+import services.UserService;
 import controllers.AbstractController;
 import domain.Article;
 import domain.FollowUp;
+import domain.User;
 
 @Controller
 @RequestMapping("/followUp/user")
@@ -29,6 +31,9 @@ public class FollowUpUserController extends AbstractController {
 
 	@Autowired
 	private ArticleService	articleService;
+
+	@Autowired
+	private UserService		userService;
 
 
 	// Create -----------------------------------------------------------------
@@ -70,7 +75,10 @@ public class FollowUpUserController extends AbstractController {
 	public ModelAndView list(@RequestParam final int articleId) {
 		ModelAndView result;
 		Collection<FollowUp> followUps;
+		User userConnected;
 
+		userConnected = this.userService.findByPrincipal();
+		Assert.isTrue(userConnected.getArticles().contains(articleId));
 		followUps = this.followUpService.findFollowUpsByArticle(articleId);
 
 		result = new ModelAndView("followUp/list");
