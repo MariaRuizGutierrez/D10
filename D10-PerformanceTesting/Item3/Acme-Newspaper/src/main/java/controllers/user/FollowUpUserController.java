@@ -82,6 +82,35 @@ public class FollowUpUserController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam final int followUpId) {
+		final ModelAndView result;
+		final FollowUp followUp;
+
+		followUp = this.followUpService.findOne(followUpId);
+		result = new ModelAndView("followUp/display");
+		result.addObject("followUp", followUp);
+		result.addObject("requestURI", "followUp/user/display.do");
+
+		return result;
+	}
+
+	/*
+	 * @RequestMapping(value = "/displayPictures", method = RequestMethod.GET)
+	 * public ModelAndView display(@RequestParam final int followUpId) {
+	 * final ModelAndView result;
+	 * final Collection<String> pictures;
+	 * FollowUp follow;
+	 * //pictures = this.followUpService.findPicturesFollowUpByFollowIp(followUpId);
+	 * follow = this.followUpService.findOne(followUpId);
+	 * result = new ModelAndView("followUp/displayPictures");
+	 * result.addObject("pictures", pictures);
+	 * result.addObject("vacio", "");
+	 * result.addObject("requestURI", "followUp/user/displayPictures.do");
+	 * 
+	 * return result;
+	 * }
+	 */
 	protected ModelAndView createEditModelAndView(final FollowUp followUp) {
 		Assert.notNull(followUp);
 		ModelAndView result;
