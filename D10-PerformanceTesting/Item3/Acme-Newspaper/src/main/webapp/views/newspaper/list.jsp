@@ -32,11 +32,33 @@
 
 <!-- 	SEARCH -->
 <jstl:if test="${showSearch}">
-<form:form action="${requestURISearchNewspaper}"  method="get">
-	<label><spring:message code="newspaper.search.keyword"/></label>
-	<input type="text" name="keyword"/> 
-	<input type="submit" value="<spring:message code="newspaper.search" />" /> 	 	
-</form:form>
+<input type="text" id="keyword" value="">
+	<input type="button" id="search"
+		value="<spring:message code="article.search"/>" />
+
+	<security:authorize access="isAnonymous()">
+		<input type="hidden" id="rol" value="/" />
+	</security:authorize>
+	<security:authorize access="hasRole('USER')">
+		<input type="hidden" id="rol" value="/user/" />
+	</security:authorize>
+	<security:authorize access="hasRole('ADMIN')">
+		<input type="hidden" id="rol" value="/admin/" />
+	</security:authorize>
+	<security:authorize access="hasRole('CUSTOMER')">
+		<input type="hidden" id="rol" value="/customer/" />
+	</security:authorize>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#search").click(function() {
+			if ($("#keyword").val()!="")
+				window.location.replace('newspaper'+$("#rol").val()+'search.do?d-16544-p=1&keyword='+ $("#keyword").val());
+			else
+				window.location.replace('newspaper'+$("#rol").val()+'search.do?d-16544-p=1&keyword=');
+		});
+	});
+	</script>
 </jstl:if>
 
 

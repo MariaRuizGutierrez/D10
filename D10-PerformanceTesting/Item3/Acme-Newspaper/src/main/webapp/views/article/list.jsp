@@ -32,12 +32,34 @@
 </script>
 
 <jstl:if test="${showSearch}">
-	<form:form action="${requestURISearchArticle}" method="get">
-		<label><spring:message code="article.search.keyword" /></label>
-		<input type="text" name="keyword" />
-		<input type="submit" value="<spring:message code="article.search" />" />
-	</form:form>
-	<br />
+
+	<input type="text" id="keyword" value="">
+	<input type="button" id="search"
+		value="<spring:message code="article.search"/>" />
+
+	<security:authorize access="isAnonymous()">
+		<input type="hidden" id="rol" value="/" />
+	</security:authorize>
+	<security:authorize access="hasRole('USER')">
+		<input type="hidden" id="rol" value="/user/" />
+	</security:authorize>
+	<security:authorize access="hasRole('ADMIN')">
+		<input type="hidden" id="rol" value="/admin/" />
+	</security:authorize>
+	<security:authorize access="hasRole('CUSTOMER')">
+		<input type="hidden" id="rol" value="/customer/" />
+	</security:authorize>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#search").click(function() {
+			if ($("#keyword").val()!="")
+				window.location.replace('article'+$("#rol").val()+'search.do?d-16544-p=1&keyword='+ $("#keyword").val());
+			else
+				window.location.replace('article'+$("#rol").val()+'search.do?d-16544-p=1&keyword=');
+		});
+	});
+	</script>
 </jstl:if>
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
@@ -186,12 +208,12 @@
 <!-- Boton de create article -->
 
 <jstl:if test="${(newspaper.publicationDate == null) and (showCreate)}">
-<security:authorize access="hasRole('USER')">
-	<div>
-		<spring:url value="article/user/create.do" var="editURL">
-			<spring:param name="newspaperId" value="${newspaper.id}" />
-		</spring:url>
-		<a href="${editURL}"><spring:message code="article.create" /></a>
-	</div>
-</security:authorize>
+	<security:authorize access="hasRole('USER')">
+		<div>
+			<spring:url value="article/user/create.do" var="editURL">
+				<spring:param name="newspaperId" value="${newspaper.id}" />
+			</spring:url>
+			<a href="${editURL}"><spring:message code="article.create" /></a>
+		</div>
+	</security:authorize>
 </jstl:if>
