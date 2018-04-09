@@ -90,6 +90,19 @@ public class ArticleUserController extends AbstractController {
 
 	}
 
+	@RequestMapping(value = "listArticles", method = RequestMethod.GET)
+	public ModelAndView displayArticles(@RequestParam final int userId) {
+		ModelAndView result;
+		final Collection<Article> articles;
+
+		articles = this.articleService.findArticlesOfUserWhatIsOpen(userId);
+
+		result = new ModelAndView("article/list");
+		result.addObject("articles", articles);
+
+		return result;
+	}
+
 	//List my articles-----------------------------------------------------------
 
 	@RequestMapping(value = "/listMyArticles", method = RequestMethod.GET)
