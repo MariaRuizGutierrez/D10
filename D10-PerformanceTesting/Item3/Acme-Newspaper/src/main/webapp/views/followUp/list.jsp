@@ -29,30 +29,25 @@
 
 	<!-- ATRIBUTOS -->
 
-	<spring:message code="chirp.format.postedMoment" var="pattern"></spring:message>
-	<spring:message code="chirp.postedMoment" var="postedHeader" />
-	<display:column property="postedMoment" title="${postedHeader}"
-		sortable="true" format="${pattern}" />
 
-	<spring:message code="chirp.title" var="titleHeader" />
+
+	<spring:message code="followUp.title" var="titleHeader" />
 	<display:column property="title" title="${titleHeader}" sortable="true" />
-
-	<spring:message code="chirp.description" var="descriptionHeader" />
-	<display:column property="description" title="${descriptionHeader}" sortable="true"/>
 	
-	<!-- Boton de delete para el admin ya que puede borrar los chirps que quiera pero no editarlas -->
-	<security:authorize access="hasRole('ADMIN')">
-	<spring:message code="chirp.delete" var="deleteHeader" />
-		<display:column title="${deleteHeader}" sortable="true">
-			<input type="button" name="delete"
-				value="<spring:message code="chirp.delete" />"
-				onclick="confirmDelete(${row.id});" />
-		</display:column>
-	</security:authorize>
-		
+	<spring:message code="followUp.format.publicationMoment" var="pattern"></spring:message>
+	<spring:message code="followUp.PublicationMoment" var="postedHeader" />
+	<display:column property="publicationMoment" title="${postedHeader}" sortable="true" format="${pattern}" />
+
+	<spring:message code="followUp.summary" var="summaryHeader" />
+	<display:column property="summary" title="${summaryHeader}" sortable="true"/>
+	
+	<spring:message code="followUp.text" var="textHeader" />
+	<display:column property="text" title="${textHeader}" sortable="true"/>
+	
 
 		
-</display:table>
+ </display:table>
+ <%--
 <security:authorize access="hasRole('USER')">
 	<div>
 		<a href="chirp/user/create.do"> 
@@ -60,7 +55,7 @@
 		</a>
 	</div>
 </security:authorize>
-
+ --%>
 
 
 

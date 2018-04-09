@@ -175,11 +175,10 @@
 		</display:column>
 	</security:authorize>
 </jstl:if>
-</display:table>
 
 
-<jstl:if test="${newspaper.publicationDate == null}">
-<jstl:if test="${showCreate}">
+
+<jstl:if test="${(newspaper.publicationDate == null) and (showCreate)}">
 <security:authorize access="hasRole('USER')">
 	<div>
 		<spring:url value="article/user/create.do" var="editURL">
@@ -189,5 +188,14 @@
 	</div>
 </security:authorize>
 </jstl:if>
-</jstl:if>
 
+<jstl:if test="${showListFollowUps}">
+	<spring:message code="followUp.list" var="followUpsHeader" />
+	<display:column title="${followUpsHeader}" sortable="true">
+		<spring:url value="followUp/user/list.do" var="followUpURL">
+			<spring:param name="articleId" value="${row.id }" />
+		</spring:url>
+			<a href="${followUpURL}"><spring:message code="followUp.list" /></a>
+	</display:column>
+	</jstl:if>
+</display:table>
