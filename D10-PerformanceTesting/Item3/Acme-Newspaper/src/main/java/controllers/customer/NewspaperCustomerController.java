@@ -80,13 +80,15 @@ public class NewspaperCustomerController extends AbstractController {
 
 		newspaper = this.newspaperService.findOne(newspaperId);
 		myNewspapersSubscription = this.newspaperService.findNewspapersSubscribedByCustomerId(this.customerService.findByPrincipal().getId());
-		isSubscribed = myNewspapersSubscription.contains(newspaper);
+		hideAttributes = false;
+		if (!newspaper.isOpen()) {
+			isSubscribed = myNewspapersSubscription.contains(newspaper);
+			//Si no esta suscrito, escondo sus atributos
+			hideAttributes = !isSubscribed;
+		}
 
 		//TODOS LOS ARTÍCULOS DE UN PERIÓDICO
 		articles = this.articleService.findArticlesByNewspaperId(newspaperId);
-
-		//Si no esta suscrito, escondo sus atributos
-		hideAttributes = !isSubscribed;
 
 		result = new ModelAndView("newspaper/display");
 		result.addObject("newspaper", newspaper);
@@ -97,7 +99,6 @@ public class NewspaperCustomerController extends AbstractController {
 
 		return result;
 	}
-
 	//-----------------------CODIGO QUE ANTES ESTABA EN SubscriptionCustomerController
 
 	//List private newspapers-----------------------------------------------------------
