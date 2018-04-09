@@ -258,7 +258,7 @@ public class NewspaperService {
 		customer = this.customerService.findByPrincipal();
 		newspapersWord = this.newspaperRepository.findNewspapersByKeywordAuthenticate(keyWord);
 		newspapersCustomer = this.newspaperRepository.findNewspapersByCustomerId(customer.getId());
-		newspaperPublic = this.findNewspapersByKeyword(keyWord);
+		newspaperPublic = this.newspaperRepository.findNewspapersByKeyword(keyWord);
 		newspapersCustomer.retainAll(newspapersWord);
 		newspapersCustomer.addAll(newspaperPublic);
 		return newspapersCustomer;
