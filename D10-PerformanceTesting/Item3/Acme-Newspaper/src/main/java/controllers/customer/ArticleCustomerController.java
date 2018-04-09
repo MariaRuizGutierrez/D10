@@ -44,7 +44,7 @@ public class ArticleCustomerController extends AbstractController {
 		final ModelAndView result;
 		Collection<Article> articles;
 
-		articles = this.articleService.findArticleByKeyword(keyword);
+		articles = this.articleService.findNewsArticlesSearchForCustomer(keyword);
 
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);

@@ -18,6 +18,7 @@ import org.springframework.validation.Validator;
 
 import repositories.ArticleRepository;
 import domain.Article;
+import domain.Customer;
 import domain.FollowUp;
 import domain.Newspaper;
 import domain.Subscription;
@@ -36,6 +37,8 @@ public class ArticleService {
 
 	@Autowired
 	NewspaperService	newspaperService;
+	@Autowired
+	CustomerService		customerService;
 
 	@Autowired
 	UserService			userService;
@@ -174,6 +177,23 @@ public class ArticleService {
 	public Collection<Article> findAllArticlesByAdmin(final String keyWord) {
 		Collection<Article> result;
 		result = this.articleRepository.findAllArticlesByAdmin(keyWord);
+		return result;
+	}
+
+	public Collection<Article> findNewsArticlesSearchForCustomer(final String keyWord) {
+		final Collection<Article> articlesByWord;
+		final Collection<Article> articlesPrivatesByCustomer;
+		Customer customer;
+
+		customer = this.customerService.findByPrincipal();
+		articlesByWord = this.articleRepository.findArticlesByKeyword(keyWord);
+		articlesPrivatesByCustomer = this.articleRepository.findArticlesPrivateBySubcriptionCustomer(customer.getId());
+		articlesPrivatesByCustomer.addAll(articlesByWord);
+		return articlesPrivatesByCustomer;
+	}
+	public Collection<Article> findArticlesPrivateBySubcriptionCustomer(final int customerId) {
+		Collection<Article> result;
+		result = this.articleRepository.findArticlesPrivateBySubcriptionCustomer(customerId);
 		return result;
 	}
 

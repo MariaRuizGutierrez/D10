@@ -15,6 +15,9 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	@Query("select a from Article a where (a.title like %?1% or a.summary like %?1% or a.body like %?1%) and a.publishedMoment!=null and a.newspaper.open=true and a.newspaper.publicationDate!=null")
 	Collection<Article> findArticlesByKeyword(String keyWord);
 
+	@Query("select distinct a from Subscription s join s.newspaper.articles a where s.customer.id=?1")
+	Collection<Article> findArticlesPrivateBySubcriptionCustomer(int customerId);
+
 	@Query("select a from Article a where a.newspaper.id=?1")
 	Collection<Article> findArticlesByNewspaperId(int newspaperId);
 
