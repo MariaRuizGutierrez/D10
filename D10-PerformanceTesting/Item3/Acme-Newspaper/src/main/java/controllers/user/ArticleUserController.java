@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ArticleService;
+import services.FollowUpService;
 import services.NewspaperService;
 import services.UserService;
 import controllers.AbstractController;
 import domain.Article;
+import domain.FollowUp;
 import domain.Newspaper;
 import domain.User;
 
@@ -34,6 +36,9 @@ public class ArticleUserController extends AbstractController {
 
 	@Autowired
 	private UserService			userService;
+
+	@Autowired
+	private FollowUpService		followUpService;
 
 
 	//Search -----------------------------------------------------------
@@ -88,6 +93,19 @@ public class ArticleUserController extends AbstractController {
 
 		return result;
 
+	}
+
+	@RequestMapping(value = "listArticles", method = RequestMethod.GET)
+	public ModelAndView displayArticles(@RequestParam final int userId) {
+		ModelAndView result;
+		final Collection<Article> articles;
+
+		articles = this.articleService.findArticlesOfUserWhatIsOpen(userId);
+
+		result = new ModelAndView("article/list");
+		result.addObject("articles", articles);
+
+		return result;
 	}
 
 	//List my articles-----------------------------------------------------------
@@ -225,14 +243,15 @@ public class ArticleUserController extends AbstractController {
 	public ModelAndView displayArticle(@RequestParam final int articleId) {
 		final ModelAndView result;
 		Article article = new Article();
-
+		Collection<FollowUp> followsUp;
 		article = this.articleService.findOne(articleId);
-
+		followsUp = this.followUpService.findFollowUpsByArticle(articleId);
 		if (!article.getNewspaper().isOpen())
 			Assert.isTrue(this.userService.findByPrincipal().getArticles().contains(article), "This article belongs to a private newspaper that is not yours");
 
 		result = new ModelAndView("article/display");
 		result.addObject("article", article);
+		result.addObject("followsUp", followsUp);
 		result.addObject("requestURI", "article/user/display.do");
 
 		return result;

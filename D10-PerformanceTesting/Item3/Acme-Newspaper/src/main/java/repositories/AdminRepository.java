@@ -49,10 +49,10 @@ public interface AdminRepository extends JpaRepository<Admin, Integer> {
 	//B1: The average number of follow-ups per article.
 	@Query("select avg(a.followUps.size) from Article a")
 	Double avgFollowupsPerArticle();
-	//TODO B2: The average number of follow-ups per article up to one week after the corresponding newspaper’s been published.
+	//B2: The average number of follow-ups per article up to one week after the corresponding newspaper’s been published.
 	@Query("select avg(a.followUps.size) from Article a where a.newspaper.publicationDate<?1")
 	Double avgNumberOfFollowUpsPerArticleAfterOneWeek(Date since);
-	//TODO B3: The average number of follow-ups per article up to two weeks after the corresponding newspapers been published.
+	//B3: The average number of follow-ups per article up to two weeks after the corresponding newspapers been published.
 	@Query("select avg(a.followUps.size) from Article a where a.newspaper.publicationDate<?1")
 	Double avgNumberOfFollowUpsPerArticleAfterTwoWeek(Date since);
 	//B4: The average and the standard deviation of the number of chirps per user.
@@ -73,7 +73,8 @@ public interface AdminRepository extends JpaRepository<Admin, Integer> {
 	//A4: The ratio of subscribers per private newspaper versus the total number of customers.
 	@Query("select count(s)*1.0/(select count(u) from User u) from Subscription s where s.newspaper.open=false")
 	Double ratioOfSubscribersWhenNewspaperPrivatePerNumberCustomer();
-	//TODO A5: The average ratio of private versus public newspapers per publisher.
-	//select count(n)*1.0/(select count(ne) from Newspaper ne join ne.publisher pu where ne.open=false) from Newspaper n join n.publisher r where n.open=true;
-	//select count(ne)*1.0/(select count(n) from User us join us.newspapers n where n.open=true group by us)from User u join u.newspapers ne where ne.open=false group by u;
+	//A5: The average ratio of private versus public newspapers per publisher.
+	@Query("select count(ne)*1.0/(select count(n) from User us join us.newspapers n where n.open=true)from User u join u.newspapers ne where ne.open=false")
+	Double theAverageRatioOfPrivateVersusPublicNewspaperPerPublished();
+
 }

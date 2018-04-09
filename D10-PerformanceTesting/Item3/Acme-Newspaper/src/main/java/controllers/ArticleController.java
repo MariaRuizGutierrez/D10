@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ArticleService;
+import services.FollowUpService;
 import domain.Article;
+import domain.FollowUp;
 
 @Controller
 @RequestMapping("/article")
@@ -21,6 +23,9 @@ public class ArticleController extends AbstractController {
 	// Services---------------------------------------------------------
 	@Autowired
 	private ArticleService	articleService;
+
+	@Autowired
+	private FollowUpService	followUpService;
 
 
 	//Search -----------------------------------------------------------
@@ -84,12 +89,15 @@ public class ArticleController extends AbstractController {
 	public ModelAndView displayArticle(@RequestParam final int articleId) {
 		final ModelAndView result;
 		Article article = new Article();
+		Collection<FollowUp> followsUp;
 
 		article = this.articleService.findOne(articleId);
 		Assert.isTrue(article.getNewspaper().isOpen() == true, "the article belong to a private newspaper");
 		Assert.isTrue(!article.isDraftMode(), "The article is in DraftMode");
+		followsUp = this.followUpService.findFollowUpsByArticle(articleId);
 		result = new ModelAndView("article/display");
 		result.addObject("article", article);
+		result.addObject("followsUp", followsUp);
 		result.addObject("requestURI", "article/display.do");
 
 		return result;

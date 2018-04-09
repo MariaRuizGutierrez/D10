@@ -73,6 +73,46 @@
 	</jstl:forEach>
 </tr>
 </table>
+
+<h2><spring:message code="article.followsUp" /></h2>
+<display:table name="followsUp" id="row1" class="displaytag">
+
+	<display:column>
+	<B><spring:message code="article.followsUp.title" /></B>
+	<jstl:out value="${row1.title}"></jstl:out>
+	
+
+	<p>
+		<B><spring:message code="article.followsUp.summary" /></B>
+		<jstl:out value="${row1.summary}"></jstl:out>
+	</p>
+		
+	<p>
+		<B><spring:message code="article.followsUp.text" /></B>
+		<jstl:out value="${row1.text}"></jstl:out>
+	</p>
+	
+	
+	<p>
+ 			<spring:message code="article.format.publishedMoment1" var="pattern"></spring:message>
+			<fmt:formatDate value="${row1.publicationMoment}" pattern="${pattern}" var="newdatevar" />
+			<B><spring:message code="article.followsUp.publicationMoment"></spring:message></B>
+			<c:out value="${newdatevar}" />
+	
+	</p>
+	
+	
+	<spring:message code="article.pictures" var="titleHeader" />
+	<table>
+	<tr>
+	<jstl:forEach items="${row1.pictures}" var="picture">
+	<td><img src="${picture}" width="250" height="150"></td>
+	</jstl:forEach>
+</tr>
+</table>
+</display:column>
+</display:table>
+
 	
 </display:column>
 

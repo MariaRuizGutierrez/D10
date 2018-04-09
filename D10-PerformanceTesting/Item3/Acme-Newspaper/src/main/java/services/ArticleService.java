@@ -260,4 +260,11 @@ public class ArticleService {
 
 		return articles;
 	}
+
+	public Collection<Article> findArticlesOfUserWhatIsOpen(final int userId) {
+		Collection<Article> articles;
+
+		articles = this.articleRepository.findArticlesOfUserWhatIsOpen(userId);
+		return articles;
+	}
 }

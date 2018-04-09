@@ -46,7 +46,7 @@ public class AdministratorDashboardController extends AbstractController {
 		Double avgArticlePerNewspapersPrivate;
 		Double avgArticlesPerNewspapersPublic;
 		Double ratioOfSubscribersWhenNewspaperPrivatePerNumberCustomer;
-		//TODO A5
+		Double theAverageRatioOfPrivateVersusPublicNewspaperPerPublished;
 
 		theAvgAndStddevOfNewspapersForUser = this.adminService.theAvgAndStddevOfNewspapersForUser();
 		theAvgAndStddevOfArticlesPerWriter = this.adminService.theAvgAndStddevOfArticlesPerWriter();
@@ -64,7 +64,7 @@ public class AdministratorDashboardController extends AbstractController {
 		avgArticlePerNewspapersPrivate = this.adminService.avgArticlePerNewspapersPrivate();
 		avgArticlesPerNewspapersPublic = this.adminService.avgArticlesPerNewspapersPublic();
 		ratioOfSubscribersWhenNewspaperPrivatePerNumberCustomer = this.adminService.ratioOfSubscribersWhenNewspaperPrivatePerNumberCustomer();
-		//TODO A5		
+		theAverageRatioOfPrivateVersusPublicNewspaperPerPublished = this.adminService.theAverageRatioOfPrivateVersusPublicNewspaperPerPublished();
 
 		result.addObject("theAvgAndStddevOfNewspapersForUser", theAvgAndStddevOfNewspapersForUser);
 		result.addObject("theAvgAndStddevOfArticlesPerWriter", theAvgAndStddevOfArticlesPerWriter);
@@ -82,7 +82,7 @@ public class AdministratorDashboardController extends AbstractController {
 		result.addObject("avgArticlePerNewspapersPrivate", avgArticlePerNewspapersPrivate);
 		result.addObject("avgArticlesPerNewspapersPublic", avgArticlesPerNewspapersPublic);
 		result.addObject("ratioOfSubscribersWhenNewspaperPrivatePerNumberCustomer", ratioOfSubscribersWhenNewspaperPrivatePerNumberCustomer);
-		//TODO A5 :result.addObject("findAvgNumOfServicesPerCategories", findAvgNumOfServicesPerCategories);
+		result.addObject("theAverageRatioOfPrivateVersusPublicNewspaperPerPublished", theAverageRatioOfPrivateVersusPublicNewspaperPerPublished);
 
 		return result;
 

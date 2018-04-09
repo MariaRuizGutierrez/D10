@@ -264,6 +264,18 @@
 	</tr>
 </table>
 
+<table>
+<!-- A5 -->
+	<caption class="caption">
+		<spring:message
+			code="dashboard.theAverageRatioOfPrivateVersusPublicNewspaperPerPublished" />
+	</caption>
+
+	<tr>
+		<td><jstl:out
+				value="${theAverageRatioOfPrivateVersusPublicNewspaperPerPublished}"></jstl:out></td>
+	</tr>
+</table>
 
 
 

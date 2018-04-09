@@ -51,11 +51,14 @@
 		<jstl:out value="${row.email}"></jstl:out>
 	</p>	
 	<p>
-		<B><spring:message code="user.articles1" />:</B>
-			<spring:url value="${requestArticlesURL}" var="articleURL">
-			<spring:param name="userId" value="${row.id }" />
+	
+	<spring:message code="user.articles1" var="articlesHeader" />
+	<B><jstl:out value ="${articlesHeader }:"></jstl:out></B>
+			<spring:url value="article/user/listArticles.do" var="articlesURL">
+				<spring:param name="userId" value="${row.id }" />
 			</spring:url>
-			<a href="${articleURL}"><spring:message code="user.articles" /></a>
+			<a href="${articlesURL}"><spring:message code ="user.articles"/></a>
+		
 	</p>
 		<p>
 		<B><spring:message code="user.chirps1" />:</B>

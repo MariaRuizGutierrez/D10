@@ -568,9 +568,8 @@
 		<property name="article" ref="article12"/>
 		<property name="pictures">
 			<list>
-			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
-			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
-			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			<value>http://creativo.site/sodeme/wp-content/uploads/2016/03/articulos.jpg</value>
+			<value>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXbsNo-dfvsa40IwGLZ5Cfn4msRIG1LtEzM_Vm0lOnTRsk6B0M</value>
 			</list>
 		</property>
 	</bean> 
@@ -583,9 +582,8 @@
 		<property name="article" ref="article1"/>
 		<property name="pictures">
 			<list>
-			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
-			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
-			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			<value>http://creativo.site/sodeme/wp-content/uploads/2016/03/articulos.jpg</value>
+			<value>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXbsNo-dfvsa40IwGLZ5Cfn4msRIG1LtEzM_Vm0lOnTRsk6B0M</value>
 			</list>
 		</property>
 	</bean>
@@ -598,9 +596,8 @@
 		<property name="article" ref="article5"/>
 		<property name="pictures">
 			<list>
-			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
-			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
-			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			<value>http://creativo.site/sodeme/wp-content/uploads/2016/03/articulos.jpg</value>
+			<value>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXbsNo-dfvsa40IwGLZ5Cfn4msRIG1LtEzM_Vm0lOnTRsk6B0M</value>
 			</list>
 		</property>
 	</bean> 
@@ -613,9 +610,8 @@
 		<property name="article" ref="article6"/>
 		<property name="pictures">
 			<list>
-			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
-			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
-			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			<value>http://creativo.site/sodeme/wp-content/uploads/2016/03/articulos.jpg</value>
+			<value>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXbsNo-dfvsa40IwGLZ5Cfn4msRIG1LtEzM_Vm0lOnTRsk6B0M</value>
 			</list>
 		</property>
 	</bean>
@@ -628,9 +624,8 @@
 		<property name="article" ref="article7"/>
 		<property name="pictures">
 			<list>
-			<value>https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg</value>
-			<value>https://img.blogs.es/anexom/wp-content/uploads/2016/10/Peridicos-920x515.jpg</value>
-			<value>https://cibercult.files.wordpress.com/2014/06/periodico1.jpg</value>
+			<value>http://creativo.site/sodeme/wp-content/uploads/2016/03/articulos.jpg</value>
+			<value>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXbsNo-dfvsa40IwGLZ5Cfn4msRIG1LtEzM_Vm0lOnTRsk6B0M</value>
 			</list>
 		</property>
 	</bean> 
