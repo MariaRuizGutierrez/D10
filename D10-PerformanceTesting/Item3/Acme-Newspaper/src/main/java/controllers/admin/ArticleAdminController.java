@@ -42,13 +42,12 @@ public class ArticleAdminController extends AbstractController {
 		final ModelAndView result;
 		Collection<Article> articles;
 
-		articles = this.articleService.findArticleByKeyword(keyword);
+		articles = this.articleService.findAllArticlesByAdmin(keyword);
 
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
 		result.addObject("showSearch", true);
 		result.addObject("requestURI", "article/admin/search.do");
-		result.addObject("requestURISearchArticle", "article/admin/search.do");
 		return result;
 	}
 
@@ -80,7 +79,7 @@ public class ArticleAdminController extends AbstractController {
 		articles = this.articleService.findArticlesByUserId(userId);
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
-		result.addObject("requestURI", "article/admin/listb.do");
+		result.addObject("requestURI", "article/admin/listb.do?d-16544-p=1");
 		return result;
 	}
 
@@ -134,7 +133,7 @@ public class ArticleAdminController extends AbstractController {
 		summary = this.articleService.findSummaryByArticleId(articleId);
 		result = new ModelAndView("article/displaySummary");
 
-		result.addObject("requestURI", "article/admin/listSummay.do");
+		result.addObject("requestURI", "article/admin/listSummay.do?d-16544-p=1");
 		result.addObject("article", summary);
 
 		return result;
@@ -167,8 +166,8 @@ public class ArticleAdminController extends AbstractController {
 
 		result = new ModelAndView("user/display");
 		result.addObject("user", user);
-		result.addObject("requestURI", "article/admin/displayUser.do");
-		result.addObject("requestArticlesURL", "article/listb.do");
+		result.addObject("requestURI", "article/admin/displayUser.do?d-16544-p=1");
+		result.addObject("requestArticlesURL", "article/listb.do?d-16544-p=1");
 		result.addObject("requestChirpsURL", "chirp/listb.do");
 
 		return result;

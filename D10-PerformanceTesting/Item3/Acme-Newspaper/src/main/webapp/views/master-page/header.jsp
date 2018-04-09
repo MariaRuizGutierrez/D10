@@ -40,7 +40,7 @@
 					<li class="arrow"></li>
 					<li><a href="article/admin/list.do?d-16544-p=1"><spring:message code="master.page.listArticles" /></a></li>
 					<li><a href="article/admin/listTabooWord.do?d-16544-p=1"><spring:message code="master.page.listArticlesTabooWord" /></a></li>
-					<li><a href="article/admin/search.do?d-16544-p=1&&keyword="><spring:message code="master.page.articles.list" /></a></li>				
+					<li><a href="article/admin/search.do?d-16544-p=1&keyword="><spring:message code="master.page.articles.list" /></a></li>				
 				</ul>
 			</li>
 			<li><a class="fNiv"><spring:message	code="master.page.newspaper.list" /></a>

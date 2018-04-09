@@ -171,6 +171,11 @@ public class ArticleService {
 		return result;
 
 	}
+	public Collection<Article> findAllArticlesByAdmin(final String keyWord) {
+		Collection<Article> result;
+		result = this.articleRepository.findAllArticlesByAdmin(keyWord);
+		return result;
+	}
 
 	// Other business methods -------------------------------------------------
 

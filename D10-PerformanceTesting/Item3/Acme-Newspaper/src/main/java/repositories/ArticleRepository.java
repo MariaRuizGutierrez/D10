@@ -37,5 +37,8 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	//Query para los customer cuando muestren los artículos de un periódico concreto
 	@Query("select a from Article a where a.newspaper.id=?1 and a.publishedMoment!=null and a.draftMode=false and a.newspaper.publicationDate!=null")
 	Collection<Article> findAllArticlesByCustomerNewspaperList(int newspaperId);
+	//buscador para los articulos que esten en modo final
+	@Query("select a from Article a where (a.title like %?1% or a.summary like %?1% or a.body like %?1%)and a.draftMode=false")
+	Collection<Article> findAllArticlesByAdmin(String keyWord);
 
 }
