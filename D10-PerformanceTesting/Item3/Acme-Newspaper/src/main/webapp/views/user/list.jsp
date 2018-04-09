@@ -26,7 +26,7 @@
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="users" requestURI="${requestURI}" id="row">
 	
-		
+	<security:authorize access="hasRole('USER')">
 		<spring:message code="user.profile" var="userHeader" />
 		<display:column title="${userHeader}" sortable="true">
 			<spring:url value="user/display.do" var="userURL">
@@ -34,6 +34,17 @@
 			</spring:url>
 			<a href="${userURL}"><spring:message code ="user.profile"/></a>
 		</display:column>
+	</security:authorize>
+	
+	<security:authorize access="hasRole('ADMIN')">
+		<spring:message code="user.profile" var="userHeader" />
+		<display:column title="${userHeader}" sortable="true">
+			<spring:url value="user/admin/display.do" var="userURL">
+				<spring:param name="userId" value="${row.id }" />
+			</spring:url>
+			<a href="${userURL}"><spring:message code ="user.profile"/></a>
+		</display:column>
+	</security:authorize>
 		
 	
 	<!-- Attributes -->
