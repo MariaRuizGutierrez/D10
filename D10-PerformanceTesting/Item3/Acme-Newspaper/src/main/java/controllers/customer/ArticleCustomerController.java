@@ -61,36 +61,43 @@ public class ArticleCustomerController extends AbstractController {
 	public ModelAndView listArticlesByUser(@RequestParam final int userId) {
 
 		ModelAndView result;
-		final Collection<Article> articles;
+		Collection<Article> articles;
+		Set<Article> articlesAll;
+		Customer customer;
+		articlesAll = new HashSet<>();
 
-		articles = this.articleService.findArticlesByUserId(userId);
+		customer = this.customerService.findByPrincipal();
+
+		articles = this.articleService.findArticlesByUserSuscribed(userId, customer.getId());
+		articles.addAll(this.articleService.findArticlesByUserOpenAndFinalMode(userId));
+		articlesAll.addAll(articles);
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
 		result.addObject("requestURI", "article/customer/list.do");
 		return result;
 	}
-	
+
 	// Listb ---------------------------------------------------------
-			@RequestMapping(value = "/listb", method = RequestMethod.GET)
-			public ModelAndView listArticlesByUserSuscribed(@RequestParam final int userId) {
+	@RequestMapping(value = "/listb", method = RequestMethod.GET)
+	public ModelAndView listArticlesByUserSuscribed(@RequestParam final int userId) {
 
-				ModelAndView result;
-				Collection<Article> articles;
-				Customer customer;
-				Set<Article> articlesAll;
-				
-				articlesAll = new HashSet<>();
-				
-				customer = this.customerService.findByPrincipal();
+		ModelAndView result;
+		Collection<Article> articles;
+		Customer customer;
+		Set<Article> articlesAll;
 
-				articles = this.articleService.findArticlesByUserSuscribed(userId, customer.getId());
-				articles.addAll(this.articleService.findArticlesByUserOpenAndFinalMode(userId));
-				articlesAll.addAll(articles);
-				result = new ModelAndView("article/list");
-				result.addObject("articles", articlesAll);
-				result.addObject("requestURI", "article/customer/listb.do");
-				return result;
-			}
+		articlesAll = new HashSet<>();
+
+		customer = this.customerService.findByPrincipal();
+
+		articles = this.articleService.findArticlesByUserSuscribed(userId, customer.getId());
+		articles.addAll(this.articleService.findArticlesByUserOpenAndFinalMode(userId));
+		articlesAll.addAll(articles);
+		result = new ModelAndView("article/list");
+		result.addObject("articles", articlesAll);
+		result.addObject("requestURI", "article/customer/listb.do");
+		return result;
+	}
 
 	// Display ---------------------------------------------------------
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
