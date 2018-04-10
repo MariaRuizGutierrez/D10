@@ -61,19 +61,9 @@ public class ArticleCustomerController extends AbstractController {
 	public ModelAndView listArticlesByUser(@RequestParam final int userId) {
 
 		ModelAndView result;
-		Collection<Article> articles;
-		Set<Article> articlesAll;
-		Customer customer;
-		articlesAll = new HashSet<>();
 
-		customer = this.customerService.findByPrincipal();
+		result = this.listArticlesByUserSuscribed(userId);
 
-		articles = this.articleService.findArticlesByUserSuscribed(userId, customer.getId());
-		articles.addAll(this.articleService.findArticlesByUserOpenAndFinalMode(userId));
-		articlesAll.addAll(articles);
-		result = new ModelAndView("article/list");
-		result.addObject("articles", articles);
-		result.addObject("requestURI", "article/customer/list.do");
 		return result;
 	}
 
