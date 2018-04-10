@@ -57,28 +57,40 @@ public class ArticleCustomerController extends AbstractController {
 		return result;
 	}
 	// List ---------------------------------------------------------
-
-	// Listb ---------------------------------------------------------
-	@RequestMapping(value = "/listb", method = RequestMethod.GET)
-	public ModelAndView listArticlesByUserSuscribed(@RequestParam final int userId) {
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView listArticlesByUser(@RequestParam final int userId) {
 
 		ModelAndView result;
-		Collection<Article> articles;
-		Customer customer;
-		Set<Article> articlesAll;
+		final Collection<Article> articles;
 
-		articlesAll = new HashSet<>();
-
-		customer = this.customerService.findByPrincipal();
-
-		articles = this.articleService.findArticlesByUserSuscribed(userId, customer.getId());
-		articles.addAll(this.articleService.findArticlesByUserOpenAndFinalMode(userId));
-		articlesAll.addAll(articles);
+		articles = this.articleService.findArticlesByUserId(userId);
 		result = new ModelAndView("article/list");
-		result.addObject("articles", articlesAll);
-		result.addObject("requestURI", "article/customer/listb.do");
+		result.addObject("articles", articles);
+		result.addObject("requestURI", "article/customer/list.do");
 		return result;
 	}
+	
+	// Listb ---------------------------------------------------------
+			@RequestMapping(value = "/listb", method = RequestMethod.GET)
+			public ModelAndView listArticlesByUserSuscribed(@RequestParam final int userId) {
+
+				ModelAndView result;
+				Collection<Article> articles;
+				Customer customer;
+				Set<Article> articlesAll;
+				
+				articlesAll = new HashSet<>();
+				
+				customer = this.customerService.findByPrincipal();
+
+				articles = this.articleService.findArticlesByUserSuscribed(userId, customer.getId());
+				articles.addAll(this.articleService.findArticlesByUserOpenAndFinalMode(userId));
+				articlesAll.addAll(articles);
+				result = new ModelAndView("article/list");
+				result.addObject("articles", articlesAll);
+				result.addObject("requestURI", "article/customer/listb.do");
+				return result;
+			}
 
 	// Display ---------------------------------------------------------
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
