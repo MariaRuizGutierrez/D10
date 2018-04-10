@@ -1,5 +1,7 @@
 package controllers.user;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -28,6 +30,27 @@ public class ProfileUserController extends AbstractController{
 
 	public ProfileUserController() {
 		super();
+	}
+	
+	//Listing-----------------------------------------------------------
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list() {
+
+		ModelAndView result;
+		Collection<User> users;
+		User principal;
+		
+		principal= this.userService.findByPrincipal();
+		users = this.userService.findAll();
+		users.remove(principal);
+		result = new ModelAndView("user/list");
+		result.addObject("users", users);
+		result.addObject("requestURI", "profile/user/list.do");
+		result.addObject("requestProfileURL", "user/display.do");
+
+		return result;
+
 	}
 	
 	//Edition------------------------------------------------------------

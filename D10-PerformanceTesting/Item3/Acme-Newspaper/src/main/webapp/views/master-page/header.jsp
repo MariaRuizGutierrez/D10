@@ -132,7 +132,7 @@
 			</li>
 			<li><a class="fNiv"><spring:message code="master.page.user"/></a>
 				<ul>
-					<li><a href="user/list.do?d-16544-p=1"><spring:message code="master.page.users.list" /></a></li>
+					<li><a href="profile/user/list.do?d-16544-p=1"><spring:message code="master.page.users.list" /></a></li>
 					<li><a href="user/listFollowers.do?d-16544-p=1"><spring:message code="master.page.user.followers"/></a>
 					<li><a href="user/listFollowed.do?d-16544-p=1"><spring:message code="master.page.user.followed"/></a>
 					<li><a href="user/listUserNotFollowed.do?d-16544-p=1"><spring:message code="master.page.user.notFollowed"/></a>
