@@ -100,8 +100,16 @@ public class ArticleUserController extends AbstractController {
 	public ModelAndView displayArticles(@RequestParam final int userId) {
 		ModelAndView result;
 		final Collection<Article> articles;
+		User principal;
 
-		articles = this.articleService.findArticlesOfUserWhatIsOpen(userId);
+		
+		principal = this.userService.findByPrincipal();
+		
+		if(principal.getId() == userId){
+			articles = this.articleService.findArticlesByUserId(principal.getId());
+		}else{
+			articles = this.articleService.findArticlesOfUserWhatIsOpen(userId);
+		}
 
 		result = new ModelAndView("article/list");
 		result.addObject("articles", articles);
