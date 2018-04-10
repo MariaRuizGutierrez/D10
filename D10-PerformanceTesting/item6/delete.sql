@@ -1,8 +1,8 @@
 start transaction;
-use `Acme-Explorer`;
-revoke all privileges on `Acme-Explorer`.* from 'acme-user'@'%';
-revoke all privileges on `Acme-Explorer`.* from 'acme-manager'@'%';
+use `Acme-Newspaper`;
+revoke all privileges on `Acme-Newspaper`.* from 'acme-user'@'%';
+revoke all privileges on `Acme-Newspaper`.* from 'acme-manager'@'%';
 drop user 'acme-user'@'%';
 drop user 'acme-manager'@'%';
-drop database `Acme-Explorer`;
+drop database `Acme-Newspaper`;
 commit;
