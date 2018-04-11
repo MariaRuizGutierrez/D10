@@ -24,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(indexes = {
-	@Index(columnList = "open,publicationDate")
+	@Index(columnList = "open,publicationDate,title,description,publisher_id")
 })
 public class Newspaper extends DomainEntity {
 

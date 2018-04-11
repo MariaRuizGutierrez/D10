@@ -28,7 +28,7 @@ import cz.jirutka.validator.collection.constraints.EachURL;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(indexes = {
-	@Index(columnList = "draftMode,publishedMoment,title,body,summary,publishedMoment")
+	@Index(columnList = "draftMode,publishedMoment,title,body,summary,publishedMoment,newspaper_id,writer_id")
 })
 public class Article extends DomainEntity {
 

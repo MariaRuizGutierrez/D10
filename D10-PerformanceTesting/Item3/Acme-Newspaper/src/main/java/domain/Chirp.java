@@ -21,7 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(indexes = {
-	@Index(columnList = "postedMoment,title,description")
+	@Index(columnList = "postedMoment,title,description,user_id")
 })
 public class Chirp extends DomainEntity {
 
