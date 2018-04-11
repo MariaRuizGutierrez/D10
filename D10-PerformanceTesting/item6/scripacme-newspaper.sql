@@ -1,15 +1,10 @@
 start transaction;
 create database `Acme-Newspaper`;
 use `Acme-Newspaper`;
-
 create user 'acme-user'@'%' identified by password '*4F10007AADA9EE3DBB2CC36575DFC6F4FDE27577';
 create user 'acme-manager'@'%' identified by password '*FDB8CD304EB2317D10C95D797A4BD7492560F55F';
-
 grant select, insert, update, delete on `Acme-Newspaper`.* to 'acme-user'@'%';
 grant select, insert, update, delete, create, drop, references, index, alter, create temporary tables, lock tables, create view, create routine, alter routine, execute, trigger, show view on `Acme-Newspaper`.* to 'acme-manager'@'%';
-
-
-
 -- MySQL dump 10.13  Distrib 5.5.29, for Win64 (x86)
 --
 -- Host: localhost    Database: acme-newspaper
@@ -45,6 +40,7 @@ CREATE TABLE `admin` (
   `userAccount_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_gfgqmtp2f9i5wsojt33xm0uth` (`userAccount_id`),
+  KEY `AdminUK_cgls5lrufx91ufsyh467spwa3` (`userAccount_id`),
   CONSTRAINT `FK_gfgqmtp2f9i5wsojt33xm0uth` FOREIGN KEY (`userAccount_id`) REFERENCES `useraccount` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -77,7 +73,7 @@ CREATE TABLE `article` (
   `newspaper_id` int(11) NOT NULL,
   `writer_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `UK_awdajk0d31hmljh3t3b6tc8uf` (`draftMode`,`publishedMoment`,`title`,`body`,`summary`),
+  KEY `UK_ipgmt2t51ohhv3v3e7079qt1v` (`draftMode`,`publishedMoment`,`title`,`body`,`summary`,`newspaper_id`,`writer_id`),
   KEY `FK_pftm848lf5hu8sd0vghfs605l` (`newspaper_id`),
   KEY `FK_tushlj62v3v30iqifyful69d` (`writer_id`),
   CONSTRAINT `FK_tushlj62v3v30iqifyful69d` FOREIGN KEY (`writer_id`) REFERENCES `user` (`id`),
@@ -135,7 +131,7 @@ CREATE TABLE `chirp` (
   `title` varchar(255) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `UK_1ewk13363dhoteblfm8rok2bn` (`postedMoment`,`title`,`description`),
+  KEY `UK_n6v0v2dwnaeokhvh1spb6qfui` (`postedMoment`,`title`,`description`,`user_id`),
   KEY `FK_t10lk4j2g8uw7k7et58ytrp70` (`user_id`),
   CONSTRAINT `FK_t10lk4j2g8uw7k7et58ytrp70` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -220,6 +216,7 @@ CREATE TABLE `customer` (
   `userAccount_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_pwmktpkay2yx7v00mrwmuscl8` (`userAccount_id`),
+  KEY `CustomerUK_cgls5lrufx91ufsyh467spwa3` (`userAccount_id`),
   CONSTRAINT `FK_pwmktpkay2yx7v00mrwmuscl8` FOREIGN KEY (`userAccount_id`) REFERENCES `useraccount` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -250,7 +247,7 @@ CREATE TABLE `followup` (
   `title` varchar(255) DEFAULT NULL,
   `article_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_aer0q20rslre6418yqlfwmeek` (`article_id`),
+  KEY `UK_aer0q20rslre6418yqlfwmeek` (`article_id`),
   CONSTRAINT `FK_aer0q20rslre6418yqlfwmeek` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -330,7 +327,7 @@ CREATE TABLE `newspaper` (
   `title` varchar(255) DEFAULT NULL,
   `publisher_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `UK_jolmfo60k48evnfs34wnjp19f` (`open`,`publicationDate`),
+  KEY `UK_trr5i0tpor3p4h2hubeeiyct6` (`open`,`publicationDate`,`title`,`description`,`publisher_id`),
   KEY `FK_6w4ywp7unfjqi2kflvm35ie1g` (`publisher_id`),
   CONSTRAINT `FK_6w4ywp7unfjqi2kflvm35ie1g` FOREIGN KEY (`publisher_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -365,7 +362,7 @@ CREATE TABLE `subscription` (
   `customer_id` int(11) NOT NULL,
   `newspaper_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_2i5w4btb7x3r6d2jsd213aqct` (`customer_id`),
+  KEY `UK_nc1vf3np9y553nvhx2n6mxd1m` (`customer_id`,`newspaper_id`),
   KEY `FK_b3d3q413vlktogdjnnus3ep9e` (`newspaper_id`),
   CONSTRAINT `FK_b3d3q413vlktogdjnnus3ep9e` FOREIGN KEY (`newspaper_id`) REFERENCES `newspaper` (`id`),
   CONSTRAINT `FK_2i5w4btb7x3r6d2jsd213aqct` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
@@ -426,6 +423,7 @@ CREATE TABLE `user` (
   `userAccount_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_o6s94d43co03sx067ili5760c` (`userAccount_id`),
+  KEY `UserUK_cgls5lrufx91ufsyh467spwa3` (`userAccount_id`),
   CONSTRAINT `FK_o6s94d43co03sx067ili5760c` FOREIGN KEY (`userAccount_id`) REFERENCES `useraccount` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -528,5 +526,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-10 11:07:21
+-- Dump completed on 2018-04-11 15:33:38
 commit;
