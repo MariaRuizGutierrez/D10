@@ -106,7 +106,7 @@ public class CustomerController extends AbstractController {
 				else if (oops.getMessage().equals("the conditions must be accepted"))
 					result = this.createEditModelAndView(customerForm, "actor.conditions.accept");
 				else if (oops.getMessage().equals("could not execute statement; SQL [n/a]; constraint [null]" + "; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement"))
-					result = this.createEditModelAndView(customerForm, "cutomer.commit.error.duplicateProfile");
+					result = this.createEditModelAndView(customerForm, "customer.commit.error.duplicateProfile");
 				else
 					result = this.createEditModelAndView(customerForm, "customer.commit.error");
 			}
