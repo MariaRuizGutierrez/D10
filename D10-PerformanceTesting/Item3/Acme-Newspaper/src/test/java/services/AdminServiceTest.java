@@ -19,6 +19,7 @@ import domain.Admin;
 import domain.Article;
 import domain.Chirp;
 import domain.Newspaper;
+import domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -451,5 +452,746 @@ public class AdminServiceTest extends AbstractTest {
 		this.checkExceptions(expected, caught);
 
 	}
+	
 
+	//Use case 7.3.1. The average and the standard deviation of newspapers created per user.  
+	@Test
+	public void drivetheAvgAndStddevOfNewspapersForUserAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 2, 2.25, 0.433, null
+			}, 
+			//User registers, negativo case
+			{
+				"user1", 2, 2.25, 0.433, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templatetheAvgAndStddevOfNewspapersForUserAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
+
+	}
+	
+	public void templatetheAvgAndStddevOfNewspapersForUserAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
+
+		Class<?> caught;
+		Double[] result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.theAvgAndStddevOfNewspapersForUser();
+			Assert.isTrue(result.length == num);
+			Assert.isTrue(result[0] == num1);
+			Assert.isTrue(result[1] == num2);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	//Use case 7.3.2. The average and the standard deviation of articles written by writer
+	@Test
+	public void drivetheAvgAndStddevOfArticlesPerWriterAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 2, 3.0, 0.7071, null
+			}, 
+			//user registers, negative case
+			{
+				"user1", 2, 3.0, 0.7071, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templatetheAvgAndStddevOfArticlesPerWriterAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
+
+	}
+	
+	public void templatetheAvgAndStddevOfArticlesPerWriterAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
+
+		Class<?> caught;
+		Double[] result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.theAvgAndStddevOfArticlesPerWriter();
+			Assert.isTrue(result.length == num);
+			Assert.isTrue(result[0] == num1);
+			Assert.isTrue(result[1] == num2);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	//Use case 7.3.3. The average and the standard deviation of articles per newspaper.
+	@Test
+	public void drivetheAvgAndStddevOfArticlePerNewspaperAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 2, 1.3333, 0.4714, null
+			}, 
+			//user registers, negative case
+			{
+				"user1", 2, 1.3333, 0.4714, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templatetheAvgAndStddevOfArticlePerNewspaperAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
+
+	}
+	
+	public void templatetheAvgAndStddevOfArticlePerNewspaperAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
+
+		Class<?> caught;
+		Double[] result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.theAvgAndStddevOfArticlePerNewspaper();
+			Assert.isTrue(result.length == num);
+			Assert.isTrue(result[0] == num1);
+			Assert.isTrue(result[1] == num2);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	
+	//Use case 7.3.4. The newspapers that have at 10% more articles than the average. 
+	@Test
+	public void drivenewspaperHaveLeast10MorePercentFewerArtclesThanAveragedAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 3, null
+			}, 
+			//user registers, negative case
+			{
+				"user1", 3, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templatenewspaperHaveLeast10MorePercentFewerArtclesThanAverageAdministrator((String) testingData[i][0], (int) testingData[i][1], (Class<?>) testingData[i][2]);
+
+	}
+
+	public void templatenewspaperHaveLeast10MorePercentFewerArtclesThanAverageAdministrator(final String username, int num, final Class<?> expected) {
+
+		Class<?> caught;
+		Collection<Newspaper> result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.newspaperHaveLeast10MorePercentFewerArtclesThanAverage();
+			Assert.isTrue(result.size() == num);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+
+	//Use case 7.3.5. the newspaper that have at least 10% fewer articles than the average. 
+	@Test
+	public void drivenewspaperHaveLeast10LeastPercentFewerArtclesThanAverageAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 6, null
+			}, 
+			//user registers, negative case
+			{
+				"user1", 6, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templatenewspaperHaveLeast10LeastPercentFewerArtclesThanAverageAdministrator((String) testingData[i][0], (int) testingData[i][1], (Class<?>) testingData[i][2]);
+
+	}
+
+	public void templatenewspaperHaveLeast10LeastPercentFewerArtclesThanAverageAdministrator(final String username, int num, final Class<?> expected) {
+
+		Class<?> caught;
+		Collection<Newspaper> result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.newspaperHaveLeast10LeastPercentFewerArtclesThanAverage();
+			Assert.isTrue(result.size() == num);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	
+	//Use case 7.3.6. the newspaper that have at least 10% fewer articles than the average.
+	@Test
+	public void drivetheRatioOfUsersWritingNewspaperAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registes, positive case
+			{
+				"admin", 1.0, null
+			}, 
+			//user registers, negative case
+			{
+				
+				"user1", 1.0, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templatetheRatioOfUsersWritingNewspaperAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
+
+	}
+
+	public void templatetheRatioOfUsersWritingNewspaperAdministrator(final String username, double num, final Class<?> expected) {
+
+		Class<?> caught;
+		Double result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.theRatioOfUsersWritingNewspaper();
+			Assert.isTrue(result == num);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	
+	//Use case 7.3.7. the ratio of users who have ever created a newspaper. 
+	@Test
+	public void drivetheRatioOfUsersWritingArticleAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 1.0, null
+			}, 
+			//user registers, negative case
+			{
+				"user1", 1.0, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templatetheRatioOfUsersWritingArticleAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
+
+	}
+
+	public void templatetheRatioOfUsersWritingArticleAdministrator(final String username, double num, final Class<?> expected) {
+
+		Class<?> caught;
+		Double result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.theRatioOfUsersWritingArticle();
+			Assert.isTrue(result == num);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	
+	//Use case 17.6.1. The average number of follow.ups per article.
+	@Test
+	public void driveAvgFollowupsPerArticleAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 0.4167, null
+			}, 
+			//user registers, negative case
+			{
+				"user1", 0.4167, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templateAvgFollowupsPerArticleAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
+
+	}
+
+	public void templateAvgFollowupsPerArticleAdministrator(final String username, double num, final Class<?> expected) {
+
+		Class<?> caught;
+		Double result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.avgFollowupsPerArticle();
+			Assert.isTrue(result == num);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	
+	//Use case 17.6.2. The average number of follow-ups per article up to two weeks after corresponding newspaper's been published.
+	@Test
+	public void driveAvgNumberOfFollowUpsPerArticleAfterOneWeekAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 0.5, null
+			},
+			//user registers, negative case
+			{
+				"user1", 0.5, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templateAvgNumberOfFollowUpsPerArticleAfterOneWeekAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
+
+	}
+
+	public void templateAvgNumberOfFollowUpsPerArticleAfterOneWeekAdministrator(final String username, double num, final Class<?> expected) {
+
+		Class<?> caught;
+		Double result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.avgNumberOfFollowUpsPerArticleAfterOneWeek();
+			Assert.isTrue(result == num);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	
+	
+	//Use case 17.6.3. The average number of follow-ups per article up to two weeks after the corresponding newspaper's been published.
+	@Test
+	public void driveAvgNumberOfFollowUpsPerArticleAfterTwoWeekAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 0.5, null
+			}, 
+			//user registers, negative case
+			{
+				"user1", 0.5, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templateAvgNumberOfFollowUpsPerArticleAfterTwoWeekAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
+
+	}
+
+	public void templateAvgNumberOfFollowUpsPerArticleAfterTwoWeekAdministrator(final String username, double num, final Class<?> expected) {
+
+		Class<?> caught;
+		Double result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.avgNumberOfFollowUpsPerArticleAfterTwoWeek();
+			Assert.isTrue(result == num);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	
+	//Use case 17.6.4. The average and the standard deviation of the number of chirps per user. 
+	@Test
+	public void drivetheAvgAndStddevOfNumberOfChirpPerUserAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 2, 1.75, 0.433, null
+			}, 
+			//user registers, negative case
+			{
+				"user1", 2, 1.75, 0.433, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templateAvgAndStddevOfNumberOfChirpPerUserAdministrator((String) testingData[i][0], (int) testingData[i][1], (double) testingData[i][2], (double) testingData[i][3], (Class<?>) testingData[i][4]);
+
+	}
+	
+	public void templateAvgAndStddevOfNumberOfChirpPerUserAdministrator(final String username, int num, double num1, double num2, final Class<?> expected) {
+
+		Class<?> caught;
+		Double[] result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.avgAndStddevOfNumberOfChirpPerUser();
+			Assert.isTrue(result.length == num);
+			Assert.isTrue(result[0] == num1);
+			Assert.isTrue(result[1] == num2);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	
+	//Use case 17.6.5. The ratio of users who have posted above 75% the averaage number of chirps per user .
+	@Test
+	public void driveratioOfUserWhoHavePostedAbove75PercentTheAvgNumberOfChirpsPerUSerAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 0, null
+			}, 
+			//user registers, negative case
+			{
+				"user1", 0, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templateratioOfUserWhoHavePostedAbove75PercentTheAvgNumberOfChirpsPerUSerAdministrator((String) testingData[i][0], (int) testingData[i][1], (Class<?>) testingData[i][2]);
+
+	}
+
+	public void templateratioOfUserWhoHavePostedAbove75PercentTheAvgNumberOfChirpsPerUSerAdministrator(final String username, int num, final Class<?> expected) {
+
+		Class<?> caught;
+		Collection<User> result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.ratioOfUserWhoHavePostedAbove75PercentTheAvgNumberOfChirpsPerUSer();
+			Assert.isTrue(result.size() == num);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	
+	//Use case 24.1.1. The ratio of public versus private newspapers
+	@Test
+	public void driveRatioOfNewspaperPublicPerNespaperProvateAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 1.25, null
+			}, 
+			//user registers, negative case
+			{
+				"user1", 1.25, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templateRatioOfNewspaperPublicPerNespaperProvateAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
+
+	}
+
+	public void templateRatioOfNewspaperPublicPerNespaperProvateAdministrator(final String username, double num, final Class<?> expected) {
+
+		Class<?> caught;
+		Double result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.ratioOfNewspaperPublicPerNespaperProvate();
+			Assert.isTrue(result == num);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	
+	//Use case 24.1.2. The average number of articles per private newspapers
+	@Test
+	public void driveAvgArticlePerNewspapersPrivateAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 1.25, null
+			}, 
+			//user registers, negative case
+			{
+				"user1", 1.25, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templateAvgArticlePerNewspapersPrivateAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
+
+	}
+
+	public void templateAvgArticlePerNewspapersPrivateAdministrator(final String username, double num, final Class<?> expected) {
+
+		Class<?> caught;
+		Double result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.avgArticlePerNewspapersPrivate();
+			Assert.isTrue(result == num);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	
+	//Use case 24.1.3. The average number of articles per public newspapers
+	@Test
+	public void driveAvgArticlesPerNewspapersPublicAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 1.4, null
+			}, 
+			//user registers, negative case
+			{
+				"user1", 1.4, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templateAvgArticlesPerNewspapersPublicAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
+
+	}
+
+	public void templateAvgArticlesPerNewspapersPublicAdministrator(final String username, double num, final Class<?> expected) {
+
+		Class<?> caught;
+		Double result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.avgArticlesPerNewspapersPublic();
+			Assert.isTrue(result == num);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	
+	//Use case 24.1.4. The ratio of subscribers per private newspaper versus the total number of customers
+	@Test
+	public void driveRatioOfSubscribersWhenNewspaperPrivatePerNumberCustomerAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 1.0, null
+			}, 
+			//user registers, negative case
+			{
+				"user1", 1.0, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templateRatioOfSubscribersWhenNewspaperPrivatePerNumberCustomerAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
+
+	}
+
+	public void templateRatioOfSubscribersWhenNewspaperPrivatePerNumberCustomerAdministrator(final String username, double num, final Class<?> expected) {
+
+		Class<?> caught;
+		Double result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.ratioOfSubscribersWhenNewspaperPrivatePerNumberCustomer();
+			Assert.isTrue(result == num);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	
+	//Use case 24.1.5. The average ratio of private versus public newspapers per publisher
+	@Test
+	public void drivetheAverageRatioOfPrivateVersusPublicNewspaperPerPublishedAdministrator() {
+
+		final Object testingData[][] = {
+			//admin registers, positive case
+			{
+				"admin", 0.8, null
+			}, 
+			//user registers, negative case
+			{
+				"user1", 0.8, IllegalArgumentException.class
+			}
+		};
+
+		for (int i = 0; i < testingData.length; i++)
+			this.templatetheAverageRatioOfPrivateVersusPublicNewspaperPerPublishedAdministrator((String) testingData[i][0], (double) testingData[i][1], (Class<?>) testingData[i][2]);
+
+	}
+
+	public void templatetheAverageRatioOfPrivateVersusPublicNewspaperPerPublishedAdministrator(final String username, double num, final Class<?> expected) {
+
+		Class<?> caught;
+		Double result;
+
+		caught = null;
+
+		try {
+			super.authenticate(username);
+			result = this.adminService.theAverageRatioOfPrivateVersusPublicNewspaperPerPublished();
+			Assert.isTrue(result == num);
+			this.adminService.flush();
+
+		} catch (final Throwable oops) {
+			caught = oops.getClass();
+			//Se borra la cache para que no salte siempre el error del primer objeto que ha fallado en el test
+			this.entityManager.clear();
+		}
+
+		this.checkExceptions(expected, caught);
+
+	}
+	
+	
 }
