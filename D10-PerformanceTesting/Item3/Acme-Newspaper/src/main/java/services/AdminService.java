@@ -136,54 +136,63 @@ public class AdminService {
 
 	//C1
 	public Double[] theAvgAndStddevOfNewspapersForUser() {
+		this.checkPrincipal();
 		Double[] result;
 		result = this.adminRepository.theAvgAndStddevOfNewspapersForUser();
 		return result;
 	}
 	//C2
 	public Double[] theAvgAndStddevOfArticlesPerWriter() {
+		this.checkPrincipal();
 		Double[] result;
 		result = this.adminRepository.theAvgAndStddevOfArticlesPerWriter();
 		return result;
 	}
 	//C3
 	public Double[] theAvgAndStddevOfArticlePerNewspaper() {
+		this.checkPrincipal();
 		Double[] result;
 		result = this.adminRepository.theAvgAndStddevOfArticlePerNewspaper();
 		return result;
 	}
 	//C4
 	public Collection<Newspaper> newspaperHaveLeast10MorePercentFewerArtclesThanAverage() {
+		this.checkPrincipal();
 		Collection<Newspaper> result;
 		result = this.adminRepository.newspaperHaveLeast10MorePercentFewerArtclesThanAverage();
 		return result;
 	}
 	//C5
 	public Collection<Newspaper> newspaperHaveLeast10LeastPercentFewerArtclesThanAverage() {
+		this.checkPrincipal();
 		Collection<Newspaper> result;
 		result = this.adminRepository.newspaperHaveLeast10LeastPercentFewerArtclesThanAverage();
 		return result;
 	}
 	//C6
 	public Double theRatioOfUsersWritingNewspaper() {
+		this.checkPrincipal();
 		Double result;
 		result = this.adminRepository.theRatioOfUsersWritingNewspaper();
 		return result;
 	}
 	//C7
 	public Double theRatioOfUsersWritingArticle() {
+		this.checkPrincipal();
 		Double result;
 		result = this.adminRepository.theRatioOfUsersWritingArticle();
 		return result;
 	}
 	//B1
 	public Double avgFollowupsPerArticle() {
+		this.checkPrincipal();
 		Double result;
 		result = this.adminRepository.avgFollowupsPerArticle();
 		return result;
 	}
 	//B2
 	public Double avgNumberOfFollowUpsPerArticleAfterOneWeek() {
+		this.checkPrincipal();
 		Double result;
 		long sevenDays = TimeUnit.DAYS.toMillis(7);
 		Date since = new Date(System.currentTimeMillis() - sevenDays);
@@ -192,6 +201,7 @@ public class AdminService {
 	}
 	//B3
 	public Double avgNumberOfFollowUpsPerArticleAfterTwoWeek() {
+		this.checkPrincipal();
 		Double result;
 		long foorteenDays = TimeUnit.DAYS.toMillis(14);
 		Date since = new Date(System.currentTimeMillis() - foorteenDays);
@@ -200,42 +210,50 @@ public class AdminService {
 	}
 	//B4
 	public Double[] avgAndStddevOfNumberOfChirpPerUser() {
+		
+		this.checkPrincipal();
 		Double[] result;
 		result = this.adminRepository.avgAndStddevOfNumberOfChirpPerUser();
 		return result;
 	}
 	//B5
 	public Collection<User> ratioOfUserWhoHavePostedAbove75PercentTheAvgNumberOfChirpsPerUSer() {
+		this.checkPrincipal();
 		Collection<User> result;
 		result = this.adminRepository.ratioOfUserWhoHavePostedAbove75PercentTheAvgNumberOfChirpsPerUSer();
 		return result;
 	}
 	//A1
 	public Double ratioOfNewspaperPublicPerNespaperProvate() {
+		this.checkPrincipal();
 		Double result;
 		result = this.adminRepository.ratioOfNewspaperPublicPerNespaperProvate();
 		return result;
 	}
 	//A2
 	public Double avgArticlePerNewspapersPrivate() {
+		this.checkPrincipal();
 		Double result;
 		result = this.adminRepository.avgArticlePerNewspapersPrivate();
 		return result;
 	}
 	//A3
 	public Double avgArticlesPerNewspapersPublic() {
+		this.checkPrincipal();
 		Double result;
 		result = this.adminRepository.avgArticlesPerNewspapersPublic();
 		return result;
 	}
 	//A4
 	public Double ratioOfSubscribersWhenNewspaperPrivatePerNumberCustomer() {
+		this.checkPrincipal();
 		Double result;
 		result = this.adminRepository.ratioOfSubscribersWhenNewspaperPrivatePerNumberCustomer();
 		return result;
 	}
 	//A5
 	public Double theAverageRatioOfPrivateVersusPublicNewspaperPerPublished() {
+		this.checkPrincipal();
 		Double result;
 		result = this.adminRepository.theAverageRatioOfPrivateVersusPublicNewspaperPerPublished();
 		return result;
