@@ -28,6 +28,7 @@ USER: Buscador de artículo: Te salen todos tus artículos tanto si están en mo
 
 CUSTOMER: Buscador de artículo: Te salen todos aquellos artículos en modo final y cuyo periódico está publicado. Los artículos privados de aquellos periódicos a los cuales estás suscrito. Buscador de periódico: Aquellos que están publicados tanto en modo público como privado. Y los privados a los que tu te has suscrito.
 
+11. En los tests de rendimiento si el tiempo en superior a 2 segundos lo consideramos inválido.
 
 Todas estas decisiones se le comentaron a nuestro profesor de seguimiento, que en este caso ha sido Carlos Muller, y nos ha dado el visto bueno.
 
