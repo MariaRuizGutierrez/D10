@@ -1,0 +1,1 @@
+El caso de uso que tiene los 10 casos de usos se encuentra en ArticleServiceTest
